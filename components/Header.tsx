@@ -1,22 +1,27 @@
 import { memo } from "react";
 import Link from "next/link";
+import HeaderItem from "./HeaderItem";
+import MenuIcon from "../assets/svgs/menu.svg";
 
 export type HeaderProps = {};
 
 const Header = () => {
   return (
     <header className="fixed w-full h-8 flex items-center">
-      <div className="container mx-auto flex justify-between">
-        <div className="flex">
+      <div className="container max-w-screen-md px-4 flex justify-between">
+        <nav className="flex">
           <Link href="/">
-            <a className="block lg:mt-0 mr-4">Main</a>
+            <a className="block lg:mt-0 font-bold">ChangHyun Kim</a>
           </Link>
-          <Link href="/introduction">
-            <a className="block lg:mt-0 mr-4">Introduction</a>
-          </Link>
-          <Link href="/contact">
-            <a className="block lg:mt-0 mr-4">Contact</a>
-          </Link>
+          <div className="ml-10 hidden md:flex">
+            <HeaderItem href="/introduction" label="Introduction" />
+            <HeaderItem href="/contact" label="Contact" />
+          </div>
+        </nav>
+        <div>
+          <button className="w-6 h-2 md:hidden">
+            <MenuIcon />
+          </button>
         </div>
       </div>
     </header>

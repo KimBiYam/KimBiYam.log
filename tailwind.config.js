@@ -5,12 +5,13 @@ module.exports = {
     container: {
       center: true,
     },
-    screen: {
-      sm: "480px",
-      md: "768px",
-      lg: "1024px",
+    extend: {
+      screens: {
+        sm: "480px",
+        md: "768px",
+        lg: "1024px",
+      },
     },
-    extend: {},
   },
   variants: {
     extend: {},
