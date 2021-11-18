@@ -1,6 +1,6 @@
 import HeaderMenuItem from "./HeaderMenuItem";
 import MenuIcon from "../../assets/svgs/menu.svg";
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import useDetectOutsideClick from "../../hooks/useDetectOutsideClick";
 import { useMediaQuery } from "react-responsive";
 import breakPoints from "../../lib/styles/breakPoints";
@@ -13,9 +13,13 @@ const HeaderMenu = () => {
 
   const isMediumScreen = useMediaQuery({ minWidth: breakPoints.md });
 
-  const toggleMenu = useCallback(() => {
+  const toggleMenu = () => {
     setIsMenuOpen((prevDropdownOpen) => !prevDropdownOpen);
-  }, [setIsMenuOpen]);
+  };
+
+  const handleClick = () => {
+    setIsMenuOpen(false);
+  };
 
   useEffect(() => {
     if (isMediumScreen) {
@@ -30,9 +34,17 @@ const HeaderMenu = () => {
       </button>
       {isMenuOpen && (
         <ul className="absolute right-0 z-50 bg-white w-32 p-2">
-          <HeaderMenuItem href="/" label="About" />
-          <HeaderMenuItem href="/introduction" label="Introduction" />
-          <HeaderMenuItem href="/contact" label="Contact" />
+          <HeaderMenuItem href="/" label="About" onClick={handleClick} />
+          <HeaderMenuItem
+            href="/introduction"
+            label="Introduction"
+            onClick={handleClick}
+          />
+          <HeaderMenuItem
+            href="/contact"
+            label="Contact"
+            onClick={handleClick}
+          />
         </ul>
       )}
     </div>
