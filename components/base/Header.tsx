@@ -1,9 +1,9 @@
-import { memo, useCallback, useRef, useState } from "react";
+import { memo, useCallback, useRef } from "react";
 import Link from "next/link";
 import HeaderItem from "./HeaderItem";
-import MenuIcon from "../assets/svgs/menu.svg";
+import MenuIcon from "../../assets/svgs/menu.svg";
 import HeaderMenu from "./HeaderMenu";
-import useDetectOutsideClick from "../hooks/useDetectOutsideClick";
+import useDetectOutsideClick from "../../hooks/useDetectOutsideClick";
 
 export type HeaderProps = {};
 
