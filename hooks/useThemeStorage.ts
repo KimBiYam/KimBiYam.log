@@ -11,6 +11,14 @@ const useThemeStorage = () => {
     setTheme(theme);
   }, []);
 
+  useEffect(() => {
+    if (theme === Theme.dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
   const toggleTheme = () => {
     const changedTheme = theme === Theme.light ? Theme.dark : Theme.light;
 
