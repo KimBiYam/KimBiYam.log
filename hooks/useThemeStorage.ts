@@ -3,13 +3,21 @@ import themeStorage from "../lib/storage/themeStorage";
 import { Theme } from "../lib/styles/theme";
 
 const DARK_MODE = "dark";
+const OS_DARK_MODE_QUERY = "(prefers-color-scheme: dark)";
 
 const useThemeStorage = () => {
   const [theme, setTheme] = useState<Theme>(Theme.light);
 
   useEffect(() => {
-    const theme = themeStorage.getTheme() ?? Theme.light;
+    let theme = themeStorage.getTheme();
 
+    if (theme === null && window.matchMedia(OS_DARK_MODE_QUERY).matches) {
+      theme = Theme.dark;
+    } else {
+      theme = Theme.light;
+    }
+
+    themeStorage.setTheme(theme);
     setTheme(theme);
   }, []);
 
