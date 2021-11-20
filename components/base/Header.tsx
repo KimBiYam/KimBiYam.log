@@ -2,6 +2,7 @@ import { memo } from "react";
 import Link from "next/link";
 import HeaderItem from "./HeaderItem";
 import HeaderMenu from "./HeaderMenu";
+import DarkModeButton from "./DarkModeButton";
 
 export type HeaderProps = {};
 
@@ -18,7 +19,10 @@ const Header = () => {
             <HeaderItem href="/contact" label="Contact" />
           </div>
         </nav>
-        <HeaderMenu />
+        <div className="flex">
+          <DarkModeButton />
+          <HeaderMenu />
+        </div>
       </div>
     </header>
   );

@@ -28,7 +28,7 @@ const HeaderMenu = () => {
   }, [isMediumScreen]);
 
   return (
-    <div className="relative" ref={menuButtonref}>
+    <div className="relative ml-4" ref={menuButtonref}>
       <button className="w-6 h-2 md:hidden" onClick={toggleMenu}>
         <MenuIcon />
       </button>
