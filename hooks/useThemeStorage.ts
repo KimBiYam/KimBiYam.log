@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import themeStorage from "../lib/storage/themeStorage";
 import { Theme } from "../lib/styles/theme";
 
+const DARK_MIDE = "dark";
+
 const useThemeStorage = () => {
   const [theme, setTheme] = useState<Theme>(Theme.light);
 
@@ -13,9 +15,9 @@ const useThemeStorage = () => {
 
   useEffect(() => {
     if (theme === Theme.dark) {
-      document.documentElement.classList.add("dark");
+      document.documentElement.classList.add(DARK_MIDE);
     } else {
-      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.remove(DARK_MIDE);
     }
   }, [theme]);
 
