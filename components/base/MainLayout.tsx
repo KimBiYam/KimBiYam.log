@@ -6,7 +6,7 @@ export type MainLayoutProps = {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <div className="w-full h-full bg-trueGray-300 dark:bg-trueGray-800 transition-colors duration-200">
+    <div className="w-full h-full bg-white dark:bg-trueGray-800 transition-colors duration-200">
       <div className="container h-full max-w-screen-md px-16 pt-16">
         {children}
       </div>
