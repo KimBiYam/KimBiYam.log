@@ -8,8 +8,8 @@ export type HeaderProps = {};
 
 const Header = () => {
   return (
-    <header className="fixed w-full h-8 flex items-center text-black dark:text-warmGray-400">
-      <div className="container max-w-screen-md px-4 flex justify-between">
+    <header className="fixed w-full h-12 flex items-center text-black dark:text-warmGray-400">
+      <div className="container max-w-screen-md px-8 flex justify-between items-center">
         <nav className="flex">
           <Link href="/">
             <a className="block lg:mt-0 font-bold">ChangHyun Kim</a>
