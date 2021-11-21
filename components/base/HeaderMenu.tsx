@@ -35,7 +35,7 @@ const HeaderMenu = () => {
       <ul
         className={`${
           isMenuOpen ? "visible opacity-100" : "invisible opacity-0"
-        } absolute right-0 transition-all duration-200 ease-in-out z-50 bg-white w-32 p-2`}
+        } absolute right-0 transition-all duration-200 ease-in-out z-50 rounded-md bg-white w-32 p-2`}
       >
         <HeaderMenuItem href="/" label="About" onClick={handleClick} />
         <HeaderMenuItem

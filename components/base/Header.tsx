@@ -8,7 +8,7 @@ export type HeaderProps = {};
 
 const Header = () => {
   return (
-    <header className="fixed w-full h-8 flex items-center">
+    <header className="fixed w-full h-8 flex items-center text-black dark:text-warmGray-400">
       <div className="container max-w-screen-md px-4 flex justify-between">
         <nav className="flex">
           <Link href="/">
