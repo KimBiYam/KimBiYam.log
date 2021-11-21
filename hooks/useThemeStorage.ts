@@ -11,10 +11,12 @@ const useThemeStorage = () => {
   useEffect(() => {
     let theme = themeStorage.getTheme();
 
+    if (theme === null) {
+      theme = Theme.light;
+    }
+
     if (theme === null && window.matchMedia(OS_DARK_MODE_QUERY).matches) {
       theme = Theme.dark;
-    } else {
-      theme = Theme.light;
     }
 
     themeStorage.setTheme(theme);
