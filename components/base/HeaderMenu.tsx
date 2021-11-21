@@ -32,21 +32,19 @@ const HeaderMenu = () => {
       <button className="w-6 h-2 md:hidden" onClick={toggleMenu}>
         <MenuIcon />
       </button>
-      {isMenuOpen && (
-        <ul className="absolute right-0 z-50 bg-white w-32 p-2">
-          <HeaderMenuItem href="/" label="About" onClick={handleClick} />
-          <HeaderMenuItem
-            href="/introduction"
-            label="Introduction"
-            onClick={handleClick}
-          />
-          <HeaderMenuItem
-            href="/contact"
-            label="Contact"
-            onClick={handleClick}
-          />
-        </ul>
-      )}
+      <ul
+        className={`${
+          isMenuOpen ? "visible opacity-100" : "invisible opacity-0"
+        } absolute right-0 transition-all duration-200 ease-in-out z-50 bg-white w-32 p-2`}
+      >
+        <HeaderMenuItem href="/" label="About" onClick={handleClick} />
+        <HeaderMenuItem
+          href="/introduction"
+          label="Introduction"
+          onClick={handleClick}
+        />
+        <HeaderMenuItem href="/contact" label="Contact" onClick={handleClick} />
+      </ul>
     </div>
   );
 };
