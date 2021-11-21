@@ -1,6 +1,6 @@
 import { isTheme, Theme } from "../styles/theme";
 
-const THEME = "theme-mode";
+const THEME = "theme";
 
 const themeStorage = {
   getTheme() {
