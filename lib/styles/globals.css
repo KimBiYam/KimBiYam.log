@@ -19,6 +19,7 @@ a {
 * {
   font-family: "Noto Sans KR", sans-serif;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
 }
 
 #__next {
