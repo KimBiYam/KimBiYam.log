@@ -1,4 +1,9 @@
 import Head from "next/head";
+import ContactItem from "../components/contact/ContactItem";
+import EmailIcon from "../assets/svgs/email.svg";
+import VelogIcon from "../assets/svgs/velog.svg";
+import NaverIcon from "../assets/svgs/naver.svg";
+import GithubIcon from "../assets/svgs/github.svg";
 
 const contact = () => {
   return (
@@ -6,7 +11,24 @@ const contact = () => {
       <Head>
         <title>Contact</title>
       </Head>
-      <div className="flex justify-center">Contact</div>
+      <div className="grid grid-cols-2 gap-6">
+        <ContactItem icon={<EmailIcon />} label="hot9998@naver.com" />
+        <ContactItem
+          icon={<VelogIcon />}
+          label="Velog"
+          href="https://velog.io/@kimbiyam"
+        />
+        <ContactItem
+          icon={<NaverIcon />}
+          label="Naver"
+          href="https://blog.naver.com/hot9998"
+        />
+        <ContactItem
+          icon={<GithubIcon />}
+          label="Github"
+          href="https://github.com/KimBiYam"
+        />
+      </div>
     </>
   );
 };
