@@ -1,9 +1,9 @@
 import Head from "next/head";
-import ContactItem from "../components/contact/ContactItem";
-import EmailIcon from "../assets/svgs/email.svg";
-import VelogIcon from "../assets/svgs/velog.svg";
-import NaverIcon from "../assets/svgs/naver.svg";
-import GithubIcon from "../assets/svgs/github.svg";
+import ContactItem from "../../components/contact/ContactItem";
+import EmailIcon from "../../assets/svgs/email.svg";
+import VelogIcon from "../../assets/svgs/velog.svg";
+import NaverIcon from "../../assets/svgs/naver.svg";
+import GithubIcon from "../../assets/svgs/github.svg";
 
 const contact = () => {
   return (
