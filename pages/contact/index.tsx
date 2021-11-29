@@ -14,17 +14,17 @@ const contact = () => {
       <div className="grid grid-cols-2 gap-6">
         <ContactItem icon={<EmailIcon />} label="hot9998@naver.com" />
         <ContactItem
-          icon={<VelogIcon />}
+          icon={<VelogIcon className="fill-current" />}
           label="Velog"
           href="https://velog.io/@kimbiyam"
         />
         <ContactItem
-          icon={<NaverIcon />}
+          icon={<NaverIcon className="fill-current" />}
           label="Naver"
           href="https://blog.naver.com/hot9998"
         />
         <ContactItem
-          icon={<GithubIcon />}
+          icon={<GithubIcon className="fill-current" />}
           label="Github"
           href="https://github.com/KimBiYam"
         />
