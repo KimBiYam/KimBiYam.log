@@ -11,15 +11,13 @@
     "next": "12.0.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-responsive": "^9.0.0-beta.4",
-    "three": "^0.135.0"
+    "react-responsive": "^9.0.0-beta.4"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",
     "@types/node": "16.11.7",
     "@types/react": "17.0.35",
     "@types/react-responsive": "^8.0.4",
-    "@types/three": "^0.134.0",
     "autoprefixer": "^10.4.0",
     "eslint": "7.32.0",
     "eslint-config-next": "12.0.4",
