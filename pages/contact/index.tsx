@@ -9,7 +9,7 @@ const contact = () => {
   return (
     <>
       <Head>
-        <title>Contact</title>
+        <title>KimBiYam.log | Contact</title>
       </Head>
       <div className="grid grid-cols-2 gap-6">
         <ContactItem icon={<EmailIcon />} label="hot9998@naver.com" />
