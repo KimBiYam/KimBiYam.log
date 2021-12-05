@@ -1,5 +1,5 @@
 {
-  "name": "kimbiyam-introduction",
+  "name": "kimbiyam.log",
   "private": true,
   "scripts": {
     "dev": "next dev",
