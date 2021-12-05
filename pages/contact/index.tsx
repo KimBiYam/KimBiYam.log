@@ -2,7 +2,7 @@ import Head from "next/head";
 import ContactItem from "../../components/contact/ContactItem";
 import EmailIcon from "../../assets/svgs/email.svg";
 import VelogIcon from "../../assets/svgs/velog.svg";
-import NaverIcon from "../../assets/svgs/naver.svg";
+import NotionIcon from "../../assets/svgs/notion.svg";
 import GithubIcon from "../../assets/svgs/github.svg";
 
 const contact = () => {
@@ -19,9 +19,9 @@ const contact = () => {
           href="https://velog.io/@kimbiyam"
         />
         <ContactItem
-          icon={<NaverIcon className="fill-current" />}
-          label="Naver"
-          href="https://blog.naver.com/hot9998"
+          icon={<NotionIcon className="fill-current" />}
+          label="Notion"
+          href="https://kimbiyam.notion.site/kimbiyam/Chang-Hyun-Kim-3831364898844426ab7643741dffe461"
         />
         <ContactItem
           icon={<GithubIcon className="fill-current" />}
