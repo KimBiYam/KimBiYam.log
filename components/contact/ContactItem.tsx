@@ -9,7 +9,7 @@ export type ContactItemProps = {
 const ContactItem = ({ icon, label, href }: ContactItemProps) => {
   return (
     <div className="relative">
-      <div className="flex items-center justify-between  p-4 border-2 rounded-md">
+      <div className="flex items-center justify-between p-4 border-2 rounded-md">
         <div className="w-6 h-6">{icon}</div>
         <p>{label}</p>
       </div>

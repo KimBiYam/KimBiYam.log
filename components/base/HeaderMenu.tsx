@@ -59,7 +59,7 @@ const HeaderMenu = () => {
             isMenuOpen
               ? "visible animate-fade-in"
               : "invisible animate-fade-out"
-          } absolute right-0 transition-all z-50 rounded-md w-32 p-2 bg-warmGray-200 dark:bg-coolGray-300`}
+          } absolute right-0 transition-all rounded-md w-32 p-2 bg-warmGray-200 dark:bg-coolGray-300`}
         >
           <HeaderMenuItem href="/" label="About" onClick={handleClick} />
           <HeaderMenuItem
