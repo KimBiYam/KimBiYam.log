@@ -1,7 +1,6 @@
 ---
 title: '프리 랜더링'
 date: '2020-01-01'
-description: '설명 2'
 ---
 
 Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is in **when** it generates the HTML for a page.

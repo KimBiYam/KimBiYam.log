@@ -1,22 +1,42 @@
 ---
 title: '정적 생성 VS 서버 사이드 랜더링'
 date: '2020-01-02'
-description: '블라블라'
 ---
 
-### 테스트
+## Webpack
 
-We recommend using **Static Generation** (with and without data) whenever possible because your page can be built once and served by CDN, which makes it much faster than having a server render the page on every request.
+- 많은 파일들을 필요한 형태의 하나 또는 여럭러개의 번들 파일로 만들어줌
 
-You can use Static Generation for many types of pages, including:
+## Webpack을 사용하는 이유
 
-- Marketing pages
-- Blog posts
-- E-commerce product listings
-- Help and documentation
+### 1. 네트워크 병목현상 해결
 
-You should ask yourself: "Can I pre-render this page **ahead** of a user's request?" If the answer is yes, then you should choose Static Generation.
+- 너무 많은 자바스크립트 파일을 로드하게되면, 네트워크 병목현상에 빠질 수 있음
+- 이때의 해결방법으로 하나의 자바크스립트 파일만을 사용할 수 있지만 가독성 및 유저보수 효율성이 떨어지는 문제가 발생
+- 해결방법으로 Webpack과 같은 모듈 번들러를 사용하게 되면 종속성이 있는 파일들을 묶어주기 때문에 가독성과 유지보수 효율성을 높이고 네트워크 병목현상을 최소화 할 수 있음
 
-On the other hand, Static Generation is **not** a good idea if you cannot pre-render a page ahead of a user's request. Maybe your page shows frequently updated data, and the page content changes on every request.
+### 2. 모듈 단위로 개발이 가능
 
-In that case, you can use **Server-Side Rendering**. It will be slower, but the pre-rendered page will always be up-to-date. Or you can skip pre-rendering and use client-side JavaScript to populate data.
+1. 스코프에 신경 쓰지 않고 개발이 가능
+
+```jsx
+// test1.js               //test2.js
+let value = 'a';          let value = 'b';
+console.log(value);       console.log(value);
+```
+
+- test1, test2 파일에서 변수가 같은 스코프에 선언되어 충돌이 발생
+- 이때 모듈 번들러를 사용하게 되면 모듈 번들러는 모듈을 IIFE(즉시실행함수)로 변경해주기 때문에, 스코프에 신경쓰지 않고 개발을 할 수 있다
+1. 라이브러리 종속 순서를 신경 쓰지 않아도 된다
+
+```jsx
+<script src="util-jquery.js" />
+<script src="jquery.js" />
+```
+
+- `util.jquery.js` 는 jquery를 사용하기 때문에, 로드 순서상 `jquery.js` 가 나중에 호출되면 에러가 발생
+- 모듈 번들러를 사용한다면 위와 같은 로드 순서를 신경쓰지 않아도 됨
+
+### 3. 코드를 압축/최적화 할 수 있음
+
+- 종속성이 있는 파일들을 묶어주기 때문에 Webpack의 Config 또는 플로그인에 따라 코드를 압축/최적화 할 수 있다

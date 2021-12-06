@@ -2,5 +2,5 @@ export type PostData = {
   id: string;
   date: string;
   title: string;
-  description: string;
+  postPreview: string;
 };

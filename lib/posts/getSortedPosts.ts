@@ -4,18 +4,15 @@ import matter from "gray-matter";
 import { PostData } from "../../types/post.types";
 
 const POST_DIRECTORY = path.join(process.cwd(), "contents", "posts");
+const POST_PREVIEW_MAX_LENGTH = 200;
 
 const getSortedPosts = () => {
   const fileNames = fs.readdirSync(POST_DIRECTORY);
   const allPosts: PostData[] = fileNames.map(getPostDataByFileName);
 
-  const sortedAllPosts = [...allPosts].sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
+  const sortedAllPosts = [...allPosts].sort((a, b) =>
+    a.date < b.date ? 1 : -1
+  );
 
   return sortedAllPosts;
 };
@@ -29,11 +26,14 @@ const getPostDataByFileName = (fileName: string): PostData => {
   const matterResult = matter(fileContents);
 
   const {
-    data: { date, title, description },
+    data: { date, title },
     content,
   } = matterResult;
 
-  return { id, date, title, description };
+  const slicedContent = content.substring(0, POST_PREVIEW_MAX_LENGTH);
+  const postPreview = slicedContent.replace(/[*,#]/g, "") + "...";
+
+  return { id, date, title, postPreview };
 };
 
 export default getSortedPosts;
