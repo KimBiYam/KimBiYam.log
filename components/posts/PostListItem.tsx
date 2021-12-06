@@ -9,10 +9,10 @@ const PostListItem = ({ postData }: PostListItemProps) => {
 
   return (
     <div className="py-4">
-      <h3 className="w-full font-bold overflow-hidden whitespace-nowrap truncate">
+      <h3 className="w-full text-xl font-bold overflow-hidden whitespace-nowrap truncate">
         {title}
       </h3>
-      <div>{date}</div>
+      <div className="text-sm">{date}</div>
       <div>{description}</div>
     </div>
   );
