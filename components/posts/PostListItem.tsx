@@ -5,12 +5,15 @@ export type PostListItemProps = {
 };
 
 const PostListItem = ({ postData }: PostListItemProps) => {
+  const { title, date, description } = postData;
+
   return (
     <div className="py-4">
       <h3 className="w-full font-bold overflow-hidden whitespace-nowrap truncate">
-        {postData.title}
+        {title}
       </h3>
-      <div>{postData.date}</div>
+      <div>{date}</div>
+      <div>{description}</div>
     </div>
   );
 };

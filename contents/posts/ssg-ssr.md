@@ -1,7 +1,10 @@
 ---
 title: '정적 생성 VS 서버 사이드 랜더링'
 date: '2020-01-02'
+description: '블라블라'
 ---
+
+### 테스트
 
 We recommend using **Static Generation** (with and without data) whenever possible because your page can be built once and served by CDN, which makes it much faster than having a server render the page on every request.
 

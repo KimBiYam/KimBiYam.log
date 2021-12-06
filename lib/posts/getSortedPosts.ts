@@ -28,9 +28,12 @@ const getPostDataByFileName = (fileName: string): PostData => {
 
   const matterResult = matter(fileContents);
 
-  const { date, title } = matterResult.data;
+  const {
+    data: { date, title, description },
+    content,
+  } = matterResult;
 
-  return { id, date, title };
+  return { id, date, title, description };
 };
 
 export default getSortedPosts;
