@@ -13,7 +13,7 @@ const PostListItem = ({ postData }: PostListItemProps) => {
         {title}
       </h3>
       <div className="text-sm">{date}</div>
-      <div>{postPreview}</div>
+      <div className="mt-2">{postPreview}</div>
     </div>
   );
 };
