@@ -1,9 +1,21 @@
 import getAllPostIds from "../../lib/posts/getAllPostIds";
+import getPostData from "../../lib/posts/getPostData";
+import { PostData } from "../../types/post.types";
 
-export type PostProps = {};
+export type PostProps = {
+  postData: PostData;
+};
 
-const Post = () => {
-  return <div></div>;
+const Post = ({ postData }: PostProps) => {
+  const { id, date, content } = postData;
+
+  return (
+    <div>
+      <p>{id}</p>
+      <p>{date}</p>
+      <p>{content}</p>
+    </div>
+  );
 };
 
 export async function getStaticPaths() {
@@ -14,9 +26,14 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }: any) {
+export async function getStaticProps({ params }: { params: { id: string } }) {
+  const { id } = params;
+  const postData = getPostData(id);
+
   return {
-    props: {},
+    props: {
+      postData,
+    },
   };
 }
 
