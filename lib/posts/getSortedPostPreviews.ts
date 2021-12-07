@@ -6,9 +6,9 @@ import { POST_DIRECTORY } from "../../constants";
 
 const POST_PREVIEW_MAX_LENGTH = 200;
 
-const getSortedPosts = () => {
+const getSortedPostPreviews = () => {
   const fileNames = fs.readdirSync(POST_DIRECTORY);
-  const allPosts: PostPreview[] = fileNames.map(getPostDataByFileName);
+  const allPosts: PostPreview[] = fileNames.map(getPostPreview);
 
   const sortedAllPosts = [...allPosts].sort((a, b) =>
     a.date < b.date ? 1 : -1
@@ -17,7 +17,7 @@ const getSortedPosts = () => {
   return sortedAllPosts;
 };
 
-const getPostDataByFileName = (fileName: string): PostPreview => {
+const getPostPreview = (fileName: string): PostPreview => {
   const id = fileName.replace(/\.md$/, "");
 
   const fullPath = path.join(POST_DIRECTORY, fileName);
@@ -36,4 +36,4 @@ const getPostDataByFileName = (fileName: string): PostPreview => {
   return { id, date, title, content: previewContent };
 };
 
-export default getSortedPosts;
+export default getSortedPostPreviews;

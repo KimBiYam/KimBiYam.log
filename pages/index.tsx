@@ -1,6 +1,6 @@
 import Head from "next/head";
 import PostListItem from "../components/posts/PostListItem";
-import getSortedPosts from "../lib/posts/getSortedPosts";
+import getSortedPostPreviews from "../lib/posts/getSortedPostPreviews";
 import { PostPreview } from "../types/post.types";
 
 export type HomeProps = {
@@ -26,7 +26,7 @@ const Home = ({ allPosts }: HomeProps) => {
 };
 
 export async function getStaticProps() {
-  const allPosts = getSortedPosts();
+  const allPosts = getSortedPostPreviews();
 
   return {
     props: {
