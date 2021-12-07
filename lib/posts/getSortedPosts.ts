@@ -1,14 +1,14 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { PostData } from "../../types/post.types";
+import { PostPreview } from "../../types/post.types";
+import { POST_DIRECTORY } from "../../constants";
 
-const POST_DIRECTORY = path.join(process.cwd(), "contents", "posts");
 const POST_PREVIEW_MAX_LENGTH = 200;
 
 const getSortedPosts = () => {
   const fileNames = fs.readdirSync(POST_DIRECTORY);
-  const allPosts: PostData[] = fileNames.map(getPostDataByFileName);
+  const allPosts: PostPreview[] = fileNames.map(getPostDataByFileName);
 
   const sortedAllPosts = [...allPosts].sort((a, b) =>
     a.date < b.date ? 1 : -1
@@ -17,7 +17,7 @@ const getSortedPosts = () => {
   return sortedAllPosts;
 };
 
-const getPostDataByFileName = (fileName: string): PostData => {
+const getPostDataByFileName = (fileName: string): PostPreview => {
   const id = fileName.replace(/\.md$/, "");
 
   const fullPath = path.join(POST_DIRECTORY, fileName);
@@ -31,9 +31,9 @@ const getPostDataByFileName = (fileName: string): PostData => {
   } = matterResult;
 
   const slicedContent = content.substring(0, POST_PREVIEW_MAX_LENGTH);
-  const postPreview = slicedContent.replace(/[*,#]/g, "") + "...";
+  const previewContent = slicedContent.replace(/[*,#]/g, "") + "...";
 
-  return { id, date, title, postPreview };
+  return { id, date, title, content: previewContent };
 };
 
 export default getSortedPosts;

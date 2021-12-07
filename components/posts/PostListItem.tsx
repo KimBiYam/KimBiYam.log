@@ -1,11 +1,11 @@
-import { PostData } from "../../types/post.types";
+import { PostPreview } from "../../types/post.types";
 
 export type PostListItemProps = {
-  postData: PostData;
+  postPreview: PostPreview;
 };
 
-const PostListItem = ({ postData }: PostListItemProps) => {
-  const { title, date, postPreview } = postData;
+const PostListItem = ({ postPreview }: PostListItemProps) => {
+  const { title, date, content } = postPreview;
 
   return (
     <div className="py-4">
@@ -13,7 +13,7 @@ const PostListItem = ({ postData }: PostListItemProps) => {
         {title}
       </h3>
       <div className="text-sm">{date}</div>
-      <div className="mt-2">{postPreview}</div>
+      <div className="mt-2">{content}</div>
     </div>
   );
 };

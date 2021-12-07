@@ -1,10 +1,10 @@
 import Head from "next/head";
 import PostListItem from "../components/posts/PostListItem";
 import getSortedPosts from "../lib/posts/getSortedPosts";
-import { PostData } from "../types/post.types";
+import { PostPreview } from "../types/post.types";
 
 export type HomeProps = {
-  allPosts: PostData[];
+  allPosts: PostPreview[];
 };
 
 const Home = ({ allPosts }: HomeProps) => {
@@ -14,10 +14,10 @@ const Home = ({ allPosts }: HomeProps) => {
         <title>KimBiYam.log</title>
       </Head>
       <div>
-        {allPosts.map((postData) => (
+        {allPosts.map((postPreview) => (
           <PostListItem
-            key={postData.id + postData.title}
-            postData={postData}
+            key={postPreview.id + postPreview.title}
+            postPreview={postPreview}
           />
         ))}
       </div>
