@@ -8,11 +8,11 @@ const PostView = ({ postData }: PostViewProps) => {
   const { title, date, contentHtml } = postData;
 
   return (
-    <div>
-      <p>{title}</p>
-      <p>{date}</p>
-      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
-    </div>
+    <article className="mt-8">
+      <h1 className="text-3xl font-bold"> {title}</h1>
+      <p className="flex mt-2 justify-end text-sm">{date}</p>
+      <div className="mt-8" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+    </article>
   );
 };
 
