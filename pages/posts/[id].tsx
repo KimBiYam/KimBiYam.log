@@ -1,20 +1,25 @@
 import getAllPostIds from "../../lib/posts/getAllPostIds";
 import getPostData from "../../lib/posts/getPostData";
 import { PostData } from "../../types/post.types";
+import Head from "next/head";
+import PostView from "../../components/posts/PostView";
 
 export type PostProps = {
   postData: PostData;
 };
 
 const Post = ({ postData }: PostProps) => {
-  const { id, date, content } = postData;
+  const { title } = postData;
 
   return (
-    <div>
-      <p>{id}</p>
-      <p>{date}</p>
-      <p>{content}</p>
-    </div>
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <div>
+        <PostView postData={postData} />
+      </div>
+    </>
   );
 };
 
@@ -28,7 +33,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const { id } = params;
-  const postData = getPostData(id);
+  const postData = await getPostData(id);
 
   return {
     props: {
