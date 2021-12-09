@@ -1,0 +1,15 @@
+.post-content {
+  @apply text-lg leading-relaxed;
+}
+
+.post-content h2 {
+  @apply text-3xl font-bold mt-12 mb-4 leading-snug;
+}
+
+.post-content h3 {
+  @apply text-2xl font-bold mt-8 mb-4 leading-snug;
+}
+
+.post-content pre {
+  @apply bg-black my-6 max-w-full overflow-auto;
+}
