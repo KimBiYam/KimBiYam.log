@@ -2,8 +2,7 @@ import path from "path";
 import { POST_DIRECTORY } from "../../constants";
 import fs from "fs";
 import matter from "gray-matter";
-import { remark } from "remark";
-import remarkHtml from "remark-html";
+import { parseMarkdown } from "./markdown";
 
 const getPostData = async (id: string) => {
   const fullPath = path.join(POST_DIRECTORY, `${id}.md`);
@@ -11,20 +10,18 @@ const getPostData = async (id: string) => {
 
   const matterResult = matter(fileContents);
 
-  const processedContent = await remark()
-    .use(remarkHtml)
-    .process(matterResult.content);
-  const contentHtml = processedContent.toString();
-
   const {
     data: { date, title },
+    content,
   } = matterResult;
+
+  const processedContent = await parseMarkdown(content);
 
   return {
     id,
     title,
     date,
-    contentHtml,
+    contentHtml: processedContent.toString(),
   };
 };
 
