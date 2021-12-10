@@ -15,13 +15,13 @@ const getPostData = async (id: string) => {
     content,
   } = matterResult;
 
-  const processedContent = await parseMarkdown(content);
+  const contentHtml = await parseMarkdown(content);
 
   return {
     id,
     title,
     date,
-    contentHtml: processedContent.toString(),
+    contentHtml,
   };
 };
 

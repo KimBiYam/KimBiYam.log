@@ -1,8 +1,12 @@
 import { remark } from "remark";
 import remarkHtml from "remark-html";
+import remarkPrism from "remark-prism";
 
 export const parseMarkdown = async (content: string) => {
-  const processedContent = await remark().use(remarkHtml).process(content);
+  const processedContent = await remark()
+    .use(remarkPrism as any)
+    .use(remarkHtml)
+    .process(content);
 
-  return processedContent;
+  return processedContent.toString();
 };
