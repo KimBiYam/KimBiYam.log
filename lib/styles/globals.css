@@ -19,3 +19,7 @@ a {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
+
+.transition-container {
+  @apply transition-colors bg-white dark:bg-trueGray-800 duration-300;
+}
