@@ -1,21 +1,19 @@
 import path from "path";
-import { POST_DIRECTORY } from "../../constants";
 import fs from "fs";
 import matter from "gray-matter";
-import { parseMarkdown } from "./markdown";
+import { getMarkdownData, parseMarkdown } from "./markdown";
+import { PostData } from "../../types/post.types";
 
-const getPostData = async (id: string) => {
-  const fullPath = path.join(POST_DIRECTORY, `${id}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-
-  const matterResult = matter(fileContents);
-
+const getPostData = async (
+  directory: string,
+  id: string
+): Promise<PostData> => {
   const {
-    data: { date, title },
-    content,
-  } = matterResult;
-
-  const contentHtml = await parseMarkdown(content);
+    matterResult: {
+      data: { title, date },
+    },
+    contentHtml,
+  } = await getMarkdownData(directory, id);
 
   return {
     id,

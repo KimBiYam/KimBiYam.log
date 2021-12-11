@@ -3,6 +3,7 @@ import getPostData from "../../lib/posts/getPostData";
 import { PostData } from "../../types/post.types";
 import Head from "next/head";
 import PostView from "../../components/posts/PostView";
+import { POST_DIRECTORY } from "../../constants";
 
 export type PostProps = {
   postData: PostData;
@@ -33,7 +34,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const { id } = params;
-  const postData = await getPostData(id);
+  const postData = await getPostData(POST_DIRECTORY, id);
 
   return {
     props: {
