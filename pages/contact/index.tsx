@@ -11,7 +11,7 @@ const contact = () => {
       <Head>
         <title>KimBiYam.log | Contact</title>
       </Head>
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid sm:gird-cols-1 md:grid-cols-2 gap-6">
         <ContactItem icon={<EmailIcon />} label="hot9998@naver.com" />
         <ContactItem
           icon={<VelogIcon className="fill-current" />}
