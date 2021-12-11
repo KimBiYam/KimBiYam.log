@@ -11,11 +11,11 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
   return (
     <NextLink href={`/posts/${id}`}>
       <div className="py-4 cursor-pointer">
-        <h3 className="w-full text-xl font-bold overflow-hidden whitespace-nowrap truncate">
+        <h3 className="w-full text-2xl font-bold overflow-hidden whitespace-nowrap truncate">
           {title}
         </h3>
         <div className="text-sm">{date}</div>
-        <div className="mt-2">{content}</div>
+        <div className="mt-2 dark:text-gray-300 text-zinc-700">{content}</div>
       </div>
     </NextLink>
   );

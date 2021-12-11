@@ -25,6 +25,12 @@ module.exports = {
         md: "768px",
         lg: "1024px",
       },
+      colors: {
+        zinc: {
+          200: "#e4e4e7",
+          700: "#3f3f46",
+        },
+      },
       keyframes: {
         "fade-in": {
           "0%": {
