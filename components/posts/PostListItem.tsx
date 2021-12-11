@@ -10,7 +10,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
 
   return (
     <NextLink href={`/posts/${id}`}>
-      <div className="py-4 cursor-pointer">
+      <div className="py-4 cursor-pointer hover:text-shadow dark:hover:text-shadow-dark transition-text-shadow">
         <h3 className="w-full text-2xl font-bold overflow-hidden whitespace-nowrap truncate">
           {title}
         </h3>
