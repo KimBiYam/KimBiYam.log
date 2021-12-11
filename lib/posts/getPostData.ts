@@ -1,6 +1,3 @@
-import path from "path";
-import fs from "fs";
-import matter from "gray-matter";
 import { getMarkdownData, parseMarkdown } from "./markdown";
 import { PostData } from "../../types/post.types";
 
