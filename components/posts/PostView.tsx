@@ -9,7 +9,7 @@ const PostView = ({ postData }: PostViewProps) => {
   const { title, date, contentHtml } = postData;
 
   return (
-    <article className="mt-8">
+    <article className="mt-8 pb-24">
       <h1 className="text-3xl font-bold"> {title}</h1>
       <p className="flex mt-2 justify-end text-sm">{date}</p>
       <div
