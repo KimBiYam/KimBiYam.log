@@ -9,7 +9,3 @@
 .post-content h3 {
   @apply text-2xl font-bold mt-8 mb-4 leading-snug;
 }
-
-.post-content pre {
-  @apply bg-black my-6 max-w-full overflow-auto;
-}

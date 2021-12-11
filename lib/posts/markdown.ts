@@ -1,11 +1,11 @@
 import { remark } from "remark";
-import remarkHtml from "remark-html";
-import remarkPrism from "remark-prism";
+import html from "remark-html";
+import prism from "remark-prism";
 
 export const parseMarkdown = async (content: string) => {
   const processedContent = await remark()
-    .use(remarkPrism as any)
-    .use(remarkHtml)
+    .use(html, { sanitize: false })
+    .use(prism as any)
     .process(content);
 
   return processedContent.toString();
