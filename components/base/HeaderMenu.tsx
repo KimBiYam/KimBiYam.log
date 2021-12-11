@@ -8,8 +8,8 @@ import breakPoints from "../../lib/styles/breakPoints";
 export type HeaderMenuProps = {};
 
 const HeaderMenu = () => {
-  const menuButtonref = useRef<HTMLDivElement>(null);
-  const [isMenuOpen, setIsMenuOpen] = useDetectOutsideClick(menuButtonref);
+  const menuButtonRef = useRef<HTMLDivElement>(null);
+  const [isMenuOpen, setIsMenuOpen] = useDetectOutsideClick(menuButtonRef);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const isMediumScreen = useMediaQuery({ minWidth: breakPoints.md });
@@ -49,7 +49,7 @@ const HeaderMenu = () => {
   }, [isMenuOpen, setIsMenuVisible]);
 
   return (
-    <div className="relative ml-4" ref={menuButtonref}>
+    <div className="relative ml-4" ref={menuButtonRef}>
       <button className="w-6 h-2 md:hidden" onClick={toggleMenu}>
         <MenuIcon />
       </button>
@@ -61,7 +61,7 @@ const HeaderMenu = () => {
               : "invisible animate-fade-out"
           } absolute right-0 transition-all rounded-md w-32 p-2 bg-warmGray-200 dark:bg-coolGray-300`}
         >
-          <HeaderMenuItem href="/" label="About" onClick={handleClick} />
+          <HeaderMenuItem href="/" label="Posts" onClick={handleClick} />
           <HeaderMenuItem
             href="/introduction"
             label="Introduction"
