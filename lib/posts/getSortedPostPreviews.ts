@@ -7,7 +7,9 @@ import { POST_DIRECTORY } from "../../constants";
 const POST_PREVIEW_MAX_LENGTH = 200;
 
 const getSortedPostPreviews = () => {
-  const fileNames = fs.readdirSync(POST_DIRECTORY);
+  const fileNames = fs
+    .readdirSync(POST_DIRECTORY)
+    .filter((file) => file.endsWith(".md"));
   const allPosts: PostPreview[] = fileNames.map(getPostPreview);
 
   const sortedAllPosts = [...allPosts].sort((a, b) =>
