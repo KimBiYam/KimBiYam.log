@@ -12,7 +12,7 @@ const PostView = ({ postData }: PostViewProps) => {
       <h1 className="text-4xl font-bold sm:text-2xl"> {title}</h1>
       <p className="flex mt-2 justify-end text mb-4">{date}</p>
       <div
-        className="prose sm:prose-sm md:prose"
+        className="prose dark:prose-dark sm:prose-sm md:prose"
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />
     </article>

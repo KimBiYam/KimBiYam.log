@@ -43,6 +43,31 @@ module.exports = {
           },
         },
       },
+      typography: (theme) => ({
+        dark: {
+          css: {
+            color: theme("colors.gray.300"),
+            code: {
+              color: theme("colors.gray.100"),
+            },
+            h1: {
+              color: theme("colors.warmGray.500"),
+            },
+            h2: {
+              color: theme("colors.warmGray.500"),
+            },
+            h3: {
+              color: theme("colors.warmGray.500"),
+            },
+            a: {
+              color: theme("colors.gray.300"),
+            },
+            strong: {
+              color: theme("colors.gray.300"),
+            },
+          },
+        },
+      }),
       animation: {
         "fade-in": "fade-in 0.2s ease-in-out",
         "fade-out": "fade-out 0.2s ease-in-out",
@@ -50,7 +75,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      typography: ["dark"],
+    },
   },
   plugins: [require("@tailwindcss/typography")],
 };
