@@ -177,7 +177,7 @@ module.exports = {
 };
 ```
 
-1. production
+2. production
 
 ```jsx
 module.exports = {
@@ -192,7 +192,7 @@ module.exports = {
 };
 ```
 
-1. none
+3. none
 
 ```jsx
 module.exports = {
