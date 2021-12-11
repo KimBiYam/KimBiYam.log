@@ -67,11 +67,6 @@ const HeaderMenu = () => {
             label="Introduction"
             onClick={handleClick}
           />
-          <HeaderMenuItem
-            href="/contact"
-            label="Contact"
-            onClick={handleClick}
-          />
         </ul>
       )}
     </div>

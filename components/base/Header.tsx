@@ -16,7 +16,6 @@ const Header = () => {
           </Link>
           <div className="ml-10 hidden md:flex">
             <HeaderItem href="/introduction" label="Introduction" />
-            <HeaderItem href="/contact" label="Contact" />
           </div>
         </nav>
         <div className="flex">
