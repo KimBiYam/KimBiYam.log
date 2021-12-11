@@ -3,6 +3,7 @@
 ### 안녕하세요! **새로운 것을 배우기 좋아하는 주니어 개발자입니다.**
 
 개발하는 것을 즐거워하고
+
 늘 더 좋은 코드를 작성하기 위해 고민하고 노력하고 있습니다!
 
 ✉️   hot9998@naver.com
@@ -27,6 +28,7 @@
     - Redux Thunk
     - Redux Toolkit
     - React Query
+    - Next.js
     - styled-components
     - Emotion
     - Material-UI
