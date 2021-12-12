@@ -1,5 +1,12 @@
 {
   "name": "kimbiyam.log",
+  "version": "0.1.0",
+  "description": "KimBiYam's dev blog",
+  "author": {
+    "email": "hot9998@naver.com",
+    "name": "ChangHyun Kim",
+    "url": "https://github.com/KimBiYam"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
