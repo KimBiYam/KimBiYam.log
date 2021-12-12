@@ -1,10 +1,10 @@
 ---
 title: 'Webpack'
 date: '2021-10-25'
-tag: 'tag2'
+tag: 'front-end'
 ---
 
-![Untitled](/postImages/tag2/webpack_1.png)
+![Untitled](/postImages/frontend/webpack_1.png)
 
 ## Webpack
 
