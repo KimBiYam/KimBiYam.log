@@ -5,8 +5,6 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const POST_PREVIEW_CONTENT_MAX_LENGTH = 200;
-
 export const getAllPostPaths = (): { params: PostPath }[] => {
   const markdownFilePaths = getPostMarkdownFilePaths();
 
@@ -76,6 +74,8 @@ const getPostMarkdownFilePaths = () => {
 };
 
 const getPostPreview = (fileName: string): PostPreview => {
+  const POST_PREVIEW_CONTENT_MAX_LENGTH = 200;
+
   const id = fileName.replace(/\.md$/, "");
 
   const fullPath = path.join(POST_DIRECTORY, fileName);
@@ -89,7 +89,20 @@ const getPostPreview = (fileName: string): PostPreview => {
   } = matterResult;
 
   const slicedContent = content.substring(0, POST_PREVIEW_CONTENT_MAX_LENGTH);
-  const previewContent = slicedContent.replace(/[*,#]/g, "") + "...";
+  const previewContent = replacePreviewContent(slicedContent);
 
   return { id, date, title, content: previewContent };
+};
+
+const replacePreviewContent = (content: string) => {
+  const IMAGE_TAG_REG_EXP = new RegExp(/!\[(.*?)\]\((.*?)\)/g);
+  const SPECIAL_CHARACTERS_REG_EXP = new RegExp(
+    /[!?@#$%^&*():;+-=~{}<>\_\[\]\|\\\"\'\,\.\/\`\₩]/g
+  );
+
+  return (
+    content
+      .replace(IMAGE_TAG_REG_EXP, "")
+      .replace(SPECIAL_CHARACTERS_REG_EXP, "") + "..."
+  );
 };
