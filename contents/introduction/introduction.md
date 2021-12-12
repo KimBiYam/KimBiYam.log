@@ -8,7 +8,7 @@
 
 ✉️   hot9998@naver.com
 
-[Github](https://github.com/KimBiYam) | [velog](https://velog.io/@kimbiyam)
+[Github](https://github.com/KimBiYam) | [velog](https://velog.io/@kimbiyam) | [KimBiYam.log](https://github.com/KimBiYam/KimBiYam.log)
 
 ## 🛠 사용해본 기술 및 툴
 
@@ -147,3 +147,23 @@ Java, Spring Framework 등의 기술들을 학습했습니다.
 - Redux Toolkit
 - React Query
 - Emotion
+
+---
+
+### KimBiYam.log
+
+개발 관련 내용을 기록하기 위한 블로그를 직접 만든 프로젝트입니다.
+
+[링크](https://www.kimbiyam.me/)
+
+[레포지토리](https://github.com/KimBiYam/KimBiYam.log)
+
+### 프로젝트 스택
+
+- Next.js
+- Tailwind CSS
+- Framer Motion
+- gray-matter
+- remark
+- remark-html
+- remark-prism
