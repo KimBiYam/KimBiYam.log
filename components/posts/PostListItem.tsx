@@ -20,7 +20,9 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
           {title}
         </h3>
         <div className="mt-2 mb-4 text-sm">{date}</div>
-        <div className="dark:text-gray-300 text-zinc-700">{content}</div>
+        <div className="dark:text-gray-300 text-zinc-700 text-sm md:text-base">
+          {content}
+        </div>
       </motion.div>
     </NextLink>
   );
