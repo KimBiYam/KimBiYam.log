@@ -8,7 +8,7 @@ export type TagSelectorProps = {
 
 const TagSelector = ({ tags, onTagClick, selectedTag }: TagSelectorProps) => {
   return (
-    <div className="w-full flex flex-wrap">
+    <div className="w-full pt-4 flex flex-wrap sticky top-12 transition-container z-40">
       {tags.map((tag) => (
         <TagButton
           key={tag}
