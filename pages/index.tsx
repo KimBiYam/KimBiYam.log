@@ -1,4 +1,5 @@
-import { useCallback, useMemo, useState } from "react";
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import PageHead from "../components/base/PageHead";
 import PostList from "../components/posts/PostList";
 import TagSelector from "../components/posts/TagSelector";
@@ -11,6 +12,7 @@ export type HomeProps = {
 };
 
 const Home = ({ postPreviews }: HomeProps) => {
+  const router = useRouter();
   const [tag, setTag] = useState<string>(Tag.all);
   const tags = useMemo(
     () => [
@@ -24,10 +26,19 @@ const Home = ({ postPreviews }: HomeProps) => {
 
   const handleTagClick = useCallback(
     (tag: string) => {
-      setTag(tag);
+      const path = tag === Tag.all ? "/" : `/?tag=${tag}`;
+      router.replace(path, undefined, { shallow: true });
     },
-    [setTag]
+    [router]
   );
+
+  useEffect(() => {
+    if (typeof router.query.tag === "string") {
+      setTag(router.query.tag);
+    } else {
+      setTag(Tag.all);
+    }
+  }, [setTag, router.query]);
 
   return (
     <>
