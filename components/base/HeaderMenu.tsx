@@ -52,8 +52,8 @@ const HeaderMenu = () => {
   }, [isMenuOpen, setIsMenuVisible]);
 
   return (
-    <div className="relative ml-4" ref={menuButtonRef}>
-      <button className="w-6 h-2 md:hidden" onClick={toggleMenu}>
+    <div className="relative w-6 h-2 ml-4" ref={menuButtonRef}>
+      <button className="w-full md:hidden" onClick={toggleMenu}>
         <MenuIcon />
       </button>
       {isMenuVisible && (
