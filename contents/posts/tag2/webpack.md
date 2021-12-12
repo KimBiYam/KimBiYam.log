@@ -3,7 +3,7 @@ title: 'Webpack'
 date: '2021-10-25'
 ---
 
-![Untitled](/images/webpack_1.png)
+![Untitled](/postImages/tag2/webpack_1.png)
 
 ## Webpack
 
