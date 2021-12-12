@@ -2,6 +2,7 @@ import { PostPreview } from "../../types/post.types";
 import NextLink from "next/link";
 import { motion } from "framer-motion";
 import { slideUpMotion } from "../../lib/styles/motions";
+import { memo } from "react";
 
 export type PostListItemProps = {
   postPreview: PostPreview;
@@ -28,4 +29,4 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
   );
 };
 
-export default PostListItem;
+export default memo(PostListItem);
