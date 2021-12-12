@@ -7,9 +7,10 @@ import { DOMAIN_URL, Theme } from "../../constants";
 export type PageHeadProps = {
   description: string;
   title: string;
+  url?: string;
 };
 
-const PageHead = ({ title, description }: PageHeadProps) => {
+const PageHead = ({ title, description, url }: PageHeadProps) => {
   const { theme } = useThemeStorage();
 
   return (
@@ -34,8 +35,8 @@ const PageHead = ({ title, description }: PageHeadProps) => {
       <meta name="twitter:site" content="KimBiYam.log" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:card" content={favicon192.src} />
-      <meta name="twitter:url" content={DOMAIN_URL} />
-      <meta property="og:url" content={DOMAIN_URL} />
+      <meta name="twitter:url" content={`${DOMAIN_URL}${url}`} />
+      <meta property="og:url" content={`${DOMAIN_URL}${url}`} />
       <meta property="og:image" content={favicon192.src} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

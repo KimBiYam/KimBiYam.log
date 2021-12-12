@@ -1,17 +1,17 @@
-export type PostData = {
+export type PostBase = {
   id: string;
   date: string;
-  contentHtml: string;
-  description: string;
-  title: string;
-};
-
-export type PostPreview = {
-  id: string;
-  date: string;
-  content: string;
   title: string;
   tag: string;
+};
+
+export type PostData = PostBase & {
+  contentHtml: string;
+  description: string;
+};
+
+export type PostPreview = PostBase & {
+  content: string;
 };
 
 export type PostPath = {

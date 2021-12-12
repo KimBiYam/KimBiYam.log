@@ -11,11 +11,15 @@ export type PostProps = {
 };
 
 const Post = ({ postData }: PostProps) => {
-  const { title, description } = postData;
+  const { title, description, tag, id } = postData;
 
   return (
     <>
-      <PageHead title={title} description={description} />
+      <PageHead
+        title={title}
+        description={description}
+        url={`/posts/${tag}/${id}`}
+      />
       <motion.div {...slideUpMotion}>
         <PostView postData={postData} />
       </motion.div>

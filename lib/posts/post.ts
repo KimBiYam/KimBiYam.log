@@ -31,18 +31,19 @@ export const getPostData = async (
 ): Promise<PostData> => {
   const {
     matterResult: {
-      data: { title, date },
+      data: { title, date, tag },
       content,
     },
     contentHtml,
   } = await getMarkdownData(directory, id);
 
-  const description = replacePreviewContent(content);
+  const description = replacePreviewContent(content).replace(/\n/g, "");
 
   return {
     id,
     title,
     date,
+    tag,
     contentHtml,
     description,
   };
