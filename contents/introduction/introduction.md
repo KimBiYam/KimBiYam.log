@@ -8,7 +8,7 @@
 
 ✉️   hot9998@naver.com
 
-[Github](https://github.com/KimBiYam) | [velog](https://velog.io/@kimbiyam) | [KimBiYam.log](https://github.com/KimBiYam/KimBiYam.log)
+[Github](https://github.com/KimBiYam) | [velog](https://velog.io/@kimbiyam) | [KimBiYam.log](https://www.kimbiyam.me/)
 
 ## 🛠 사용해본 기술 및 툴
 
