@@ -2,7 +2,7 @@ import Head from "next/head";
 import Favicon from "./Favicon";
 import favicon192 from "../../assets/favicon/favicon-192x192.png";
 import useThemeStorage from "../../hooks/useThemeStorage";
-import { Theme } from "../../constants";
+import { DOMAIN_URL, Theme } from "../../constants";
 
 export type PageHeadProps = {
   description: string;
@@ -31,13 +31,11 @@ const PageHead = ({ title, description }: PageHeadProps) => {
         content="blog,블로그,kimbiyam,kimbiyam.log,hot9998"
       />
       <meta name="format-detection" content="telephone=no" />
-      {/* TODO : change to real domain */}
       <meta name="twitter:site" content="KimBiYam.log" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:card" content={favicon192.src} />
-      {/* TODO : change to real domain */}
-      <meta name="twitter:url" content="https://kimbiyam.log" />
-      <meta property="og:url" content="https://kimbiyam.log" />
+      <meta name="twitter:url" content={DOMAIN_URL} />
+      <meta property="og:url" content={DOMAIN_URL} />
       <meta property="og:image" content={favicon192.src} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
