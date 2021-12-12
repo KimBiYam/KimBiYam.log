@@ -1,6 +1,7 @@
 ---
 title: 'Webpack'
 date: '2021-10-25'
+tag: 'tag2'
 ---
 
 ![Untitled](/postImages/tag2/webpack_1.png)

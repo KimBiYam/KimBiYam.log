@@ -88,14 +88,14 @@ const getPostPreview = (fileName: string): PostPreview => {
   const matterResult = matter(fileContents);
 
   const {
-    data: { date, title },
+    data: { date, title, tag },
     content,
   } = matterResult;
 
   const slicedContent = content.substring(0, POST_PREVIEW_CONTENT_MAX_LENGTH);
   const previewContent = replacePreviewContent(slicedContent);
 
-  return { id, date, title, content: previewContent };
+  return { id, date, title, tag, content: previewContent };
 };
 
 const replacePreviewContent = (content: string) => {

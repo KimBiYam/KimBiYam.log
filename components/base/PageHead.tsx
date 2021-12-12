@@ -2,7 +2,7 @@ import Head from "next/head";
 import Favicon from "./Favicon";
 import favicon192 from "../../assets/favicon/favicon-192x192.png";
 import useThemeStorage from "../../hooks/useThemeStorage";
-import { Theme } from "../../lib/styles/theme";
+import { Theme } from "../../constants";
 
 export type PageHeadProps = {
   description: string;

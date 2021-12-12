@@ -11,6 +11,7 @@ export type PostPreview = {
   date: string;
   content: string;
   title: string;
+  tag: string;
 };
 
 export type PostPath = {

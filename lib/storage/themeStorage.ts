@@ -1,4 +1,4 @@
-import { isTheme, Theme } from "../styles/theme";
+import { isTheme, Theme } from "../../constants";
 
 const THEME = "theme";
 

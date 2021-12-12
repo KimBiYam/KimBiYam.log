@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { Theme } from "../constants";
 import themeStorage from "../lib/storage/themeStorage";
-import { Theme } from "../lib/styles/theme";
 
 const DARK_MODE = "dark";
 const OS_DARK_MODE_QUERY = "(prefers-color-scheme: dark)";
