@@ -1,10 +1,12 @@
 import Head from "next/head";
+import Favicon from "./Favicon";
 
 export type MetaProps = {};
 
 const Meta = () => {
   return (
     <Head>
+      <Favicon />
       <meta name="viewport" content="width=device-width" />
       <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=Edge" />
@@ -12,7 +14,7 @@ const Meta = () => {
       <meta name="twitter:card" content="summary" />
       {/* TODO : change to real domain */}
       <meta name="twitter:url" content="https://kimbiyam.log" />
-      <meta name="theme-color" content="#ffffff#" />
+      <meta name="theme-color" content="#ffffff" />
       <meta
         name="keywords"
         content="blog,블로그,kimbiyam,kimbiyam.log,hot9998"
