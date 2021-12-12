@@ -11,3 +11,8 @@ export type PostPreview = {
   content: string;
   title: string;
 };
+
+export type PostPath = {
+  id: string;
+  subdirectory: string;
+};

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import PostListItem from "../components/posts/PostListItem";
-import getSortedPostPreviews from "../lib/posts/getSortedPostPreviews";
+import { getSortedPostPreviews } from "../lib/posts/post";
 import { PostPreview } from "../types/post.types";
 
 export type HomeProps = {
