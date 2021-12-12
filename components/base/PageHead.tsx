@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Favicon from "./Favicon";
 import favicon192 from "../../assets/favicon/favicon-192x192.png";
+import useThemeStorage from "../../hooks/useThemeStorage";
+import { Theme } from "../../lib/styles/theme";
 
 export type PageHeadProps = {
   description: string;
@@ -8,14 +10,22 @@ export type PageHeadProps = {
 };
 
 const PageHead = ({ title, description }: PageHeadProps) => {
+  const { theme } = useThemeStorage();
+
   return (
     <Head>
       <Favicon />
       <title>{title}</title>
-      <meta name="viewport" content="width=device-width" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover"
+      />
       <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=Edge" />
-      <meta name="theme-color" content="#ffffff" />
+      <meta
+        name="theme-color"
+        content={theme === Theme.dark ? "#262626" : "#ffffff"}
+      />
       <meta
         name="keywords"
         content="blog,블로그,kimbiyam,kimbiyam.log,hot9998"
