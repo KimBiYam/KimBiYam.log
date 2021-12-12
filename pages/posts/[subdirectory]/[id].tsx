@@ -3,6 +3,8 @@ import { PostData } from "../../../types/post.types";
 import PostView from "../../../components/posts/PostView";
 import { POST_DIRECTORY } from "../../../constants";
 import PageHead from "../../../components/base/PageHead";
+import { motion } from "framer-motion";
+import { slideUpMotion } from "../../../lib/styles/motions";
 
 export type PostProps = {
   postData: PostData;
@@ -14,9 +16,9 @@ const Post = ({ postData }: PostProps) => {
   return (
     <>
       <PageHead title={title} description={description} />
-      <div>
+      <motion.div {...slideUpMotion}>
         <PostView postData={postData} />
-      </div>
+      </motion.div>
     </>
   );
 };

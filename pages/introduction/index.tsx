@@ -2,6 +2,8 @@ import PageHead from "../../components/base/PageHead";
 import MarkdownView from "../../components/posts/MarkdownView";
 import { INTRODUCTION_DIRECTORY } from "../../constants";
 import { getMarkdownData } from "../../lib/posts/markdown";
+import { motion } from "framer-motion";
+import { slideUpMotion } from "../../lib/styles/motions";
 
 type IntroductionProps = {
   contentHtml: string;
@@ -14,9 +16,9 @@ const Introduction = ({ contentHtml }: IntroductionProps) => {
         title="KimBiYam.log | Introduction"
         description="KimBiYam Introduction"
       />
-      <div className="pb-24">
+      <motion.div className="pb-24" {...slideUpMotion}>
         <MarkdownView contentHtml={contentHtml} />
-      </div>
+      </motion.div>
     </>
   );
 };
