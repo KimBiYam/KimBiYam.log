@@ -1,5 +1,7 @@
+import { motion } from "framer-motion";
 import { useMemo } from "react";
 import { Tag } from "../../constants";
+import { slideUpMotion } from "../../lib/styles/motions";
 import { PostPreview } from "../../types/post.types";
 import PostListItem from "./PostListItem";
 
@@ -19,14 +21,14 @@ const PostList = ({ postPreviews, selectedTag }: PostListProps) => {
   );
 
   return (
-    <>
+    <motion.div {...slideUpMotion}>
       {filteredPostPreviews.map((postPreview) => (
         <PostListItem
           key={postPreview.id + postPreview.title}
           postPreview={postPreview}
         />
       ))}
-    </>
+    </motion.div>
   );
 };
 
