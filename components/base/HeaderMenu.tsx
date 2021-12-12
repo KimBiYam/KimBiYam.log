@@ -4,8 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import useDetectOutsideClick from "../../hooks/useDetectOutsideClick";
 import { useMediaQuery } from "react-responsive";
 import breakPoints from "../../lib/styles/breakPoints";
+import { motion } from "framer-motion";
+import { dialogMotion } from "../../lib/styles/motions";
 
 export type HeaderMenuProps = {};
+
+const VISIBLE_TRANSITION_MS = 300;
 
 const HeaderMenu = () => {
   const menuButtonRef = useRef<HTMLDivElement>(null);
@@ -29,7 +33,6 @@ const HeaderMenu = () => {
   }, [isMediumScreen]);
 
   useEffect(() => {
-    const VISIBLE_TRANSITION_MS = 200;
     let timeoutId: NodeJS.Timeout;
 
     if (isMenuOpen) {
@@ -54,12 +57,12 @@ const HeaderMenu = () => {
         <MenuIcon />
       </button>
       {isMenuVisible && (
-        <ul
-          className={`${
-            isMenuOpen
-              ? "visible animate-fade-in"
-              : "invisible animate-fade-out"
-          } absolute right-0 transition-all rounded-md w-32 p-2 bg-blueGray-200 dark:bg-trueGray-50`}
+        <motion.ul
+          className="absolute right-0 rounded-md w-32 p-2 bg-blueGray-200 dark:bg-trueGray-50"
+          initial="closed"
+          animate={isMenuOpen ? "open" : "closed"}
+          variants={dialogMotion}
+          transition={{ duration: VISIBLE_TRANSITION_MS / 1000 }}
         >
           <HeaderMenuItem href="/" label="Posts" onClick={handleClick} />
           <HeaderMenuItem
@@ -67,7 +70,7 @@ const HeaderMenu = () => {
             label="Introduction"
             onClick={handleClick}
           />
-        </ul>
+        </motion.ul>
       )}
     </div>
   );
