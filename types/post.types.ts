@@ -2,6 +2,7 @@ export type PostData = {
   id: string;
   date: string;
   contentHtml: string;
+  description: string;
   title: string;
 };
 

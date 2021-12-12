@@ -1,4 +1,4 @@
-import Head from "next/head";
+import PageHead from "../../components/base/PageHead";
 import MarkdownView from "../../components/posts/MarkdownView";
 import { INTRODUCTION_DIRECTORY } from "../../constants";
 import { getMarkdownData } from "../../lib/posts/markdown";
@@ -10,9 +10,10 @@ type IntroductionProps = {
 const Introduction = ({ contentHtml }: IntroductionProps) => {
   return (
     <>
-      <Head>
-        <title>KimBiYam.log | Introduction</title>
-      </Head>
+      <PageHead
+        title="KimBiYam.log | Introduction"
+        description="KimBiYam Introduction"
+      />
       <div className="pb-24">
         <MarkdownView contentHtml={contentHtml} />
       </div>

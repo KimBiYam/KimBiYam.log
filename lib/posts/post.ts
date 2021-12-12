@@ -32,15 +32,19 @@ export const getPostData = async (
   const {
     matterResult: {
       data: { title, date },
+      content,
     },
     contentHtml,
   } = await getMarkdownData(directory, id);
+
+  const description = replacePreviewContent(content);
 
   return {
     id,
     title,
     date,
     contentHtml,
+    description,
   };
 };
 

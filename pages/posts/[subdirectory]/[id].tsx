@@ -1,21 +1,19 @@
 import { getAllPostPaths, getPostData } from "../../../lib/posts/post";
 import { PostData } from "../../../types/post.types";
-import Head from "next/head";
 import PostView from "../../../components/posts/PostView";
 import { POST_DIRECTORY } from "../../../constants";
+import PageHead from "../../../components/base/PageHead";
 
 export type PostProps = {
   postData: PostData;
 };
 
 const Post = ({ postData }: PostProps) => {
-  const { title } = postData;
+  const { title, description } = postData;
 
   return (
     <>
-      <Head>
-        <title>{title}</title>
-      </Head>
+      <PageHead title={title} description={description} />
       <div>
         <PostView postData={postData} />
       </div>
