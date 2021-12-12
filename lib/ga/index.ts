@@ -4,7 +4,7 @@ declare global {
   }
 }
 
-export const pageView = (url: string) => {
+export const pageView = (url: URL) => {
   if (!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) return;
 
   window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {

@@ -6,7 +6,7 @@ const useGoogleAnalyticsPageView = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const handleRouteChange = (url: string) => {
+    const handleRouteChange = (url: URL) => {
       ga.pageView(url);
     };
     router.events.on("routeChangeComplete", handleRouteChange);
