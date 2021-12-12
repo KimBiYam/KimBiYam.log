@@ -7,7 +7,7 @@ export type TagButtonProps = {
 const TagButton = ({ tag, onTagClick, isSelected }: TagButtonProps) => {
   return (
     <button
-      className={`px-4 py-1 mx-1 mb-2 border-2 rounded-xl text-sm ${
+      className={`px-4 py-1 mx-1 mb-2 border-2 rounded-xl text-xs md:text-sm ${
         isSelected
           ? "font-bold border-black dark:border-blueGray-600"
           : "font-semibold"
