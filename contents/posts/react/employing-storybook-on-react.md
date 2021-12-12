@@ -4,7 +4,7 @@ date: '2021-06-22'
 tag: 'react'
 ---
 
-![](/images/posts/nest-js/type-orm-timezone_1.png)
+![](/images/posts/react/employing-storybook-on-react_1.png)
 
 ## Storybook이란?
 
