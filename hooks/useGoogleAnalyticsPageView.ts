@@ -1,13 +1,13 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import * as ga from "../lib/ga";
+import * as googleAnalytics from "../lib/googleAnalytics";
 
 const useGoogleAnalyticsPageView = () => {
   const router = useRouter();
 
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
-      ga.pageView(url);
+      googleAnalytics.pageView(url);
     };
     router.events.on("routeChangeComplete", handleRouteChange);
 
