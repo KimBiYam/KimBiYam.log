@@ -1,15 +1,21 @@
+import TagButton from "./TagButton";
+
 export type TagSelectorProps = {
   tags: string[];
   onTagClick: (tag: string) => void;
+  selectedTag: string;
 };
 
-const TagSelector = ({ tags, onTagClick }: TagSelectorProps) => {
+const TagSelector = ({ tags, onTagClick, selectedTag }: TagSelectorProps) => {
   return (
-    <div>
+    <div className="w-full flex flex-wrap">
       {tags.map((tag) => (
-        <button key={tag} type="button" onClick={() => onTagClick(tag)}>
-          {tag.toUpperCase()}
-        </button>
+        <TagButton
+          key={tag}
+          tag={tag}
+          onTagClick={onTagClick}
+          isSelected={tag === selectedTag}
+        />
       ))}
     </div>
   );

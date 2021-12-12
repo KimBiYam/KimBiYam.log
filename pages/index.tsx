@@ -13,7 +13,7 @@ export type HomeProps = {
 
 const Home = ({ postPreviews }: HomeProps) => {
   const router = useRouter();
-  const [tag, setTag] = useState<string>(Tag.all);
+  const [selectedTag, setSelectedTag] = useState<string>(Tag.all);
   const tags = useMemo(
     () => [
       Tag.all,
@@ -34,11 +34,11 @@ const Home = ({ postPreviews }: HomeProps) => {
 
   useEffect(() => {
     if (typeof router.query.tag === "string") {
-      setTag(router.query.tag);
+      setSelectedTag(router.query.tag);
     } else {
-      setTag(Tag.all);
+      setSelectedTag(Tag.all);
     }
-  }, [setTag, router.query]);
+  }, [setSelectedTag, router.query]);
 
   return (
     <>
@@ -46,8 +46,12 @@ const Home = ({ postPreviews }: HomeProps) => {
         title="KimBiYam.log"
         description="KimBiYam의 개발 블로그 입니다."
       />
-      <TagSelector tags={tags} onTagClick={handleTagClick}></TagSelector>
-      <PostList postPreviews={postPreviews} tag={tag} />
+      <TagSelector
+        tags={tags}
+        onTagClick={handleTagClick}
+        selectedTag={selectedTag}
+      />
+      <PostList postPreviews={postPreviews} selectedTag={selectedTag} />
     </>
   );
 };

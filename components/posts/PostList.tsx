@@ -5,16 +5,17 @@ import PostListItem from "./PostListItem";
 
 export type PostListProps = {
   postPreviews: PostPreview[];
-  tag: string;
+  selectedTag: string;
 };
 
-const PostList = ({ postPreviews, tag }: PostListProps) => {
+const PostList = ({ postPreviews, selectedTag }: PostListProps) => {
   const filteredPostPreviews = useMemo(
     () =>
       postPreviews.filter(
-        (postPreview) => tag === Tag.all || postPreview.tag === tag
+        (postPreview) =>
+          selectedTag === Tag.all || postPreview.tag === selectedTag
       ),
-    [postPreviews, tag]
+    [postPreviews, selectedTag]
   );
 
   return (
