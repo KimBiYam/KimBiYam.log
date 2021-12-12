@@ -29,24 +29,22 @@ h3 {
   letter-spacing: -1px;
 }
 
-.transition-container {
-  @apply transition-colors bg-white dark:bg-trueGray-800 duration-300;
-}
-
 @layer utilities {
-  @variants responsive {
-    .text-shadow {
-      text-shadow: 0px 0px 8px rgba(128, 128, 128, 0.5);
-    }
+  .transition-container {
+    @apply transition-colors bg-white dark:bg-trueGray-800 duration-300;
+  }
 
-    .text-shadow-dark {
-      text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.1);
-    }
+  .text-shadow {
+    text-shadow: 0px 0px 8px rgba(128, 128, 128, 0.5);
+  }
 
-    .transition-text-shadow {
-      transition-property: text-shadow;
-      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-      transition-duration: 200ms;
-    }
+  .text-shadow-dark {
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.1);
+  }
+
+  .transition-text-shadow {
+    transition-property: text-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
   }
 }
