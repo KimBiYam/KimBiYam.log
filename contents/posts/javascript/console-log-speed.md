@@ -1,7 +1,7 @@
 ---
 title: '[Javascript] console.log() 속도 관련'
 date: '2021-11-25'
-tag: 'nest-js'
+tag: 'javascript'
 ---
 
 https://www.acmicpc.net/problem/10828
