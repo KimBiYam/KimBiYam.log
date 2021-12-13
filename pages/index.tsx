@@ -26,7 +26,7 @@ const Home = ({ postPreviews }: HomeProps) => {
   );
 
   return (
-    <>
+    <div className="pb-12">
       <PageHead
         title="KimBiYam.log"
         description="KimBiYam의 개발 블로그 입니다."
@@ -37,7 +37,7 @@ const Home = ({ postPreviews }: HomeProps) => {
         selectedTag={selectedTag}
       />
       <PostList postPreviews={postPreviews} selectedTag={selectedTag} />
-    </>
+    </div>
   );
 };
 
