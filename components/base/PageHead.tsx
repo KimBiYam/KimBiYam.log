@@ -36,6 +36,10 @@ const PageHead = ({ title, description, url }: PageHeadProps) => {
       <meta property="og:description" content={description} />
       <meta name="og:description" content={description} />
       <meta name="description" content={description} />
+      <meta
+        name="google-site-verification"
+        content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION_KEY}
+      />
     </Head>
   );
 };

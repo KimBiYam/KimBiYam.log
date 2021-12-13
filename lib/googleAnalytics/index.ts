@@ -5,9 +5,9 @@ declare global {
 }
 
 export const pageView = (url: URL) => {
-  if (!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) return;
+  if (!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID) return;
 
-  window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
+  window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID, {
     page_path: url,
   });
 };
