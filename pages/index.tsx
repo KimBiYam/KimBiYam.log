@@ -4,6 +4,7 @@ import PageHead from "../components/base/PageHead";
 import PostList from "../components/posts/PostList";
 import TagSelector from "../components/posts/TagSelector";
 import { Tag } from "../constants";
+import useTag from "../hooks/useTag";
 import { getSortedPostPreviews } from "../lib/posts/post";
 import { PostPreview } from "../types/post.types";
 
@@ -13,7 +14,7 @@ export type HomeProps = {
 
 const Home = ({ postPreviews }: HomeProps) => {
   const router = useRouter();
-  const [selectedTag, setSelectedTag] = useState<string>(Tag.all);
+  const { selectedTag, handleTagClick } = useTag(router);
   const tags = useMemo(
     () => [
       Tag.all,
@@ -23,22 +24,6 @@ const Home = ({ postPreviews }: HomeProps) => {
     ],
     [postPreviews]
   );
-
-  const handleTagClick = useCallback(
-    (tag: string) => {
-      const path = tag === Tag.all ? "/" : `/?tag=${tag}`;
-      router.replace(path, undefined, { shallow: true });
-    },
-    [router]
-  );
-
-  useEffect(() => {
-    if (typeof router.query.tag === "string") {
-      setSelectedTag(router.query.tag);
-    } else {
-      setSelectedTag(Tag.all);
-    }
-  }, [setSelectedTag, router.query]);
 
   return (
     <>
