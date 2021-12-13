@@ -1,5 +1,6 @@
 import { PostData } from "../../types/post.types";
 import MarkdownView from "./MarkdownView";
+import Utterances from "./Utterances";
 
 export type PostViewProps = {
   postData: PostData;
@@ -13,6 +14,7 @@ const PostView = ({ postData }: PostViewProps) => {
       <h1 className="text-4xl font-bold sm:text-2xl"> {title}</h1>
       <p className="flex mt-2 mb-4 text-sm">{date}</p>
       <MarkdownView contentHtml={contentHtml} />
+      <Utterances />
     </article>
   );
 };
