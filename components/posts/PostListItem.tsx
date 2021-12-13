@@ -22,10 +22,10 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
         <h3 className="w-full text-2xl font-bold overflow-hidden whitespace-nowrap truncate">
           {title}
         </h3>
-        <div className="mt-2 mb-4 text-sm">{date}</div>
-        <div className="dark:text-gray-300 text-zinc-700 text-sm md:text-base">
+        <p className="mt-2 mb-4 text-sm">{date}</p>
+        <p className="dark:text-gray-300 text-zinc-700 text-sm md:text-base overflow-hidden">
           {content}
-        </div>
+        </p>
       </motion.div>
     </NextLink>
   );
