@@ -9,10 +9,8 @@ export const getAllPostPaths = (): { params: PostPath }[] => {
   const markdownFilePaths = getPostMarkdownFilePaths();
 
   const paths = markdownFilePaths.map((markdownFilePath) => {
-    const slicedFilePath = markdownFilePath.split("/");
-
-    const subdirectory = slicedFilePath[0];
-    const id = slicedFilePath[1].replace(/\.md$/, "");
+    const [subdirectory, fileName] = markdownFilePath.split("/");
+    const id = fileName.replace(/\.md$/, "");
 
     return {
       params: {
