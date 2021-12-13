@@ -117,13 +117,12 @@ Java, Spring Framework 등의 기술들을 학습했습니다.
 
 ### 📄개인 프로젝트
 
-### TODO 다이어리
+## TODO Diary
 
 [링크](https://www.todo-diary.p-e.kr/)
 
 [레포지토리](https://github.com/KimBiYam/todo-diary)
 
-사이드 프로젝트로 진행하고 있으며,
 해야 할 일을 다이어리에 작성하고, 월별 통계 그래프와
 달성률 등을 이용하여 할 일들을 놓치지 않고 잘 관리하게끔 도와주는
 웹 프로젝트입니다.
@@ -148,9 +147,7 @@ Java, Spring Framework 등의 기술들을 학습했습니다.
 - React Query
 - Emotion
 
----
-
-### KimBiYam.log
+## KimBiYam.log
 
 개발 관련 내용을 기록하기 위한 블로그를 직접 만든 프로젝트입니다.
 
