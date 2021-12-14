@@ -66,8 +66,8 @@ const HeaderMenu = () => {
         >
           <HeaderMenuItem href="/" label="Posts" onClick={handleClick} />
           <HeaderMenuItem
-            href="/introduction"
-            label="Introduction"
+            href="/introduce"
+            label="Introduce"
             onClick={handleClick}
           />
         </motion.ul>

@@ -1,20 +1,20 @@
 import PageHead from "../../components/base/PageHead";
 import MarkdownView from "../../components/posts/MarkdownView";
-import { INTRODUCTION_DIRECTORY } from "../../constants";
+import { INTRODUCE_DIRECTORY, INTRODUCE_FILE_NAME } from "../../constants";
 import { getMarkdownData } from "../../lib/posts/markdown";
 import { motion } from "framer-motion";
 import { slideUpMotion } from "../../lib/styles/motions";
 
-type IntroductionProps = {
+type IntroduceProps = {
   contentHtml: string;
 };
 
-const Introduction = ({ contentHtml }: IntroductionProps) => {
+const Introduce = ({ contentHtml }: IntroduceProps) => {
   return (
     <>
       <PageHead
-        title="KimBiYam.log | Introduction"
-        description="KimBiYam Introduction"
+        title="KimBiYam.log | Introduce"
+        description="KimBiYam Introduce"
       />
       <motion.div className="pb-24" {...slideUpMotion}>
         <MarkdownView contentHtml={contentHtml} />
@@ -24,14 +24,12 @@ const Introduction = ({ contentHtml }: IntroductionProps) => {
 };
 
 export const getStaticProps = async () => {
-  const INTRODUCTION_FILE_NAME = "introduction";
-
-  const introductionData = await getMarkdownData(
-    INTRODUCTION_DIRECTORY,
-    INTRODUCTION_FILE_NAME
+  const introduceData = await getMarkdownData(
+    INTRODUCE_DIRECTORY,
+    INTRODUCE_FILE_NAME
   );
 
-  const { contentHtml } = introductionData;
+  const { contentHtml } = introduceData;
 
   return {
     props: {
@@ -40,4 +38,4 @@ export const getStaticProps = async () => {
   };
 };
 
-export default Introduction;
+export default Introduce;

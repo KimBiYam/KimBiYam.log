@@ -26,7 +26,7 @@ const Header = () => {
         </Link>
         <nav className="flex flex-1 items-center justify-end">
           <div className="ml-4 hidden md:block font-bold">
-            <HeaderItem href="/introduction" label="Introduction" />
+            <HeaderItem href="/introduce" label="Introduce" />
           </div>
         </nav>
         <div className="flex">
