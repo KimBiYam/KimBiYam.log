@@ -1,3 +1,5 @@
+import { forwardRef } from "react";
+import withDragScroll from "../../hocs/withDragScroll";
 import TagButton from "./TagButton";
 
 export type TagSelectorProps = {
@@ -6,9 +8,15 @@ export type TagSelectorProps = {
   selectedTag: string;
 };
 
-const TagSelector = ({ tags, onTagClick, selectedTag }: TagSelectorProps) => {
+const TagSelector = (
+  { tags, onTagClick, selectedTag }: TagSelectorProps,
+  ref: React.Ref<HTMLDivElement>
+) => {
   return (
-    <div className="w-full pt-4 flex sticky top-12 transition-container z-40 overflow-auto scrollbar-hide">
+    <div
+      className="w-full pt-4 flex sticky top-12 transition-container z-40 overflow-auto scrollbar-hide"
+      ref={ref}
+    >
       {tags.map((tag) => (
         <TagButton
           key={tag}
@@ -21,4 +29,4 @@ const TagSelector = ({ tags, onTagClick, selectedTag }: TagSelectorProps) => {
   );
 };
 
-export default TagSelector;
+export default withDragScroll(forwardRef(TagSelector));
