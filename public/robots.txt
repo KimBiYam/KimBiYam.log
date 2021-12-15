@@ -1,2 +1,9 @@
+# *
 User-agent: *
-Disallow:
+Allow: /
+
+# Host
+Host: https://kimbiyam.me
+
+# Sitemaps
+Sitemap: https://kimbiyam.me/sitemap.xml
