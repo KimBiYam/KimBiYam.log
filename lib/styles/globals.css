@@ -34,6 +34,15 @@ h3 {
     @apply transition-colors bg-white dark:bg-trueGray-800 duration-300;
   }
 
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   .text-shadow {
     text-shadow: 0px 0px 8px rgba(128, 128, 128, 0.5);
   }
