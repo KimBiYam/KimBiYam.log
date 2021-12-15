@@ -53,7 +53,11 @@ const HeaderMenu = () => {
 
   return (
     <div className="relative w-6 h-2 ml-4" ref={menuButtonRef}>
-      <button className="w-full md:hidden" onClick={toggleMenu}>
+      <button
+        className="w-full md:hidden"
+        onClick={toggleMenu}
+        aria-label="MenuButton"
+      >
         <MenuIcon />
       </button>
       {isMenuVisible && (
