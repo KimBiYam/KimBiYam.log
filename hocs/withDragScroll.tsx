@@ -46,7 +46,7 @@ const withDragScroll = <T extends {}>(Component: React.ComponentType<T>) => {
       ref.current.scrollLeft = position.left - dx;
     };
 
-    const handleMouseUp = (e: MouseEvent) => {
+    const handleMouseUp = () => {
       if (!ref.current) {
         return;
       }
