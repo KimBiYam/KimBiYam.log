@@ -28,6 +28,7 @@ const PageHead = ({ title, description, url }: PageHeadProps) => {
         name="theme-color"
         content={theme === Theme.dark ? colors.trueGray800 : colors.white}
       />
+      <meta name="color-scheme" content="light dark" />
       <meta
         name="keywords"
         content="blog,블로그,kimbiyam,kimbiyam.log,hot9998"
