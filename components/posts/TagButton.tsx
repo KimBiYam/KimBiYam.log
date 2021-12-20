@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 export type TagButtonProps = {
   tag: string;
   onTagClick: (tag: string) => void;
@@ -21,4 +23,4 @@ const TagButton = ({ tag, onTagClick, isSelected }: TagButtonProps) => {
   );
 };
 
-export default TagButton;
+export default memo(TagButton);
