@@ -4,9 +4,6 @@ export const Theme = {
 } as const;
 export type Theme = typeof Theme[keyof typeof Theme];
 
-export const isTheme = (value: unknown): value is Theme =>
-  typeof value === "string" && Object.values(Theme).includes(value as Theme);
-
 export const Tag = {
   all: "all",
 } as const;
