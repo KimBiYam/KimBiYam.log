@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import Header from "../components/base/Header";
 import MainLayout from "../components/base/MainLayout";
 import useGoogleAnalyticsPageView from "../hooks/useGoogleAnalyticsPageView";
+import { RecoilRoot } from "recoil";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useGoogleAnalyticsPageView();
@@ -12,7 +13,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Header />
       <MainLayout>
-        <Component {...pageProps} />
+        <RecoilRoot>
+          <Component {...pageProps} />
+        </RecoilRoot>
       </MainLayout>
     </>
   );
