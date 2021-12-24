@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import PageHead from "../components/base/PageHead";
 import PostList from "../components/posts/PostList";
 import TagSelector from "../components/posts/TagSelector";
@@ -15,6 +15,7 @@ export type HomeProps = {
 const Home = ({ postPreviews }: HomeProps) => {
   const router = useRouter();
   const { selectedTag, handleTagClick } = useTag(router);
+
   const tags = useMemo(
     () => [
       Tag.all,
