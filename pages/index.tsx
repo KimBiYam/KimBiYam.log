@@ -27,18 +27,20 @@ const Home = ({ postPreviews }: HomeProps) => {
   );
 
   return (
-    <div className="pb-12">
+    <>
       <PageHead
         title="KimBiYam.log"
         description="KimBiYam의 개발 블로그 입니다."
       />
-      <TagSelector
-        tags={tags}
-        onTagClick={handleTagClick}
-        selectedTag={selectedTag}
-      />
-      <PostList postPreviews={postPreviews} selectedTag={selectedTag} />
-    </div>
+      <div className="pb-12">
+        <TagSelector
+          tags={tags}
+          onTagClick={handleTagClick}
+          selectedTag={selectedTag}
+        />
+        <PostList postPreviews={postPreviews} selectedTag={selectedTag} />
+      </div>
+    </>
   );
 };
 
