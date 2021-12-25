@@ -33,6 +33,14 @@ const Home = ({ postPreviews }: HomeProps) => {
         description="KimBiYam의 개발 블로그 입니다."
       />
       <div className="pb-12">
+        <button
+          type="button"
+          onClick={() => {
+            throw new Error("Sentry Frontend Error");
+          }}
+        >
+          Throw Error!
+        </button>
         <TagSelector
           tags={tags}
           onTagClick={handleTagClick}
