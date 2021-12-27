@@ -11,7 +11,7 @@ export type PostListProps = {
   selectedTag: string;
 };
 
-const POST_COUNT_BY_PAGE = 5;
+const POST_COUNT_BY_PAGE = 10;
 
 const PostList = ({ postPreviews, selectedTag }: PostListProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
