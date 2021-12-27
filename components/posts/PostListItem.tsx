@@ -2,7 +2,10 @@ import { PostPreview } from "../../types/post.types";
 import NextLink from "next/link";
 import { memo } from "react";
 import { motion } from "framer-motion";
-import { slideUpMotion } from "../../lib/styles/motions";
+import {
+  slideUpMotion,
+  viewPointSlideUpMotion,
+} from "../../lib/styles/motions";
 
 export type PostListItemProps = {
   postPreview: PostPreview;
@@ -15,9 +18,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
     <NextLink href={`/posts/${id}`}>
       <motion.div
         className="py-4 cursor-pointer hover:text-shadow dark:hover:text-shadow-dark transition-text-shadow"
-        initial={{ opacity: 0 }}
-        whileInView={{ ...slideUpMotion.animate }}
-        viewport={{ once: true }}
+        {...viewPointSlideUpMotion}
       >
         <h3 className="w-full text-2xl font-bold overflow-hidden whitespace-nowrap truncate">
           {title}
