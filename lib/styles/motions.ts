@@ -3,6 +3,11 @@ export const slideUpMotion = {
   transition: { duration: 0.5 },
 };
 
+export const slideLeftMotion = {
+  animate: { x: [20, 0], opacity: [0, 1] },
+  transition: { duration: 0.5 },
+};
+
 export const viewPointSlideUpMotion = {
   initial: { opacity: 0 },
   whileInView: { ...slideUpMotion.animate },

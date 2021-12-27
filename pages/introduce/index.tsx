@@ -3,7 +3,7 @@ import MarkdownView from "../../components/posts/MarkdownView";
 import { INTRODUCE_DIRECTORY, INTRODUCE_FILE_NAME } from "../../constants";
 import { getMarkdownData } from "../../lib/posts/markdown";
 import { motion } from "framer-motion";
-import { slideUpMotion } from "../../lib/styles/motions";
+import { slideLeftMotion, slideUpMotion } from "../../lib/styles/motions";
 
 type IntroduceProps = {
   contentHtml: string;
@@ -16,7 +16,7 @@ const Introduce = ({ contentHtml }: IntroduceProps) => {
         title="KimBiYam.log | Introduce"
         description="KimBiYam Introduce"
       />
-      <motion.div className="pb-24" {...slideUpMotion}>
+      <motion.div className="py-12" {...slideLeftMotion}>
         <MarkdownView contentHtml={contentHtml} />
       </motion.div>
     </>
