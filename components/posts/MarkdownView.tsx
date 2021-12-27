@@ -6,7 +6,7 @@ const MarkdownView = ({ contentHtml }: MarkdownViewProps) => {
   return (
     <div className="flex justify-center">
       <div
-        className="w-full prose dark:prose-dark sm:prose-sm md:prose"
+        className="w-full prose xs:prose-sm sm:prose-sm dark:prose-dark"
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />
     </div>
