@@ -10,7 +10,6 @@ const withDragScroll = <T extends {}>(Component: React.ComponentType<T>) => {
         return;
       }
 
-      ref.current.style.cursor = "grab";
       ref.current.style.overflow = "auto";
       ref.current.addEventListener("mousedown", handleMouseDown);
     }, [ref.current]);
@@ -30,7 +29,6 @@ const withDragScroll = <T extends {}>(Component: React.ComponentType<T>) => {
       ref.current.addEventListener("mousemove", handleMouseMove);
       ref.current.addEventListener("mouseup", handleMouseUp);
 
-      ref.current.style.cursor = "grabbing";
       ref.current.style.userSelect = "none";
     };
 
@@ -54,7 +52,6 @@ const withDragScroll = <T extends {}>(Component: React.ComponentType<T>) => {
       ref.current.removeEventListener("mousemove", handleMouseMove);
       ref.current.removeEventListener("mouseup", handleMouseUp);
 
-      ref.current.style.cursor = "grab";
       ref.current.style.removeProperty("user-select");
     };
 
