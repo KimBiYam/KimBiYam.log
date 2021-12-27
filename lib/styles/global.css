@@ -30,8 +30,8 @@ h3 {
 }
 
 @layer utilities {
-  .transition-container {
-    @apply transition-colors bg-white dark:bg-trueGray-800 duration-300;
+  .main-container {
+    @apply transition-colors bg-white dark:bg-trueGray-800 duration-300 text-black dark:text-warmGray-400;
   }
 
   .scrollbar-hide {

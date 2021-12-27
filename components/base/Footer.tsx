@@ -2,7 +2,7 @@ import { memo } from "react";
 
 const Footer = () => {
   return (
-    <footer className="flex justify-center pt-24 pb-8 text-sm">
+    <footer className="flex justify-center pb-3 text-sm main-container">
       <p>
         <span>© 2021</span>
         <a
