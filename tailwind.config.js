@@ -50,6 +50,13 @@ module.exports = {
         },
       },
       typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            a: {
+              fontWeight: 700,
+            },
+          },
+        },
         dark: {
           css: {
             color: theme("colors.gray.300"),
@@ -81,11 +88,6 @@ module.exports = {
         "fade-in": "fade-in 0.2s ease-in-out",
         "fade-out": "fade-out 0.2s ease-in-out",
       },
-    },
-  },
-  variants: {
-    extend: {
-      typography: ["dark"],
     },
   },
   plugins: [require("@tailwindcss/typography")],
