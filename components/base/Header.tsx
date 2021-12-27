@@ -6,8 +6,6 @@ import DarkModeButton from "./DarkModeButton";
 import Image from "next/image";
 import favicon from "../../assets/favicon/favicon-192x192.png";
 
-export type HeaderProps = {};
-
 const Header = () => {
   return (
     <header className="fixed w-full h-12 z-50 flex items-center transition-container">

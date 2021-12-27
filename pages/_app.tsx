@@ -6,6 +6,7 @@ import MainLayout from "../components/base/MainLayout";
 import useGoogleAnalyticsPageView from "../hooks/useGoogleAnalyticsPageView";
 import { RecoilRoot } from "recoil";
 import * as sentryUtil from "../lib/utils/sentry.util";
+import Footer from "../components/base/Footer";
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -21,6 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <RecoilRoot>
           <Component {...pageProps} />
         </RecoilRoot>
+        <Footer />
       </MainLayout>
     </>
   );
