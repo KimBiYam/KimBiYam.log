@@ -3,6 +3,13 @@ export const slideUpMotion = {
   transition: { duration: 0.5 },
 };
 
+export const viewPointSlideUpMotion = {
+  initial: { opacity: 0 },
+  whileInView: { ...slideUpMotion.animate },
+  viewport: { once: true },
+  transition: { duration: 0.5 },
+};
+
 export const dialogMotion = {
   open: { opacity: 1 },
   closed: { opacity: 0 },
