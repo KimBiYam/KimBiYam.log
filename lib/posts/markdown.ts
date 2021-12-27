@@ -2,6 +2,7 @@ import path from "path";
 import { remark } from "remark";
 import html from "remark-html";
 import prism from "remark-prism";
+import gfm from "remark-gfm";
 import fs from "fs";
 import matter from "gray-matter";
 
@@ -22,6 +23,7 @@ export const getMarkdownData = async (directory: string, id: string) => {
 
 export const parseMarkdown = async (content: string) => {
   const processedContent = await remark()
+    .use(gfm)
     .use(html, { sanitize: false })
     .use(prism as any)
     .process(content);
