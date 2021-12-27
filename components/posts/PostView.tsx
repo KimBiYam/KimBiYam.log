@@ -11,7 +11,7 @@ const PostView = ({ postData }: PostViewProps) => {
 
   return (
     <article className="mt-8 pb-24">
-      <h1 className="text-4xl font-bold sm:text-2xl"> {title}</h1>
+      <h1 className="font-bold text-2xl md:text-4xl"> {title}</h1>
       <p className="flex mt-2 mb-4 text-sm">{date}</p>
       <MarkdownView contentHtml={contentHtml} />
       <Utterances />
