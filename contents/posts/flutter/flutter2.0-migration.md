@@ -19,7 +19,7 @@ null safety에 관한 내용은 [공식 문서](https://dart.dev/null-safety/tou
 Flutter SDK의 channel이 stable 인지 체크합니다.
 
 ```
-> flutter channel
+$ flutter channel
 Flutter channels:
   master
   dev
@@ -30,19 +30,19 @@ Flutter channels:
 만약 stable이 아닌 경우 channel을 stable로 바꿔주면 됩니다.
 
 ```
-> flutter channel stable
+$ flutter channel stable
 ```
 
 그 후 Flutter SDK upgrade를 진행합니다
 
 ```
-> flutter upgrade
+$ flutter upgrade
 ```
 
 Flutter SDK upgrade가 제대로 진행되었는지 체크합니다.
 
 ```
-> flutter doctor
+$ flutter doctor
 Doctor summary (to see all details, run flutter doctor -v):
 [✓] Flutter (Channel stable, 2.0.1, on Linux, locale en_US.UTF-8)
 [✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
@@ -58,7 +58,7 @@ Doctor summary (to see all details, run flutter doctor -v):
 dart SDK 버전이 2.12.0 이상인지 체크합니다.
 
 ```
-> dart --version
+$ dart --version
 Dart SDK version: 2.12.0 (stable) (Thu Feb 25 19:50:53 2021 +0100) on "linux_x64"
 ```
 
@@ -77,7 +77,7 @@ SDK 버전이 성공적으로 업그레이드 되었으면 원하는 프로젝�
 프로젝트의 pubspec.yaml 파일이 있는 경로에서 커맨드를 입력합니다.
 
 ```
-> dart pub outdated --mode=null-safety
+$ dart pub outdated --mode=null-safety
 ```
 
 사용 중인 패키지들이 null safety가 적용되었는지, 업그레이드 가능한지 등의 상태가 나오게 됩니다.
@@ -103,13 +103,13 @@ To update it, edit pubspec.yaml, or run `dart pub upgrade --null-safety`.
 아래의 안내에 따라 패키지들을 업그레이드하면 됩니다.
 
 ```
-> dart pub upgrade --null-safety
+$ dart pub upgrade --null-safety
 ```
 
 제대로 업그레이드가 되었는지 체크합니다.
 
 ```
-> dart pub outdated --mode=null-safety
+$ dart pub outdated --mode=null-safety
 ```
 
 ```
@@ -127,7 +127,7 @@ All your dependencies declare support for null-safety.
 아래의 명령어로 migration을 진행합니다.
 
 ```
-> dart migrate
+$ dart migrate
 ```
 
 그러면 마이그레이션이 시작되면서 웹 서버가 하나 띄워지게 됩니다.
