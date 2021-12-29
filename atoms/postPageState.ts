@@ -1,7 +1,7 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
 const postPageState = atom({
-  key: "postPage",
+  key: 'postPage',
   default: 1,
 });
 

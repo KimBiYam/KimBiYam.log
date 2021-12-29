@@ -1,4 +1,4 @@
-import PageHead from "../components/base/PageHead";
+import PageHead from '../components/base/PageHead';
 
 const NotFoundPage = () => {
   return (

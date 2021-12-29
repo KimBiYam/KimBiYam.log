@@ -1,9 +1,9 @@
-import { Theme } from "../../constants";
+import { Theme } from '../../constants';
 
-const THEME = "theme";
+const THEME = 'theme';
 
 export const isTheme = (value: unknown): value is Theme =>
-  typeof value === "string" && Object.values(Theme).includes(value as Theme);
+  typeof value === 'string' && Object.values(Theme).includes(value as Theme);
 
 const themeStorage = {
   getTheme() {

@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo } from 'react';
 
 export type TagButtonProps = {
   tag: string;
@@ -11,8 +11,8 @@ const TagButton = ({ tag, onTagClick, isSelected }: TagButtonProps) => {
     <button
       className={`px-4 py-1 mx-1 mb-2 border-2 rounded-xl text-xs md:text-sm whitespace-pre ${
         isSelected
-          ? "font-bold border-black dark:border-blueGray-600"
-          : "font-semibold"
+          ? 'font-bold border-black dark:border-blueGray-600'
+          : 'font-semibold'
       }`}
       key={tag}
       type="button"

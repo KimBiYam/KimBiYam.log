@@ -1,16 +1,16 @@
-import { getMarkdownData } from "./markdown";
-import { PostData, PostPath, PostPreview } from "../../types/post.types";
-import { POST_DIRECTORY } from "../../constants";
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+import { getMarkdownData } from './markdown';
+import { PostData, PostPath, PostPreview } from '../../types/post.types';
+import { POST_DIRECTORY } from '../../constants';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 
 export const getAllPostPaths = (): { params: PostPath }[] => {
   const markdownFilePaths = getPostMarkdownFilePaths();
 
   const paths = markdownFilePaths.map((markdownFilePath) => {
-    const [subdirectory, fileName] = markdownFilePath.split("/");
-    const id = fileName.replace(/\.md$/, "");
+    const [subdirectory, fileName] = markdownFilePath.split('/');
+    const id = fileName.replace(/\.md$/, '');
 
     return {
       params: {
@@ -25,7 +25,7 @@ export const getAllPostPaths = (): { params: PostPath }[] => {
 
 export const getPostData = async (
   directory: string,
-  id: string
+  id: string,
 ): Promise<PostData> => {
   const {
     matterResult: {
@@ -35,7 +35,7 @@ export const getPostData = async (
     contentHtml,
   } = await getMarkdownData(directory, id);
 
-  const description = replacePreviewContent(content).replace(/\n/g, "");
+  const description = replacePreviewContent(content).replace(/\n/g, '');
 
   return {
     id,
@@ -53,7 +53,7 @@ export const getSortedPostPreviews = () => {
   const allPosts = filePaths.map(getPostPreview);
 
   const sortedAllPosts = [...allPosts].sort((a, b) =>
-    a.date < b.date ? 1 : -1
+    a.date < b.date ? 1 : -1,
   );
 
   return sortedAllPosts;
@@ -65,11 +65,11 @@ const getPostMarkdownFilePaths = () => {
   const markdownFilePaths = directories.map((directory) => {
     const fileNames = fs.readdirSync(`${POST_DIRECTORY}/${directory}`);
     const markdownFileNames = fileNames.filter((fileName) =>
-      fileName.endsWith(".md")
+      fileName.endsWith('.md'),
     );
 
     return markdownFileNames.map(
-      (markdownFileName) => `${directory}/${markdownFileName}`
+      (markdownFileName) => `${directory}/${markdownFileName}`,
     );
   });
 
@@ -79,10 +79,10 @@ const getPostMarkdownFilePaths = () => {
 const getPostPreview = (fileName: string): PostPreview => {
   const POST_PREVIEW_CONTENT_MAX_LENGTH = 200;
 
-  const id = fileName.replace(/\.md$/, "");
+  const id = fileName.replace(/\.md$/, '');
 
   const fullPath = path.join(POST_DIRECTORY, fileName);
-  const fileContents = fs.readFileSync(fullPath, "utf-8");
+  const fileContents = fs.readFileSync(fullPath, 'utf-8');
 
   const matterResult = matter(fileContents);
 
@@ -100,12 +100,12 @@ const getPostPreview = (fileName: string): PostPreview => {
 const replacePreviewContent = (content: string) => {
   const IMAGE_TAG_REG_EXP = new RegExp(/!\[(.*?)\]\((.*?)\)/g);
   const SPECIAL_CHARACTERS_REG_EXP = new RegExp(
-    /[!?@#$%^&*():;+-=~{}<>\_\[\]\|\\\"\'\,\.\/\`\₩]/g
+    /[{}[\]/?.,;:|)*~`!^\-_+<>@#$%&\\=('"]/gi,
   );
 
   return (
     content
-      .replace(IMAGE_TAG_REG_EXP, "")
-      .replace(SPECIAL_CHARACTERS_REG_EXP, "") + "..."
+      .replace(IMAGE_TAG_REG_EXP, '')
+      .replace(SPECIAL_CHARACTERS_REG_EXP, '') + '...'
   );
 };

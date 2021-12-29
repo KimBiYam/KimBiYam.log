@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { memo } from "react";
+import Link from 'next/link';
+import { memo } from 'react';
 
 export type HeaderMenuItemProps = {
   href: string;

@@ -1,6 +1,6 @@
-import { PostData } from "../../types/post.types";
-import MarkdownView from "./MarkdownView";
-import Utterances from "./Utterances";
+import { PostData } from '../../types/post.types';
+import MarkdownView from './MarkdownView';
+import Utterances from './Utterances';
 
 export type PostViewProps = {
   postData: PostData;

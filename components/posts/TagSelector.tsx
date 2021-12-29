@@ -1,6 +1,6 @@
-import { forwardRef } from "react";
-import withDragScroll from "../../hocs/withDragScroll";
-import TagButton from "./TagButton";
+import { forwardRef } from 'react';
+import withDragScroll from '../../hocs/withDragScroll';
+import TagButton from './TagButton';
 
 export type TagSelectorProps = {
   tags: string[];
@@ -10,7 +10,7 @@ export type TagSelectorProps = {
 
 const TagSelector = (
   { tags, onTagClick, selectedTag }: TagSelectorProps,
-  ref: React.Ref<HTMLDivElement>
+  ref: React.Ref<HTMLDivElement>,
 ) => {
   return (
     <div

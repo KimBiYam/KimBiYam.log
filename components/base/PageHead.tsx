@@ -1,8 +1,8 @@
-import Head from "next/head";
-import Favicon from "./Favicon";
-import favicon192 from "../../assets/favicon/favicon-192x192.png";
-import { DOMAIN_URL, Theme } from "../../constants";
-import colors from "../../lib/styles/colors";
+import Head from 'next/head';
+import Favicon from './Favicon';
+import favicon192 from '../../assets/favicon/favicon-192x192.png';
+import { DOMAIN_URL } from '../../constants';
+import colors from '../../lib/styles/colors';
 
 export type PageHeadProps = {
   description: string;

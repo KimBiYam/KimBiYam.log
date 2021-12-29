@@ -1,10 +1,8 @@
-import { memo } from "react";
-import MoonIcon from "../../assets/svgs/moon.svg";
-import SunIcon from "../../assets/svgs/sun.svg";
-import { Theme } from "../../constants";
-import useThemeStorage from "../../hooks/useThemeStorage";
-
-export type DarkModeButtonProps = {};
+import { memo } from 'react';
+import MoonIcon from '../../assets/svgs/moon.svg';
+import SunIcon from '../../assets/svgs/sun.svg';
+import { Theme } from '../../constants';
+import useThemeStorage from '../../hooks/useThemeStorage';
 
 const DarkModeButton = () => {
   const { theme, toggleTheme } = useThemeStorage();

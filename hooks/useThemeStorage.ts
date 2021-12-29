@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { Theme } from "../constants";
-import themeStorage from "../lib/storage/themeStorage";
+import { useEffect, useState } from 'react';
+import { Theme } from '../constants';
+import themeStorage from '../lib/storage/themeStorage';
 
-const DARK_MODE = "dark";
-const OS_DARK_MODE_QUERY = "(prefers-color-scheme: dark)";
+const DARK_MODE = 'dark';
+const OS_DARK_MODE_QUERY = '(prefers-color-scheme: dark)';
 
 const useThemeStorage = () => {
   const [theme, setTheme] = useState<Theme>(Theme.light);

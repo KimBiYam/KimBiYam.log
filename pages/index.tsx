@@ -1,12 +1,12 @@
-import { useRouter } from "next/router";
-import { useMemo } from "react";
-import PageHead from "../components/base/PageHead";
-import PostList from "../components/posts/PostList";
-import TagSelector from "../components/posts/TagSelector";
-import { Tag } from "../constants";
-import useTag from "../hooks/useTag";
-import { getSortedPostPreviews } from "../lib/posts/post";
-import { PostPreview } from "../types/post.types";
+import { useRouter } from 'next/router';
+import { useMemo } from 'react';
+import PageHead from '../components/base/PageHead';
+import PostList from '../components/posts/PostList';
+import TagSelector from '../components/posts/TagSelector';
+import { Tag } from '../constants';
+import useTag from '../hooks/useTag';
+import { getSortedPostPreviews } from '../lib/posts/post';
+import { PostPreview } from '../types/post.types';
 
 export type HomeProps = {
   postPreviews: PostPreview[];
@@ -20,10 +20,10 @@ const Home = ({ postPreviews }: HomeProps) => {
     () => [
       Tag.all,
       ...Array.from(
-        new Set(postPreviews.map((postPreview) => postPreview.tag))
+        new Set(postPreviews.map((postPreview) => postPreview.tag)),
       ),
     ],
-    [postPreviews]
+    [postPreviews],
   );
 
   return (

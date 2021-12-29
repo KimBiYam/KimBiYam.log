@@ -1,10 +1,10 @@
-import { useCallback, useMemo, useRef } from "react";
-import { useRecoilState } from "recoil";
-import postPageState from "../../atoms/postPageState";
-import { Tag } from "../../constants";
-import useScrollObserver from "../../hooks/useScrollObserver";
-import { PostPreview } from "../../types/post.types";
-import PostListItem from "./PostListItem";
+import { useCallback, useMemo, useRef } from 'react';
+import { useRecoilState } from 'recoil';
+import postPageState from '../../atoms/postPageState';
+import { Tag } from '../../constants';
+import useScrollObserver from '../../hooks/useScrollObserver';
+import { PostPreview } from '../../types/post.types';
+import PostListItem from './PostListItem';
 
 export type PostListProps = {
   postPreviews: PostPreview[];
@@ -19,7 +19,7 @@ const PostList = ({ postPreviews, selectedTag }: PostListProps) => {
 
   const handleIntersect = useCallback(
     () => setPostPage((prev) => prev + 1),
-    []
+    [],
   );
 
   useScrollObserver({
@@ -33,10 +33,10 @@ const PostList = ({ postPreviews, selectedTag }: PostListProps) => {
       postPreviews
         .filter(
           (postPreview) =>
-            selectedTag === Tag.all || postPreview.tag === selectedTag
+            selectedTag === Tag.all || postPreview.tag === selectedTag,
         )
         .splice(0, postPage * POST_COUNT_BY_PAGE),
-    [postPreviews, selectedTag, postPage]
+    [postPreviews, selectedTag, postPage],
   );
 
   return (

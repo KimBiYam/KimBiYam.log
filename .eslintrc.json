@@ -1,5 +1,17 @@
 {
-  "extends": "next/core-web-vitals",
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next",
+    "next/core-web-vitals",
+    "plugin:prettier/recommended"
+  ],
   "rules": {
     "react-hooks/exhaustive-deps": "off"
   }

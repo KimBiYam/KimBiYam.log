@@ -1,14 +1,14 @@
-import path from "path";
-import { remark } from "remark";
-import html from "remark-html";
-import prism from "remark-prism";
-import gfm from "remark-gfm";
-import fs from "fs";
-import matter from "gray-matter";
+import path from 'path';
+import { remark } from 'remark';
+import html from 'remark-html';
+import prism from 'remark-prism';
+import gfm from 'remark-gfm';
+import fs from 'fs';
+import matter from 'gray-matter';
 
 export const getMarkdownData = async (directory: string, id: string) => {
   const fullPath = path.join(directory, `${id}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
 
   const matterResult = matter(fileContents);
 
@@ -25,6 +25,7 @@ export const parseMarkdown = async (content: string) => {
   const processedContent = await remark()
     .use(gfm)
     .use(html, { sanitize: false })
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .use(prism as any)
     .process(content);
 

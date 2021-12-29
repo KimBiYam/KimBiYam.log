@@ -1,6 +1,6 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import * as googleAnalytics from "../lib/googleAnalytics";
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import * as googleAnalytics from '../lib/googleAnalytics';
 
 const useGoogleAnalyticsPageView = () => {
   const router = useRouter();
@@ -9,10 +9,10 @@ const useGoogleAnalyticsPageView = () => {
     const handleRouteChange = (url: URL) => {
       googleAnalytics.pageView(url);
     };
-    router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on('routeChangeComplete', handleRouteChange);
 
     return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
+      router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, [router.events]);
 };

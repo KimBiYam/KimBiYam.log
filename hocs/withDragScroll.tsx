@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
-const withDragScroll = <T extends {}>(Component: React.ComponentType<T>) => {
+const withDragScroll = <T,>(Component: React.ComponentType<T>) => {
   const DragScrollContainer = (props: T) => {
     const ref = useRef<HTMLElement>(null);
     let position = { top: 0, left: 0, x: 0, y: 0 };
@@ -10,8 +10,8 @@ const withDragScroll = <T extends {}>(Component: React.ComponentType<T>) => {
         return;
       }
 
-      ref.current.style.overflow = "auto";
-      ref.current.addEventListener("mousedown", handleMouseDown);
+      ref.current.style.overflow = 'auto';
+      ref.current.addEventListener('mousedown', handleMouseDown);
     }, [ref.current]);
 
     const handleMouseDown = (e: MouseEvent) => {
@@ -26,10 +26,10 @@ const withDragScroll = <T extends {}>(Component: React.ComponentType<T>) => {
         y: e.clientY,
       };
 
-      ref.current.addEventListener("mousemove", handleMouseMove);
-      ref.current.addEventListener("mouseup", handleMouseUp);
+      ref.current.addEventListener('mousemove', handleMouseMove);
+      ref.current.addEventListener('mouseup', handleMouseUp);
 
-      ref.current.style.userSelect = "none";
+      ref.current.style.userSelect = 'none';
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -49,10 +49,10 @@ const withDragScroll = <T extends {}>(Component: React.ComponentType<T>) => {
         return;
       }
 
-      ref.current.removeEventListener("mousemove", handleMouseMove);
-      ref.current.removeEventListener("mouseup", handleMouseUp);
+      ref.current.removeEventListener('mousemove', handleMouseMove);
+      ref.current.removeEventListener('mouseup', handleMouseUp);
 
-      ref.current.style.removeProperty("user-select");
+      ref.current.style.removeProperty('user-select');
     };
 
     return <Component {...props} ref={ref} />;

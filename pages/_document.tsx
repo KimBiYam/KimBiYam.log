@@ -4,9 +4,9 @@ import Document, {
   Main,
   NextScript,
   DocumentContext,
-} from "next/document";
+} from 'next/document';
 
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env.NODE_ENV === 'production';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

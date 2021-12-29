@@ -1,13 +1,11 @@
-import HeaderMenuItem from "./HeaderMenuItem";
-import MenuIcon from "../../assets/svgs/menu.svg";
-import { useEffect, useRef, useState } from "react";
-import useDetectOutsideClick from "../../hooks/useDetectOutsideClick";
-import { useMediaQuery } from "react-responsive";
-import breakPoints from "../../lib/styles/breakPoints";
-import { motion } from "framer-motion";
-import { dialogMotion } from "../../lib/styles/motions";
-
-export type HeaderMenuProps = {};
+import HeaderMenuItem from './HeaderMenuItem';
+import MenuIcon from '../../assets/svgs/menu.svg';
+import { useEffect, useRef, useState } from 'react';
+import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
+import { useMediaQuery } from 'react-responsive';
+import breakPoints from '../../lib/styles/breakPoints';
+import { motion } from 'framer-motion';
+import { dialogMotion } from '../../lib/styles/motions';
 
 const VISIBLE_TRANSITION_MS = 300;
 
@@ -40,7 +38,7 @@ const HeaderMenu = () => {
     } else {
       timeoutId = setTimeout(
         () => setIsMenuVisible(false),
-        VISIBLE_TRANSITION_MS
+        VISIBLE_TRANSITION_MS,
       );
     }
 
@@ -64,7 +62,7 @@ const HeaderMenu = () => {
         <motion.ul
           className="absolute right-0 rounded-md w-32 p-2 bg-blueGray-200 dark:bg-trueGray-50"
           initial="closed"
-          animate={isMenuOpen ? "open" : "closed"}
+          animate={isMenuOpen ? 'open' : 'closed'}
           variants={dialogMotion}
           transition={{ duration: VISIBLE_TRANSITION_MS / 1000 }}
         >

@@ -1,10 +1,10 @@
-import { memo } from "react";
-import Link from "next/link";
-import HeaderItem from "./HeaderItem";
-import HeaderMenu from "./HeaderMenu";
-import DarkModeButton from "./DarkModeButton";
-import Image from "next/image";
-import favicon from "../../assets/favicon/favicon-192x192.png";
+import { memo } from 'react';
+import Link from 'next/link';
+import HeaderItem from './HeaderItem';
+import HeaderMenu from './HeaderMenu';
+import DarkModeButton from './DarkModeButton';
+import Image from 'next/image';
+import favicon from '../../assets/favicon/favicon-192x192.png';
 
 const Header = () => {
   return (

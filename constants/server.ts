@@ -1,2 +1,2 @@
 export const DOMAIN_URL =
-  process.env.NEXT_PUBLIC_DOMAIN_URL ?? "https://kimbiyam.me";
+  process.env.NEXT_PUBLIC_DOMAIN_URL ?? 'https://kimbiyam.me';
