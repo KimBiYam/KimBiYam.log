@@ -67,13 +67,13 @@ module.exports = {
               color: theme('colors.gray.100'),
             },
             h1: {
-              color: theme('colors.warmGray.500'),
+              color: theme('colors.gray.300'),
             },
             h2: {
-              color: theme('colors.warmGray.500'),
+              color: theme('colors.gray.300'),
             },
             h3: {
-              color: theme('colors.warmGray.500'),
+              color: theme('colors.gray.300'),
             },
             a: {
               color: theme('colors.gray.300'),
