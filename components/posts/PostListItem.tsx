@@ -3,13 +3,14 @@ import NextLink from 'next/link';
 import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { viewPointSlideUpMotion } from '../../lib/styles/motions';
+import TagBadge from './TagBadge';
 
 export type PostListItemProps = {
   postPreview: PostPreview;
 };
 
 const PostListItem = ({ postPreview }: PostListItemProps) => {
-  const { id, title, date, content } = postPreview;
+  const { id, title, date, content, tag } = postPreview;
 
   return (
     <NextLink href={`/posts/${id}`}>
@@ -20,7 +21,10 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
         <h3 className="w-full text-2xl font-bold overflow-hidden whitespace-nowrap truncate">
           {title}
         </h3>
-        <p className="mt-2 mb-4 text-sm">{date}</p>
+        <div className="my-1 flex justify-between items-center">
+          <p className="text-sm">{date}</p>
+          <TagBadge tag={tag.toUpperCase()} />
+        </div>
         <p className="dark:text-zinc-400 text-zinc-700 text-sm md:text-base overflow-hidden">
           {content}
         </p>
