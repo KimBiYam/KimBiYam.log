@@ -21,7 +21,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
           {title}
         </h3>
         <p className="mt-2 mb-4 text-sm">{date}</p>
-        <p className="dark:text-gray-300 text-zinc-700 text-sm md:text-base overflow-hidden">
+        <p className="dark:text-zinc-400 text-zinc-700 text-sm md:text-base overflow-hidden">
           {content}
         </p>
       </motion.div>
