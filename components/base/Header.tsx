@@ -9,7 +9,7 @@ import favicon from '../../assets/favicon/favicon-192x192.png';
 const Header = () => {
   return (
     <header className="fixed w-full h-12 z-50 flex items-center main-container">
-      <div className="container max-w-screen-md px-8 flex justify-between items-center text-black dark:text-warmGray-400">
+      <div className="container max-w-screen-md px-8 flex justify-between items-center text-black dark:text-gray-300">
         <Link href="/" passHref>
           <button type="button" className="p-2 flex">
             <Image
