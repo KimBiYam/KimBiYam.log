@@ -1,5 +1,5 @@
 export const colors = {
-  trueGray800: '#262626',
+  trueGray800: '#18181B',
   white: '#ffffff',
 };
 
