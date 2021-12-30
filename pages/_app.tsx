@@ -17,13 +17,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Header />
-      <MainLayout>
-        <RecoilRoot>
+      <RecoilRoot>
+        <Header />
+        <MainLayout>
           <Component {...pageProps} />
-        </RecoilRoot>
-      </MainLayout>
-      <Footer />
+        </MainLayout>
+        <Footer />
+      </RecoilRoot>
     </>
   );
 }
