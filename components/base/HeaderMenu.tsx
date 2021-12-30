@@ -50,7 +50,7 @@ const HeaderMenu = () => {
   }, [isMenuOpen, setIsMenuVisible]);
 
   return (
-    <div className="relative w-6 h-2 ml-4" ref={menuButtonRef}>
+    <div className="relative w-6 h-2 ml-4 drop-shadow-md" ref={menuButtonRef}>
       <button
         className="w-full md:hidden"
         onClick={toggleMenu}
@@ -60,7 +60,7 @@ const HeaderMenu = () => {
       </button>
       {isMenuVisible && (
         <motion.ul
-          className="absolute right-0 rounded-md w-32 p-2 bg-blueGray-200 dark:bg-trueGray-50"
+          className="absolute right-0 rounded-md w-32 p-2 bg-blueGray-200 dark:bg-gray-700"
           initial="closed"
           animate={isMenuOpen ? 'open' : 'closed'}
           variants={dialogMotion}
