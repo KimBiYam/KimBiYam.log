@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { memo } from 'react';
 import MoonIcon from '../../assets/svgs/moon.svg';
 import SunIcon from '../../assets/svgs/sun.svg';
@@ -8,16 +9,10 @@ const DarkModeButton = () => {
   const { theme, toggleTheme } = useThemeStorage();
 
   return (
-    <label
+    <div
       className="relative flex justify-center items-center cursor-pointer"
-      onChange={toggleTheme}
+      onClick={toggleTheme}
     >
-      <input
-        type="checkbox"
-        className="peer sr-only"
-        checked={theme === Theme.dark}
-        readOnly
-      />
       <div className="flex justify-between items-center w-14 h-6 bg-black rounded-full">
         <div className="flex-1 p-1 text-violet-400">
           <MoonIcon />
@@ -26,8 +21,22 @@ const DarkModeButton = () => {
           <SunIcon />
         </div>
       </div>
-      <div className="w-5 h-5 absolute top-2/4 -translate-y-1/2 left-1 bg-white rounded-full peer-checked:translate-x-7 transition-transform duration-300" />
-    </label>
+      <div
+        className={`absolute w-full px-1 flex justify-start ${
+          theme === Theme.dark && 'justify-end'
+        }`}
+      >
+        <motion.div
+          className="w-5 h-5 bg-white rounded-full"
+          layout
+          transition={{
+            type: 'spring',
+            stiffness: 500,
+            damping: 28,
+          }}
+        />
+      </div>
+    </div>
   );
 };
 
