@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import breakPoints from '../../lib/styles/breakPoints';
 import { motion } from 'framer-motion';
 import { dialogMotion } from '../../lib/styles/motions';
-import MenuIcon from './MenuIcon';
+import MenuButton from './MenuButton';
 
 const VISIBLE_TRANSITION_MS = 300;
 
@@ -51,13 +51,7 @@ const HeaderMenu = () => {
 
   return (
     <div className="relative w-6 h-6 ml-4 drop-shadow-md" ref={menuButtonRef}>
-      <button
-        className="w-full h-full md:hidden flex items-center"
-        onClick={toggleMenu}
-        aria-label="MenuButton"
-      >
-        <MenuIcon isOpen={isMenuOpen} />
-      </button>
+      <MenuButton onClick={toggleMenu} isMenuOpen={isMenuOpen} />
       {isMenuVisible && (
         <motion.ul
           className="absolute right-0 rounded-md w-32 p-2 bg-blueGray-200 dark:bg-gray-700"
