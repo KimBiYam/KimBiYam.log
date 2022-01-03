@@ -1,18 +1,17 @@
-import MenuIcon from './MenuIcon';
+import MenuIcon from '../../assets/svgs/menu.svg';
 
 type MenuButtonProps = {
   onClick: () => void;
-  isMenuOpen: boolean;
 };
 
-const MenuButton = ({ onClick, isMenuOpen }: MenuButtonProps) => {
+const MenuButton = ({ onClick }: MenuButtonProps) => {
   return (
     <button
       className="w-full h-full md:hidden flex items-center"
       onClick={onClick}
       aria-label="MenuButton"
     >
-      <MenuIcon isOpen={isMenuOpen} />
+      <MenuIcon />
     </button>
   );
 };
