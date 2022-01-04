@@ -7,7 +7,7 @@ type MenuButtonProps = {
 const MenuButton = ({ onClick }: MenuButtonProps) => {
   return (
     <button
-      className="w-full h-full md:hidden flex items-center"
+      className="w-6 h-6 md:hidden"
       onClick={onClick}
       aria-label="MenuButton"
     >
