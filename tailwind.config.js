@@ -58,14 +58,22 @@ module.exports = {
             a: {
               fontWeight: 700,
             },
+            code: {
+              padding: '4px',
+              borderRadius: '4px',
+              background: theme('colors.gray.300'),
+              '&:before': {
+                display: 'none',
+              },
+              '&:after': {
+                display: 'none',
+              },
+            },
           },
         },
         dark: {
           css: {
             color: theme('colors.gray.300'),
-            code: {
-              color: theme('colors.gray.100'),
-            },
             h1: {
               color: theme('colors.gray.300'),
             },
