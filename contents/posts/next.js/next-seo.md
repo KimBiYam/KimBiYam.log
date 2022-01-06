@@ -39,6 +39,8 @@ Allow: /
 `sitemap`을 작성하여 `Google Search Console` 등에 제출하거나, `robots.txt` 파일에
 `sitemap.xml` 파일의 `위치를 명시`하면 된다.
 
+[사이트맵 제작 및 제출하기](https://developers.google.com/search/docs/advanced/sitemaps/build-sitemap?hl=ko)
+
 `sitemap.xml 작성 예시` 
 
 ```jsx
@@ -68,9 +70,6 @@ Allow: /
     - never
 - `priority` : 해당 사이트 내부에서 페이지 별 우선순위를 지정하는 태그로 `0.0 부터 1.0 사이의 값`을 지정하면 된다. 우선순위는 크롤링 봇에 `영향을 주지 않는다`고 한다. `changefreq` 태그와 마찬가지로 `구글` 에서는 `해당 값을 무시`한다고 한다.
 - `lastmod` : 파일을 마지막으로 수정한 날짜를 명시하는 태그
-
-- [사이트맵 제작 및 제출하기](https://developers.google.com/search/docs/advanced/sitemaps/build-sitemap?hl=ko)
-- [Google에 사이트맵 제출](https://developers.google.com/search/docs/advanced/sitemaps/build-sitemap?hl=ko#addsitemap)
 
 `NEXT.js` 에서 사용할 때는 `robots.txt` 파일과 마찬가지로 사이트맵을 생성한 후 루트의 `public` 디렉토리에 위치시켜서 `robots.txt` 에 `sitemap.xml` 파일 위치를 명시하면 된다.
 
