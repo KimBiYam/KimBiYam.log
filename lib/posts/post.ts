@@ -6,12 +6,15 @@ import path from 'path';
 import matter from 'gray-matter';
 import removeMarkdown from 'remove-markdown';
 
+const MARKDOWN_FILE_EXTENSION_REG_EXP = RegExp(/\.md$/);
+const LINE_BREAK_REG_EXP = RegExp(/\n/g);
+
 export const getAllPostPaths = (): { params: PostPath }[] => {
   const markdownFilePaths = getPostMarkdownFilePaths();
 
   const paths = markdownFilePaths.map((markdownFilePath) => {
     const [subdirectory, fileName] = markdownFilePath.split('/');
-    const id = fileName.replace(/\.md$/, '');
+    const id = fileName.replace(MARKDOWN_FILE_EXTENSION_REG_EXP, '');
 
     return {
       params: {
@@ -36,7 +39,7 @@ export const getPostData = async (
     contentHtml,
   } = await getMarkdownData(directory, id);
 
-  const description = removeMarkdown(content);
+  const description = removeMarkdown(content).replace(LINE_BREAK_REG_EXP, '');
 
   return {
     id,
