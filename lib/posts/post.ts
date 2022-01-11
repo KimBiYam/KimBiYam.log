@@ -4,6 +4,7 @@ import { POST_DIRECTORY } from '../../constants';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import removeMarkdown from 'remove-markdown';
 
 export const getAllPostPaths = (): { params: PostPath }[] => {
   const markdownFilePaths = getPostMarkdownFilePaths();
@@ -35,7 +36,7 @@ export const getPostData = async (
     contentHtml,
   } = await getMarkdownData(directory, id);
 
-  const description = replacePreviewContent(content).replace(/\n/g, '');
+  const description = removeMarkdown(content);
 
   return {
     id,
@@ -92,20 +93,7 @@ const getPostPreview = (fileName: string): PostPreview => {
   } = matterResult;
 
   const slicedContent = content.substring(0, POST_PREVIEW_CONTENT_MAX_LENGTH);
-  const previewContent = replacePreviewContent(slicedContent);
+  const previewContent = removeMarkdown(slicedContent) + '...';
 
   return { id, date, title, tag, content: previewContent };
-};
-
-const replacePreviewContent = (content: string) => {
-  const IMAGE_TAG_REG_EXP = new RegExp(/!\[(.*?)\]\((.*?)\)/g);
-  const SPECIAL_CHARACTERS_REG_EXP = new RegExp(
-    /[{}[\]/?.,;:|)*~`!^\-_+<>@#$%&\\=('"]/gi,
-  );
-
-  return (
-    content
-      .replace(IMAGE_TAG_REG_EXP, '')
-      .replace(SPECIAL_CHARACTERS_REG_EXP, '') + '...'
-  );
 };
