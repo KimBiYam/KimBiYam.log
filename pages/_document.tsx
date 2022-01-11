@@ -43,7 +43,7 @@ class MyDocument extends Document {
             />
           )}
         </Head>
-        <body>
+        <body className="main-container main-font-color">
           <Main />
           <NextScript />
         </body>
