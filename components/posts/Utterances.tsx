@@ -32,7 +32,7 @@ const Utterances = () => {
       utterances.setAttribute(key, config[key]);
     });
 
-    // Using promise caused by storage theme load
+    // HACK : Using promise caused by load storage theme
     new Promise((resolve) => (timeoutId = setTimeout(resolve, 0))).then(() => {
       if (!ref.current) return;
       ref.current.appendChild(utterances);
