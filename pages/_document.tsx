@@ -5,8 +5,7 @@ import Document, {
   NextScript,
   DocumentContext,
 } from 'next/document';
-
-const isProduction = process.env.NODE_ENV === 'production';
+import { IS_PRODUCTION } from '../constants';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -28,7 +27,7 @@ class MyDocument extends Document {
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}`}
           />
-          {isProduction && (
+          {IS_PRODUCTION && (
             <script
               dangerouslySetInnerHTML={{
                 __html: `

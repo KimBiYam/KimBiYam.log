@@ -7,10 +7,9 @@ import useGoogleAnalyticsPageView from '../hooks/useGoogleAnalyticsPageView';
 import { RecoilRoot } from 'recoil';
 import * as sentryUtil from '../lib/utils/sentry.util';
 import Footer from '../components/base/Footer';
+import { IS_PRODUCTION } from '../constants';
 
-const isProduction = process.env.NODE_ENV === 'production';
-
-isProduction && sentryUtil.init();
+IS_PRODUCTION && sentryUtil.init();
 
 function MyApp({ Component, pageProps }: AppProps) {
   useGoogleAnalyticsPageView();
