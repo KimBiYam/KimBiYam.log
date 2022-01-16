@@ -87,6 +87,6 @@ HTML 문서의 `<head>` 태그 내부에 위치하면 된다.
 
 ![](/images/posts/front-end/meta-tags_3.png)
 
-- 카카오톡은 [OG 기반 스크랩 api](https://developers.kakao.com/docs/latest/ko/kakaostory/rest-api#scrape-page)를 제공하는데 JSON 형식으로 데이터만 주는식이라 직접 보내보았다.
+- 카카오톡은 [OG 기반 스크랩 api](https://developers.kakao.com/docs/latest/ko/kakaostory/rest-api#scrape-page)를 제공하는데 JSON 형식으로 데이터만 주는식이라 그냥 직접 톡을 보내보았다.
 
 ![](/images/posts/front-end/meta-tags_4.png)
