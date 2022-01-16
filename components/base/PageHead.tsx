@@ -27,15 +27,13 @@ const PageHead = ({ title, description, url }: PageHeadProps) => {
         content="blog,블로그,kimbiyam,kimbiyam.log,hot9998"
       />
       <meta name="format-detection" content="telephone=no" />
-      <meta name="twitter:site" content="KimBiYam.log" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:card" content={favicon192.src} />
-      <meta name="twitter:url" content={`${DOMAIN_URL}${url}`} />
+      <meta name="twitter:card" content="summary" />
       <meta property="og:url" content={`${DOMAIN_URL}${url}`} />
       <meta property="og:image" content={favicon192.src} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta name="og:description" content={description} />
       <meta name="description" content={description} />
       <meta
         name="google-site-verification"
