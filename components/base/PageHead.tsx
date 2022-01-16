@@ -24,6 +24,7 @@ const PageHead = ({ title, description, url }: PageHeadProps) => (
     <meta name="keywords" content="blog,블로그,kimbiyam,kimbiyam.log,hot9998" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="twitter:card" content="summary" />
+    <meta property="og:type" content="website" />
     <meta property="og:url" content={`${DOMAIN_URL}${url}`} />
     <meta property="og:image" content={`${DOMAIN_URL}${ogTagImage.src}`} />
     <meta property="og:image:width" content="1200" />
