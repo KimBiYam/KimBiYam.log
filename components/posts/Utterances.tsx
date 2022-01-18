@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Theme } from '../../constants';
-import useThemeStorage from '../../hooks/useThemeStorage';
+import themeStorage from '../../lib/storage/themeStorage';
 
 const SOURCE_URL = 'https://utteranc.es/client.js';
 const REPO = 'KimBiYam/KimBiYam.log';
@@ -12,17 +12,14 @@ const ISSUE_TERM = 'pathname';
 
 const Utterances = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { theme } = useThemeStorage();
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-
     const utterances = document.createElement('script');
     const config: { [key: string]: string } = {
       src: SOURCE_URL,
       repo: REPO,
       branch: BRANCH,
-      theme: theme === Theme.dark ? DARK_THEME : LIGHT_THEME,
+      theme: themeStorage.getTheme() === Theme.dark ? DARK_THEME : LIGHT_THEME,
       label: LABEL,
       async: 'true',
       'issue-term': ISSUE_TERM,
@@ -32,14 +29,8 @@ const Utterances = () => {
       utterances.setAttribute(key, config[key]);
     });
 
-    // HACK : Using promise caused by load storage theme
-    new Promise((resolve) => (timeoutId = setTimeout(resolve, 0))).then(() => {
-      if (!ref.current) return;
-      ref.current.appendChild(utterances);
-    });
-
-    return () => timeoutId && clearTimeout(timeoutId);
-  }, [theme]);
+    ref.current?.appendChild(utterances);
+  }, []);
 
   return <div ref={ref} />;
 };
