@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import mediumZoom from 'medium-zoom';
+import { useRef } from 'react';
+import useMediumZoom from '../../hooks/useMediumZoom';
 
 export type MarkdownViewProps = {
   contentHtml: string;
@@ -7,11 +7,7 @@ export type MarkdownViewProps = {
 
 const MarkdownView = ({ contentHtml }: MarkdownViewProps) => {
   const markdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const images = markdownRef.current?.querySelectorAll('img');
-    mediumZoom(images);
-  }, []);
+  useMediumZoom(markdownRef);
 
   return (
     <div className="flex justify-center">
