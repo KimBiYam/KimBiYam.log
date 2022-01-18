@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import themeState from '../atoms/themeState';
 import { Theme } from '../constants';
 import themeStorage from '../lib/storage/themeStorage';
 
@@ -6,7 +8,7 @@ const DARK_MODE = 'dark';
 const OS_DARK_MODE_QUERY = '(prefers-color-scheme: dark)';
 
 const useThemeStorage = () => {
-  const [theme, setTheme] = useState<Theme>(Theme.light);
+  const [theme, setTheme] = useRecoilState(themeState);
 
   useEffect(() => {
     let theme = themeStorage.getTheme();
