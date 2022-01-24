@@ -7,7 +7,5 @@ My dev log!
 - Framer Motion
 - gray-matter
 - remark
-- remark-html
-- remark-prism
 - utterances
 - recoil
