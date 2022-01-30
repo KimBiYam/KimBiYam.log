@@ -2,10 +2,10 @@ import mediumZoom, { Zoom } from 'medium-zoom';
 import { useEffect, useMemo, useState } from 'react';
 import { Theme } from '../constants';
 import colors from '../lib/styles/colors';
-import useThemeStorage from './useThemeStorage';
+import useTheme from './useTheme';
 
 const useMediumZoom = (ref: React.RefObject<HTMLElement>) => {
-  const { theme } = useThemeStorage();
+  const { theme } = useTheme();
   const [zoom, setZoom] = useState<Zoom | null>(null);
 
   const background = useMemo(

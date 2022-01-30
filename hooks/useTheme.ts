@@ -7,7 +7,7 @@ import themeStorage from '../lib/storage/themeStorage';
 const DARK_MODE = 'dark';
 const OS_DARK_MODE_QUERY = '(prefers-color-scheme: dark)';
 
-const useThemeStorage = () => {
+const useTheme = () => {
   const [theme, setTheme] = useRecoilState(themeState);
 
   useEffect(() => {
@@ -43,4 +43,4 @@ const useThemeStorage = () => {
   return { theme, toggleTheme };
 };
 
-export default useThemeStorage;
+export default useTheme;

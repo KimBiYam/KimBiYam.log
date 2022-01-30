@@ -3,10 +3,10 @@ import { memo } from 'react';
 import MoonIcon from '../../assets/svgs/moon.svg';
 import SunIcon from '../../assets/svgs/sun.svg';
 import { Theme } from '../../constants';
-import useThemeStorage from '../../hooks/useThemeStorage';
+import useTheme from '../../hooks/useTheme';
 
 const DarkModeButton = () => {
-  const { theme, toggleTheme } = useThemeStorage();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div
