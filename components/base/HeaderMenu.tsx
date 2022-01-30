@@ -54,7 +54,7 @@ const HeaderMenu = () => {
       <MenuButton onClick={toggleMenu} />
       {isMenuVisible && (
         <motion.ul
-          className="absolute right-0 rounded-md w-32 p-2 bg-blueGray-200 dark:bg-gray-700"
+          className="absolute right-0 w-32 p-2 rounded-md bg-blueGray-200 dark:bg-gray-700"
           initial="closed"
           animate={isMenuOpen ? 'open' : 'closed'}
           variants={dialogMotion}

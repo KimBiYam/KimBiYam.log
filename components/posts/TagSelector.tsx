@@ -14,7 +14,7 @@ const TagSelector = (
 ) => {
   return (
     <div
-      className="pt-4 flex sticky top-12 z-40 overflow-auto scrollbar-hide main-container"
+      className="sticky z-40 flex pt-4 overflow-auto top-12 scrollbar-hide main-container"
       ref={ref}
     >
       {tags.map((tag) => (

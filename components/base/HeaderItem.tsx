@@ -8,7 +8,7 @@ export type HeaderItemProps = {
 const HeaderItem = ({ href, label }: HeaderItemProps) => {
   return (
     <Link href={href}>
-      <a className="block text-sm mr-4 px-2 py-1 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-md transition-colors">
+      <a className="block px-2 py-1 mr-4 text-sm transition-colors rounded-md hover:bg-gray-300 dark:hover:bg-gray-500">
         {label}
       </a>
     </Link>

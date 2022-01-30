@@ -11,9 +11,9 @@ const PostView = ({ postData }: PostViewProps) => {
   const { title, date, contentHtml, tag } = postData;
 
   return (
-    <article className="mt-8 pb-24">
-      <h1 className="font-bold text-2xl md:text-4xl"> {title}</h1>
-      <div className="my-4 flex justify-between items-center">
+    <article className="pb-24 mt-8">
+      <h1 className="text-2xl font-bold md:text-4xl"> {title}</h1>
+      <div className="flex items-center justify-between my-4">
         <p className="text-sm">{date}</p>
         <TagBadge tag={tag.toUpperCase()} />
       </div>

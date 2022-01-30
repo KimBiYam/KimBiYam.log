@@ -7,7 +7,7 @@ const Footer = () => {
         <span>© 2021</span>
         <a
           href="https://github.com/KimBiYam"
-          className="underline ml-1 font-bold"
+          className="ml-1 font-bold underline"
         >
           KimBiYam
         </a>

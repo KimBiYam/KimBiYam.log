@@ -18,14 +18,14 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
         className="py-4 cursor-pointer hover:text-shadow dark:hover:text-shadow-dark transition-text-shadow"
         {...viewPointSlideUpMotion}
       >
-        <h3 className="w-full text-2xl font-bold overflow-hidden whitespace-nowrap truncate">
+        <h3 className="w-full overflow-hidden text-2xl font-bold truncate whitespace-nowrap">
           {title}
         </h3>
-        <div className="my-1 flex justify-between items-center">
+        <div className="flex items-center justify-between my-1">
           <p className="text-sm">{date}</p>
           <TagBadge tag={tag.toUpperCase()} />
         </div>
-        <p className="dark:text-zinc-400 text-zinc-700 text-sm md:text-base overflow-hidden">
+        <p className="overflow-hidden text-sm dark:text-zinc-400 text-zinc-700 md:text-base">
           {content}
         </p>
       </motion.div>

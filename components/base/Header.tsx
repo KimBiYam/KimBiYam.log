@@ -8,22 +8,22 @@ import favicon from '../../assets/favicon/favicon-192x192.png';
 
 const Header = () => {
   return (
-    <header className="fixed w-full h-12 z-50 flex items-center main-container">
-      <div className="container max-w-screen-md px-8 flex justify-between items-center text-black dark:text-gray-300">
+    <header className="fixed z-50 flex items-center w-full h-12 main-container">
+      <div className="container flex items-center justify-between max-w-screen-md px-8 text-black dark:text-gray-300">
         <Link href="/" passHref>
-          <button type="button" className="p-2 flex">
+          <button type="button" className="flex p-2">
             <Image
               src={favicon}
               alt="logo"
               width="24px"
               height="24px"
               quality={100}
-              className=" cursor-pointer"
+              className="cursor-pointer "
             />
           </button>
         </Link>
-        <nav className="flex flex-1 items-center justify-end">
-          <div className="ml-4 hidden md:block font-bold">
+        <nav className="flex items-center justify-end flex-1">
+          <div className="hidden ml-4 font-bold md:block">
             <HeaderItem href="/introduce" label="Introduce" />
           </div>
         </nav>

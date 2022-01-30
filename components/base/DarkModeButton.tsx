@@ -10,10 +10,10 @@ const DarkModeButton = () => {
 
   return (
     <div
-      className="relative flex justify-center items-center cursor-pointer"
+      className="relative flex items-center justify-center cursor-pointer"
       onClick={toggleTheme}
     >
-      <div className="flex justify-between items-center w-14 h-6 bg-black rounded-full">
+      <div className="flex items-center justify-between h-6 bg-black rounded-full w-14">
         <div className="flex-1 p-1 text-violet-400">
           <MoonIcon />
         </div>
