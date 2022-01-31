@@ -15,7 +15,7 @@ const useMediumZoom = (ref: React.RefObject<HTMLElement>) => {
 
   useEffect(() => {
     const images = ref.current?.querySelectorAll('img');
-    setZoom(mediumZoom(images, { background }));
+    setZoom(mediumZoom(images, { background, margin: 24 }));
   }, []);
 
   useEffect(() => {
