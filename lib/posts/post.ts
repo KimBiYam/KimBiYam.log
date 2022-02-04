@@ -32,14 +32,12 @@ export const getPostData = async (
   id: string,
 ): Promise<PostData> => {
   const {
-    matterResult: {
-      data: { title, date, tag },
-      content,
-    },
+    matterResult: { data, content },
     contentHtml,
   } = await getMarkdownData(directory, id);
 
   const description = removeMarkdown(content).replace(LINE_BREAK_REG_EXP, '');
+  const { title, date, tag } = data;
 
   return {
     id,
