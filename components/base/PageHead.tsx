@@ -8,9 +8,10 @@ export type PageHeadProps = {
   description: string;
   title: string;
   url?: string;
+  ogImagePath?: string;
 };
 
-const PageHead = ({ title, description, url }: PageHeadProps) => (
+const PageHead = ({ title, description, url, ogImagePath }: PageHeadProps) => (
   <Head>
     <Favicon />
     <title>{title}</title>
@@ -26,7 +27,12 @@ const PageHead = ({ title, description, url }: PageHeadProps) => (
     <meta name="twitter:card" content="summary" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={`${DOMAIN_URL}${url}`} />
-    <meta property="og:image" content={`${DOMAIN_URL}${ogTagImage.src}`} />
+    <meta
+      property="og:image"
+      content={
+        ogImagePath ? DOMAIN_URL + ogImagePath : DOMAIN_URL + ogTagImage.src
+      }
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:title" content={title} />

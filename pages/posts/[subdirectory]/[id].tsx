@@ -11,7 +11,7 @@ export type PostProps = {
 };
 
 const Post = ({ postDetail }: PostProps) => {
-  const { title, description, tag, id } = postDetail;
+  const { title, description, tag, id, ogImagePath } = postDetail;
 
   return (
     <>
@@ -19,6 +19,7 @@ const Post = ({ postDetail }: PostProps) => {
         title={title}
         description={description}
         url={`/posts/${tag}/${id}`}
+        ogImagePath={ogImagePath}
       />
       <motion.div {...slideUpMotion}>
         <PostView postDetail={postDetail} />
