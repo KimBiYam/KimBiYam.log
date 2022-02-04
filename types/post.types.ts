@@ -1,20 +1,20 @@
-export type PostBase = {
+export interface Post {
   id: string;
   date: string;
   title: string;
   tag: string;
-};
+}
 
-export type PostData = PostBase & {
+export interface PostDetail extends Post {
   contentHtml: string;
   description: string;
-};
+}
 
-export type PostPreview = PostBase & {
+export interface PostPreview extends Post {
   content: string;
-};
+}
 
-export type PostPath = {
+export interface PostPath {
   id: string;
   subdirectory: string;
-};
+}
