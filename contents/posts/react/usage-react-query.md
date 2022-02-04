@@ -2,6 +2,7 @@
 title: 'React Query 사용해보기'
 date: '2021-05-04'
 tag: 'react'
+ogImagePath: '/images/posts/react/usage-react-query_1.png'
 ---
 
 ![](/images/posts/react/usage-react-query_1.png)
