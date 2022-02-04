@@ -1,14 +1,14 @@
-import { PostData } from '../../types/post.types';
+import { PostDetail } from '../../types/post.types';
 import MarkdownView from './MarkdownView';
 import TagBadge from './TagBadge';
 import Utterances from './Utterances';
 
 export type PostViewProps = {
-  postData: PostData;
+  postDetail: PostDetail;
 };
 
-const PostView = ({ postData }: PostViewProps) => {
-  const { title, date, contentHtml, tag } = postData;
+const PostView = ({ postDetail }: PostViewProps) => {
+  const { title, date, contentHtml, tag } = postDetail;
 
   return (
     <article className="pb-24 mt-8">

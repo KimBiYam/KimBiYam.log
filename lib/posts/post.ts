@@ -1,5 +1,5 @@
 import { getMarkdownData } from './markdown';
-import { PostData, PostPath, PostPreview } from '../../types/post.types';
+import { PostDetail, PostPath, PostPreview } from '../../types/post.types';
 import { POST_DIRECTORY } from '../../constants';
 import fs from 'fs';
 import path from 'path';
@@ -27,10 +27,10 @@ export const getAllPostPaths = (): { params: PostPath }[] => {
   return paths;
 };
 
-export const getPostData = async (
+export const getPostDetail = async (
   directory: string,
   id: string,
-): Promise<PostData> => {
+): Promise<PostDetail> => {
   const {
     matterResult: { data, content },
     contentHtml,
