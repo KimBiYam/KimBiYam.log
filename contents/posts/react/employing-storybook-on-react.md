@@ -2,6 +2,7 @@
 title: 'React에 Storybook 도입하기'
 date: '2021-06-22'
 tag: 'react'
+ogImagePath: '/images/posts/react/employing-storybook-on-react_1.png'
 ---
 
 ![](/images/posts/react/employing-storybook-on-react_1.png)

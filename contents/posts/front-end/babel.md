@@ -2,6 +2,7 @@
 title: 'Babel'
 date: '2021-10-25'
 tag: 'front-end'
+ogImagePath: '/images/posts/front-end/babel_1.png'
 ---
 
 ![Untitled](/images/posts/front-end/babel_1.png)

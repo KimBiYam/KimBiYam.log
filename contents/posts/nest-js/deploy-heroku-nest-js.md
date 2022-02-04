@@ -2,6 +2,7 @@
 title: 'NestJS Heroku를 이용하여 무료로 배포하기'
 date: '2021-10-25'
 tag: 'nest-js'
+ogImagePath: '/images/posts/nest-js/deploy-heroku-nest-js_1.png'
 ---
 
 ![](/images/posts/nest-js/deploy-heroku-nest-js_1.png)

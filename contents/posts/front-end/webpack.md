@@ -2,6 +2,7 @@
 title: 'Webpack'
 date: '2021-10-25'
 tag: 'front-end'
+ogImagePath: '/images/posts/front-end/webpack_1.png'
 ---
 
 ![](/images/posts/front-end/webpack_1.png)
