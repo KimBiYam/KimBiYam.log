@@ -8,6 +8,7 @@ export interface Post {
 export interface PostDetail extends Post {
   contentHtml: string;
   description: string;
+  ogImagePath?: string;
 }
 
 export interface PostPreview extends Post {

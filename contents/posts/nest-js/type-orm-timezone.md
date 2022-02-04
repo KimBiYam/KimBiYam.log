@@ -2,6 +2,7 @@
 title: 'NestJS / TypeORM - Timezone 적용하기'
 date: '2021-07-04'
 tag: 'nest-js'
+ogImagePath: '/images/posts/nest-js/type-orm-timezone_1.png'
 ---
 
 ![](/images/posts/nest-js/type-orm-timezone_1.png)

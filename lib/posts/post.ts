@@ -37,7 +37,7 @@ export const getPostDetail = async (
   } = await getMarkdownData(directory, id);
 
   const description = removeMarkdown(content).replace(LINE_BREAK_REG_EXP, '');
-  const { title, date, tag } = data;
+  const { title, date, tag, ...rest } = data;
 
   return {
     id,
@@ -46,6 +46,7 @@ export const getPostDetail = async (
     tag,
     contentHtml,
     description,
+    ...rest,
   };
 };
 
