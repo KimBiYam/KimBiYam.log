@@ -1,35 +1,40 @@
+import { setCookie } from 'nookies';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import themeState from '../atoms/themeState';
 import { Theme } from '../constants';
+import { DARK_MODE_CLASS, OS_DARK_MODE_QUERY } from '../constants/theme';
 import themeStorage from '../lib/storage/themeStorage';
-
-const DARK_MODE = 'dark';
-const OS_DARK_MODE_QUERY = '(prefers-color-scheme: dark)';
 
 const useTheme = () => {
   const [theme, setTheme] = useRecoilState(themeState);
 
   useEffect(() => {
-    let theme = themeStorage.getTheme();
+    const storageTheme = getStorageTheme();
 
-    if (theme === null) {
-      theme = Theme.light;
+    themeStorage.setTheme(storageTheme);
+    setTheme(storageTheme);
+
+    function getStorageTheme() {
+      const theme = themeStorage.getTheme();
+
+      if (theme === null) {
+        return Theme.light;
+      }
+
+      if (theme === null && window.matchMedia(OS_DARK_MODE_QUERY).matches) {
+        return Theme.dark;
+      }
+
+      return theme;
     }
-
-    if (theme === null && window.matchMedia(OS_DARK_MODE_QUERY).matches) {
-      theme = Theme.dark;
-    }
-
-    themeStorage.setTheme(theme);
-    setTheme(theme);
   }, []);
 
   useEffect(() => {
     if (theme === Theme.dark) {
-      document.documentElement.classList.add(DARK_MODE);
+      document.documentElement.classList.add(DARK_MODE_CLASS);
     } else {
-      document.documentElement.classList.remove(DARK_MODE);
+      document.documentElement.classList.remove(DARK_MODE_CLASS);
     }
   }, [theme]);
 
