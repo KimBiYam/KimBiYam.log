@@ -3,7 +3,11 @@ import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import themeState from '../atoms/themeState';
 import { Theme } from '../constants';
-import { DARK_MODE_CLASS, OS_DARK_MODE_QUERY } from '../constants/theme';
+import {
+  DARK_MODE_CLASS,
+  OS_DARK_MODE_QUERY,
+  THEME_COOKIE_KEY,
+} from '../constants/theme';
 import themeStorage from '../lib/storage/themeStorage';
 
 const useTheme = () => {
@@ -13,6 +17,7 @@ const useTheme = () => {
     const storageTheme = getStorageTheme();
 
     themeStorage.setTheme(storageTheme);
+    setCookie(null, THEME_COOKIE_KEY, storageTheme);
     setTheme(storageTheme);
 
     function getStorageTheme() {
