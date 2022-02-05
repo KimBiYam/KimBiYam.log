@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Theme } from '../../constants';
-import themeStorage from '../../lib/storage/themeStorage';
+import themeCookie from '../../lib/cookies/themeCookie';
 
 const SOURCE_URL = 'https://utteranc.es/client.js';
 const REPO = 'KimBiYam/KimBiYam.log';
@@ -19,7 +19,7 @@ const Utterances = () => {
       src: SOURCE_URL,
       repo: REPO,
       branch: BRANCH,
-      theme: themeStorage.getTheme() === Theme.dark ? DARK_THEME : LIGHT_THEME,
+      theme: themeCookie.getTheme() === Theme.dark ? DARK_THEME : LIGHT_THEME,
       label: LABEL,
       async: 'true',
       'issue-term': ISSUE_TERM,
