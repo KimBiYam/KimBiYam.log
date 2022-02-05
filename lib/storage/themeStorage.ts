@@ -1,14 +1,13 @@
-import { parseCookies, setCookie } from 'nookies';
 import { Theme } from '../../constants';
-import { THEME_COOKIE_KEY } from '../../constants/theme';
+
+const THEME = 'theme';
 
 export const isTheme = (value: unknown): value is Theme =>
   typeof value === 'string' && Object.values(Theme).includes(value as Theme);
 
-const themeCookie = {
+const themeStorage = {
   getTheme() {
-    const cookies = parseCookies();
-    const theme = cookies[THEME_COOKIE_KEY];
+    const theme = localStorage.getItem(THEME);
 
     if (!isTheme(theme)) {
       return null;
@@ -18,8 +17,8 @@ const themeCookie = {
   },
 
   setTheme(theme: Theme) {
-    setCookie(null, THEME_COOKIE_KEY, theme);
+    localStorage.setItem(THEME, theme);
   },
 };
 
-export default themeCookie;
+export default themeStorage;

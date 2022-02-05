@@ -8,26 +8,27 @@ import {
   OS_DARK_MODE_QUERY,
   THEME_COOKIE_KEY,
 } from '../constants/theme';
-import themeCookie from '../lib/cookies/themeCookie';
+import themeStorage from '../lib/storage/themeStorage';
 
 const useTheme = () => {
   const [theme, setTheme] = useRecoilState(themeState);
 
   useEffect(() => {
-    const cookieTheme = getCookieTheme();
+    const storageTheme = getStorageTheme();
 
-    setCookie(null, THEME_COOKIE_KEY, cookieTheme);
-    setTheme(cookieTheme);
+    themeStorage.setTheme(storageTheme);
+    setCookie(null, THEME_COOKIE_KEY, storageTheme);
+    setTheme(storageTheme);
 
-    function getCookieTheme() {
-      const theme = themeCookie.getTheme();
-
-      if (theme === null && window.matchMedia(OS_DARK_MODE_QUERY).matches) {
-        return Theme.dark;
-      }
+    function getStorageTheme() {
+      const theme = themeStorage.getTheme();
 
       if (theme === null) {
         return Theme.light;
+      }
+
+      if (theme === null && window.matchMedia(OS_DARK_MODE_QUERY).matches) {
+        return Theme.dark;
       }
 
       return theme;
@@ -45,7 +46,7 @@ const useTheme = () => {
   const toggleTheme = () => {
     const changedTheme = theme === Theme.light ? Theme.dark : Theme.light;
 
-    themeCookie.setTheme(changedTheme);
+    themeStorage.setTheme(changedTheme);
     setTheme(changedTheme);
   };
 
