@@ -44,7 +44,7 @@ const Home = ({ postPreviews }: HomeProps) => {
   );
 };
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
   const postPreviews = getSortedPostPreviews();
 
   return {
@@ -52,6 +52,6 @@ export async function getStaticProps() {
       postPreviews,
     },
   };
-}
+};
 
 export default Home;

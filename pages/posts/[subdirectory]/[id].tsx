@@ -1,16 +1,14 @@
 import { getAllPostPaths, getPostDetail } from '../../../lib/posts/post';
-import { PostDetail } from '../../../types/post.types';
 import PostView from '../../../components/posts/PostView';
 import { POST_DIRECTORY } from '../../../constants';
 import PageHead from '../../../components/base/PageHead';
 import { motion } from 'framer-motion';
 import { slideUpMotion } from '../../../lib/styles/motions';
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 
-export type PostProps = {
-  postDetail: PostDetail;
-};
-
-const Post = ({ postDetail }: PostProps) => {
+const Post = ({
+  postDetail,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { title, description, tag, id, ogImagePath } = postDetail;
 
   return (
@@ -28,20 +26,19 @@ const Post = ({ postDetail }: PostProps) => {
   );
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const paths = getAllPostPaths();
 
   return {
     paths,
     fallback: false,
   };
-}
+};
 
-export async function getStaticProps({
-  params: { subdirectory, id },
-}: {
-  params: { subdirectory: string; id: string };
-}) {
+export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
+  const subdirectory = params?.subdirectory;
+  const id = String(params?.id);
+
   const postDetail = await getPostDetail(
     `${POST_DIRECTORY}/${subdirectory}`,
     id,
@@ -52,6 +49,6 @@ export async function getStaticProps({
       postDetail,
     },
   };
-}
+};
 
 export default Post;
