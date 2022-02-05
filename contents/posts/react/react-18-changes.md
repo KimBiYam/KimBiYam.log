@@ -79,7 +79,7 @@ Promise 내부에서의 업데이트, setTimeout, 네이티브 이벤트 핸들�
 
 ```jsx
 // Promise 내부에서의 업데이트
-fetch(/*..someting..*/).then(() => {
+fetch(/*..something..*/).then(() => {
 	setCount((prevCount) => prevCount + 1); // 리렌더링
 	setFlag((prevFlag) => !prevFlag); // 리렌더링
 });
@@ -108,7 +108,7 @@ elm.addEventListener('click', () => {
 
 ```jsx
 // Promise 내부에서의 업데이트
-fetch(/*..someting..*/).then(() => {
+fetch(/*..something..*/).then(() => {
 	setCount((prevCount) => prevCount + 1); // 리렌더링 되지않음
 	setFlag((prevFlag) => !prevFlag); // 리렌더링 되지않음
 	// 함수가 종료될 때 리렌더링
@@ -151,21 +151,10 @@ const handleClick = () => {
 
 ### React 18 이전
 
-<iframe src="https://codesandbox.io/embed/react-18-before-batching-k33eq?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="react-18-before-batching"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+[예시 링크](https://codesandbox.io/s/react-18-before-batching-k33eq)
 
 ### React 18
-
-<iframe src="https://codesandbox.io/embed/react-18-automatic-batching-5ucwm?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="react-18-automatic-batching"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+[예시 링크](https://codesandbox.io/s/react-18-automatic-batching-5ucwm)
 
 ---
 
@@ -265,12 +254,7 @@ startTransition(() => {
 
 ### 예시
 
-<iframe src="https://codesandbox.io/embed/react-18-start-transition-630ms?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="react-18-start-transition"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+[![Edit react-18-start-transition](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-18-start-transition-630ms?fontsize=14&hidenavigation=1&theme=dark)
 
 ---
 
@@ -460,12 +444,7 @@ React는 해당 클릭을 기록하고 클릭한 `Commets` 영역의 하이드�
 
 ### 예시
 
-<iframe src="https://codesandbox.io/embed/kind-sammet-j56ro?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="kind-sammet-j56ro"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+[예시 링크](https://codesandbox.io/s/kind-sammet-j56ro)
 
 ---
 
