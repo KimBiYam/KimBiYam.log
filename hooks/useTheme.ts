@@ -1,4 +1,3 @@
-import { setCookie } from 'nookies';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import themeState from '../atoms/themeState';
@@ -18,12 +17,12 @@ const useTheme = () => {
     function getStorageTheme() {
       const theme = themeStorage.getTheme();
 
-      if (theme === null) {
-        return Theme.light;
-      }
-
       if (theme === null && window.matchMedia(OS_DARK_MODE_QUERY).matches) {
         return Theme.dark;
+      }
+
+      if (theme === null) {
+        return Theme.light;
       }
 
       return theme;
