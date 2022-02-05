@@ -5,17 +5,26 @@ import Document, {
   NextScript,
   DocumentContext,
 } from 'next/document';
-import { IS_PRODUCTION } from '../constants';
+import { IS_PRODUCTION, Theme } from '../constants';
+import nookies from 'nookies';
+import { DARK_MODE_CLASS, THEME_COOKIE_KEY } from '../constants/theme';
 
-class MyDocument extends Document {
+class MyDocument extends Document<{ theme?: string }> {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+
+    const cookies = nookies.get(ctx);
+    const theme = cookies[THEME_COOKIE_KEY];
+
+    return { theme, ...initialProps };
   }
 
   render() {
     return (
-      <Html lang="ko">
+      <Html
+        lang="ko"
+        {...(this.props.theme === Theme.dark && { className: DARK_MODE_CLASS })}
+      >
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
