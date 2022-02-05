@@ -254,7 +254,7 @@ startTransition(() => {
 
 ### 예시
 
-[![Edit react-18-start-transition](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-18-start-transition-630ms?fontsize=14&hidenavigation=1&theme=dark)
+[예시 링크](https://codesandbox.io/s/react-18-start-transition-630ms?fontsize=14&hidenavigation=1&theme=dark&file=/src/App.js)
 
 ---
 
