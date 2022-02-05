@@ -11,7 +11,6 @@ const useTheme = () => {
   useEffect(() => {
     const storageTheme = getStorageTheme();
 
-    themeStorage.setTheme(storageTheme);
     setTheme(storageTheme);
 
     function getStorageTheme() {
