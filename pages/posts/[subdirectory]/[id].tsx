@@ -1,10 +1,10 @@
+import { motion } from 'framer-motion';
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { getAllPostPaths, getPostDetail } from '../../../lib/posts/post';
 import PostView from '../../../components/posts/PostView';
 import { POST_DIRECTORY } from '../../../constants';
 import PageHead from '../../../components/base/PageHead';
-import { motion } from 'framer-motion';
 import { slideUpMotion } from '../../../lib/styles/motions';
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 
 const Post = ({
   postDetail,

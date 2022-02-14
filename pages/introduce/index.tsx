@@ -1,8 +1,8 @@
+import { motion } from 'framer-motion';
 import PageHead from '../../components/base/PageHead';
 import MarkdownView from '../../components/posts/MarkdownView';
 import { INTRODUCE_DIRECTORY, INTRODUCE_FILE_NAME } from '../../constants';
 import { getMarkdownData } from '../../lib/posts/markdown';
-import { motion } from 'framer-motion';
 import { slideLeftMotion } from '../../lib/styles/motions';
 
 type IntroduceProps = {
