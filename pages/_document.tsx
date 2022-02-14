@@ -6,7 +6,7 @@ import Document, {
   DocumentContext,
 } from 'next/document';
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
-import GTag from '../components/scripts/Gtag';
+import GTag from '../components/scripts/GTag';
 import { IS_PRODUCTION } from '../constants';
 
 class MyDocument extends Document {
