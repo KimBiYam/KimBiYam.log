@@ -1,9 +1,9 @@
-import HeaderMenuItem from './HeaderMenuItem';
 import { useEffect, useRef, useState } from 'react';
-import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
 import { useMediaQuery } from 'react-responsive';
-import breakPoints from '../../lib/styles/breakPoints';
 import { motion } from 'framer-motion';
+import HeaderMenuItem from './HeaderMenuItem';
+import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
+import breakPoints from '../../lib/styles/breakPoints';
 import { dialogMotion } from '../../lib/styles/motions';
 import MenuButton from './MenuButton';
 

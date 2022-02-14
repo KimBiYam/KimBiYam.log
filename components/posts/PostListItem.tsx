@@ -1,7 +1,7 @@
-import { PostPreview } from '../../types/post.types';
 import NextLink from 'next/link';
 import { memo } from 'react';
 import { motion } from 'framer-motion';
+import { PostPreview } from '../../types/post.types';
 import { viewPointSlideUpMotion } from '../../lib/styles/motions';
 import TagBadge from './TagBadge';
 

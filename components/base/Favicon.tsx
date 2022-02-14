@@ -17,7 +17,7 @@ import faviconMs144 from '../../assets/favicon/ms-icon-144x144.png';
 const Favicon = () => {
   return (
     <>
-      <link rel="shortcut icon" href={favicon.src} />
+      <link rel="icon" href={favicon.src} />
       <link rel="apple-touch-icon" sizes="57x57" href={appleIcon57.src} />
       <link rel="apple-touch-icon" sizes="60x60" href={appleIcon60.src} />
       <link rel="apple-touch-icon" sizes="72x72" href={appleIcon72.src} />

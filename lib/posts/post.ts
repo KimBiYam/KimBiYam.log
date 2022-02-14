@@ -1,10 +1,10 @@
-import { getMarkdownData } from './markdown';
-import { PostDetail, PostPath, PostPreview } from '../../types/post.types';
-import { POST_DIRECTORY } from '../../constants';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import removeMarkdown from 'remove-markdown';
+import { POST_DIRECTORY } from '../../constants';
+import { PostDetail, PostPath, PostPreview } from '../../types/post.types';
+import { getMarkdownData } from './markdown';
 
 const MARKDOWN_FILE_EXTENSION_REG_EXP = RegExp(/\.md$/);
 const LINE_BREAK_REG_EXP = RegExp(/\n/g);
@@ -95,7 +95,7 @@ const getPostPreview = (fileName: string): PostPreview => {
   } = matterResult;
 
   const slicedContent = content.substring(0, POST_PREVIEW_CONTENT_MAX_LENGTH);
-  const previewContent = removeMarkdown(slicedContent) + '...';
+  const previewContent = `${removeMarkdown(slicedContent)}...`;
 
   return { id, date, title, tag, content: previewContent };
 };

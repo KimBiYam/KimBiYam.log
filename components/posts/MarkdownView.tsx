@@ -14,6 +14,7 @@ const MarkdownView = ({ contentHtml }: MarkdownViewProps) => {
       <div
         className="w-full prose xs:prose-sm sm:prose-sm dark:prose-dark"
         ref={markdownRef}
+        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />
     </div>
