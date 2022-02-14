@@ -9,19 +9,17 @@ type IntroduceProps = {
   contentHtml: string;
 };
 
-const Introduce = ({ contentHtml }: IntroduceProps) => {
-  return (
-    <>
-      <PageHead
-        title="KimBiYam.log | Introduce"
-        description="KimBiYam Introduce"
-      />
-      <motion.div className="py-12" {...slideLeftMotion}>
-        <MarkdownView contentHtml={contentHtml} />
-      </motion.div>
-    </>
-  );
-};
+const Introduce = ({ contentHtml }: IntroduceProps) => (
+  <>
+    <PageHead
+      title="KimBiYam.log | Introduce"
+      description="KimBiYam Introduce"
+    />
+    <motion.div className="py-12" {...slideLeftMotion}>
+      <MarkdownView contentHtml={contentHtml} />
+    </motion.div>
+  </>
+);
 
 export const getStaticProps = async () => {
   const introduceData = await getMarkdownData(

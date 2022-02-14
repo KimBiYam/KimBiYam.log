@@ -97,5 +97,11 @@ const getPostPreview = (fileName: string): PostPreview => {
   const slicedContent = content.substring(0, POST_PREVIEW_CONTENT_MAX_LENGTH);
   const previewContent = `${removeMarkdown(slicedContent)}...`;
 
-  return { id, date, title, tag, content: previewContent };
+  return {
+    id,
+    date,
+    title,
+    tag,
+    content: previewContent,
+  };
 };
