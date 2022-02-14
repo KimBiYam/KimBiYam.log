@@ -5,6 +5,8 @@ import Document, {
   NextScript,
   DocumentContext,
 } from 'next/document';
+import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
+import GTag from '../components/scripts/Gtag';
 import { IS_PRODUCTION } from '../constants';
 
 class MyDocument extends Document {
@@ -23,23 +25,11 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
             rel="stylesheet"
           />
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}`}
-          />
           {IS_PRODUCTION && (
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}', {
-            page_path: window.location.pathname,
-          });
-        `,
-              }}
-            />
+            <>
+              <GoogleAnalytics />
+              <GTag />
+            </>
           )}
         </Head>
         <body className="main-container main-font-color">
