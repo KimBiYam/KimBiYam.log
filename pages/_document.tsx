@@ -6,7 +6,6 @@ import Document, {
   DocumentContext,
 } from 'next/document';
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
-import GTag from '../components/scripts/GTag';
 import { IS_PRODUCTION } from '../constants';
 
 class MyDocument extends Document {
@@ -25,12 +24,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
             rel="stylesheet"
           />
-          {IS_PRODUCTION && (
-            <>
-              <GoogleAnalytics />
-              <GTag />
-            </>
-          )}
+          {IS_PRODUCTION && <GoogleAnalytics />}
         </Head>
         <body className="main-container main-font-color">
           <Main />
