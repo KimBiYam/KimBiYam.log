@@ -1,7 +1,6 @@
-import Script from 'next/script';
-
 const GTag = () => (
-  <Script
+  <script
+    // eslint-disable-next-line react/no-danger
     dangerouslySetInnerHTML={{
       __html: `
 window.dataLayer = window.dataLayer || [];
