@@ -19,7 +19,7 @@ Safari에서(~~이 놈의 사파리...~~) `css transition` 사용 시 발생하�
 }
 
 .box::after {
-			border-bottom: 2px solid black;
+      border-bottom: 2px solid black;
       bottom: -10px;
       left: 0px;
       content: "";
