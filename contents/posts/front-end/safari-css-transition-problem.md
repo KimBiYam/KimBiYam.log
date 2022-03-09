@@ -34,7 +34,7 @@ Safari에서(~~이 놈의 사파리...~~) `css transition` 사용 시 발생하�
 }
 ```
 
-[dank-snow-dd3pdh](https://codesandbox.io/s/dank-snow-dd3pdh)
+[![Edit dank-snow-dd3pdh](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/dank-snow-dd3pdh?fontsize=14&hidenavigation=1&theme=dark)
 
 위의 CSS처럼 `box` 클래스에 가상 선택자로 border가 그려지게끔 하고
 `transform` 값을 `scaleX(0)` 로 주어서 해당 요소가 보여지지 않게 스타일을 주고
