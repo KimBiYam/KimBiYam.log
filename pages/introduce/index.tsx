@@ -3,7 +3,6 @@ import PageHead from '../../components/base/PageHead';
 import MarkdownView from '../../components/posts/MarkdownView';
 import { INTRODUCE_DIRECTORY, INTRODUCE_FILE_NAME } from '../../constants';
 import { getMarkdownData } from '../../lib/posts/markdown';
-import { slideLeftMotion } from '../../lib/styles/motions';
 
 type IntroduceProps = {
   contentHtml: string;
@@ -15,7 +14,7 @@ const Introduce = ({ contentHtml }: IntroduceProps) => (
       title="KimBiYam.log | Introduce"
       description="KimBiYam Introduce"
     />
-    <motion.div className="py-12" {...slideLeftMotion}>
+    <motion.div className="py-12" animate={{ opacity: [0, 1] }}>
       <MarkdownView contentHtml={contentHtml} />
     </motion.div>
   </>
