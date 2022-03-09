@@ -58,8 +58,8 @@ Safari에서(~~이 놈의 사파리...~~) `css transition` 사용 시 발생하�
 
 그중 3가지 정도 테스트해보았는데 나의 경우에는 2가지 방법만 효과가 있었다.
 
-- `~~webkit-backface-visibility` 속성을 `hidden` 으로 설정하기~~
-- `webkit-transform` 속성을 `translate3d(0, 0, 0)` 으로 설정하기(강제로 하드웨어 가속을 사용하게 변경한다고 한다)
+- ~~`-webkit-backface-visibility` 속성을 `hidden` 으로 설정하기~~
+- `-webkit-transform` 속성을 `translate3d(0, 0, 0)` 으로 설정하기(강제로 하드웨어 가속을 사용하게 변경한다고 한다)
 - `will-change` 속성을 지정해 주기
 
 ![animation_solutions.gif](/images/posts/front-end/safari-css-transition-problem_3.gif)
