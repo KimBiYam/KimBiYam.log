@@ -2,8 +2,8 @@ import NextLink from 'next/link';
 import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { PostPreview } from '../../types/post.types';
-import { viewPointSlideUpMotion } from '../../lib/styles/motions';
 import TagBadge from './TagBadge';
+import { viewPortSlideUpMotion } from '../../lib/styles/motions';
 
 export type PostListItemProps = {
   postPreview: PostPreview;
@@ -14,7 +14,10 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
 
   return (
     <NextLink href={`/posts/${id}`}>
-      <div className="py-4 cursor-pointer hover:text-shadow dark:hover:text-shadow-dark transition-text-shadow">
+      <motion.div
+        className="py-4 cursor-pointer hover:text-shadow dark:hover:text-shadow-dark transition-text-shadow"
+        {...viewPortSlideUpMotion}
+      >
         <h3 className="w-full overflow-hidden text-2xl font-bold truncate whitespace-nowrap">
           {title}
         </h3>
@@ -25,7 +28,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
         <p className="overflow-hidden text-sm dark:text-zinc-400 text-zinc-700 md:text-base">
           {content}
         </p>
-      </div>
+      </motion.div>
     </NextLink>
   );
 };

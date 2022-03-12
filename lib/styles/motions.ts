@@ -17,7 +17,7 @@ export const slideLeftMotion: MotionProps = {
   transition: { duration: DEFAULT_DURATION },
 };
 
-export const viewPointSlideUpMotion: MotionProps = {
+export const viewPortSlideUpMotion: MotionProps = {
   initial: { opacity: 0 },
   whileInView: { y: [20, 0], opacity: [0, 1] },
   viewport: { once: true },
