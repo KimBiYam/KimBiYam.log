@@ -2,6 +2,11 @@ import { MotionProps } from 'framer-motion';
 
 const DEFAULT_DURATION = 0.5;
 
+export const opacityMotion: MotionProps = {
+  animate: { opacity: [0, 1] },
+  transition: { duration: DEFAULT_DURATION },
+};
+
 export const slideUpMotion: MotionProps = {
   animate: { y: [20, 0], opacity: [0, 1] },
   transition: { duration: DEFAULT_DURATION },
