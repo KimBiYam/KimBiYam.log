@@ -1,12 +1,10 @@
 import { useCallback, useMemo, useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { motion } from 'framer-motion';
 import postPageState from '../../atoms/postPageState';
 import { Tag } from '../../constants';
 import useScrollObserver from '../../hooks/useScrollObserver';
 import { PostPreview } from '../../types/post.types';
 import PostListItem from './PostListItem';
-import { slideUpMotion } from '../../lib/styles/motions';
 
 export type PostListProps = {
   postPreviews: PostPreview[];
@@ -42,7 +40,7 @@ const PostList = ({ postPreviews, selectedTag }: PostListProps) => {
   );
 
   return (
-    <motion.div {...slideUpMotion}>
+    <>
       {filteredPostPreviews.map((postPreview) => (
         <PostListItem
           key={postPreview.id + postPreview.title}
@@ -50,7 +48,7 @@ const PostList = ({ postPreviews, selectedTag }: PostListProps) => {
         />
       ))}
       <div ref={scrollRef} />
-    </motion.div>
+    </>
   );
 };
 
