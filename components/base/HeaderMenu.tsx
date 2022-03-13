@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import HeaderMenuItem from './HeaderMenuItem';
 import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
 import breakPoints from '../../lib/styles/breakPoints';
-import { generateDialogMotion } from '../../lib/styles/motions';
 import MenuButton from './MenuButton';
+import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
 
 const VISIBLE_TRANSITION_MS = 300;
 
@@ -58,7 +58,7 @@ const HeaderMenu = () => {
       {isMenuVisible && (
         <motion.ul
           className="absolute right-0 w-32 p-2 rounded-md bg-blueGray-200 dark:bg-gray-700"
-          {...generateDialogMotion(isMenuOpen, VISIBLE_TRANSITION_MS / 1000)}
+          {...createDynamicallyOpacityMotion(isMenuOpen, VISIBLE_TRANSITION_MS)}
         >
           <HeaderMenuItem href="/" label="Posts" onClick={handleClick} />
           <HeaderMenuItem

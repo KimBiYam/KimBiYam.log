@@ -24,15 +24,15 @@ export const viewPortOpacityMotion: MotionProps = {
   transition: { duration: DEFAULT_DURATION },
 };
 
-export const generateDialogMotion = (
-  isOpen: boolean,
-  duration: number,
+export const createDynamicallyOpacityMotion = (
+  isShow: boolean,
+  durationMs: number,
 ): MotionProps => ({
-  initial: 'closed',
-  animate: isOpen ? 'open' : 'closed',
+  initial: 'hidden',
+  animate: isShow ? 'show' : 'hidden',
   variants: {
-    open: { opacity: 1 },
-    closed: { opacity: 0 },
+    show: { opacity: 1 },
+    hidden: { opacity: 0 },
   },
-  transition: { duration },
+  transition: { duration: durationMs / 1000 },
 });
