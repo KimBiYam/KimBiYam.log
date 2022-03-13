@@ -2,18 +2,21 @@ import { memo, useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useRecoilState } from 'recoil';
 import HeaderItem from './HeaderItem';
 import HeaderMenu from './HeaderMenu';
 import DarkModeButton from './DarkModeButton';
 import favicon from '../../assets/favicon/favicon-192x192.png';
 import throttle from '../../lib/utils/throttle';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
+import headerVisibleState from '../../atoms/headerVisibleState';
 
 const THROTTLE_TIME_MS = 100;
 const VISIBLE_TRANSITION_MS = 100;
 
 const Header = () => {
-  const [isShow, setIsShow] = useState(true);
+  const [isHeaderVisible, setIsHeaderVisible] =
+    useRecoilState(headerVisibleState);
   const [pageY, setPageY] = useState(0);
 
   const handleScroll = useCallback(
@@ -22,10 +25,10 @@ const Header = () => {
       const deltaY = pageYOffset - pageY;
       const isScrollUp = pageYOffset === 0 || deltaY < 0;
 
-      setIsShow(isScrollUp);
+      setIsHeaderVisible(isScrollUp);
       setPageY(pageYOffset);
     }, THROTTLE_TIME_MS),
-    [pageY, setIsShow, setPageY],
+    [pageY, setIsHeaderVisible, setPageY],
   );
 
   useEffect(() => {
@@ -36,7 +39,10 @@ const Header = () => {
   return (
     <motion.header
       className="fixed z-50 flex items-center w-full h-12 main-container"
-      {...createDynamicallyOpacityMotion(isShow, VISIBLE_TRANSITION_MS)}
+      {...createDynamicallyOpacityMotion(
+        isHeaderVisible,
+        VISIBLE_TRANSITION_MS,
+      )}
     >
       <div className="container flex items-center justify-between max-w-screen-md px-8 text-black dark:text-gray-300">
         <Link href="/" passHref>
