@@ -1,19 +1,19 @@
 import { motion } from 'framer-motion';
 import PageHead from '../../components/base/PageHead';
 import MarkdownView from '../../components/posts/MarkdownView';
-import { INTRODUCE_DIRECTORY, INTRODUCE_FILE_NAME } from '../../constants';
+import { CONTACT_DIRECTORY, CONTACT_FILE_NAME } from '../../constants';
 import { getMarkdownData } from '../../lib/posts/markdown';
 import { opacityMotion } from '../../lib/styles/motions';
 
-type IntroduceProps = {
+interface ContactProps {
   contentHtml: string;
-};
+}
 
-const Introduce = ({ contentHtml }: IntroduceProps) => (
+const Contact = ({ contentHtml }: ContactProps) => (
   <>
     <PageHead
-      title="KimBiYam.log | Introduce"
-      description="KimBiYam Introduce"
+      title="KimBiYam.log | Contact"
+      description="KimBiYam.log Contact"
     />
     <motion.div className="py-12" {...opacityMotion}>
       <MarkdownView contentHtml={contentHtml} />
@@ -22,12 +22,12 @@ const Introduce = ({ contentHtml }: IntroduceProps) => (
 );
 
 export const getStaticProps = async () => {
-  const introduceData = await getMarkdownData(
-    INTRODUCE_DIRECTORY,
-    INTRODUCE_FILE_NAME,
+  const contactData = await getMarkdownData(
+    CONTACT_DIRECTORY,
+    CONTACT_FILE_NAME,
   );
 
-  const { contentHtml } = introduceData;
+  const { contentHtml } = contactData;
 
   return {
     props: {
@@ -36,4 +36,4 @@ export const getStaticProps = async () => {
   };
 };
 
-export default Introduce;
+export default Contact;
