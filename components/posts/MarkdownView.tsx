@@ -10,14 +10,12 @@ const MarkdownView = ({ contentHtml }: MarkdownViewProps) => {
   useMediumZoom(markdownRef);
 
   return (
-    <div className="flex justify-center">
-      <div
-        className="w-full prose xs:prose-sm sm:prose-sm dark:prose-dark"
-        ref={markdownRef}
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: contentHtml }}
-      />
-    </div>
+    <div
+      className="w-full max-w-full prose xs:prose-sm sm:prose-sm dark:prose-dark"
+      ref={markdownRef}
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: contentHtml }}
+    />
   );
 };
 
