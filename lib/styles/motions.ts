@@ -31,8 +31,16 @@ export const createDynamicallyOpacityMotion = (
   initial: 'hidden',
   animate: isShow ? 'show' : 'hidden',
   variants: {
-    show: { opacity: 1 },
-    hidden: { opacity: 0 },
+    show: {
+      display: 'block',
+      opacity: 1,
+    },
+    hidden: {
+      transitionEnd: {
+        display: 'none',
+      },
+      opacity: 0,
+    },
   },
   transition: { duration: durationMs / 1000 },
 });
