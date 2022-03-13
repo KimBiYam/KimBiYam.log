@@ -23,7 +23,7 @@ const Header = () => (
       </Link>
       <nav className="flex items-center justify-end flex-1">
         <div className="hidden ml-4 font-bold md:block">
-          <HeaderItem href="/introduce" label="Introduce" />
+          <HeaderItem href="/contact" label="Contact" />
         </div>
       </nav>
       <div className="flex">

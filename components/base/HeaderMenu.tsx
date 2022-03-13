@@ -59,8 +59,8 @@ const HeaderMenu = () => {
         >
           <HeaderMenuItem href="/" label="Posts" onClick={handleClick} />
           <HeaderMenuItem
-            href="/introduce"
-            label="Introduce"
+            href="/contact"
+            label="Contact"
             onClick={handleClick}
           />
         </motion.ul>
