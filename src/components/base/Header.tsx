@@ -7,9 +7,9 @@ import HeaderItem from './HeaderItem';
 import HeaderMenu from './HeaderMenu';
 import DarkModeButton from './DarkModeButton';
 import favicon from '../../assets/favicon/favicon-192x192.png';
+import headerVisibleState from '../../atoms/headerVisibleState';
 import throttle from '../../lib/utils/throttle';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
-import headerVisibleState from '../../atoms/headerVisibleState';
 
 const THROTTLE_TIME_MS = 100;
 const VISIBLE_TRANSITION_MS = 100;
