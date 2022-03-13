@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable import/no-extraneous-dependencies */
 const colors = require('tailwindcss/colors');
+const typographyPlugin = require('@tailwindcss/typography');
 
 module.exports = {
   mode: 'jit',
@@ -101,5 +104,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [typographyPlugin],
 };
