@@ -19,7 +19,7 @@ const TagSelector = (
   return (
     <div
       className={`sticky z-40 flex pt-4 overflow-auto scrollbar-hide main-container ${
-        isHeaderVisible ? 'top-12' : 'top-0'
+        isHeaderVisible ? 'top-14' : 'top-0'
       }`}
       ref={ref}
     >

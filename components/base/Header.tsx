@@ -38,13 +38,13 @@ const Header = () => {
 
   return (
     <motion.header
-      className="fixed z-50 flex items-center w-full h-12 main-container"
+      className="fixed z-50 flex items-center w-full h-14 main-container"
       {...createDynamicallyOpacityMotion(
         isHeaderVisible,
         VISIBLE_TRANSITION_MS,
       )}
     >
-      <div className="container flex items-center justify-between max-w-screen-md px-8 text-black dark:text-gray-300">
+      <div className="container flex items-center justify-between h-full max-w-screen-md px-8 text-black dark:text-gray-300">
         <Link href="/" passHref>
           <button type="button" className="flex p-2">
             <Image
