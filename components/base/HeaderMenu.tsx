@@ -1,28 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
 import HeaderMenuItem from './HeaderMenuItem';
 import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
-import breakPoints from '../../lib/styles/breakPoints';
 import MenuButton from './MenuButton';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
+import breakPoints from '../../lib/styles/breakPoints';
 
 const VISIBLE_TRANSITION_MS = 300;
 
 const HeaderMenu = () => {
   const menuButtonRef = useRef<HTMLDivElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useDetectOutsideClick(menuButtonRef);
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const isMediumScreen = useMediaQuery({ minWidth: breakPoints.md });
-
-  const toggleMenu = () => {
-    setIsMenuOpen((prevDropdownOpen) => !prevDropdownOpen);
-  };
-
-  const handleClick = () => {
-    setIsMenuOpen(false);
-  };
 
   useEffect(() => {
     if (isMediumScreen) {
@@ -30,24 +21,13 @@ const HeaderMenu = () => {
     }
   }, [isMediumScreen]);
 
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+  const toggleMenu = () => {
+    setIsMenuOpen((prevDropdownOpen) => !prevDropdownOpen);
+  };
 
-    if (isMenuOpen) {
-      setIsMenuVisible(true);
-    } else {
-      timeoutId = setTimeout(
-        () => setIsMenuVisible(false),
-        VISIBLE_TRANSITION_MS,
-      );
-    }
-
-    return () => {
-      if (timeoutId !== undefined) {
-        clearTimeout(timeoutId);
-      }
-    };
-  }, [isMenuOpen, setIsMenuVisible]);
+  const handleItemClick = () => {
+    setIsMenuOpen(false);
+  };
 
   return (
     <div
@@ -55,19 +35,17 @@ const HeaderMenu = () => {
       ref={menuButtonRef}
     >
       <MenuButton onClick={toggleMenu} />
-      {isMenuVisible && (
-        <motion.ul
-          className="absolute right-0 w-32 p-2 rounded-md bg-blueGray-200 dark:bg-gray-700"
-          {...createDynamicallyOpacityMotion(isMenuOpen, VISIBLE_TRANSITION_MS)}
-        >
-          <HeaderMenuItem href="/" label="Posts" onClick={handleClick} />
-          <HeaderMenuItem
-            href="/contact"
-            label="Contact"
-            onClick={handleClick}
-          />
-        </motion.ul>
-      )}
+      <motion.ul
+        className="absolute right-0 w-32 p-2 rounded-md bg-blueGray-200 dark:bg-gray-700"
+        {...createDynamicallyOpacityMotion(isMenuOpen, VISIBLE_TRANSITION_MS)}
+      >
+        <HeaderMenuItem href="/" label="Posts" onClick={handleItemClick} />
+        <HeaderMenuItem
+          href="/contact"
+          label="Contact"
+          onClick={handleItemClick}
+        />
+      </motion.ul>
     </div>
   );
 };
