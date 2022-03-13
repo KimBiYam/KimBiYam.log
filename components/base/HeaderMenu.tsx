@@ -50,7 +50,10 @@ const HeaderMenu = () => {
   }, [isMenuOpen, setIsMenuVisible]);
 
   return (
-    <div className="relative w-6 h-6 ml-4 drop-shadow-md" ref={menuButtonRef}>
+    <div
+      className="relative w-6 h-6 ml-4 drop-shadow-md md:hidden"
+      ref={menuButtonRef}
+    >
       <MenuButton onClick={toggleMenu} />
       {isMenuVisible && (
         <motion.ul
