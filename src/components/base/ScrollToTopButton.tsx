@@ -11,7 +11,7 @@ const ScrollToTopButton = () => {
 
   return (
     <motion.div
-      className="fixed z-50 right-36 bottom-12"
+      className="fixed z-50 right-4 bottom-12 md:right-8 lg:right-16"
       {...createDynamicallyOpacityMotion(!isScrollUp, VISIBLE_TRANSITION_MS)}
     >
       <button
