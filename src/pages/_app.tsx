@@ -8,6 +8,7 @@ import useGoogleAnalyticsPageView from '../hooks/useGoogleAnalyticsPageView';
 import * as sentryUtil from '../lib/utils/sentry.util';
 import Footer from '../components/base/Footer';
 import { IS_PRODUCTION } from '../constants';
+import ScrollToTopButton from '../components/base/ScrollToTopButton';
 
 if (IS_PRODUCTION) sentryUtil.init();
 
@@ -21,6 +22,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Component {...pageProps} />
       </MainLayout>
       <Footer />
+      <ScrollToTopButton />
     </RecoilRoot>
   );
 };
