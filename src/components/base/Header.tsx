@@ -1,39 +1,19 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import HeaderItem from './HeaderItem';
 import HeaderMenu from './HeaderMenu';
 import DarkModeButton from './DarkModeButton';
 import favicon from '../../assets/favicon/favicon-192x192.png';
 import scrollUpState from '../../atoms/scrollUpState';
-import throttle from '../../lib/utils/throttle';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
 
-const THROTTLE_TIME_MS = 100;
 const VISIBLE_TRANSITION_MS = 100;
 
 const Header = () => {
-  const [isScrollUp, setIsScrollUp] = useRecoilState(scrollUpState);
-  const [pageY, setPageY] = useState(0);
-
-  const handleScroll = useCallback(
-    throttle(() => {
-      const { pageYOffset } = window;
-      const deltaY = pageYOffset - pageY;
-      const isScrollUp = pageYOffset === 0 || deltaY < 0;
-
-      setIsScrollUp(isScrollUp);
-      setPageY(pageYOffset);
-    }, THROTTLE_TIME_MS),
-    [pageY, setIsScrollUp, setPageY],
-  );
-
-  useEffect(() => {
-    document.addEventListener('scroll', handleScroll);
-    return () => document.removeEventListener('scroll', handleScroll);
-  }, [pageY]);
+  const isScrollUp = useRecoilValue(scrollUpState);
 
   return (
     <motion.header

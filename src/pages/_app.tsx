@@ -11,7 +11,7 @@ import { IS_PRODUCTION } from '../constants';
 
 if (IS_PRODUCTION) sentryUtil.init();
 
-function MyApp({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   useGoogleAnalyticsPageView();
 
   return (
@@ -23,6 +23,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Footer />
     </RecoilRoot>
   );
-}
+};
 
-export default MyApp;
+export default App;
