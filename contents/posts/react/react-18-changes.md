@@ -7,7 +7,6 @@ tag: 'react'
 # React 18
 
 현재 날짜(2022년 2월 1일) 기준으로 React 18 버전이 [RC 단계](https://github.com/reactwg/react-18/discussions/9)이다.
-2~4주가량 RC 단계를 거치고 Stable로 변경될 예정이라고 한다.
 
 React 18에서의 변경사항들을 정리하자면 다음과 같다.
 
