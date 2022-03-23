@@ -20,7 +20,7 @@ const PageHead = ({
   <Head>
     <Favicon />
     <title>{title}</title>
-    <link rel="canonical" href={DOMAIN_URL} />
+    <link rel="canonical" href={`${DOMAIN_URL}${url}`} />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover"
