@@ -22,6 +22,7 @@ const PageHead = ({ title, description, url, ogImagePath }: PageHeadProps) => (
     />
     <meta charSet="UTF-8" />
     <meta httpEquiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="robots" content="index,follow" />
     <meta name="theme-color" content={colors.trueGray800} />
     <meta name="keywords" content="blog,블로그,kimbiyam,kimbiyam.log,hot9998" />
     <meta name="format-detection" content="telephone=no" />
