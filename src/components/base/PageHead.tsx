@@ -11,7 +11,12 @@ export type PageHeadProps = {
   ogImagePath?: string;
 };
 
-const PageHead = ({ title, description, url, ogImagePath }: PageHeadProps) => (
+const PageHead = ({
+  title,
+  description,
+  url = '',
+  ogImagePath,
+}: PageHeadProps) => (
   <Head>
     <Favicon />
     <title>{title}</title>
