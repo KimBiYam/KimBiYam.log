@@ -8,3 +8,10 @@ export const Tag = {
   all: 'all',
 } as const;
 export type Tag = typeof Tag[keyof typeof Tag];
+
+export const ScrollDirection = {
+  up: 'UP',
+  down: 'DOWN',
+} as const;
+export type ScrollDirection =
+  typeof ScrollDirection[keyof typeof ScrollDirection];
