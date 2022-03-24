@@ -7,18 +7,22 @@ import HeaderItem from './HeaderItem';
 import HeaderMenu from './HeaderMenu';
 import DarkModeButton from './DarkModeButton';
 import favicon from '../../assets/favicon/favicon-192x192.png';
-import scrollUpState from '../../atoms/scrollUpState';
+import scrollState from '../../atoms/scrollState';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
+import { ScrollDirection } from '../../constants';
 
 const VISIBLE_TRANSITION_MS = 100;
 
 const Header = () => {
-  const isScrollUp = useRecoilValue(scrollUpState);
+  const { direction } = useRecoilValue(scrollState);
 
   return (
     <motion.header
       className="fixed z-50 flex items-center w-full h-14 main-container"
-      {...createDynamicallyOpacityMotion(isScrollUp, VISIBLE_TRANSITION_MS)}
+      {...createDynamicallyOpacityMotion(
+        direction === ScrollDirection.up,
+        VISIBLE_TRANSITION_MS,
+      )}
     >
       <div className="container flex items-center justify-between h-full max-w-screen-md px-4 text-black md:px-8 dark:text-gray-300">
         <Link href="/" passHref>

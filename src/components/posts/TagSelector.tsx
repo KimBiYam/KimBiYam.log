@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import { useRecoilValue } from 'recoil';
-import scrollUpState from '../../atoms/scrollUpState';
+import scrollState from '../../atoms/scrollState';
+import { ScrollDirection } from '../../constants';
 import withDragScroll from '../../hocs/withDragScroll';
 import TagButton from './TagButton';
 
@@ -14,12 +15,12 @@ const TagSelector = (
   { tags, onTagClick, selectedTag }: TagSelectorProps,
   ref: React.Ref<HTMLDivElement>,
 ) => {
-  const isScrollUp = useRecoilValue(scrollUpState);
+  const { direction } = useRecoilValue(scrollState);
 
   return (
     <div
       className={`sticky z-40 flex pt-4 overflow-auto scrollbar-hide main-container ${
-        isScrollUp ? 'top-14' : 'top-0'
+        direction === ScrollDirection.up ? 'top-14' : 'top-0'
       }`}
       ref={ref}
     >
