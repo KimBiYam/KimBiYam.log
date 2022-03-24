@@ -1,12 +1,12 @@
 import React from 'react';
-import useDetectScrollUp from '../../hooks/useDetectScrollUp';
+import useDetectScroll from '../../hooks/useDetectScroll';
 
 export type MainLayoutProps = {
   children?: React.ReactNode;
 };
 
 const MainLayout = ({ children }: MainLayoutProps) => {
-  useDetectScrollUp();
+  useDetectScroll();
 
   return (
     <main className="w-full min-h-[calc(100vh-theme(spacing.8))]">

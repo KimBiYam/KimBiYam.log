@@ -3,13 +3,14 @@ import { motion } from 'framer-motion';
 import smoothscroll from 'smoothscroll-polyfill';
 import { useEffect } from 'react';
 import ArrowUpIcon from '../../assets/svgs/arrow_up.svg';
-import scrollUpState from '../../atoms/scrollUpState';
+import scrollState from '../../atoms/scrollState';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
+import { ScrollDirection } from '../../constants';
 
 const VISIBLE_TRANSITION_MS = 250;
 
 const ScrollToTopButton = () => {
-  const isScrollUp = useRecoilValue(scrollUpState);
+  const { direction } = useRecoilValue(scrollState);
 
   useEffect(() => {
     smoothscroll.polyfill();
@@ -25,7 +26,10 @@ const ScrollToTopButton = () => {
   return (
     <motion.div
       className="fixed z-50 right-4 bottom-12 md:right-8 lg:right-16"
-      {...createDynamicallyOpacityMotion(!isScrollUp, VISIBLE_TRANSITION_MS)}
+      {...createDynamicallyOpacityMotion(
+        direction === ScrollDirection.up,
+        VISIBLE_TRANSITION_MS,
+      )}
     >
       <button
         type="button"
