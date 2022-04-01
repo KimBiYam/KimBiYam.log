@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
-import HeaderMenuItem from './HeaderMenuItem';
+import HeaderItem from './HeaderItem';
 import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
 import MenuButton from './MenuButton';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
@@ -39,12 +39,16 @@ const HeaderMenu = () => {
         className="absolute right-0 w-32 p-2 rounded-md bg-blueGray-200 dark:bg-gray-700"
         {...createDynamicallyOpacityMotion(isMenuOpen, VISIBLE_TRANSITION_MS)}
       >
-        <HeaderMenuItem href="/" label="Posts" onClick={handleItemClick} />
-        <HeaderMenuItem
-          href="/contact"
-          label="Contact"
-          onClick={handleItemClick}
-        />
+        <li>
+          <HeaderItem href="/" label="Posts" onClick={handleItemClick} />
+        </li>
+        <li>
+          <HeaderItem
+            href="/contact"
+            label="Contact"
+            onClick={handleItemClick}
+          />
+        </li>
       </motion.ul>
     </div>
   );

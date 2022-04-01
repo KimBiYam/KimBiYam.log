@@ -1,16 +1,21 @@
 import Link from 'next/link';
+import { memo } from 'react';
 
-export type HeaderItemProps = {
+export interface HeaderItemProps {
   href: string;
   label: string;
-};
+  onClick?: () => void;
+}
 
-const HeaderItem = ({ href, label }: HeaderItemProps) => (
+const HeaderItem = ({ href, label, onClick }: HeaderItemProps) => (
   <Link href={href}>
-    <a className="block px-2 py-1 mr-4 text-sm transition-colors rounded-md hover:bg-gray-300 dark:hover:bg-gray-500">
+    <a
+      onClick={onClick}
+      className="flex px-2 py-2 my-1 text-sm font-bold transition-colors rounded-md hover:bg-white dark:hover:bg-gray-500"
+    >
       {label}
     </a>
   </Link>
 );
 
-export default HeaderItem;
+export default memo(HeaderItem);
