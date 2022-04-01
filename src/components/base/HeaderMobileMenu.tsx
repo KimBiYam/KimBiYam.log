@@ -9,7 +9,7 @@ import breakPoints from '../../lib/styles/breakPoints';
 
 const VISIBLE_TRANSITION_MS = 300;
 
-const HeaderMenu = () => {
+const HeaderMobileMenu = () => {
   const menuButtonRef = useRef<HTMLDivElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useDetectOutsideClick(menuButtonRef);
 
@@ -54,4 +54,4 @@ const HeaderMenu = () => {
   );
 };
 
-export default HeaderMenu;
+export default HeaderMobileMenu;
