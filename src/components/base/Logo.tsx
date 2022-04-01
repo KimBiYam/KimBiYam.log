@@ -4,14 +4,14 @@ import favicon from '../../assets/favicon/favicon-192x192.png';
 
 const Logo = () => (
   <Link href="/" passHref>
-    <Image
-      src={favicon}
-      alt="logo"
-      width="24px"
-      height="24px"
-      quality={100}
-      className="cursor-pointer"
-    />
+    <a className="w-6 h-6">
+      <Image
+        src={favicon}
+        alt="logo"
+        quality={100}
+        className="cursor-pointer"
+      />
+    </a>
   </Link>
 );
 
