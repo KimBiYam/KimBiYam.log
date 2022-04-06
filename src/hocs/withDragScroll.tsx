@@ -6,18 +6,14 @@ const withDragScroll = <T,>(Component: React.ComponentType<T>) => {
     let position = { top: 0, left: 0, x: 0, y: 0 };
 
     useEffect(() => {
-      if (!ref.current) {
-        return;
-      }
+      if (!ref.current) return;
 
       ref.current.style.overflow = 'auto';
       ref.current.addEventListener('mousedown', handleMouseDown);
     }, [ref.current]);
 
     const handleMouseDown = (e: MouseEvent) => {
-      if (!ref.current) {
-        return;
-      }
+      if (!ref.current) return;
 
       position = {
         left: ref.current.scrollLeft,
@@ -33,9 +29,7 @@ const withDragScroll = <T,>(Component: React.ComponentType<T>) => {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!ref.current) {
-        return;
-      }
+      if (!ref.current) return;
 
       const dx = e.clientX - position.x;
       const dy = e.clientY - position.y;
@@ -45,9 +39,7 @@ const withDragScroll = <T,>(Component: React.ComponentType<T>) => {
     };
 
     const handleMouseUp = () => {
-      if (!ref.current) {
-        return;
-      }
+      if (!ref.current) return;
 
       ref.current.removeEventListener('mousemove', handleMouseMove);
       ref.current.removeEventListener('mouseup', handleMouseUp);
