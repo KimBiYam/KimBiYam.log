@@ -44,3 +44,24 @@ export const createDynamicallyOpacityMotion = (
   },
   transition: { duration: durationMs / 1000 },
 });
+
+export const createRotateScaleMotion = (
+  isShow: boolean,
+  durationMs: number,
+): MotionProps => ({
+  initial: 'hidden',
+  animate: isShow ? 'show' : 'hidden',
+  variants: {
+    show: {
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+    },
+    hidden: {
+      scale: 0,
+      rotate: 180,
+      opacity: 1,
+    },
+  },
+  transition: { duration: durationMs / 1000 },
+});
