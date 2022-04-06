@@ -1,12 +1,12 @@
 import MenuIcon from '../../assets/svgs/menu.svg';
 
-type MenuButtonProps = {
+type HeaderMenuButtonProps = {
   onClick: () => void;
 };
 
-const MenuButton = ({ onClick }: MenuButtonProps) => (
+const HeaderMenuButton = ({ onClick }: HeaderMenuButtonProps) => (
   <button
-    className="p-2 rounded-full md:hidden primary-button-hover"
+    className="p-2 ml-1 rounded-full md:hidden primary-button-hover"
     onClick={onClick}
     aria-label="MenuButton"
     type="button"
@@ -17,4 +17,4 @@ const MenuButton = ({ onClick }: MenuButtonProps) => (
   </button>
 );
 
-export default MenuButton;
+export default HeaderMenuButton;
