@@ -55,6 +55,10 @@ module.exports = {
           },
         },
       },
+      transitionProperty: {
+        backgroundColor: 'background-color',
+        color: 'color',
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {
