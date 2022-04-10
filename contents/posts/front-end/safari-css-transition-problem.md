@@ -56,9 +56,7 @@ Safari에서(~~이 놈의 사파리...~~) `css transition` 사용 시 발생하�
 `safari transition bug` 혹은 `safari transition flicker` 등으로 검색하였을 때
 여러 가지 해결 방법들이 있었다.
 
-그중 3가지 정도 테스트해보았는데 나의 경우에는 2가지 방법만 효과가 있었다.
-
-- ~~`-webkit-backface-visibility` 속성을 `hidden` 으로 설정하기~~
+- `-webkit-backface-visibility` 속성을 `hidden` 으로 설정하기
 - `-webkit-transform` 속성을 `translate3d(0, 0, 0)` 으로 설정하기(강제로 하드웨어 가속을 사용하게 변경한다고 한다)
 - `will-change` 속성을 지정해 주기
 
@@ -73,3 +71,13 @@ Safari에서(~~이 놈의 사파리...~~) `css transition` 사용 시 발생하�
 [Prevent flicker on webkit-transition of webkit-transform](https://stackoverflow.com/questions/3461441/prevent-flicker-on-webkit-transition-of-webkit-transform)
 
 [Webkit border-radius and overflow bug when using any animation/transition](https://stackoverflow.com/questions/14383632/webkit-border-radius-and-overflow-bug-when-using-any-animation-transition)
+
+---
+
+### 추가 내용 (2022-04-11)
+
+해당 내용 관련하여서 MUI 레포지토리에 [이슈](https://github.com/mui/material-ui/issues/31766)와 [PR](https://github.com/mui/material-ui/pull/31912)을 남겼는데, 다른 개발자 분이 이슈에 달아주신 댓글의 [MDN 문서](https://developer.mozilla.org/en-US/docs/Web/CSS/will-change)에도 나와있듯 `will-change` 속성은 최대한 사용을 지양하는게 좋을 것 같다.
+
+해당 개발자 분이 남겨주신 솔루션으로 transform 속성에 `translateX(0)` 를 추가하는 것으로도 해당 문제가 해결이 되었다.
+
+![animation_solutions2.gif](/images/posts/front-end/safari-css-transition-problem_4.gif)
