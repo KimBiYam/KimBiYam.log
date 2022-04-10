@@ -71,3 +71,5 @@ Safari에서(~~이 놈의 사파리...~~) `css transition` 사용 시 발생하�
 [Safari CSS transition on scale with border radius](https://stackoverflow.com/questions/68298782/safari-css-transition-on-scale-with-border-radius)
 
 [Prevent flicker on webkit-transition of webkit-transform](https://stackoverflow.com/questions/3461441/prevent-flicker-on-webkit-transition-of-webkit-transform)
+
+[Webkit border-radius and overflow bug when using any animation/transition](https://stackoverflow.com/questions/14383632/webkit-border-radius-and-overflow-bug-when-using-any-animation-transition)
