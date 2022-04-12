@@ -17,7 +17,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@sentry/nextjs": "^6.16.1",
+    "@sentry/nextjs": "^6.19.6",
     "framer-motion": "^5.4.5",
     "gray-matter": "^4.0.3",
     "medium-zoom": "^1.0.6",
