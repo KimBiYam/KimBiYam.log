@@ -7,6 +7,7 @@ const Logo = () => (
   <Link href="/" passHref>
     <a className="w-6 h-6">
       <Image
+        priority
         src={favicon}
         alt="logo"
         quality={100}
