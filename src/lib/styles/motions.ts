@@ -25,11 +25,11 @@ export const viewPortOpacityMotion: MotionProps = {
 };
 
 export const createDynamicallyOpacityMotion = (
-  isShow: boolean,
+  isShown: boolean,
   durationMs: number,
 ): MotionProps => ({
   initial: 'hidden',
-  animate: isShow ? 'show' : 'hidden',
+  animate: isShown ? 'show' : 'hidden',
   variants: {
     show: {
       display: 'block',
@@ -46,11 +46,11 @@ export const createDynamicallyOpacityMotion = (
 });
 
 export const createRotateScaleMotion = (
-  isShow: boolean,
+  isShown: boolean,
   durationMs: number,
 ): MotionProps => ({
   initial: 'hidden',
-  animate: isShow ? 'show' : 'hidden',
+  animate: isShown ? 'show' : 'hidden',
   variants: {
     show: {
       opacity: 1,
