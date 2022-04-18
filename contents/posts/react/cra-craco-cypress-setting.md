@@ -14,7 +14,7 @@ ogImagePath: '/images/posts/react/cra-craco-cypress-setting_1.png'
 사내에서 진행 중인 프로젝트에 cypress를 도입하였는데, `CRA(Create React App)`의 기본 테스트
 프레임워크인 `Jest` 로 유닛 테스트를 작성하고 있던 상태에서 두 테스트 프레임워크를 병행해서 사용하기 위한 설정 방법을 공유하고자 합니다.
 
-CRA로 생성한 프로젝트에서 eject 없이 webpack 설정을 커스터마이징 하기 위한 라이브러리인 [craco](https://github.com/gsoft-inc/craco)도 함께 설정되어 있던 상태여서 해당 부분에 맞춰서 세팅을 진행하였습니다.
+단순히 CRA로 생성한 프로젝트에 설정하는 포스팅은 많기도 하고, 저는 eject 없이 webpack 설정을 커스터마이징 하기 위한 라이브러리인 [craco](https://github.com/gsoft-inc/craco)도 함께 설정되어 있던 상태였어서 해당 부분에 맞춰서 세팅을 진행하였습니다.
 
 > 해당 포스트에서는 cypress와 jest의 자세한 테스트 작성에 관한 내용은 다루지 않습니다.
 > 
