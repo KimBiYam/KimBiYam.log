@@ -1,5 +1,5 @@
 ---
-title: '[Javascript] console.log() 속도 관련'
+title: 'console.log() 속도 관련'
 date: '2021-11-25'
 tag: 'javascript'
 ---
