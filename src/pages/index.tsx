@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 import PageHead from '../components/base/PageHead';
@@ -44,7 +45,7 @@ const Home = ({ postPreviews }: HomeProps) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = () => {
   const postPreviews = getSortedPostPreviews();
 
   return {

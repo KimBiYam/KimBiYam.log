@@ -1,3 +1,5 @@
+import { ParsedUrlQuery } from 'querystring';
+
 export interface Post {
   id: string;
   date: string;
@@ -15,7 +17,7 @@ export interface PostPreview extends Post {
   content: string;
 }
 
-export interface PostPath {
+export interface PostPath extends ParsedUrlQuery {
   id: string;
   subdirectory: string;
 }

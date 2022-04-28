@@ -1,4 +1,4 @@
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { getAllPostPaths, getPostDetail } from '../../../lib/posts/post';
 import PostView from '../../../components/posts/PostView';
 import { POST_DIRECTORY } from '../../../constants';
@@ -22,7 +22,7 @@ const Post = ({
   );
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostPaths();
 
   return {
@@ -31,7 +31,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const subdirectory = params?.subdirectory;
   const id = String(params?.id);
 
