@@ -14,7 +14,7 @@ const Contact = ({ contentHtml }: ContactProps) => (
   <>
     <PageHead
       title="KimBiYam.log | Contact"
-      description="KimBiYam.log Contact"
+      description="Contact"
       url="/contact"
     />
     <motion.div className="py-12" {...opacityMotion}>
