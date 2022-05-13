@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { opacityMotion } from '../../lib/styles/motions';
 import { PostDetail } from '../../types/post.types';
+import ProfileCard from '../base/ProfileCard';
 import MarkdownView from './MarkdownView';
 import TagBadge from './TagBadge';
 import Utterances from './Utterances';
@@ -21,6 +22,9 @@ const PostView = ({ postDetail }: PostViewProps) => {
           <TagBadge tag={tag.toUpperCase()} />
         </div>
         <MarkdownView contentHtml={contentHtml} />
+        <div className="my-10">
+          <ProfileCard />
+        </div>
         <Utterances />
       </article>
     </motion.div>

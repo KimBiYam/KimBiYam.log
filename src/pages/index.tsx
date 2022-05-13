@@ -2,6 +2,7 @@ import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 import PageHead from '../components/base/PageHead';
+import ProfileCard from '../components/base/ProfileCard';
 import PostList from '../components/posts/PostList';
 import TagSelector from '../components/posts/TagSelector';
 import { Tag } from '../constants';
@@ -34,6 +35,9 @@ const Home = ({ postPreviews }: HomeProps) => {
         description="KimBiYam의 개발 블로그 입니다."
       />
       <div className="pb-12">
+        <div className="my-2">
+          <ProfileCard />
+        </div>
         <TagSelector
           tags={tags}
           onTagClick={handleTagClick}
