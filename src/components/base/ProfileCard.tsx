@@ -1,8 +1,10 @@
 import { memo } from 'react';
 import Image from 'next/image';
 import profileData from '../../data/profile.json';
-import GithubIcon from '../../assets/svgs/github.svg';
 import ProfileLink from './ProfileLink';
+
+import GithubIcon from '../../assets/svgs/github.svg';
+import NotionIcon from '../../assets/svgs/notion.svg';
 
 const ProfileCard = () => {
   const { description, imageSrc, name, social } = profileData;
@@ -31,7 +33,7 @@ const ProfileCard = () => {
           <GithubIcon />
         </ProfileLink>
         <ProfileLink href={notion}>
-          <GithubIcon />
+          <NotionIcon />
         </ProfileLink>
       </div>
     </div>
