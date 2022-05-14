@@ -22,7 +22,7 @@ const PostView = ({ postDetail }: PostViewProps) => {
           <TagBadge tag={tag.toUpperCase()} />
         </div>
         <MarkdownView contentHtml={contentHtml} />
-        <div className="my-10">
+        <div className="py-4 my-10 border-t border-b">
           <ProfileCard />
         </div>
         <Utterances />
