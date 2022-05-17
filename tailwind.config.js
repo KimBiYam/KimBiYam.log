@@ -67,6 +67,7 @@ module.exports = {
             },
             code: {
               padding: '4px',
+              margin: '0 0.1em',
               borderRadius: '4px',
               background: theme('colors.gray.300'),
               '&:before': {
