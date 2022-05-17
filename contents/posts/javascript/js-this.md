@@ -20,7 +20,7 @@ this는 자바스크립트 엔진에 의해 암묵적으로 생성되며, 코드
 ```jsx
 const circle = {
 	radius: 5,
-	getDimeter() {
+	getDiameter() {
 		// this는 메서드를 호출한 객체를 가리킨다.
 		return 2 * this.radius;
 	}
@@ -46,7 +46,7 @@ Circle.prototype.getDiameter = function () {
 
 // 인스턴스 생성
 const circle = new Circle(5);
-console.log(circle.getDiamter()); //10
+console.log(circle.getDiameter()); //10
 ```
 
 생성자 함수 내부의 `this`는 생성자 함수가 생성할 인스턴스를 가리킨다.
@@ -91,7 +91,7 @@ const me = new Person('Lee');
 
 ```jsx
 // this 바인딩은 함수 호출 방식에 따라 동적으로 결정된다.
-const foo = function () {
+const foo = function() {
 	console.dir(this);
 };
 
@@ -124,7 +124,7 @@ foo.bind(bar)(); // bar
 
 ### 1) 일반 함수 호출
 
-기본적으로 this에는 전역 객쳬(global object)가 바인딩 된다.
+기본적으로 this에는 전역 객체(global object)가 바인딩 된다.
 
 ```jsx
 function foo() {
@@ -182,7 +182,7 @@ const obj = {
 obj.foo();
 ```
 
-콜백 함수가 일반 함수로 호출된다면 콜백 함수 내부의 this에도 전역 객체가 바인딩 된다. 어떤한 함수라도 일반 함수로 호출되면 this에 전역 객체가 바인딩 된다.
+콜백 함수가 일반 함수로 호출된다면 콜백 함수 내부의 this에도 전역 객체가 바인딩 된다.
 
 ```jsx
 var value = 1;
@@ -204,7 +204,7 @@ obj.foo();
 
 **이처럼 일반 함수로 호출된 모든 함수(중첩 함수, 콜백 함수 포함) 내부의 this에는 전역 객체가 바인딩 된다.**
 
-중첩 함수 또는 콜백 함수는 외부 함수를 돕는 헬퍼 함수의 역할을 하므로 외부 함수의 일부 로직을 대신하는 경우가 대부분이다. 하지만 외부 함수인 메서드와 중첩 함수 또는 콜백 함수의 this가 일치하지 않는다는 것은 중첩 함수 또는 콜백 함수를 헬퍼 함수로 동작하기 어렵게 만든다.
+외부 함수인 메서드와 중첩 함수 또는 콜백 함수의 this가 일치하지 않는다는 것은 중첩 함수 또는 콜백 함수를 헬퍼 함수로 동작하기 어렵게 만든다.
 
 메서드 내부의 중첩 함수나 콜백 함수의 this 바인딩을
 메서드의 this 바인딩과 일치시키기 위한 방법은 다음과 같다.
@@ -213,7 +213,7 @@ obj.foo();
 var value = 1;
 
 const obj = {
-	value = 100,
+	value: 100,
 	foo() {
 		// this 바인딩(obj)을 변수 that에 할당한다.
 		const that = this;
@@ -228,7 +228,7 @@ const obj = {
 obj.foo();
 ```
 
-위 방법 이외에도 자바크스립트는 this를 명시적으로 바인딩 할 수 있는 `Function.prototype.apply`, `Function.prototype.call`, `Function.prototype.bind` 메서드를 제공한다.
+위 방법 이외에도 자바스크립트는 this를 명시적으로 바인딩 할 수 있는 `Function.prototype.apply`, `Function.prototype.call`, `Function.prototype.bind` 메서드를 제공한다.
 
 ```jsx
 var value = 1;
@@ -242,6 +242,8 @@ const obj = {
 		}.bind(this), 100);
 	}
 };
+
+obj.foo();
 ```
 
 또는 화살표 함수를 사용해서 this 바인딩을 일치시킬 수도 있다.
@@ -256,6 +258,8 @@ const obj = {
 		setTimeout(() => console.log(this.value), 100); // 100
 	}
 };
+
+obj.foo();
 ```
 
 ### 2) 메서드 호출
@@ -268,7 +272,7 @@ const person = {
 	name: 'Lee',
 	getName() {
 		// 메서드 내부의 this는 메서드를 호출한 객체에 바인딩된다.
-		retrun this.name;
+		return this.name;
 	}
 };
 
@@ -321,7 +325,7 @@ const me = new Person('Lee');
 // getName 메서드를 호출한 객체는 me다.
 console.log(me.getName()); // 1) Lee
 
-Person.prototype,bane = 'Kim';
+Person.prototype.name = 'Kim';
 
 //getName 메서드를 호출한 객체는 Person.prototype이다.
 console.log(Person.prototype.getName()); // 2) Kim
@@ -466,7 +470,7 @@ person.foo(function () {
 	// 일반 함수로 호출된 getName 함수 내부의 this.name은 브라우저 환경에서 window.name과 같다.
 	// 브라우저 환경에서 window.name은 브라우저 창의 이름을 나타내는 빌트인 프로퍼티이며 기본값은 ''이다.
 	// Node.js 환경에서 this.name은 undefined다.
-}
+});
 ```
 
 `person.foo`의  콜백 함수가 호출되기 이전인 `1)`의 시점에서 this는 foo 메서드를 호출한 person 객체를
@@ -491,7 +495,7 @@ person.foo(function () {
 });
 ```
 
-## 클래스의 this
+## 클래스에서의 this
 
 클래스 인스턴스 생성은 new 연산자 없이 호출할 수 없으며 클래스에서의 this는 `생성자 함수`와 마찬가지로 생성할 인스턴스를 가리킨다.
 
@@ -557,3 +561,92 @@ class Person {
 const me = new Person('Lee');
 console.log(me); // Person { name: 'Lee' }
 ```
+
+## 화살표 함수에서의 this
+
+화살표 함수가 일반 함수와 구별되는 가장 큰 특징이 바로 `this`다. 이 때문에 다른 함수의 인수로 전달되어 콜백 함수로 사용되는 경우가 많다.
+
+```jsx
+class Prefixer {
+	constructor(prefix) {
+		this.prefix = prefix;
+	}
+
+	add(arr) {
+		// add 메서드는 인수로 전달된 배열 arr을 순회하며 배열의 모든 요소에 prefix를 추가한다.
+		return arr.map(function (item) {
+			console.log(this);
+			return this.prefix + item;
+			// TypeError: Cannot read properties of undefined (reading 'prefix')
+		});
+	}
+}
+
+const prefixer = new Prefixer('-webkit-');
+console.log(prefixer.add(['transition', 'user-select']));
+```
+
+위 예시에서 map 함수의 콜백 함수로 `this.prefix`를 참조하는데 이때 콜백 함수를 일반 함수로 호출한다.
+일반 함수로 호출하기 때문에 `this`에는 전역 객체가 바인딩 되어야 하지만, class 내부에서는 암묵적으로 `strict mode` 가 적용되어서 `undefined`가 바인딩 된다.
+
+위에서 살펴본 방법도 포함하여서 화살표 함수를 사용하지 않고 이를 해결하는 방법은 3가지가 있다.
+
+**1) this를 다른 객체에 할당 후 사용**
+
+```jsx
+...
+add(arr) {
+	// this를 다른 객체에 할당
+	const that = this;
+		return arr.map(function (item) {
+			//this 대신 that을 참조
+			return that.prefix + ' ' + item;
+		}
+	});
+}
+...
+```
+
+**2) Array.prototype.map의 두 번째 인수로 this를 전달**
+
+```jsx
+...
+add(arr) {
+	return arr.map(function (item) {
+		return this.prefix + ' ' + item;
+	}, this); // this에 바인딩된 값이 콜백 함수 내부의 this에 바인딩된다.
+}
+...
+```
+
+**3) Function.prototype.bind 메서드를 사용**
+
+```jsx
+...
+add(arr) {
+	return arr.map(function (item) {
+		return this.prefix + ' ' + item;
+	}.bind(this)); // this에 바인딩된 값이 콜백 함수 내부의 this에 바인딩된다.
+}
+...
+```
+
+화살표 함수를 사용하면 `콜백 함수 내부의 this 문제`를 해결할 수 있다.
+
+```jsx
+class Prefixer {
+	constructor(prefix) {
+		this.prefix = prefix;
+	}
+
+	add(arr) {
+		return arr.map(item => this.prefix + item);
+	}
+}
+
+const prefixer = new Prefixer('-webkit-');
+console.log(prefixer.add(['transition', 'user-select']));
+// ['-webkit-transition', '-webkit-user-select']
+```
+
+화살표 함수는 함수 자체의 **this 바인딩을 갖지 않는다**. 화살표 함수 내부에서 this를 참조하면 상위 스코프의 this를 그대로 참조하는 `lexical this`를 따른다.
