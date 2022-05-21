@@ -8,6 +8,7 @@ export const usePreserveScroll = () => {
   const scrollPositionsRef = useRef<Record<string, number>>({});
   const isPopRef = useRef(false);
 
+  const isPop = isPopRef.current;
   const currentScrollPosition = scrollPositionsRef.current[url] ?? 0;
 
   useEffect(() => {
@@ -33,5 +34,5 @@ export const usePreserveScroll = () => {
     };
   }, [router]);
 
-  return { currentScrollPosition };
+  return { isPop, currentScrollPosition };
 };

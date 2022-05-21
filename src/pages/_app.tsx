@@ -19,14 +19,14 @@ if (IS_PRODUCTION) sentryUtil.init();
 const App = ({ Component, pageProps, router }: AppProps) => {
   useGoogleAnalyticsPageView();
 
-  const { currentScrollPosition } = usePreserveScroll();
+  const { isPop, currentScrollPosition } = usePreserveScroll();
 
   useEffect(() => {
     smoothscroll.polyfill();
   }, []);
 
   const handleAnimateExitComplete = () => {
-    if (currentScrollPosition !== 0) {
+    if (isPop && currentScrollPosition !== 0) {
       window.scrollTo({ top: 0 });
       window.scrollTo({ top: currentScrollPosition, behavior: 'smooth' });
     } else {
