@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { memo } from 'react';
+import NoScrollLink from './NoScrollLink';
 
 export interface HeaderItemProps {
   href: string;
@@ -8,14 +8,14 @@ export interface HeaderItemProps {
 }
 
 const HeaderItem = ({ href, label, onClick }: HeaderItemProps) => (
-  <Link href={href}>
+  <NoScrollLink href={href}>
     <a
       onClick={onClick}
       className="flex px-2 py-2 my-1 text-sm font-bold rounded-md primary-button-hover"
     >
       {label}
     </a>
-  </Link>
+  </NoScrollLink>
 );
 
 export default memo(HeaderItem);

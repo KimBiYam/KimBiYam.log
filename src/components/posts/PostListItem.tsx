@@ -1,9 +1,9 @@
-import NextLink from 'next/link';
 import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { PostPreview } from '../../types/post.types';
 import TagBadge from './TagBadge';
 import { viewPortOpacityMotion } from '../../lib/styles/motions';
+import NoScrollLink from '../base/NoScrollLink';
 
 export type PostListItemProps = {
   postPreview: PostPreview;
@@ -13,7 +13,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
   const { id, title, date, content, tag } = postPreview;
 
   return (
-    <NextLink href={`/posts/${id}`}>
+    <NoScrollLink href={`/posts/${id}`}>
       <a>
         <motion.div
           className="py-4 cursor-pointer hover:text-shadow dark:hover:text-shadow-dark transition-text-shadow"
@@ -31,7 +31,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
           </p>
         </motion.div>
       </a>
-    </NextLink>
+    </NoScrollLink>
   );
 };
 
