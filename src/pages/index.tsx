@@ -2,6 +2,7 @@ import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 import PageHead from '../components/base/PageHead';
+import PageTransitionWrapper from '../components/base/PageTransitionWrapper';
 import ProfileCard from '../components/base/ProfileCard';
 import PostList from '../components/posts/PostList';
 import TagSelector from '../components/posts/TagSelector';
@@ -34,17 +35,19 @@ const Home = ({ postPreviews }: HomeProps) => {
         title="KimBiYam.log"
         description="KimBiYam의 개발 블로그 입니다."
       />
-      <div className="pb-12">
-        <div className="my-2">
-          <ProfileCard />
+      <PageTransitionWrapper>
+        <div className="pb-12">
+          <div className="my-2">
+            <ProfileCard />
+          </div>
+          <TagSelector
+            tags={tags}
+            onTagClick={handleTagClick}
+            selectedTag={selectedTag}
+          />
+          <PostList postPreviews={postPreviews} selectedTag={selectedTag} />
         </div>
-        <TagSelector
-          tags={tags}
-          onTagClick={handleTagClick}
-          selectedTag={selectedTag}
-        />
-        <PostList postPreviews={postPreviews} selectedTag={selectedTag} />
-      </div>
+      </PageTransitionWrapper>
     </>
   );
 };
