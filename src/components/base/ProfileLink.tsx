@@ -1,4 +1,5 @@
-import Link, { LinkProps } from 'next/link';
+import { LinkProps } from 'next/link';
+import NoScrollLink from './NoScrollLink';
 
 export type ProfileLinkProps = {
   href: LinkProps['href'];
@@ -6,11 +7,11 @@ export type ProfileLinkProps = {
 };
 
 const ProfileLink = ({ href, children }: ProfileLinkProps) => (
-  <Link href={href} passHref>
+  <NoScrollLink href={href} passHref>
     <a className="w-6 h-6 duration-300 fill-current transition-color hover:text-blueGray-200 dark:hover:text-gray-500">
       {children}
     </a>
-  </Link>
+  </NoScrollLink>
 );
 
 export default ProfileLink;
