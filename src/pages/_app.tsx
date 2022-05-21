@@ -26,11 +26,16 @@ const App = ({ Component, pageProps, router }: AppProps) => {
   }, []);
 
   const handleAnimateExitComplete = () => {
+    window.scrollTo({ top: 0 });
+
     if (isPop && currentScrollPosition !== 0) {
-      window.scrollTo({ top: 0 });
-      window.scrollTo({ top: currentScrollPosition, behavior: 'smooth' });
-    } else {
-      window.scrollTo({ top: 0 });
+      const SCROLL_DELAY_MS = 100;
+
+      setTimeout(
+        () =>
+          window.scrollTo({ top: currentScrollPosition, behavior: 'smooth' }),
+        SCROLL_DELAY_MS,
+      );
     }
   };
 
