@@ -1,7 +1,5 @@
 import { useRecoilValue } from 'recoil';
 import { motion } from 'framer-motion';
-import smoothscroll from 'smoothscroll-polyfill';
-import { useEffect } from 'react';
 import ArrowUpIcon from '../../assets/svgs/arrow_up.svg';
 import scrollState from '../../atoms/scrollState';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
@@ -12,15 +10,8 @@ const VISIBLE_PAGE_Y_PX = 500;
 const ScrollToTopButton = () => {
   const { pageY } = useRecoilValue(scrollState);
 
-  useEffect(() => {
-    smoothscroll.polyfill();
-  }, []);
-
   const handleClick = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (

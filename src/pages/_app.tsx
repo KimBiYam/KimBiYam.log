@@ -3,6 +3,7 @@ import '../lib/styles/code.css';
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 import { AnimatePresence } from 'framer-motion';
+import smoothscroll from 'smoothscroll-polyfill';
 import Header from '../components/base/Header';
 import MainLayout from '../components/base/MainLayout';
 import useGoogleAnalyticsPageView from '../hooks/useGoogleAnalyticsPageView';
@@ -16,6 +17,9 @@ if (IS_PRODUCTION) sentryUtil.init();
 const App = ({ Component, pageProps, router }: AppProps) => {
   useGoogleAnalyticsPageView();
 
+  useEffect(() => {
+    smoothscroll.polyfill();
+  }, []);
   return (
     <RecoilRoot>
       <Header />
