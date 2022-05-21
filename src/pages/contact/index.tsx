@@ -1,10 +1,9 @@
-import { motion } from 'framer-motion';
 import { GetStaticProps } from 'next';
 import PageHead from '../../components/base/PageHead';
+import PageTransitionWrapper from '../../components/base/PageTransitionWrapper';
 import MarkdownView from '../../components/posts/MarkdownView';
 import { CONTACT_DIRECTORY, CONTACT_FILE_NAME } from '../../constants';
 import { getMarkdownData } from '../../lib/posts/markdown';
-import { opacityMotion } from '../../lib/styles/motions';
 
 interface ContactProps {
   contentHtml: string;
@@ -17,9 +16,11 @@ const Contact = ({ contentHtml }: ContactProps) => (
       description="Contact"
       url="/contact"
     />
-    <motion.div className="py-12" {...opacityMotion}>
-      <MarkdownView contentHtml={contentHtml} />
-    </motion.div>
+    <PageTransitionWrapper>
+      <div className="py-12">
+        <MarkdownView contentHtml={contentHtml} />
+      </div>
+    </PageTransitionWrapper>
   </>
 );
 
