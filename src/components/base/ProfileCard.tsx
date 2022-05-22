@@ -16,7 +16,6 @@ const ProfileCard = () => {
         <div className="relative w-16 h-16 min-w-0">
           <Image
             src={imageSrc}
-            priority
             alt="profile"
             quality={100}
             layout="fill"
