@@ -31,15 +31,15 @@ h3 {
 
 @layer utilities {
   .main-container {
-    @apply transition-backgroundColor duration-300 bg-white dark:bg-gray-900;
+    @apply transition-backgroundColor duration-300 bg-white dark:bg-neutral-900;
   }
 
   .main-font-color {
-    @apply text-black dark:text-gray-300;
+    @apply text-black dark:text-neutral-100;
   }
 
   .primary-button-hover {
-    @apply transition-backgroundColor duration-300 hover:bg-blueGray-200 dark:hover:bg-gray-500;
+    @apply transition-backgroundColor duration-300 hover:bg-blueGray-200 dark:hover:bg-neutral-500;
   }
 
   .scrollbar-hide {

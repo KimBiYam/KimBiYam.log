@@ -20,7 +20,7 @@ const Header = () => {
       className="fixed z-50 flex items-center w-full h-14 main-container"
       {...createDynamicallyOpacityMotion(isShown, VISIBLE_TRANSITION_MS)}
     >
-      <div className="container flex items-center justify-between h-full max-w-screen-md px-4 text-black md:px-8 dark:text-gray-300">
+      <div className="container flex items-center justify-between h-full max-w-screen-md px-4 md:px-8 ">
         <Logo />
         <HeaderDesktopNav />
         <HeaderButtonSection />

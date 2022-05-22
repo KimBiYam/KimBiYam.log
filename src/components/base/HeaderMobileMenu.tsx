@@ -31,7 +31,7 @@ const HeaderMobileMenu = () => {
     <div className="relative md:hidden" ref={menuButtonRef}>
       <HeaderMenuButton onClick={toggleMenu} />
       <motion.ul
-        className="absolute right-0 w-32 p-2 rounded-md drop-shadow-md bg-gray-50 dark:bg-gray-700"
+        className="absolute right-0 w-32 p-2 rounded-md drop-shadow-md bg-gray-50 dark:bg-neutral-700"
         {...createDynamicallyOpacityMotion(isMenuOpen, VISIBLE_TRANSITION_MS)}
       >
         <li>
