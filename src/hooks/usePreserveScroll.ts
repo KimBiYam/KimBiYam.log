@@ -5,24 +5,30 @@ export const usePreserveScroll = () => {
   const router = useRouter();
   const url = router.asPath;
 
-  const scrollPositionsRef = useRef<Record<string, number>>({});
-  const isPopRef = useRef(false);
-
-  const isPop = isPopRef.current;
-  const currentScrollPosition = scrollPositionsRef.current[url] ?? 0;
+  const scrollPositions = useRef<Record<string, number>>({});
+  const isPop = useRef(false);
 
   useEffect(() => {
     router.beforePopState(() => {
-      isPopRef.current = true;
+      isPop.current = true;
       return true;
     });
 
     const handleRouteChangeStart = () => {
-      scrollPositionsRef.current[url] = window.scrollY;
+      scrollPositions.current[url] = window.scrollY;
     };
 
-    const handleRouteChangeComplete = () => {
-      isPopRef.current = false;
+    const handleRouteChangeComplete = (currentUrl: string) => {
+      const currentScrollPosition = scrollPositions.current[currentUrl];
+      const shouldScrollRestore = isPop.current && currentScrollPosition !== 0;
+
+      if (shouldScrollRestore) {
+        window.scrollTo({ top: currentScrollPosition });
+      } else {
+        window.scrollTo({ top: 0 });
+      }
+
+      isPop.current = false;
     };
 
     router.events.on('routeChangeStart', handleRouteChangeStart);
@@ -33,6 +39,4 @@ export const usePreserveScroll = () => {
       router.events.off('routeChangeComplete', handleRouteChangeComplete);
     };
   }, [router]);
-
-  return { isPop, currentScrollPosition };
 };

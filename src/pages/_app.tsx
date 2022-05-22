@@ -2,7 +2,6 @@ import '../lib/styles/global.css';
 import '../lib/styles/code.css';
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
-import { AnimatePresence } from 'framer-motion';
 import smoothscroll from 'smoothscroll-polyfill';
 import { useEffect } from 'react';
 import Header from '../components/base/Header';
@@ -18,32 +17,17 @@ if (IS_PRODUCTION) sentryUtil.init();
 
 const App = ({ Component, pageProps, router }: AppProps) => {
   useGoogleAnalyticsPageView();
-
-  const { isPop, currentScrollPosition } = usePreserveScroll();
+  usePreserveScroll();
 
   useEffect(() => {
     smoothscroll.polyfill();
   }, []);
 
-  const handleAnimateExitComplete = () => {
-    window.scrollTo({ top: 0 });
-
-    if (isPop && currentScrollPosition !== 0) {
-      const SCROLL_DELAY_MS = 100;
-
-      setTimeout(
-        () =>
-          window.scrollTo({ top: currentScrollPosition, behavior: 'smooth' }),
-        SCROLL_DELAY_MS,
-      );
-    }
-  };
-
   return (
     <RecoilRoot>
       <Header />
       <MainLayout>
-        <Component {...pageProps} key={router.route} />
+        <Component {...pageProps} />
       </MainLayout>
       <Footer />
       <ScrollToTopButton />
