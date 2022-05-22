@@ -35,12 +35,12 @@ const HeaderMobileMenu = () => {
         {...createDynamicallyOpacityMotion(isMenuOpen, VISIBLE_TRANSITION_MS)}
       >
         <li>
-          <HeaderItem href="/" label="Posts" onClick={handleItemClick} />
+          <HeaderItem href="/" label="POSTS" onClick={handleItemClick} />
         </li>
         <li>
           <HeaderItem
             href="/contact"
-            label="Contact"
+            label="CONTACT"
             onClick={handleItemClick}
           />
         </li>
