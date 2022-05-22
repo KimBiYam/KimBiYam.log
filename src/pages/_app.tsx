@@ -43,12 +43,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
     <RecoilRoot>
       <Header />
       <MainLayout>
-        <AnimatePresence
-          exitBeforeEnter
-          onExitComplete={handleAnimateExitComplete}
-        >
-          <Component {...pageProps} key={router.route} />
-        </AnimatePresence>
+        <Component {...pageProps} key={router.route} />
       </MainLayout>
       <Footer />
       <ScrollToTopButton />
