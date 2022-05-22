@@ -53,7 +53,7 @@ module.exports = {
               padding: '4px',
               margin: '0 0.1em',
               borderRadius: '4px',
-              background: theme('colors.gray.300'),
+              background: theme('colors.neutral.300'),
               '&:before': {
                 display: 'none',
               },
@@ -65,24 +65,24 @@ module.exports = {
         },
         dark: {
           css: {
-            color: theme('colors.gray.300'),
+            color: theme('colors.neutral.100'),
             h1: {
-              color: theme('colors.gray.300'),
+              color: theme('colors.neutral.100'),
             },
             h2: {
-              color: theme('colors.gray.300'),
+              color: theme('colors.neutral.100'),
             },
             h3: {
-              color: theme('colors.gray.300'),
+              color: theme('colors.neutral.100'),
             },
             a: {
-              color: theme('colors.gray.300'),
+              color: theme('colors.neutral.100'),
             },
             strong: {
-              color: theme('colors.gray.300'),
+              color: theme('colors.neutral.100'),
             },
             blockquote: {
-              color: theme('colors.gray.300'),
+              color: theme('colors.neutral.100'),
             },
           },
         },
