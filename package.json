@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",
-    "@tailwindcss/typography": "^0.4.1",
+    "@tailwindcss/typography": "^0.5.2",
     "@types/node": "16.11.7",
     "@types/react": "17.0.35",
     "@types/react-responsive": "^8.0.4",
@@ -46,7 +46,7 @@
     "@types/smoothscroll-polyfill": "^0.3.1",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
-    "autoprefixer": "^10.4.0",
+    "autoprefixer": "^10.4.7",
     "eslint": "^8.9.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-kimbiyam-react": "^1.0.19",
@@ -57,9 +57,9 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "next-sitemap": "^1.6.203",
-    "postcss": "^8.3.11",
+    "postcss": "^8.4.14",
     "prettier": "^2.5.1",
-    "tailwindcss": "^2.2.19",
+    "tailwindcss": "^3.0.24",
     "typescript": "4.4.4"
   }
 }
