@@ -4,18 +4,10 @@ const colors = require('tailwindcss/colors');
 const typographyPlugin = require('@tailwindcss/typography');
 
 module.exports = {
-  mode: 'jit',
-  purge: {
-    enable: true,
-    preserveHtmlElements: false,
-    content: [
-      './src/pages/**/*.{js,ts,jsx,tsx}',
-      './src/components/**/*.{js,ts,jsx,tsx}',
-    ],
-    options: {
-      safelist: ['dark'],
-    },
-  },
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+  ],
   darkMode: 'class',
   theme: {
     colors,
@@ -28,14 +20,6 @@ module.exports = {
         sm: { min: '480px', max: '767px' },
         md: '768px',
         lg: '1024px',
-      },
-      colors: {
-        zinc: {
-          200: '#e4e4e7',
-          300: '#d4d4d8',
-          400: '#a1a1aa',
-          700: '#3f3f46',
-        },
       },
       keyframes: {
         'fade-in': {
