@@ -1,6 +1,5 @@
 import { GetStaticProps } from 'next';
 import PageHead from '../../components/base/PageHead';
-import PageTransitionWrapper from '../../components/base/PageTransitionWrapper';
 import MarkdownView from '../../components/posts/MarkdownView';
 import { CONTACT_DIRECTORY, CONTACT_FILE_NAME } from '../../constants';
 import { getMarkdownData } from '../../lib/posts/markdown';
@@ -16,11 +15,9 @@ const Contact = ({ contentHtml }: ContactProps) => (
       description="Contact"
       url="/contact"
     />
-    <PageTransitionWrapper>
-      <div className="py-12">
-        <MarkdownView contentHtml={contentHtml} />
-      </div>
-    </PageTransitionWrapper>
+    <div className="py-12">
+      <MarkdownView contentHtml={contentHtml} />
+    </div>
   </>
 );
 

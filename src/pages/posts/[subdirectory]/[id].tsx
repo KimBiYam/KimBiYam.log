@@ -3,7 +3,6 @@ import { getAllPostPaths, getPostDetail } from '../../../lib/posts/post';
 import PostView from '../../../components/posts/PostView';
 import { POST_DIRECTORY } from '../../../constants';
 import PageHead from '../../../components/base/PageHead';
-import PageTransitionWrapper from '../../../components/base/PageTransitionWrapper';
 
 const Post = ({
   postDetail,
@@ -18,9 +17,7 @@ const Post = ({
         url={`/posts/${tag}/${id}`}
         ogImagePath={ogImagePath}
       />
-      <PageTransitionWrapper>
-        <PostView postDetail={postDetail} />
-      </PageTransitionWrapper>
+      <PostView postDetail={postDetail} />
     </>
   );
 };
