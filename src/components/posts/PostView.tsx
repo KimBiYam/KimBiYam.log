@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion';
-import { opacityMotion } from '../../lib/styles/motions';
 import { PostDetail } from '../../types/post.types';
 import ProfileCard from '../base/ProfileCard';
 import MarkdownView from './MarkdownView';
