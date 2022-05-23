@@ -11,7 +11,7 @@ const TagButton = ({ tag, onTagClick, isSelected }: TagButtonProps) => (
     className={`px-4 py-1 mx-1 mb-2 border-2 rounded-xl text-xs md:text-sm whitespace-pre main-font-color
        ${
          isSelected
-           ? 'font-bold border-black dark:border-blueGray-600'
+           ? 'font-bold border-black dark:border-slate-600'
            : 'font-semibold'
        }`}
     key={tag}

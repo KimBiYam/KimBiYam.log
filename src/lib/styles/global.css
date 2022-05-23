@@ -10,7 +10,6 @@ body {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto;
-  background-color: black;
 }
 
 a {
@@ -38,8 +37,12 @@ h3 {
     @apply text-black dark:text-neutral-100;
   }
 
+  .primary-text-hover {
+    @apply transition-color duration-300 hover:text-neutral-200 dark:hover:text-neutral-500;
+  }
+
   .primary-button-hover {
-    @apply transition-backgroundColor duration-300 hover:bg-blueGray-200 dark:hover:bg-neutral-500;
+    @apply transition-backgroundColor duration-300 hover:bg-neutral-200 dark:hover:bg-neutral-500;
   }
 
   .scrollbar-hide {
