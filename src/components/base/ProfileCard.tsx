@@ -24,7 +24,7 @@ const ProfileCard = () => {
         </div>
         <div className="flex flex-col justify-center flex-1 mx-4">
           <p className="font-bold">{name}</p>
-          <p className="overflow-hidden text-sm italic text">{description}</p>
+          <p className="mt-1 overflow-hidden text-sm">{description}</p>
         </div>
       </div>
       <div className="flex items-end gap-4">
