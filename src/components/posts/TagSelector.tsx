@@ -19,7 +19,7 @@ const TagSelector = (
 
   return (
     <div
-      className={`sticky z-40 flex pt-4 overflow-auto scrollbar-hide main-container ${
+      className={`sticky z-40 flex pt-4 -mx-6 md:mx-0 overflow-auto scrollbar-hide main-container ${
         direction === ScrollDirection.up ? 'top-14' : 'top-0'
       }`}
       ref={ref}
