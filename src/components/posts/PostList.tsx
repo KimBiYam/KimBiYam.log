@@ -40,7 +40,7 @@ const PostList = ({ postPreviews, selectedTag }: PostListProps) => {
   );
 
   return (
-    <>
+    <ul className="list-none">
       {filteredPostPreviews.map((postPreview) => (
         <PostListItem
           key={postPreview.id + postPreview.title}
@@ -48,7 +48,7 @@ const PostList = ({ postPreviews, selectedTag }: PostListProps) => {
         />
       ))}
       <div ref={scrollRef} />
-    </>
+    </ul>
   );
 };
 
