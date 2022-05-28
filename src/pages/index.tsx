@@ -10,9 +10,9 @@ import useTag from '../hooks/useTag';
 import { getSortedPostPreviews } from '../lib/posts/post';
 import { PostPreview } from '../types/post.types';
 
-export type HomeProps = {
+interface HomeProps {
   postPreviews: PostPreview[];
-};
+}
 
 const Home = ({ postPreviews }: HomeProps) => {
   const router = useRouter();

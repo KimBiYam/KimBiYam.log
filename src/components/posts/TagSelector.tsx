@@ -5,11 +5,11 @@ import { ScrollDirection } from '../../constants';
 import withDragScroll from '../../hocs/withDragScroll';
 import TagButton from './TagButton';
 
-export type TagSelectorProps = {
+interface TagSelectorProps {
   tags: string[];
   onTagClick: (tag: string) => void;
   selectedTag: string;
-};
+}
 
 const TagSelector = (
   { tags, onTagClick, selectedTag }: TagSelectorProps,

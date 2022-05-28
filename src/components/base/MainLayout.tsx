@@ -1,9 +1,9 @@
 import React from 'react';
 import useDetectScroll from '../../hooks/useDetectScroll';
 
-export type MainLayoutProps = {
+interface MainLayoutProps {
   children?: React.ReactNode;
-};
+}
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   useDetectScroll();

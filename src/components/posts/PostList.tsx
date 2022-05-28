@@ -6,10 +6,10 @@ import useScrollObserver from '../../hooks/useScrollObserver';
 import { PostPreview } from '../../types/post.types';
 import PostListItem from './PostListItem';
 
-export type PostListProps = {
+interface PostListProps {
   postPreviews: PostPreview[];
   selectedTag: string;
-};
+}
 
 const POST_COUNT_BY_PAGE = 10;
 

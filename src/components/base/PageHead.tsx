@@ -4,12 +4,12 @@ import ogTagImage from '../../assets/favicon/og_tag_image.png';
 import { DOMAIN_URL } from '../../constants';
 import colors from '../../lib/styles/colors';
 
-export type PageHeadProps = {
+interface PageHeadProps {
   description: string;
   title: string;
   url?: string;
   ogImagePath?: string;
-};
+}
 
 const PageHead = ({
   title,

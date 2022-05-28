@@ -4,7 +4,7 @@ import { HTMLAttributes } from 'react';
 import { hoverRotateMotion } from '../../lib/styles/motions';
 import NoScrollLink from './NoScrollLink';
 
-export interface ProfileLinkProps
+interface ProfileLinkProps
   extends Pick<LinkProps, 'href'>,
     Pick<HTMLAttributes<HTMLAnchorElement>, 'title'> {
   children: React.ReactNode;

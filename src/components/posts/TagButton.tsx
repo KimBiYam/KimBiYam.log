@@ -1,10 +1,10 @@
 import { memo } from 'react';
 
-export type TagButtonProps = {
+interface TagButtonProps {
   tag: string;
   onTagClick: (tag: string) => void;
   isSelected: boolean;
-};
+}
 
 const TagButton = ({ tag, onTagClick, isSelected }: TagButtonProps) => (
   <button

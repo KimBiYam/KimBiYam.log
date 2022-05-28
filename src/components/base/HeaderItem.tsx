@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import NoScrollLink from './NoScrollLink';
 
-export interface HeaderItemProps {
+interface HeaderItemProps {
   href: string;
   label: string;
   onClick?: () => void;

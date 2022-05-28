@@ -8,9 +8,9 @@ import {
 } from '../../lib/styles/motions';
 import NoScrollLink from '../base/NoScrollLink';
 
-export type PostListItemProps = {
+interface PostListItemProps {
   postPreview: PostPreview;
-};
+}
 
 const PostListItem = ({ postPreview }: PostListItemProps) => {
   const { id, title, date, content, tag } = postPreview;

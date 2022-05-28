@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import useMediumZoom from '../../hooks/useMediumZoom';
 
-export type MarkdownViewProps = {
+interface MarkdownViewProps {
   contentHtml: string;
-};
+}
 
 const MarkdownView = ({ contentHtml }: MarkdownViewProps) => {
   const markdownRef = useRef<HTMLDivElement>(null);

@@ -4,9 +4,9 @@ import MarkdownView from './MarkdownView';
 import TagBadge from './TagBadge';
 import Utterances from './Utterances';
 
-export type PostViewProps = {
+interface PostViewProps {
   postDetail: PostDetail;
-};
+}
 
 const PostView = ({ postDetail }: PostViewProps) => {
   const { title, date, contentHtml, tag } = postDetail;
