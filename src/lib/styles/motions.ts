@@ -34,6 +34,18 @@ export const hoverScaleMotion: MotionProps = {
   },
 };
 
+export const hoverRotateMotion: MotionProps = {
+  whileHover: {
+    rotate: 360,
+    transition: {
+      type: 'spring',
+      damping: 10,
+      mass: 0.75,
+      stiffness: 100,
+    },
+  },
+};
+
 export const createDynamicallyOpacityMotion = (
   isShown: boolean,
   durationMs: number,
