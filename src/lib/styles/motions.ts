@@ -1,12 +1,10 @@
 import { MotionProps } from 'framer-motion';
 
-const DEFAULT_DURATION = 0.5;
-
-export const viewPortOpacityMotion: MotionProps = {
+export const viewportOpacityMotion: MotionProps = {
   initial: { opacity: 0 },
   whileInView: { opacity: [0, 1] },
   viewport: { once: true },
-  transition: { duration: DEFAULT_DURATION },
+  transition: { duration: 0.2 },
 };
 
 export const hoverRotateMotion: MotionProps = {
