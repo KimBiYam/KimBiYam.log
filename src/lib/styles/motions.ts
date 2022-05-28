@@ -24,16 +24,6 @@ export const viewPortOpacityMotion: MotionProps = {
   transition: { duration: DEFAULT_DURATION },
 };
 
-export const hoverScaleMotion: MotionProps = {
-  whileHover: {
-    scale: 1.05,
-    transition: {
-      type: 'spring',
-      damping: 15,
-    },
-  },
-};
-
 export const hoverRotateMotion: MotionProps = {
   whileHover: {
     rotate: 360,
