@@ -16,6 +16,7 @@ const DarkModeButton = () => {
       type="button"
       className="p-2 rounded-full cursor-pointer primary-button-hover"
       onClick={toggleTheme}
+      title="dark-mode-button"
     >
       <div className="relative w-6 h-6">
         <motion.div

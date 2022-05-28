@@ -28,10 +28,10 @@ const ProfileCard = () => {
         </div>
       </div>
       <div className="flex items-end gap-4">
-        <ProfileLink href={github}>
+        <ProfileLink href={github} title="github-link">
           <GithubIcon />
         </ProfileLink>
-        <ProfileLink href={notion}>
+        <ProfileLink href={notion} title="notion-link">
           <NotionIcon />
         </ProfileLink>
       </div>
