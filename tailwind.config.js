@@ -67,6 +67,10 @@ module.exports = {
                 display: 'none',
               },
             },
+            img: {
+              marginLeft: 'auto',
+              marginRight: 'auto',
+            },
           },
         },
         dark: {
