@@ -1,4 +1,4 @@
-import { MotionProps } from 'framer-motion';
+import { MotionProps, Transition } from 'framer-motion';
 
 export const viewportOpacityMotion: MotionProps = {
   initial: { opacity: 0 },
@@ -40,23 +40,27 @@ export const createDynamicallyOpacityMotion = (
   transition: { duration: durationMs / 1000 },
 });
 
-export const createRotateScaleMotion = (
-  isShown: boolean,
-  durationMs: number,
-): MotionProps => ({
+const rotateScaleSpring: Transition = {
+  type: 'spring',
+  stiffness: 200,
+  damping: 15,
+};
+
+export const createRotateScaleMotion = (isShown: boolean): MotionProps => ({
   initial: 'hidden',
   animate: isShown ? 'show' : 'hidden',
   variants: {
     show: {
-      opacity: 1,
       scale: 1,
+      opacity: 1,
       rotate: 0,
+      transition: rotateScaleSpring,
     },
     hidden: {
       scale: 0,
-      rotate: 180,
-      opacity: 1,
+      opacity: 0,
+      rotate: 360,
+      transition: rotateScaleSpring,
     },
   },
-  transition: { duration: durationMs / 1000 },
 });

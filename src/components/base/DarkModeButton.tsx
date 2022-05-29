@@ -6,8 +6,6 @@ import { Theme } from '../../constants';
 import useTheme from '../../hooks/useTheme';
 import { createRotateScaleMotion } from '../../lib/styles/motions';
 
-const BUTTON_TRANSITION_MS = 300;
-
 const DarkModeButton = () => {
   const { theme, toggleTheme } = useTheme();
 
@@ -21,19 +19,13 @@ const DarkModeButton = () => {
       <div className="relative w-6 h-6">
         <motion.div
           className="absolute w-full"
-          {...createRotateScaleMotion(
-            theme === Theme.dark,
-            BUTTON_TRANSITION_MS,
-          )}
+          {...createRotateScaleMotion(theme === Theme.dark)}
         >
           <MoonIcon />
         </motion.div>
         <motion.div
           className="absolute w-full"
-          {...createRotateScaleMotion(
-            theme === Theme.light,
-            BUTTON_TRANSITION_MS,
-          )}
+          {...createRotateScaleMotion(theme === Theme.light)}
         >
           <SunIcon />
         </motion.div>
