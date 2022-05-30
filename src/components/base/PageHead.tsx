@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Favicon from './Favicon';
 import ogTagImage from '../../assets/favicon/og_tag_image.png';
 import { DOMAIN_URL } from '../../constants';
-import colors from '../../lib/styles/colors';
+import { theme as tailwindTheme } from '../../../tailwind.config';
 
 interface PageHeadProps {
   description: string;
@@ -28,7 +28,7 @@ const PageHead = ({
     <meta charSet="UTF-8" />
     <meta httpEquiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="robots" content="index,follow" />
-    <meta name="theme-color" content={colors.trueGray800} />
+    <meta name="theme-color" content={tailwindTheme.colors.neutral[900]} />
     <meta name="keywords" content="blog,블로그,kimbiyam,kimbiyam.log,hot9998" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="twitter:card" content="summary" />
