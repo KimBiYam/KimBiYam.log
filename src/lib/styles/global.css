@@ -12,6 +12,10 @@ body {
   -moz-osx-font-smoothing: auto;
 }
 
+#__next {
+  background-color: inherit;
+}
+
 a {
   color: inherit;
   text-decoration: none;
