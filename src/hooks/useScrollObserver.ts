@@ -16,9 +16,7 @@ const useScrollObserver = ({
   rootMargin?: string;
 }) => {
   useEffect(() => {
-    if (!enabled) {
-      return;
-    }
+    if (!enabled) return;
 
     const observer = new IntersectionObserver(
       (entries) =>
@@ -28,13 +26,13 @@ const useScrollObserver = ({
 
     const element = targetRef && targetRef.current;
 
-    if (!element) {
-      return;
-    }
+    if (!element) return;
 
     observer.observe(element);
 
-    return () => observer && observer.unobserve(element);
+    return () => {
+      if (observer) observer.unobserve(element);
+    };
   }, [targetRef.current, enabled]);
 };
 
