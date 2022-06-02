@@ -19,6 +19,16 @@ export const hoverRotateMotion: MotionProps = {
   },
 };
 
+export const hoverLiftUpMotion: MotionProps = {
+  whileHover: {
+    y: -10,
+    transition: {
+      ease: 'linear',
+      duration: 0.2,
+    },
+  },
+};
+
 export const createDynamicallyOpacityMotion = (
   isShown: boolean,
   durationMs: number,
