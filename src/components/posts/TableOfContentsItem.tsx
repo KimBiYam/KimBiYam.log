@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import useHeadingSmoothScroll from '../../hooks/useHeadingSmoothScroll';
 import { TableOfContentHeading } from '../../hooks/useTableOfContents';
 
 export interface TableOfContentsItemProps {
@@ -12,25 +12,16 @@ const TableOfContentsItem = ({
   children,
   activeId,
 }: TableOfContentsItemProps) => {
-  const router = useRouter();
+  const handleClick = useHeadingSmoothScroll();
 
   const { id, title } = heading;
-
-  const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
-    e.preventDefault();
-
-    document
-      .querySelector(`#${CSS.escape(id)}`)
-      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    router.replace(`#${id}`);
-  };
 
   return (
     <li className="my-1 overflow-hidden text-sm text-ellipsis whitespace-nowrap">
       <a
         href={`#${id}`}
         className={activeId === id ? 'opacity-100 font-bold' : `opacity-70`}
-        onClick={handleClick}
+        onClick={(e) => handleClick(e, id)}
       >
         {title}
       </a>
