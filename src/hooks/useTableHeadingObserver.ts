@@ -9,9 +9,7 @@ const useTableHeadingObserver = () => {
         const target = entries.find((entry) => entry.isIntersecting)?.target;
         if (target) setActiveId(target?.id);
       },
-      {
-        rootMargin: '0px 0px -30% 0px',
-      },
+      { rootMargin: '0px 0px -20% 0px', threshold: 1.0 },
     );
 
     const headingElements = Array.from(document.querySelectorAll('h2, h3'));
