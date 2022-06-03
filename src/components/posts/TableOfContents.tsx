@@ -7,7 +7,7 @@ const TableOfContents = () => {
   const activeId = useTableHeadingObserver();
 
   return (
-    <nav className="fixed flex-col hidden w-28 right-8 lg:flex top-52">
+    <nav className="fixed flex-col hidden w-60 right-8 xl:flex top-52">
       <ul>
         {headings.map((heading) => (
           <TableOfContentsItem
