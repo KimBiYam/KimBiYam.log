@@ -7,7 +7,7 @@ const TableOfContents = () => {
   const activeId = useTableHeadingObserver();
 
   return (
-    <nav className="fixed right-0 flex-col hidden mr-8 w-52 lg:flex top-52">
+    <nav className="fixed flex-col hidden w-28 right-8 lg:flex top-52">
       <ul>
         {headings.map((heading) => (
           <TableOfContentsItem
@@ -16,7 +16,7 @@ const TableOfContents = () => {
             activeId={activeId}
           >
             {Array.isArray(heading.items) && heading.items?.length > 0 && (
-              <ul className="ml-3 text-sm">
+              <ul className="ml-3">
                 {heading.items?.map((item) => (
                   <TableOfContentsItem
                     key={item.id}
