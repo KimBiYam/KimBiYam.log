@@ -1,4 +1,4 @@
-import { TableOfContentHeading } from './TableOfContents';
+import { TableOfContentHeading } from '../../hooks/useTableOfContents';
 
 export interface TableOfContentsItemProps {
   heading: TableOfContentHeading;
@@ -14,10 +14,10 @@ const TableOfContentsItem = ({
   const { id, title } = heading;
 
   return (
-    <li className="my-1 overflow-hidden text-ellipsis whitespace-nowrap">
+    <li className="my-1 overflow-hidden text-sm text-ellipsis whitespace-nowrap">
       <a
         href={`#${id}`}
-        className={activeId === id ? 'opacity-100' : `opacity-70`}
+        className={activeId === id ? 'opacity-100 font-bold' : `opacity-70`}
       >
         {title}
       </a>
