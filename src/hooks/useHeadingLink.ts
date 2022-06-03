@@ -6,7 +6,7 @@ const LINK_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" f
 
 const useHeadingLink = (ref: React.RefObject<HTMLElement>) => {
   useEffect(() => {
-    const headingElements = ref.current?.querySelectorAll('h1,h2,h3,h4,h5,h6');
+    const headingElements = ref.current?.querySelectorAll('h2,h3');
 
     headingElements?.forEach((headingEl) => {
       headingEl.classList.add('flex');
