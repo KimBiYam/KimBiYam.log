@@ -1,13 +1,18 @@
+import { forwardRef } from 'react';
+import withDragScroll from '../../hocs/withDragScroll';
 import useTableHeadingObserver from '../../hooks/useTableHeadingObserver';
 import useTableOfContents from '../../hooks/useTableOfContents';
 import TableOfContentsItem from './TableOfContentsItem';
 
-const TableOfContents = () => {
+const TableOfContents = (_: unknown, ref: React.Ref<HTMLElement>) => {
   const headings = useTableOfContents();
   const activeId = useTableHeadingObserver();
 
   return (
-    <nav className="fixed flex-col hidden w-60 right-8 xl:flex top-24">
+    <nav
+      className="fixed flex-col hidden pb-2 overflow-y-auto scrollbar-hide h-2/3 w-60 right-8 xl:flex top-24"
+      ref={ref}
+    >
       <ul>
         {headings.map((heading) => (
           <TableOfContentsItem
@@ -33,4 +38,4 @@ const TableOfContents = () => {
   );
 };
 
-export default TableOfContents;
+export default withDragScroll(forwardRef(TableOfContents));
