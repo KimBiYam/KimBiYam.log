@@ -12,6 +12,13 @@ body {
   -moz-osx-font-smoothing: auto;
 }
 
+code,
+kbd,
+samp,
+pre {
+  font-family: inherit;
+}
+
 #__next {
   background-color: inherit;
 }
