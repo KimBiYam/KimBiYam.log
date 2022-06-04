@@ -4,7 +4,7 @@ import useTableHeadingObserver from '../../hooks/useTableHeadingObserver';
 import useTableOfContents from '../../hooks/useTableOfContents';
 import TableOfContentsItem from './TableOfContentsItem';
 
-const TableOfContents = (_: unknown, ref: React.Ref<HTMLElement>) => {
+const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
   const headings = useTableOfContents();
   const activeId = useTableHeadingObserver();
 
@@ -36,6 +36,6 @@ const TableOfContents = (_: unknown, ref: React.Ref<HTMLElement>) => {
       </ul>
     </nav>
   );
-};
+});
 
-export default withDragScroll(forwardRef(TableOfContents));
+export default withDragScroll(TableOfContents);

@@ -11,29 +11,28 @@ interface TagSelectorProps {
   selectedTag: string;
 }
 
-const TagSelector = (
-  { tags, onTagClick, selectedTag }: TagSelectorProps,
-  ref: React.Ref<HTMLDivElement>,
-) => {
-  const { direction } = useRecoilValue(scrollState);
+const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
+  ({ tags, onTagClick, selectedTag }, ref) => {
+    const { direction } = useRecoilValue(scrollState);
 
-  return (
-    <div
-      className={`sticky z-40 flex pt-4 -mx-6 md:mx-0 overflow-auto scrollbar-hide main-container ${
-        direction === ScrollDirection.up ? 'top-14' : 'top-0'
-      }`}
-      ref={ref}
-    >
-      {tags.map((tag) => (
-        <TagButton
-          key={tag}
-          tag={tag}
-          onTagClick={onTagClick}
-          isSelected={tag === selectedTag}
-        />
-      ))}
-    </div>
-  );
-};
+    return (
+      <div
+        className={`sticky z-40 flex pt-4 -mx-6 md:mx-0 overflow-auto scrollbar-hide main-container ${
+          direction === ScrollDirection.up ? 'top-14' : 'top-0'
+        }`}
+        ref={ref}
+      >
+        {tags.map((tag) => (
+          <TagButton
+            key={tag}
+            tag={tag}
+            onTagClick={onTagClick}
+            isSelected={tag === selectedTag}
+          />
+        ))}
+      </div>
+    );
+  },
+);
 
-export default withDragScroll(forwardRef(TagSelector));
+export default withDragScroll(TagSelector);
