@@ -1,29 +1,31 @@
+import { forwardRef } from 'react';
 import { TableOfContentHeading } from '../../hooks/useTableOfContents';
 
-export interface TableOfContentsItemProps {
+interface TableOfContentsItemProps {
   heading: TableOfContentHeading;
   children?: React.ReactNode;
   activeId: string;
 }
 
-const TableOfContentsItem = ({
-  heading,
-  children,
-  activeId,
-}: TableOfContentsItemProps) => {
-  const { id, title } = heading;
+const TableOfContentsItem = forwardRef<HTMLLIElement, TableOfContentsItemProps>(
+  ({ heading, children, activeId }, ref) => {
+    const { id, title } = heading;
 
-  return (
-    <li className="my-1 overflow-hidden text-sm text-ellipsis whitespace-nowrap">
-      <a
-        href={`#${id}`}
-        className={activeId === id ? 'opacity-100 font-bold' : `opacity-70`}
+    return (
+      <li
+        className="my-1 overflow-hidden text-sm text-ellipsis whitespace-nowrap"
+        ref={ref}
       >
-        {title}
-      </a>
-      {children}
-    </li>
-  );
-};
+        <a
+          href={`#${id}`}
+          className={activeId === id ? 'opacity-100 font-bold' : `opacity-70`}
+        >
+          {title}
+        </a>
+        {children}
+      </li>
+    );
+  },
+);
 
 export default TableOfContentsItem;
