@@ -54,7 +54,7 @@ module.exports = {
               fontWeight: 700,
             },
             code: {
-              padding: '4px',
+              padding: '2px 4px',
               margin: '0 0.1em',
               borderRadius: '4px',
               background: theme('colors.neutral.300'),
