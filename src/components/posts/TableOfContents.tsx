@@ -1,5 +1,6 @@
-import { forwardRef, useEffect, useRef } from 'react';
+import { forwardRef } from 'react';
 import withDragScroll from '../../hocs/withDragScroll';
+import useActiveChildScroll from '../../hooks/useActiveChildScroll';
 import useTableHeadingObserver from '../../hooks/useTableHeadingObserver';
 import useTableOfContents from '../../hooks/useTableOfContents';
 import TableOfContentsItem from './TableOfContentsItem';
@@ -8,14 +9,10 @@ const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
   const headings = useTableOfContents();
   const activeId = useTableHeadingObserver();
 
-  const itemRefs = useRef<Record<string, HTMLLIElement | null>>({});
-
-  useEffect(() => {
-    if (!ref || typeof ref === 'function' || !ref.current) return;
-
-    const activeItem = itemRefs.current[activeId];
-    ref.current.scrollTo({ top: activeItem?.offsetTop, behavior: 'smooth' });
-  }, [activeId]);
+  const { registerChildRef } = useActiveChildScroll({
+    activeId,
+    parentRef: ref,
+  });
 
   return (
     <nav
@@ -28,9 +25,7 @@ const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
             key={heading.id}
             heading={heading}
             activeId={activeId}
-            ref={(instance) => {
-              itemRefs.current[heading.id] = instance;
-            }}
+            ref={(instance) => registerChildRef(instance, heading.id)}
           >
             {Array.isArray(heading.items) && heading.items?.length > 0 && (
               <ul className="ml-3">
@@ -39,9 +34,7 @@ const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
                     key={item.id}
                     heading={item}
                     activeId={activeId}
-                    ref={(instance) => {
-                      itemRefs.current[item.id] = instance;
-                    }}
+                    ref={(instance) => registerChildRef(instance, item.id)}
                   />
                 ))}
               </ul>
