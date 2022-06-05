@@ -108,3 +108,34 @@ print(Hello.a.convertedKorText == "나는 A"); // true
 
 이러한 방식으로 사용하여도 타입스크립트처럼 값을 바로 매핑하여 사용할 수 있는 건 아니지만,
 함수를 사용하는 방식보다는 편하게 사용이 가능합니다.
+
+---
+
+## 추가 내용 (2022-06-05)
+
+Flutter 3.0이 릴리즈 되면서 Dart 2.17이 적용 되었습니다. Dart 2.17의 `새로운 enum 문법`이 생겨, extension 없이도 enum 내부에 클래스처럼 메소드와 필드를 구현해서 사용할 수 있습니다.
+
+[Dart 2.17 업데이트 내용](https://medium.com/dartlang/dart-2-17-b216bfc80c5d)
+
+### 위 예시를 새로운 문법으로 변환한 예시
+
+```dart
+enum Hello {
+  a("나는 A"),
+  b("나는 B");
+  
+  final String text;
+  const Hello(this.text);
+  
+  
+  @override
+  String toString() => text;
+}
+
+void main() {
+  print(Hello.a); // 나는 A
+  print(Hello.a.toString() == "나는 A"); // true
+}
+```
+
+![Untitled](/images/posts/flutter/enum-value-to-string_1.png)
