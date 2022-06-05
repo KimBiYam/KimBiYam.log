@@ -12,7 +12,7 @@ const Contact = ({ contentHtml }: ContactProps) => (
   <>
     <PageHead title="Contact" description="Contact" url="/contact" />
     <div className="py-12">
-      <MarkdownView contentHtml={contentHtml} />
+      <MarkdownView markdown={contentHtml} />
     </div>
   </>
 );

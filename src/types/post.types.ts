@@ -8,7 +8,7 @@ export interface Post {
 }
 
 export interface PostDetail extends Post {
-  contentHtml: string;
+  markdown: string;
   description: string;
   ogImagePath?: string;
 }

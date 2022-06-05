@@ -7,17 +7,17 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import NextImage from 'next/image';
 import { Element } from 'react-markdown/lib/rehype-filter';
-import useMediumZoom from '../../hooks/useMediumZoom';
 import useHeadingLink from '../../hooks/useHeadingLink';
+import useMediumZoom from '../../hooks/useMediumZoom';
 
 interface MarkdownViewProps {
-  contentHtml: string;
+  markdown: string;
 }
 
-const MarkdownView = ({ contentHtml }: MarkdownViewProps) => {
+const MarkdownView = ({ markdown }: MarkdownViewProps) => {
   const markdownRef = useRef<HTMLDivElement>(null);
 
-  // useMediumZoom(markdownRef);
+  useMediumZoom(markdownRef);
   useHeadingLink(markdownRef);
 
   return (
@@ -61,16 +61,16 @@ const MarkdownView = ({ contentHtml }: MarkdownViewProps) => {
                 <NextImage
                   src={image.properties?.src as string}
                   alt={image.properties?.alt as string}
+                  quality={100}
                   layout="fill"
                   objectFit="contain"
-                  quality={100}
                 />
               </div>
             );
           },
         }}
       >
-        {contentHtml}
+        {markdown}
       </ReactMarkdown>
     </div>
   );

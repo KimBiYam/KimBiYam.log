@@ -44,7 +44,7 @@ export const getPostDetail = async (
     title,
     date,
     tag,
-    contentHtml,
+    markdown: contentHtml,
     description,
     ...rest,
   };
