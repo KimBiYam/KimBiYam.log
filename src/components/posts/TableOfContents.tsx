@@ -3,7 +3,7 @@ import withDragScroll from '../../hocs/withDragScroll';
 import useActiveChildScroll from '../../hooks/useActiveChildScroll';
 import useTableHeadingObserver from '../../hooks/useTableHeadingObserver';
 import useTableOfContents from '../../hooks/useTableOfContents';
-import TableOfContentsList from './TableOfContentsList';
+import TableOfContentsItem from './TableOfContentsItem';
 
 const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
   const headings = useTableOfContents();
@@ -19,11 +19,29 @@ const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
       className="fixed flex flex-col pb-2 overflow-y-auto scrollbar-hide h-2/3 w-60 right-8 top-24"
       ref={ref}
     >
-      <TableOfContentsList
-        activeId={activeId}
-        headings={headings}
-        registerChildRef={registerChildRef}
-      />
+      <ul>
+        {headings.map((heading) => (
+          <TableOfContentsItem
+            key={heading.id}
+            heading={heading}
+            activeId={activeId}
+            ref={(instance) => registerChildRef(instance, heading.id)}
+          >
+            {Array.isArray(heading.items) && heading.items?.length > 0 && (
+              <ul className="ml-3">
+                {heading.items?.map((item) => (
+                  <TableOfContentsItem
+                    key={item.id}
+                    heading={item}
+                    activeId={activeId}
+                    ref={(instance) => registerChildRef(instance, item.id)}
+                  />
+                ))}
+              </ul>
+            )}
+          </TableOfContentsItem>
+        ))}
+      </ul>
     </nav>
   );
 });
