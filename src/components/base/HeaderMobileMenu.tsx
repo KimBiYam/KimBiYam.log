@@ -13,11 +13,11 @@ const HeaderMobileMenu = () => {
   const menuButtonRef = useRef<HTMLDivElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useDetectOutsideClick(menuButtonRef);
 
-  const isMediumScreen = useMediaQuery({ minWidth: breakPoints.md });
+  const isUpMediumScreen = useMediaQuery({ minWidth: breakPoints.md });
 
   useEffect(() => {
-    if (isMediumScreen) setIsMenuOpen(false);
-  }, [isMediumScreen]);
+    if (isUpMediumScreen) setIsMenuOpen(false);
+  }, [isUpMediumScreen]);
 
   const toggleMenu = () => {
     setIsMenuOpen((prevDropdownOpen) => !prevDropdownOpen);

@@ -1,3 +1,6 @@
+import { useMediaQuery } from 'react-responsive';
+import useClientSide from '../../hooks/useClientSide';
+import breakPoints from '../../lib/styles/breakPoints';
 import { PostDetail } from '../../types/post.types';
 import ProfileCard from '../base/ProfileCard';
 import MarkdownView from './MarkdownView';
@@ -11,6 +14,9 @@ interface PostViewProps {
 
 const PostView = ({ postDetail }: PostViewProps) => {
   const { title, date, contentHtml, tag } = postDetail;
+
+  const isClientSide = useClientSide();
+  const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
 
   return (
     <>
@@ -26,7 +32,7 @@ const PostView = ({ postDetail }: PostViewProps) => {
         </div>
         <Utterances />
       </article>
-      <TableOfContents />
+      {isClientSide && isUpExtraLargeScreen && <TableOfContents />}
     </>
   );
 };
