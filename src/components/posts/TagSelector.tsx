@@ -3,6 +3,7 @@ import { useRecoilValue } from 'recoil';
 import scrollState from '../../atoms/scrollState';
 import { ScrollDirection } from '../../constants';
 import withDragScroll from '../../hocs/withDragScroll';
+import useActiveChildScroll from '../../hooks/useActiveChildScroll';
 import TagButton from './TagButton';
 
 interface TagSelectorProps {
@@ -14,6 +15,10 @@ interface TagSelectorProps {
 const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
   ({ tags, onTagClick, selectedTag }, ref) => {
     const { direction } = useRecoilValue(scrollState);
+    const { registerChildRef } = useActiveChildScroll({
+      activeId: selectedTag,
+      parentRef: ref,
+    });
 
     return (
       <div
@@ -28,6 +33,7 @@ const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
             tag={tag}
             onTagClick={onTagClick}
             isSelected={tag === selectedTag}
+            ref={(instance) => registerChildRef(instance, tag)}
           />
         ))}
       </div>
