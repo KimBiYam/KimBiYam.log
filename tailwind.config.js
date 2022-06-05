@@ -69,6 +69,9 @@ module.exports = {
               marginLeft: 'auto',
               marginRight: 'auto',
             },
+            'ol > li::marker': {
+              color: theme('colors.neutral.500'),
+            },
           },
         },
         dark: {
@@ -91,6 +94,9 @@ module.exports = {
             },
             blockquote: {
               color: theme('colors.neutral.100'),
+            },
+            'ol > li::marker': {
+              color: theme('colors.neutral.400'),
             },
           },
         },
