@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import NextImage from 'next/image';
 import { Element } from 'react-markdown/lib/rehype-filter';
 import useMediumZoom from '../../hooks/useMediumZoom';
@@ -34,7 +35,9 @@ const MarkdownView = ({ contentHtml }: MarkdownViewProps) => {
 
             return !inline && match ? (
               <SyntaxHighlighter
-                style={undefined as any}
+                showLineNumbers
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                style={tomorrow as any}
                 language={match[1]}
                 {...props}
               >
