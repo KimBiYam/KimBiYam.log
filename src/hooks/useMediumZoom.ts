@@ -27,7 +27,7 @@ const useMediumZoom = (ref: React.RefObject<HTMLElement>) => {
 
   useEffect(() => {
     zoomRef.current?.update({ background });
-  }, [theme]);
+  }, [background]);
 };
 
 export default useMediumZoom;
