@@ -65,6 +65,19 @@ h3 {
     display: none;
   }
 
+  .scrollbar-thin::-webkit-scrollbar {
+    padding-left: 6px;
+    width: 2px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-neutral-200 dark:bg-neutral-400;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-neutral-400 dark:bg-neutral-600;
+  }
+
   .text-shadow {
     text-shadow: 0px 0px 8px rgba(128, 128, 128, 0.5);
   }
