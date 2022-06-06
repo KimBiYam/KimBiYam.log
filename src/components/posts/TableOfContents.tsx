@@ -1,13 +1,13 @@
 import { forwardRef } from 'react';
 import withDragScroll from '../../hocs/withDragScroll';
 import useActiveChildScroll from '../../hooks/useActiveChildScroll';
-import useTableHeadingObserver from '../../hooks/useTableHeadingObserver';
+import useActiveHeadingDetector from '../../hooks/useActiveHeadingDetector';
 import useTableOfContents from '../../hooks/useTableOfContents';
 import TableOfContentsItem from './TableOfContentsItem';
 
 const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
   const headings = useTableOfContents();
-  const activeId = useTableHeadingObserver();
+  const activeId = useActiveHeadingDetector();
 
   const { registerChildRef } = useActiveChildScroll({
     activeId,
