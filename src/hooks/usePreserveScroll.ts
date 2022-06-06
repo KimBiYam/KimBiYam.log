@@ -5,22 +5,23 @@ export const usePreserveScroll = () => {
   const router = useRouter();
   const url = router.asPath;
 
-  const scrollPositions = useRef<Record<string, number>>({});
-  const isPop = useRef(false);
+  const scrollPositionsRef = useRef<Record<string, number>>({});
+  const isPopRef = useRef(false);
 
   useEffect(() => {
     router.beforePopState(() => {
-      isPop.current = true;
+      isPopRef.current = true;
       return true;
     });
 
     const handleRouteChangeStart = () => {
-      scrollPositions.current[url] = window.scrollY;
+      scrollPositionsRef.current[url] = window.scrollY;
     };
 
     const handleRouteChangeComplete = (currentUrl: string) => {
-      const currentScrollPosition = scrollPositions.current[currentUrl];
-      const shouldScrollRestore = isPop.current && currentScrollPosition !== 0;
+      const currentScrollPosition = scrollPositionsRef.current[currentUrl];
+      const shouldScrollRestore =
+        isPopRef.current && currentScrollPosition !== 0;
 
       // HACK: race condition 이슈로 scroll이 실행되지 않는 경우가 생겨 setTimeout 적용
       // Reference : https://stackoverflow.com/a/779785
@@ -30,7 +31,7 @@ export const usePreserveScroll = () => {
         setTimeout(() => window.scrollTo({ top: 0 }), 0);
       }
 
-      isPop.current = false;
+      isPopRef.current = false;
     };
 
     router.events.on('routeChangeStart', handleRouteChangeStart);
