@@ -17,9 +17,14 @@ const useActiveChildScroll = <P extends HTMLElement, C extends HTMLElement>({
     }
 
     const activeItem = itemRefs.current[activeId];
+
+    if (!activeItem) return;
+
+    const { offsetTop, offsetLeft, offsetHeight, offsetWidth } = activeItem;
+
     parentRef.current.scrollTo({
-      top: activeItem?.offsetTop,
-      left: activeItem?.offsetLeft,
+      top: offsetTop - offsetHeight,
+      left: offsetLeft - offsetWidth,
       behavior: 'smooth',
     });
   }, [activeId]);
