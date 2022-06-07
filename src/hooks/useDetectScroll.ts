@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import scrollState from '../atoms/scrollState';
 import { ScrollDirection } from '../constants';
-import throttle from '../lib/utils/throttle';
+import useThrottle from './useThrottle';
 
 const THROTTLE_TIME_MS = 100;
 
@@ -10,7 +10,7 @@ const useDetectScroll = () => {
   const [{ pageY }, setScrollState] = useRecoilState(scrollState);
 
   const handleScroll = useCallback(
-    throttle(() => {
+    useThrottle(() => {
       const { pageYOffset } = window;
       const deltaY = pageYOffset - pageY;
       const direction =
