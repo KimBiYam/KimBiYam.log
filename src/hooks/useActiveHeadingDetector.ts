@@ -20,10 +20,10 @@ const getHeadingsScrollPosition = () => {
 
 const findClosestScrollId = (
   headings: HeadingScrollPosition[],
-  pageYOffset: number,
+  scrollY: number,
 ) => {
   const filtered = headings.filter(
-    (el) => el.top <= pageYOffset + SCROLL_MARGIN_PX,
+    (el) => el.top <= scrollY + SCROLL_MARGIN_PX,
   );
 
   if (filtered.length === 0) return null;
@@ -41,13 +41,36 @@ const useActiveHeadingDetector = () => {
   const headingsScrollRef = useRef<HeadingScrollPosition[]>([]);
 
   const handleScroll = useThrottle(() => {
-    const { pageYOffset } = window;
+    const { scrollY } = window;
 
-    setActiveId(findClosestScrollId(headingsScrollRef.current, pageYOffset));
+    setActiveId(findClosestScrollId(headingsScrollRef.current, scrollY));
   }, THROTTLE_TIME_MS);
 
   useEffect(() => {
     headingsScrollRef.current = getHeadingsScrollPosition();
+
+    let prevScrollHeight = document.body.scrollHeight;
+    let timeoutId: NodeJS.Timeout | null = null;
+
+    const checkScrollHeight = () => {
+      const { scrollHeight } = document.body;
+
+      if (prevScrollHeight !== scrollHeight) {
+        headingsScrollRef.current = getHeadingsScrollPosition();
+      }
+
+      prevScrollHeight = scrollHeight;
+      timeoutId = setTimeout(checkScrollHeight, 250);
+    };
+
+    timeoutId = setTimeout(checkScrollHeight, 250);
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, []);
+
+  useEffect(() => {
     document.addEventListener('scroll', handleScroll);
 
     return () => {
