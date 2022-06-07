@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 
 interface UseActiveItemScrollProps<P> {
-  activeId: string;
+  activeId: string | null;
   parentRef: React.Ref<P>;
 }
 
@@ -11,10 +11,11 @@ const useActiveChildScroll = <P extends HTMLElement, C extends HTMLElement>({
 }: UseActiveItemScrollProps<P>) => {
   const itemRefs = useRef<Record<string, C | null>>({});
 
+  const isRefObject =
+    parentRef && typeof parentRef !== 'function' && parentRef.current;
+
   useEffect(() => {
-    if (!parentRef || typeof parentRef === 'function' || !parentRef.current) {
-      return;
-    }
+    if (!isRefObject || !activeId) return;
 
     const activeItem = itemRefs.current[activeId];
 

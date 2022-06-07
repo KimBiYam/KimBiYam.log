@@ -4,7 +4,7 @@ import { TableOfContentHeading } from '../../hooks/useTableOfContents';
 interface TableOfContentsItemProps {
   heading: TableOfContentHeading;
   children?: React.ReactNode;
-  activeId: string;
+  activeId: string | null;
 }
 
 const TableOfContentsItem = forwardRef<HTMLLIElement, TableOfContentsItemProps>(
