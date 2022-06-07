@@ -10,7 +10,15 @@ const withDragScroll = <T,>(Component: React.ComponentType<T>) => {
 
       ref.current.style.overflow = 'auto';
       ref.current.addEventListener('mousedown', handleMouseDown);
-    }, [ref.current]);
+
+      return () => {
+        if (!ref.current) return;
+
+        ref.current.removeEventListener('mousedown', handleMouseDown);
+        ref.current.removeEventListener('mousemove', handleMouseMove);
+        ref.current.removeEventListener('mouseup', handleMouseUp);
+      };
+    }, []);
 
     const handleMouseDown = (e: MouseEvent) => {
       if (!ref.current) return;
