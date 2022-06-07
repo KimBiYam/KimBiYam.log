@@ -25,6 +25,7 @@ const ScrollToTopButton = () => {
       <button
         type="button"
         onClick={handleClick}
+        aria-label="scroll-to-top-button"
         className={`flex items-center justify-center w-10 h-10 transition-opacity duration-300 rounded-full drop-shadow-md
         bg-slate-200 justify-items-center dark:bg-neutral-700 hover:opacity-70`}
       >
