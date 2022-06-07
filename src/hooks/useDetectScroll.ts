@@ -11,14 +11,12 @@ const useDetectScroll = () => {
 
   const handleScroll = useCallback(
     useThrottle(() => {
-      const { pageYOffset } = window;
-      const deltaY = pageYOffset - pageY;
+      const { scrollY } = window;
+      const deltaY = scrollY - pageY;
       const direction =
-        pageYOffset === 0 || deltaY < 0
-          ? ScrollDirection.up
-          : ScrollDirection.down;
+        scrollY === 0 || deltaY < 0 ? ScrollDirection.up : ScrollDirection.down;
 
-      setScrollState({ direction, pageY: pageYOffset });
+      setScrollState({ direction, pageY: scrollY });
     }, THROTTLE_TIME_MS),
     [pageY, setScrollState],
   );
