@@ -20,7 +20,9 @@ const TableOfContentsItem = forwardRef<
         ref={ref}
         className={`
         hover:opacity-100
-        ${activeId === id ? 'opacity-100 font-bold' : 'opacity-70'}`}
+        transition-opacity
+        duration-300
+        ${activeId === id ? 'opacity-100 font-bold' : 'opacity-60'}`}
       >
         {title}
       </a>
