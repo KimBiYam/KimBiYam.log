@@ -17,7 +17,7 @@ const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
   return (
     <aside className="absolute left-full">
       <nav
-        className="fixed flex flex-col w-56 pr-4 ml-12 overflow-y-auto scrollbar-thin h-2/3 top-36"
+        className="fixed flex flex-col w-56 pr-4 ml-12 overflow-y-auto 2xl:ml-24 scrollbar-thin h-2/3 top-36"
         ref={ref}
       >
         <ul>
