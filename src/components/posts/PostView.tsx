@@ -19,21 +19,19 @@ const PostView = ({ postDetail }: PostViewProps) => {
   const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
 
   return (
-    <>
-      <article className="pb-24 mt-8">
-        <h1 className="text-2xl font-bold md:text-4xl">{title}</h1>
-        <div className="flex items-center justify-between my-4">
-          <p className="text-sm">{date}</p>
-          <TagBadge tag={tag.toUpperCase()} />
-        </div>
-        <MarkdownView contentHtml={contentHtml} />
-        <div className="py-4 my-10 border-t border-b">
-          <ProfileCard />
-        </div>
-        <Utterances />
-      </article>
+    <article className="relative pb-24 mt-8">
+      <h1 className="text-2xl font-bold md:text-4xl">{title}</h1>
+      <div className="flex items-center justify-between my-4">
+        <p className="text-sm">{date}</p>
+        <TagBadge tag={tag.toUpperCase()} />
+      </div>
+      <MarkdownView contentHtml={contentHtml} />
+      <div className="py-4 my-10 border-t border-b">
+        <ProfileCard />
+      </div>
+      <Utterances />
       {isClientSide && isUpExtraLargeScreen && <TableOfContents />}
-    </>
+    </article>
   );
 };
 
