@@ -2,6 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const colors = require('tailwindcss/colors');
 const typographyPlugin = require('@tailwindcss/typography');
+const breakPoints = require('./src/lib/styles/breakPoints.json');
 
 delete colors.lightBlue;
 delete colors.warmGray;
@@ -18,13 +19,7 @@ module.exports = {
       center: true,
     },
     extend: {
-      screens: {
-        xs: { min: '0px', max: '479px' },
-        sm: { min: '480px', max: '767px' },
-        md: '768px',
-        lg: '1024px',
-        xl: '1280px',
-      },
+      screens: breakPoints,
       keyframes: {
         'fade-in': {
           '0%': {

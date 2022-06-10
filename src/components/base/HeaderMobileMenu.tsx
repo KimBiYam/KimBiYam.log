@@ -5,7 +5,7 @@ import HeaderItem from './HeaderItem';
 import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
 import HeaderMenuButton from './HeaderMenuButton';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
-import breakPoints from '../../lib/styles/breakPoints';
+import breakPoints from '../../lib/styles/breakPoints.json';
 
 const VISIBLE_TRANSITION_MS = 300;
 

@@ -1,6 +1,6 @@
 import { useMediaQuery } from 'react-responsive';
 import useClientSide from '../../hooks/useClientSide';
-import breakPoints from '../../lib/styles/breakPoints';
+import breakPoints from '../../lib/styles/breakPoints.json';
 import { PostDetail } from '../../types/post.types';
 import ProfileCard from '../base/ProfileCard';
 import MarkdownView from './MarkdownView';
