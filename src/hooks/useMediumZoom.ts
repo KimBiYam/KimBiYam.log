@@ -18,7 +18,14 @@ const useMediumZoom = (ref: React.RefObject<HTMLElement>) => {
 
   useEffect(() => {
     const images = ref.current?.querySelectorAll('img');
-    zoomRef.current = mediumZoom(images, { background, margin: 24 });
+
+    if (!images) return;
+
+    const filtered = Array.from(images).filter(
+      (el) => el.parentElement?.tagName === 'P',
+    );
+
+    zoomRef.current = mediumZoom(filtered, { background, margin: 24 });
 
     return () => {
       if (zoomRef.current) zoomRef.current.detach();
