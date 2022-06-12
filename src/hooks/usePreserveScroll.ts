@@ -23,12 +23,10 @@ export const usePreserveScroll = () => {
       const shouldScrollRestore =
         isPopRef.current && currentScrollPosition !== 0;
 
-      // HACK: race condition 이슈로 scroll이 실행되지 않는 경우가 생겨 setTimeout 적용
-      // Reference : https://stackoverflow.com/a/779785
       if (shouldScrollRestore) {
-        setTimeout(() => window.scrollTo({ top: currentScrollPosition }), 0);
+        window.scrollTo({ top: currentScrollPosition });
       } else {
-        setTimeout(() => window.scrollTo({ top: 0 }), 0);
+        window.scrollTo({ top: 0 });
       }
 
       isPopRef.current = false;
