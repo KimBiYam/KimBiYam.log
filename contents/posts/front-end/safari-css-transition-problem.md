@@ -62,7 +62,10 @@ Safari에서(~~이 놈의 사파리...~~) `css transition` 사용 시 발생하�
 
 ![animation_solutions.gif](/images/posts/front-end/safari-css-transition-problem_3.gif)
 
-[예제 레포지토리](https://github.com/KimBiYam/safari-scale-transition-problem)
+### 예시 코드
+
+[![Edit safari-scale-transition-problem](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/safari-scale-transition-problem-rin51g?fontsize=14&hidenavigation=1&theme=dark)
+
 
 ### 레퍼런스
 
