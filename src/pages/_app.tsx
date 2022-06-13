@@ -13,6 +13,7 @@ import { usePreserveScroll } from '../hooks/usePreserveScroll';
 
 import '../lib/styles/global.css';
 import '../lib/styles/code.css';
+import '../lib/styles/tailwind.css';
 
 if (IS_PRODUCTION) sentryUtil.init();
 
