@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .main-container {
+    @apply transition-backgroundColor duration-300 bg-white dark:bg-neutral-900;
+  }
+
+  .main-font-color {
+    @apply text-black dark:text-neutral-100;
+  }
+
+  .primary-text-hover {
+    @apply transition-color duration-300 hover:text-neutral-200 dark:hover:text-neutral-500;
+  }
+
+  .primary-button-hover {
+    @apply transition-backgroundColor duration-300 hover:bg-neutral-200 dark:hover:bg-neutral-500;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    padding-left: 6px;
+    width: 2px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-neutral-200 dark:bg-neutral-400;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-neutral-400 dark:bg-neutral-600;
+  }
+
+  .text-shadow {
+    text-shadow: 0px 0px 8px rgba(128, 128, 128, 0.5);
+  }
+
+  .text-shadow-dark {
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.1);
+  }
+
+  .transition-text-shadow {
+    transition-property: text-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+}
