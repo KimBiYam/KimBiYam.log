@@ -12,9 +12,10 @@ const useDetectScroll = () => {
   const handleScroll = useCallback(
     useThrottle(() => {
       const { scrollY } = window;
+
       const deltaY = scrollY - pageY;
-      const direction =
-        scrollY === 0 || deltaY < 0 ? ScrollDirection.up : ScrollDirection.down;
+      const isScrollUp = scrollY === 0 || deltaY < 0;
+      const direction = isScrollUp ? ScrollDirection.up : ScrollDirection.down;
 
       setScrollState({ direction, pageY: scrollY });
     }, THROTTLE_TIME_MS),
