@@ -10,11 +10,7 @@ interface ContactProps {
 
 const Contact = ({ contentHtml }: ContactProps) => (
   <>
-    <PageHead
-      title="KimBiYam.log | Contact"
-      description="Contact"
-      url="/contact"
-    />
+    <PageHead title="Contact" description="Contact" url="/contact" />
     <div className="py-12">
       <MarkdownView contentHtml={contentHtml} />
     </div>

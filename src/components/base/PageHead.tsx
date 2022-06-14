@@ -11,6 +11,8 @@ interface PageHeadProps {
   ogImagePath?: string;
 }
 
+const PAGE_TITLE_SUFFIX = ' | KimBiYam.log';
+
 const PageHead = ({
   title,
   description,
@@ -19,7 +21,7 @@ const PageHead = ({
 }: PageHeadProps) => (
   <Head>
     <Favicon />
-    <title>{title}</title>
+    <title>{title + PAGE_TITLE_SUFFIX}</title>
     <link rel="canonical" href={`${DOMAIN_URL}${url}`} />
     <meta
       name="viewport"

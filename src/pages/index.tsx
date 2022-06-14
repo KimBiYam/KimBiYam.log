@@ -30,10 +30,7 @@ const Home = ({ postPreviews }: HomeProps) => {
 
   return (
     <>
-      <PageHead
-        title="KimBiYam.log"
-        description="KimBiYam의 개발 블로그 입니다."
-      />
+      <PageHead title="Main" description="KimBiYam의 개발 블로그 입니다." />
       <div className="pb-12">
         <div className="my-2">
           <ProfileCard />
