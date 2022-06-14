@@ -23,7 +23,7 @@ const Home = ({ postPreviews }: HomeProps) => {
       Tag.all,
       ...Array.from(
         new Set(postPreviews.map((postPreview) => postPreview.tag)),
-      ),
+      ).sort(),
     ],
     [postPreviews],
   );
