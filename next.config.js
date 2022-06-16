@@ -1,5 +1,11 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
-module.exports = {
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   images: {
     deviceSizes: [480, 768, 1024, 1280],
@@ -12,4 +18,4 @@ module.exports = {
 
     return config;
   },
-};
+});
