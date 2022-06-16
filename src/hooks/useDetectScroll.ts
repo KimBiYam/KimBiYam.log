@@ -1,5 +1,5 @@
+import { useAtom } from 'jotai';
 import { useCallback, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
 import scrollAtom from '../atoms/scrollAtom';
 import { ScrollDirection } from '../constants';
 import useThrottle from './useThrottle';
@@ -7,7 +7,7 @@ import useThrottle from './useThrottle';
 const THROTTLE_TIME_MS = 100;
 
 const useDetectScroll = () => {
-  const [{ pageY }, setScroll] = useRecoilState(scrollAtom);
+  const [{ pageY }, setScroll] = useAtom(scrollAtom);
 
   const handleScroll = useCallback(
     useThrottle(() => {

@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 import { ScrollDirection } from '../constants';
 
 interface ScrollAtom {
@@ -11,9 +11,6 @@ const initialState: ScrollAtom = {
   pageY: 0,
 };
 
-const scrollAtom = atom<ScrollAtom>({
-  key: 'scroll',
-  default: initialState,
-});
+const scrollAtom = atom<ScrollAtom>(initialState);
 
 export default scrollAtom;
