@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { memo } from 'react';
-import favicon from '../../assets/favicon/favicon-192x192.png';
+import favicon from '../../assets/favicon/favicon-32x32.png';
 
 const Logo = () => (
   <Link href="/" passHref>
@@ -11,7 +11,8 @@ const Logo = () => (
         src={favicon}
         alt="logo"
         quality={100}
-        className="cursor-pointer"
+        width={24}
+        height={24}
       />
     </a>
   </Link>
