@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { useRecoilValue } from 'recoil';
-import scrollState from '../../atoms/scrollState';
+import scrollAtom from '../../atoms/scrollAtom';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
 import { ScrollDirection } from '../../constants';
 import Logo from './Logo';
@@ -12,7 +12,7 @@ const VISIBLE_TRANSITION_MS = 100;
 const HEADER_HEIGHT = 32;
 
 const Header = () => {
-  const { direction, pageY } = useRecoilValue(scrollState);
+  const { direction, pageY } = useRecoilValue(scrollAtom);
   const isShown = pageY < HEADER_HEIGHT / 2 || direction === ScrollDirection.up;
 
   return (

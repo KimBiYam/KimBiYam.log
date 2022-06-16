@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import postPageState from '../../atoms/postPageState';
+import postPageAtom from '../../atoms/postPageAtom';
 import { Tag } from '../../constants';
 import useScrollObserver from '../../hooks/useScrollObserver';
 import { PostPreview } from '../../types/post.types';
@@ -15,7 +15,7 @@ const POST_COUNT_BY_PAGE = 10;
 
 const PostList = ({ postPreviews, selectedTag }: PostListProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [postPage, setPostPage] = useRecoilState(postPageState);
+  const [postPage, setPostPage] = useRecoilState(postPageAtom);
 
   const handleIntersect = useCallback(
     () => setPostPage((prev) => prev + 1),
