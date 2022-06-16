@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import themeAtom from '../atoms/themeState';
+import themeAtom from '../atoms/themeAtom';
 import { Theme } from '../constants';
 import themeStorage from '../lib/storage/themeStorage';
 
