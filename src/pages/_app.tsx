@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app';
-import { RecoilRoot } from 'recoil';
 import smoothscroll from 'smoothscroll-polyfill';
 import { useEffect } from 'react';
 import Header from '../components/base/Header';
@@ -26,14 +25,14 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   return (
-    <RecoilRoot>
+    <>
       <Header />
       <MainLayout>
         <Component {...pageProps} />
       </MainLayout>
       <Footer />
       <ScrollToTopButton />
-    </RecoilRoot>
+    </>
   );
 };
 
