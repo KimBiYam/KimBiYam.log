@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { motion } from 'framer-motion';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import scrollAtom from '../../atoms/scrollAtom';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
 import { ScrollDirection } from '../../constants';
@@ -12,7 +12,7 @@ const VISIBLE_TRANSITION_MS = 100;
 const HEADER_HEIGHT = 32;
 
 const Header = () => {
-  const { direction, pageY } = useRecoilValue(scrollAtom);
+  const { direction, pageY } = useAtomValue(scrollAtom);
   const isShown = pageY < HEADER_HEIGHT / 2 || direction === ScrollDirection.up;
 
   return (

@@ -1,5 +1,5 @@
+import { useAtomValue } from 'jotai';
 import { forwardRef } from 'react';
-import { useRecoilValue } from 'recoil';
 import scrollAtom from '../../atoms/scrollAtom';
 import { ScrollDirection } from '../../constants';
 import withDragScroll from '../../hocs/withDragScroll';
@@ -14,7 +14,7 @@ interface TagSelectorProps {
 
 const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
   ({ tags, onTagClick, selectedTag }, ref) => {
-    const { direction } = useRecoilValue(scrollAtom);
+    const { direction } = useAtomValue(scrollAtom);
     const { registerChildRef } = useActiveChildScroll({
       activeId: selectedTag,
       parentRef: ref,
