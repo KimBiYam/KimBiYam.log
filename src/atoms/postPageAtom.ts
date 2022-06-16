@@ -1,8 +1,5 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
-const postPageAtom = atom<number>({
-  key: 'postPage',
-  default: 1,
-});
+const postPageAtom = atom<number>(1);
 
 export default postPageAtom;
