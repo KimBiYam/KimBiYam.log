@@ -8,4 +8,4 @@ My dev log!
 - gray-matter
 - remark
 - utterances
-- recoil
+- jotai
