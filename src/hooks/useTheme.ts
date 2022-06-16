@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import themeState from '../atoms/themeState';
+import themeAtom from '../atoms/themeState';
 import { Theme } from '../constants';
 import themeStorage from '../lib/storage/themeStorage';
 
 const useTheme = () => {
-  const [theme, setTheme] = useRecoilState(themeState);
+  const [theme, setTheme] = useRecoilState(themeAtom);
 
   useEffect(() => {
     const storageTheme = themeStorage.getTheme() ?? Theme.light;

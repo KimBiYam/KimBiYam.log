@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { useRecoilValue } from 'recoil';
-import scrollState from '../../atoms/scrollState';
+import scrollAtom from '../../atoms/scrollAtom';
 import { ScrollDirection } from '../../constants';
 import withDragScroll from '../../hocs/withDragScroll';
 import useActiveChildScroll from '../../hooks/useActiveChildScroll';
@@ -14,7 +14,7 @@ interface TagSelectorProps {
 
 const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
   ({ tags, onTagClick, selectedTag }, ref) => {
-    const { direction } = useRecoilValue(scrollState);
+    const { direction } = useRecoilValue(scrollAtom);
     const { registerChildRef } = useActiveChildScroll({
       activeId: selectedTag,
       parentRef: ref,

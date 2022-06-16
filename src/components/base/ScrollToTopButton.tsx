@@ -1,14 +1,14 @@
 import { useRecoilValue } from 'recoil';
 import { motion } from 'framer-motion';
 import ArrowUpIcon from '../../assets/svgs/arrow_up.svg';
-import scrollState from '../../atoms/scrollState';
+import scrollAtom from '../../atoms/scrollAtom';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
 
 const VISIBLE_TRANSITION_MS = 250;
 const VISIBLE_PAGE_Y_PX = 500;
 
 const ScrollToTopButton = () => {
-  const { pageY } = useRecoilValue(scrollState);
+  const { pageY } = useRecoilValue(scrollAtom);
 
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
