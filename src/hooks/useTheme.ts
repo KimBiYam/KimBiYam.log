@@ -1,11 +1,11 @@
+import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
 import themeAtom from '../atoms/themeState';
 import { Theme } from '../constants';
 import themeStorage from '../lib/storage/themeStorage';
 
 const useTheme = () => {
-  const [theme, setTheme] = useRecoilState(themeAtom);
+  const [theme, setTheme] = useAtom(themeAtom);
 
   useEffect(() => {
     const storageTheme = themeStorage.getTheme() ?? Theme.light;
