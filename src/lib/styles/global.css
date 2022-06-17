@@ -16,7 +16,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: inherit;
+  font-family: inherit !important;
 }
 
 #__next {
