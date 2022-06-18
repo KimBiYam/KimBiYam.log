@@ -5,10 +5,11 @@ import ProfileLink from './ProfileLink';
 
 import GithubIcon from '../../assets/svgs/github.svg';
 import NotionIcon from '../../assets/svgs/notion.svg';
+import LinkedInIcon from '../../assets/svgs/linked_in.svg';
 
 const ProfileCard = () => {
   const { description, imageSrc, name, social } = profileData;
-  const { github, notion } = social;
+  const { github, notion, linkedIn } = social;
 
   return (
     <div className="flex justify-between">
@@ -27,9 +28,12 @@ const ProfileCard = () => {
           <p className="mt-1 overflow-hidden text-sm">{description}</p>
         </div>
       </div>
-      <div className="flex items-end gap-4">
+      <div className="flex flex-wrap items-end gap-4">
         <ProfileLink href={github} title="github-link">
           <GithubIcon />
+        </ProfileLink>
+        <ProfileLink href={linkedIn} title="linked-in-link">
+          <LinkedInIcon />
         </ProfileLink>
         <ProfileLink href={notion} title="notion-link">
           <NotionIcon />
