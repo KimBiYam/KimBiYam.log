@@ -18,7 +18,7 @@ const ProfileCard = () => {
 
   return (
     <div className="flex items-center">
-      <div className="relative w-16 min-w-16">
+      <div className="relative w-16 min-w-fit">
         <Image
           src={imageSrc}
           alt="profile"
