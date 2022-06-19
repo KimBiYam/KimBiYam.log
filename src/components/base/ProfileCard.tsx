@@ -34,7 +34,7 @@ const ProfileCard = () => {
         <div className="flex items-center gap-3 mt-2 children:ml-2">
           {Object.entries(social).map(([name, href]) => (
             <ProfileLink href={href} title={`${name}-link`} key={name}>
-              {SOCIAL_ICONS[name]()}
+              {SOCIAL_ICONS[name]({ className: 'w-6 h-6' })}
             </ProfileLink>
           ))}
         </div>

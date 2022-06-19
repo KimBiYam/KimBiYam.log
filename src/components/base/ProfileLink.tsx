@@ -8,7 +8,6 @@ interface ProfileLinkProps
   extends Pick<LinkProps, 'href'>,
     Pick<HTMLAttributes<HTMLAnchorElement>, 'title'> {
   children: React.ReactNode;
-  className?: string;
 }
 
 const ProfileLink = ({ href, title, children }: ProfileLinkProps) => (
