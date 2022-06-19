@@ -1,4 +1,4 @@
-import { memo, ReactNode } from 'react';
+import React, { memo } from 'react';
 import Image from 'next/image';
 import profileData from '../../data/profile.json';
 import ProfileLink from './ProfileLink';
@@ -7,7 +7,7 @@ import GithubIcon from '../../assets/svgs/github.svg';
 import NotionIcon from '../../assets/svgs/notion.svg';
 import LinkedInIcon from '../../assets/svgs/linked_in.svg';
 
-const SOCIAL_ICONS: Record<string, () => ReactNode> = {
+const SOCIAL_ICONS: Record<string, RenderSVGComponent> = {
   github: GithubIcon,
   linkedIn: LinkedInIcon,
   notion: NotionIcon,
@@ -33,7 +33,7 @@ const ProfileCard = () => {
         <p className="mt-1 overflow-hidden text-sm">{description}</p>
         <div className="flex items-center gap-3 mt-2 children:ml-2">
           {Object.entries(social).map(([name, href]) => (
-            <ProfileLink href={href} title={`${name}-link`}>
+            <ProfileLink href={href} title={`${name}-link`} key={name}>
               {SOCIAL_ICONS[name]()}
             </ProfileLink>
           ))}
