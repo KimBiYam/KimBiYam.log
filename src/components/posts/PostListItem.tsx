@@ -20,7 +20,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
       <NoScrollLink href={`/posts/${id}`}>
         <a>
           <motion.div
-            className="py-4 cursor-pointer"
+            className="py-4 duration-300 cursor-pointer transition-textShadow hover:text-shadow dark:hover:text-shadow-dark"
             {...hoverLiftMotion}
             {...viewportOpacityMotion}
           >
