@@ -19,12 +19,13 @@ export const hoverRotateMotion: MotionProps = {
   },
 };
 
-export const hoverLiftUpMotion: MotionProps = {
+export const hoverLiftMotion: MotionProps = {
   whileHover: {
-    y: -10,
+    y: [0, -5],
+    x: [0, -10],
     transition: {
-      ease: 'linear',
-      duration: 0.2,
+      type: 'spring',
+      duration: 0.3,
     },
   },
 };
