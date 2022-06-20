@@ -41,6 +41,7 @@ module.exports = {
       transitionProperty: {
         backgroundColor: 'background-color',
         color: 'color',
+        textShadow: 'text-shadow',
       },
       typography: (theme) => ({
         DEFAULT: {
