@@ -37,7 +37,7 @@ const useActiveChildScroll = <P extends HTMLElement, C extends HTMLElement>({
     [itemRefs],
   );
 
-  return { registerChildRef };
+  return registerChildRef;
 };
 
 export default useActiveChildScroll;
