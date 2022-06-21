@@ -9,7 +9,7 @@ const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
   const headings = useTableOfContents();
   const activeId = useActiveHeadingDetector();
 
-  const { registerChildRef } = useActiveChildScroll({
+  const registerChildRef = useActiveChildScroll({
     activeId,
     parentRef: ref,
   });

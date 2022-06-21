@@ -15,7 +15,7 @@ interface TagSelectorProps {
 const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
   ({ tags, onTagClick, selectedTag }, ref) => {
     const { direction } = useAtomValue(scrollAtom);
-    const { registerChildRef } = useActiveChildScroll({
+    const registerChildRef = useActiveChildScroll({
       activeId: selectedTag,
       parentRef: ref,
     });
