@@ -18,16 +18,15 @@ const ProfileCard = () => {
 
   return (
     <div className="flex items-center">
-      <div className="relative flex items-center w-16 min-w-fit">
-        <Image
-          src={imageSrc}
-          alt="profile"
-          quality={100}
-          width={64}
-          height={64}
-          className="rounded-full"
-        />
-      </div>
+      <Image
+        src={imageSrc}
+        alt="profile"
+        quality={100}
+        width="64px"
+        height="64px"
+        layout="fixed"
+        className="rounded-full"
+      />
       <div className="ml-4 w-fit">
         <p className="font-bold">{name}</p>
         <p className="mt-1 overflow-hidden text-sm">{description}</p>
