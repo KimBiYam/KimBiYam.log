@@ -4,13 +4,13 @@ date: '2021-03-05'
 tag: 'flutter'
 ---
 
-# RxDart
+## RxDart
 
 [ReactiveX](http://reactivex.io/) API를 Dart에서 사용할 수 있게 구현한 패키지
 
 Stream을 사용하기 용이하게 확장합니다.
 
-# RxDart를 이용한 BLoC Pattern 예시
+## RxDart를 이용한 BLoC Pattern 예시
 
 [예시코드](https://github.com/KimBiYam/first_bloc_app/tree/feature/counter_with_rxdart)
 
