@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
-import { LinkProps } from 'next/link';
+import Link, { LinkProps } from 'next/link';
 import { HTMLAttributes } from 'react';
 import { hoverRotateMotion } from '../../lib/styles/motions';
-import NoScrollLink from './NoScrollLink';
 
 interface ProfileLinkProps
   extends Pick<LinkProps, 'href'>,
@@ -11,14 +10,14 @@ interface ProfileLinkProps
 }
 
 const ProfileLink = ({ href, title, children }: ProfileLinkProps) => (
-  <NoScrollLink href={href} passHref>
+  <Link href={href} passHref>
     <a
-      className="w-6 h-6 duration-300 fill-current primary-text-hover"
+      className="w-6 h-6 mr-3 duration-300 fill-current primary-text-hover"
       title={title}
     >
       <motion.div {...hoverRotateMotion}>{children}</motion.div>
     </a>
-  </NoScrollLink>
+  </Link>
 );
 
 export default ProfileLink;

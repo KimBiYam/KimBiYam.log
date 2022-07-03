@@ -30,7 +30,7 @@ const ProfileCard = () => {
       <div className="ml-4 w-fit">
         <p className="font-bold">{name}</p>
         <p className="mt-1 overflow-hidden text-sm">{description}</p>
-        <div className="flex items-center gap-3 mt-2 children:ml-2">
+        <div className="flex items-center mt-2">
           {Object.entries(social).map(([name, href]) => (
             <ProfileLink href={href} title={`${name}-link`} key={name}>
               {SOCIAL_ICONS[name]({ className: 'w-6 h-6' })}
