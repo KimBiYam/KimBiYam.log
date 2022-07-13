@@ -23,6 +23,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           <script src="/theme.js" />
+          <script src="/setViewportProperty.js" />
           {IS_PRODUCTION && <GoogleAnalytics />}
         </Head>
         <body className="main-container main-font-color">
