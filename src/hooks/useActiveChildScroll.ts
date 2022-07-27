@@ -5,19 +5,21 @@ interface UseActiveItemScrollProps<P> {
   parentRef: React.Ref<P>;
 }
 
+const isRefObject = <T>(ref: React.Ref<T>): ref is React.RefObject<T> =>
+  ref !== null && typeof ref !== 'function';
+
 const useActiveChildScroll = <P extends HTMLElement, C extends HTMLElement>({
   activeId,
   parentRef,
 }: UseActiveItemScrollProps<P>) => {
   const itemRefs = useRef<Record<string, C | null>>({});
 
-  const isRefObject =
-    parentRef && typeof parentRef !== 'function' && parentRef.current;
-
   const activeChildNode = activeId ? itemRefs.current[activeId] : null;
 
   useEffect(() => {
-    if (!isRefObject || !activeId || !activeChildNode) return;
+    if (!isRefObject(parentRef) || !parentRef.current || !activeChildNode) {
+      return;
+    }
 
     const getScrollPosition = () => {
       const { offsetTop, offsetLeft, offsetHeight, offsetWidth, offsetParent } =
