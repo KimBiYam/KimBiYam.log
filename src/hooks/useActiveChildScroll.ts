@@ -14,20 +14,31 @@ const useActiveChildScroll = <P extends HTMLElement, C extends HTMLElement>({
   const isRefObject =
     parentRef && typeof parentRef !== 'function' && parentRef.current;
 
+  const activeChildNode = activeId ? itemRefs.current[activeId] : null;
+
   useEffect(() => {
-    if (!isRefObject || !activeId) return;
+    if (!isRefObject || !activeId || !activeChildNode) return;
 
-    const activeItem = itemRefs.current[activeId];
+    const getScrollPosition = () => {
+      const { offsetTop, offsetLeft, offsetHeight, offsetWidth, offsetParent } =
+        activeChildNode;
 
-    if (!activeItem) return;
+      if (!offsetParent) return { top: 0, left: 0 };
 
-    const { offsetTop, offsetLeft, offsetHeight, offsetWidth } = activeItem;
+      const remainingHeight = offsetParent.clientHeight - offsetHeight;
+      const remainingWidth = offsetParent.clientWidth - offsetWidth;
+      const topForCenterScroll = offsetTop - remainingHeight / 2;
+      const leftForCenterScroll = offsetLeft - remainingWidth / 2;
 
-    parentRef.current.scrollTo({
-      top: offsetTop - offsetHeight,
-      left: offsetLeft - offsetWidth,
-      behavior: 'smooth',
-    });
+      return {
+        top: topForCenterScroll,
+        left: leftForCenterScroll,
+      };
+    };
+
+    const { top, left } = getScrollPosition();
+
+    parentRef.current.scrollTo({ top, left, behavior: 'smooth' });
   }, [activeId]);
 
   const registerChildRef = useCallback(
