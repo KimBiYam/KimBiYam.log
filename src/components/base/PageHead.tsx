@@ -5,8 +5,8 @@ import { DOMAIN_URL } from '../../constants';
 import { theme as tailwindTheme } from '../../../tailwind.config';
 
 interface PageHeadProps {
-  description: string;
-  title: string;
+  description?: string;
+  title?: string;
   url?: string;
   ogImagePath?: string;
 }
@@ -15,13 +15,13 @@ const PAGE_TITLE_SUFFIX = ' | KimBiYam.log';
 
 const PageHead = ({
   title,
-  description,
+  description = 'KimBiYam의 개발 블로그 입니다.',
   url = '',
-  ogImagePath,
+  ogImagePath = ogTagImage.src,
 }: PageHeadProps) => (
   <Head>
     <Favicon />
-    <title>{title + PAGE_TITLE_SUFFIX}</title>
+    <title>{title ? title + PAGE_TITLE_SUFFIX : 'KimBiyam.log'}</title>
     <link rel="canonical" href={`${DOMAIN_URL}${url}`} />
     <meta
       name="viewport"
@@ -36,12 +36,7 @@ const PageHead = ({
     <meta name="twitter:card" content="summary" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={`${DOMAIN_URL}${url}`} />
-    <meta
-      property="og:image"
-      content={
-        ogImagePath ? DOMAIN_URL + ogImagePath : DOMAIN_URL + ogTagImage.src
-      }
-    />
+    <meta property="og:image" content={DOMAIN_URL + ogImagePath} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:title" content={title} />

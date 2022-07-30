@@ -13,6 +13,7 @@ import { usePreserveScroll } from '../hooks/usePreserveScroll';
 import '../lib/styles/global.css';
 import '../lib/styles/code.css';
 import '../lib/styles/tailwind.css';
+import PageHead from '../components/base/PageHead';
 
 if (IS_PRODUCTION) sentryUtil.init();
 
@@ -26,6 +27,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
+      <PageHead />
       <Header />
       <MainLayout>
         <Component {...pageProps} />
