@@ -7,6 +7,11 @@ export const viewportOpacityMotion: MotionProps = {
   transition: { duration: 0.2 },
 };
 
+export const opacityMotion: MotionProps = {
+  animate: { opacity: [0, 1] },
+  transition: { duration: 0.25 },
+};
+
 export const hoverRotateMotion: MotionProps = {
   whileHover: {
     rotate: 360,
