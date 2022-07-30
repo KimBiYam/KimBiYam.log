@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 import useClientSide from '../../hooks/useClientSide';
 import breakPoints from '../../lib/styles/breakPoints.json';
-import { opacityMotion } from '../../lib/styles/motions';
+import { routingMotion } from '../../lib/styles/motions';
 import { PostDetail } from '../../types/post.types';
 import ProfileCard from '../base/ProfileCard';
 import MarkdownView from './MarkdownView';
@@ -21,7 +21,7 @@ const PostView = ({ postDetail }: PostViewProps) => {
   const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
 
   return (
-    <motion.article className="relative pb-24 mt-8" {...opacityMotion}>
+    <motion.article className="relative pb-24 mt-8" {...routingMotion}>
       <h1 className="text-2xl font-bold md:text-4xl">{title}</h1>
       <div className="flex items-center justify-between my-4">
         <p className="text-sm">{date}</p>

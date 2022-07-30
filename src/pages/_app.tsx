@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app';
 import smoothscroll from 'smoothscroll-polyfill';
 import { useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Header from '../components/base/Header';
 import MainLayout from '../components/base/MainLayout';
 import useGoogleAnalyticsPageView from '../hooks/useGoogleAnalyticsPageView';
@@ -30,7 +31,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       <PageHead />
       <Header />
       <MainLayout>
-        <Component {...pageProps} />
+        <AnimatePresence>
+          <Component {...pageProps} />
+        </AnimatePresence>
       </MainLayout>
       <Footer />
       <ScrollToTopButton />
