@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
@@ -7,6 +8,7 @@ import TagSelector from '../components/posts/TagSelector';
 import { Tag } from '../constants';
 import useTag from '../hooks/useTag';
 import { getSortedPostPreviews } from '../lib/posts/post';
+import { routingMotion } from '../lib/styles/motions';
 import { PostPreview } from '../types/post.types';
 
 interface HomeProps {
@@ -28,7 +30,7 @@ const Home = ({ postPreviews }: HomeProps) => {
   );
 
   return (
-    <div className="pb-12">
+    <motion.div className="pb-12" {...routingMotion}>
       <div className="my-2">
         <ProfileCard />
       </div>
@@ -38,7 +40,7 @@ const Home = ({ postPreviews }: HomeProps) => {
         selectedTag={selectedTag}
       />
       <PostList postPreviews={postPreviews} selectedTag={selectedTag} />
-    </div>
+    </motion.div>
   );
 };
 
