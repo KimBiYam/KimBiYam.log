@@ -32,7 +32,6 @@ const Favicon = () => (
     <link rel="icon" type="image/png" sizes="192x192" href={favicon192.src} />
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="msapplication-TileImage" content={faviconMs144.src} />
-    <meta name="theme-color" content="#ffffff" />
   </>
 );
 
