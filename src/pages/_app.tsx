@@ -2,7 +2,6 @@ import type { AppProps } from 'next/app';
 import smoothscroll from 'smoothscroll-polyfill';
 import { useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import NextNProgress from 'nextjs-progressbar';
 import Header from '../components/base/Header';
 import MainLayout from '../components/base/MainLayout';
 import useGoogleAnalyticsPageView from '../hooks/useGoogleAnalyticsPageView';
@@ -11,7 +10,6 @@ import Footer from '../components/base/Footer';
 import { IS_PRODUCTION } from '../constants';
 import ScrollToTopButton from '../components/base/ScrollToTopButton';
 import { usePreserveScroll } from '../hooks/usePreserveScroll';
-import { theme as tailwindTheme } from '../../tailwind.config';
 
 import '../lib/styles/global.css';
 import '../lib/styles/code.css';
@@ -31,11 +29,6 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <PageHead />
-      <NextNProgress
-        color={tailwindTheme.colors.blue[300]}
-        options={{ showSpinner: false }}
-        showOnShallow={false}
-      />
       <Header />
       <MainLayout>
         <AnimatePresence>
