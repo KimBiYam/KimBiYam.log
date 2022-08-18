@@ -3,21 +3,23 @@ import { TableOfContentHeading } from '../../hooks/useTableOfContents';
 
 interface TableOfContentsItemProps {
   heading: TableOfContentHeading;
+  onClick: (id: string) => void;
   children?: React.ReactNode;
   activeId: string | null;
 }
 
 const TableOfContentsItem = forwardRef<
-  HTMLAnchorElement,
+  HTMLButtonElement,
   TableOfContentsItemProps
->(({ heading, children, activeId }, ref) => {
+>(({ heading, onClick, children, activeId }, ref) => {
   const { id, title } = heading;
 
   return (
     <li className="my-1 overflow-hidden text-sm text-ellipsis whitespace-nowrap">
-      <a
-        href={`#${id}`}
+      <button
+        type="button"
         ref={ref}
+        onClick={() => onClick(id)}
         className={`
         hover:opacity-100
         transition-opacity
@@ -25,7 +27,7 @@ const TableOfContentsItem = forwardRef<
         ${activeId === id ? 'opacity-100 font-bold' : 'opacity-60'}`}
       >
         {title}
-      </a>
+      </button>
       {children}
     </li>
   );

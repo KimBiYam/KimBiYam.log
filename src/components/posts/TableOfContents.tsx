@@ -14,6 +14,11 @@ const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
     parentRef: ref,
   });
 
+  const handleItemClick = (id: string) => {
+    const heading = document.getElementById(id);
+    heading?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <aside className="absolute left-full">
       <nav
@@ -25,6 +30,7 @@ const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
             <TableOfContentsItem
               key={heading.id}
               heading={heading}
+              onClick={handleItemClick}
               activeId={activeId}
               ref={(instance) => registerChildRef(instance, heading.id)}
             >
@@ -34,6 +40,7 @@ const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
                     <TableOfContentsItem
                       key={item.id}
                       heading={item}
+                      onClick={handleItemClick}
                       activeId={activeId}
                       ref={(instance) => registerChildRef(instance, item.id)}
                     />
