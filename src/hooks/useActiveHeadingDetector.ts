@@ -42,9 +42,7 @@ const useActiveHeadingDetector = () => {
   const headingsScrollRef = useRef<HeadingScrollPosition[]>([]);
 
   const handleScroll = useThrottle(() => {
-    const { scrollY } = window;
-
-    setActiveId(findClosestScrollId(headingsScrollRef.current, scrollY));
+    setActiveId(findClosestScrollId(headingsScrollRef.current, window.scrollY));
   }, THROTTLE_TIME_MS);
 
   useEffect(() => {
