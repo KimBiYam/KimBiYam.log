@@ -1,11 +1,12 @@
 import React, { memo } from 'react';
+
 import Image from 'next/image';
-import profileData from '../../data/profile.json';
-import ProfileLink from './ProfileLink';
 
 import GithubIcon from '../../assets/svgs/github.svg';
-import NotionIcon from '../../assets/svgs/notion.svg';
 import LinkedInIcon from '../../assets/svgs/linked_in.svg';
+import NotionIcon from '../../assets/svgs/notion.svg';
+import profileData from '../../data/profile.json';
+import ProfileLink from './ProfileLink';
 
 const SOCIAL_ICONS: Record<string, RenderSVGComponent> = {
   github: GithubIcon,

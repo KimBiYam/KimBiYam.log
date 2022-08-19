@@ -5,6 +5,7 @@ import Document, {
   NextScript,
   DocumentContext,
 } from 'next/document';
+
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
 import { IS_PRODUCTION } from '../constants';
 

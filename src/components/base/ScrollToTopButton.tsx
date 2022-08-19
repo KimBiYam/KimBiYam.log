@@ -1,5 +1,6 @@
 import { m } from 'framer-motion';
 import { useAtomValue } from 'jotai';
+
 import ArrowUpIcon from '../../assets/svgs/arrow_up.svg';
 import scrollAtom from '../../atoms/scrollAtom';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';

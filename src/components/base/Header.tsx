@@ -1,12 +1,14 @@
 import { memo } from 'react';
+
 import { m } from 'framer-motion';
 import { useAtomValue } from 'jotai';
+
 import scrollAtom from '../../atoms/scrollAtom';
-import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
 import { ScrollDirection } from '../../constants';
-import Logo from './Logo';
-import HeaderDesktopNav from './HeaderDesktopNav';
+import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
 import HeaderButtonSection from './HeaderButtonSection';
+import HeaderDesktopNav from './HeaderDesktopNav';
+import Logo from './Logo';
 
 const VISIBLE_TRANSITION_MS = 100;
 const HEADER_HEIGHT = 32;

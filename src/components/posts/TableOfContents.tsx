@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+
 import withDragScroll from '../../hocs/withDragScroll';
 import useActiveHeadingDetector from '../../hooks/useActiveHeadingDetector';
 import useTableOfContents from '../../hooks/useTableOfContents';

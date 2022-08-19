@@ -1,8 +1,9 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { getAllPostPaths, getPostDetail } from '../../../lib/posts/post';
+
+import PageHead from '../../../components/base/PageHead';
 import PostView from '../../../components/posts/PostView';
 import { POST_DIRECTORY } from '../../../constants';
-import PageHead from '../../../components/base/PageHead';
+import { getAllPostPaths, getPostDetail } from '../../../lib/posts/post';
 
 const Post = ({
   postDetail,

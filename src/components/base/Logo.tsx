@@ -1,6 +1,8 @@
+import { memo } from 'react';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { memo } from 'react';
+
 import favicon from '../../assets/favicon/apple-icon-57x57.png';
 
 const Logo = () => (
