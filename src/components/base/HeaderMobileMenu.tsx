@@ -1,11 +1,13 @@
 import { useEffect, useRef } from 'react';
-import { m } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
-import HeaderItem from './HeaderItem';
+
+import { m } from 'framer-motion';
+
 import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
-import HeaderMenuButton from './HeaderMenuButton';
-import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
 import breakPoints from '../../lib/styles/breakPoints.json';
+import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
+import HeaderItem from './HeaderItem';
+import HeaderMenuButton from './HeaderMenuButton';
 
 const VISIBLE_TRANSITION_MS = 300;
 

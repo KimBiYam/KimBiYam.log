@@ -1,5 +1,7 @@
-import { useAtom } from 'jotai';
 import { useCallback, useMemo, useRef } from 'react';
+
+import { useAtom } from 'jotai';
+
 import postPageAtom from '../../atoms/postPageAtom';
 import { Tag } from '../../constants';
 import useScrollObserver from '../../hooks/useScrollObserver';

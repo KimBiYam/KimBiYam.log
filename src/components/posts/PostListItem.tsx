@@ -1,12 +1,14 @@
 import { memo } from 'react';
+
 import { m } from 'framer-motion';
-import { PostPreview } from '../../types/post.types';
-import TagBadge from './TagBadge';
+
 import {
   hoverLiftMotion,
   viewportOpacityMotion,
 } from '../../lib/styles/motions';
+import { PostPreview } from '../../types/post.types';
 import NoScrollLink from '../base/NoScrollLink';
+import TagBadge from './TagBadge';
 
 interface PostListItemProps {
   postPreview: PostPreview;

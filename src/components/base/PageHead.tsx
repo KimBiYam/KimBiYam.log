@@ -1,8 +1,9 @@
 import Head from 'next/head';
-import Favicon from './Favicon';
+
+import { theme as tailwindTheme } from '../../../tailwind.config';
 import ogTagImage from '../../assets/favicon/og_tag_image.png';
 import { DOMAIN_URL } from '../../constants';
-import { theme as tailwindTheme } from '../../../tailwind.config';
+import Favicon from './Favicon';
 
 interface PageHeadProps {
   description?: string;

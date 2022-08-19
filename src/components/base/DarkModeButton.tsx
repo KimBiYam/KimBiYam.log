@@ -1,5 +1,7 @@
-import { m } from 'framer-motion';
 import { memo } from 'react';
+
+import { m } from 'framer-motion';
+
 import MoonIcon from '../../assets/svgs/moon.svg';
 import SunIcon from '../../assets/svgs/sun.svg';
 import { Theme } from '../../constants';

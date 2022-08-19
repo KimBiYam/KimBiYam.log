@@ -1,6 +1,9 @@
-import { m } from 'framer-motion';
-import Link, { LinkProps } from 'next/link';
 import { HTMLAttributes } from 'react';
+
+import Link, { LinkProps } from 'next/link';
+
+import { m } from 'framer-motion';
+
 import { hoverRotateMotion } from '../../lib/styles/motions';
 
 interface ProfileLinkProps

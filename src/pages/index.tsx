@@ -1,7 +1,10 @@
+import { useMemo } from 'react';
+
+import { useRouter } from 'next/router';
+
 import { m } from 'framer-motion';
 import { GetStaticProps } from 'next';
-import { useRouter } from 'next/router';
-import { useMemo } from 'react';
+
 import ProfileCard from '../components/base/ProfileCard';
 import PostList from '../components/posts/PostList';
 import TagSelector from '../components/posts/TagSelector';

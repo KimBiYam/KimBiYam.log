@@ -1,4 +1,5 @@
 import { memo } from 'react';
+
 import NoScrollLink from './NoScrollLink';
 
 interface HeaderItemProps {

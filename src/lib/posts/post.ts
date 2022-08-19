@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+
 import matter from 'gray-matter';
 import removeMarkdown from 'remove-markdown';
+
 import { POST_DIRECTORY } from '../../constants';
 import { PostDetail, PostPath, PostPreview } from '../../types/post.types';
 import { getMarkdownData } from './markdown';

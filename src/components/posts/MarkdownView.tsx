@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+
 import useHeadingLink from '../../hooks/useHeadingLink';
 import useMediumZoom from '../../hooks/useMediumZoom';
 

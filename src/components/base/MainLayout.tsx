@@ -1,4 +1,5 @@
 import React from 'react';
+
 import useDetectScroll from '../../hooks/useDetectScroll';
 
 interface MainLayoutProps {

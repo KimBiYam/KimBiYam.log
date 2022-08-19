@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import { Theme } from '../../constants';
 import useTheme from '../../hooks/useTheme';
 import themeStorage from '../../lib/storage/themeStorage';

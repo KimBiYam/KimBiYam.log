@@ -1,17 +1,17 @@
-import favicon from '../../assets/favicon/favicon.ico';
-import appleIcon57 from '../../assets/favicon/apple-icon-57x57.png';
-import appleIcon60 from '../../assets/favicon/apple-icon-60x60.png';
-import appleIcon72 from '../../assets/favicon/apple-icon-72x72.png';
-import appleIcon76 from '../../assets/favicon/apple-icon-76x76.png';
 import appleIcon114 from '../../assets/favicon/apple-icon-114x114.png';
 import appleIcon120 from '../../assets/favicon/apple-icon-120x120.png';
 import appleIcon144 from '../../assets/favicon/apple-icon-144x144.png';
 import appleIcon152 from '../../assets/favicon/apple-icon-152x152.png';
 import appleIcon180 from '../../assets/favicon/apple-icon-180x180.png';
+import appleIcon57 from '../../assets/favicon/apple-icon-57x57.png';
+import appleIcon60 from '../../assets/favicon/apple-icon-60x60.png';
+import appleIcon72 from '../../assets/favicon/apple-icon-72x72.png';
+import appleIcon76 from '../../assets/favicon/apple-icon-76x76.png';
 import favicon16 from '../../assets/favicon/favicon-16x16.png';
+import favicon192 from '../../assets/favicon/favicon-192x192.png';
 import favicon32 from '../../assets/favicon/favicon-32x32.png';
 import favicon96 from '../../assets/favicon/favicon-96x96.png';
-import favicon192 from '../../assets/favicon/favicon-192x192.png';
+import favicon from '../../assets/favicon/favicon.ico';
 import faviconMs144 from '../../assets/favicon/ms-icon-144x144.png';
 
 const Favicon = () => (

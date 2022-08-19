@@ -1,5 +1,7 @@
-import { m } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
+
+import { m } from 'framer-motion';
+
 import useClientSide from '../../hooks/useClientSide';
 import breakPoints from '../../lib/styles/breakPoints.json';
 import { routingMotion } from '../../lib/styles/motions';

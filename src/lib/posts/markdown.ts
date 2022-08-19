@@ -1,12 +1,13 @@
 import fs from 'fs';
 import path from 'path';
+
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import remarkPrism from 'remark-prism';
-import remarkGfm from 'remark-gfm';
-import remarkRehype from 'remark-rehype';
 import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify';
+import { remark } from 'remark';
+import remarkGfm from 'remark-gfm';
+import remarkPrism from 'remark-prism';
+import remarkRehype from 'remark-rehype';
 
 export const getMarkdownData = async (directory: string, id: string) => {
   const fullPath = path.join(directory, `${id}.md`);

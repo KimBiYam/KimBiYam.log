@@ -1,5 +1,7 @@
-import { useAtomValue } from 'jotai';
 import { forwardRef } from 'react';
+
+import { useAtomValue } from 'jotai';
+
 import scrollAtom from '../../atoms/scrollAtom';
 import { ScrollDirection } from '../../constants';
 import withDragScroll from '../../hocs/withDragScroll';

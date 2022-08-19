@@ -1,5 +1,6 @@
 import { m } from 'framer-motion';
 import { GetStaticProps } from 'next';
+
 import PageHead from '../../components/base/PageHead';
 import MarkdownView from '../../components/posts/MarkdownView';
 import { CONTACT_DIRECTORY, CONTACT_FILE_NAME } from '../../constants';

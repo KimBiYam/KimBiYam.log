@@ -3,5 +3,45 @@
     "eslint-config-kimbiyam-react",
     "eslint-config-kimbiyam-react/prettier",
     "eslint-config-kimbiyam-react/typescript"
-  ]
+  ],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["sibling", "parent", "index"],
+          "type",
+          "unknown"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "{react*,react*/**}",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "next*/**",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "*.css",
+            "group": "unknown",
+            "patternOptions": { "matchBase": true },
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "newlines-between": "always",
+        "warnOnUnassignedImports": true
+      }
+    ]
+  }
 }
