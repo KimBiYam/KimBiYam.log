@@ -1,5 +1,7 @@
 import { useMediaQuery } from 'react-responsive';
 
+import dynamic from 'next/dynamic';
+
 import { m } from 'framer-motion';
 
 import useClientSide from '../../hooks/useClientSide';
@@ -8,9 +10,10 @@ import { routingMotion } from '../../lib/styles/motions';
 import { PostDetail } from '../../types/post.types';
 import ProfileCard from '../base/ProfileCard';
 import MarkdownView from './MarkdownView';
-import TableOfContents from './TableOfContents';
 import TagBadge from './TagBadge';
 import Utterances from './Utterances';
+
+const DynamicTableOfContents = dynamic(() => import('./TableOfContents'));
 
 interface PostViewProps {
   postDetail: PostDetail;
@@ -34,7 +37,7 @@ const PostView = ({ postDetail }: PostViewProps) => {
         <ProfileCard />
       </div>
       <Utterances />
-      {isClientSide && isUpExtraLargeScreen && <TableOfContents />}
+      {isClientSide && isUpExtraLargeScreen && <DynamicTableOfContents />}
     </m.article>
   );
 };
