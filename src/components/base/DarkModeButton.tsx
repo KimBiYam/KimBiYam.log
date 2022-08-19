@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { memo } from 'react';
 import MoonIcon from '../../assets/svgs/moon.svg';
 import SunIcon from '../../assets/svgs/sun.svg';
@@ -17,18 +17,18 @@ const DarkModeButton = () => {
       title="dark-mode-button"
     >
       <div className="relative w-6 h-6">
-        <motion.div
+        <m.div
           className="absolute w-full"
           {...createRotateScaleMotion(theme === Theme.dark)}
         >
           <MoonIcon />
-        </motion.div>
-        <motion.div
+        </m.div>
+        <m.div
           className="absolute w-full"
           {...createRotateScaleMotion(theme === Theme.light)}
         >
           <SunIcon />
-        </motion.div>
+        </m.div>
       </div>
     </button>
   );

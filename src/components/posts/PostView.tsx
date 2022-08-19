@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 import useClientSide from '../../hooks/useClientSide';
 import breakPoints from '../../lib/styles/breakPoints.json';
@@ -21,7 +21,7 @@ const PostView = ({ postDetail }: PostViewProps) => {
   const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
 
   return (
-    <motion.article className="relative pb-24 mt-8" {...routingMotion}>
+    <m.article className="relative pb-24 mt-8" {...routingMotion}>
       <h1 className="text-2xl font-bold md:text-4xl">{title}</h1>
       <div className="flex items-center justify-between my-4">
         <p className="text-sm">{date}</p>
@@ -33,7 +33,7 @@ const PostView = ({ postDetail }: PostViewProps) => {
       </div>
       <Utterances />
       {isClientSide && isUpExtraLargeScreen && <TableOfContents />}
-    </motion.article>
+    </m.article>
   );
 };
 

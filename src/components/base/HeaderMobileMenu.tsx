@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 import HeaderItem from './HeaderItem';
 import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
@@ -30,7 +30,7 @@ const HeaderMobileMenu = () => {
   return (
     <div className="relative md:hidden" ref={menuButtonRef}>
       <HeaderMenuButton onClick={toggleMenu} />
-      <motion.ul
+      <m.ul
         className="absolute right-0 w-32 p-2 rounded-md drop-shadow-md bg-gray-50 dark:bg-neutral-700"
         {...createDynamicallyOpacityMotion(isMenuOpen, VISIBLE_TRANSITION_MS)}
       >
@@ -44,7 +44,7 @@ const HeaderMobileMenu = () => {
             onClick={handleItemClick}
           />
         </li>
-      </motion.ul>
+      </m.ul>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import smoothscroll from 'smoothscroll-polyfill';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
 import Header from '../components/base/Header';
 import MainLayout from '../components/base/MainLayout';
 import useGoogleAnalyticsPageView from '../hooks/useGoogleAnalyticsPageView';
@@ -25,14 +25,16 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <PageHead />
-      <Header />
-      <MainLayout>
-        <AnimatePresence>
-          <Component {...pageProps} />
-        </AnimatePresence>
-      </MainLayout>
-      <Footer />
-      <ScrollToTopButton />
+      <LazyMotion strict features={domAnimation}>
+        <Header />
+        <MainLayout>
+          <AnimatePresence>
+            <Component {...pageProps} />
+          </AnimatePresence>
+        </MainLayout>
+        <Footer />
+        <ScrollToTopButton />
+      </LazyMotion>
     </>
   );
 };
