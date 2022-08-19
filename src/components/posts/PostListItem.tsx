@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { PostPreview } from '../../types/post.types';
 import TagBadge from './TagBadge';
 import {
@@ -19,7 +19,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
     <li>
       <NoScrollLink href={`/posts/${id}`}>
         <a>
-          <motion.div
+          <m.div
             className="py-4 duration-300 cursor-pointer transition-textShadow hover:text-shadow dark:hover:text-shadow-dark"
             {...hoverLiftMotion}
             {...viewportOpacityMotion}
@@ -34,7 +34,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
             <p className="overflow-hidden text-sm dark:text-zinc-400 text-zinc-700 md:text-base">
               {content}
             </p>
-          </motion.div>
+          </m.div>
         </a>
       </NoScrollLink>
     </li>

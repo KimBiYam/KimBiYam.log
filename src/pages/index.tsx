@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
@@ -30,7 +30,7 @@ const Home = ({ postPreviews }: HomeProps) => {
   );
 
   return (
-    <motion.div className="pb-12" {...routingMotion}>
+    <m.div className="pb-12" {...routingMotion}>
       <div className="my-2">
         <ProfileCard />
       </div>
@@ -40,7 +40,7 @@ const Home = ({ postPreviews }: HomeProps) => {
         selectedTag={selectedTag}
       />
       <PostList postPreviews={postPreviews} selectedTag={selectedTag} />
-    </motion.div>
+    </m.div>
   );
 };
 

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { GetStaticProps } from 'next';
 import PageHead from '../../components/base/PageHead';
 import MarkdownView from '../../components/posts/MarkdownView';
@@ -13,9 +13,9 @@ interface ContactProps {
 const Contact = ({ contentHtml }: ContactProps) => (
   <>
     <PageHead title="Contact" description="Contact" url="/contact" />
-    <motion.div className="py-12" {...routingMotion}>
+    <m.div className="py-12" {...routingMotion}>
       <MarkdownView contentHtml={contentHtml} />
-    </motion.div>
+    </m.div>
   </>
 );
 

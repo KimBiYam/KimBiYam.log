@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useAtomValue } from 'jotai';
 import scrollAtom from '../../atoms/scrollAtom';
 import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
@@ -16,7 +16,7 @@ const Header = () => {
   const isShown = pageY < HEADER_HEIGHT / 2 || direction === ScrollDirection.up;
 
   return (
-    <motion.header
+    <m.header
       className="fixed z-50 flex items-center w-full h-14 bg-inherit"
       {...createDynamicallyOpacityMotion(
         isShown,
@@ -28,7 +28,7 @@ const Header = () => {
         <HeaderDesktopNav />
         <HeaderButtonSection />
       </div>
-    </motion.header>
+    </m.header>
   );
 };
 

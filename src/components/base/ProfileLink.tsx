@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Link, { LinkProps } from 'next/link';
 import { HTMLAttributes } from 'react';
 import { hoverRotateMotion } from '../../lib/styles/motions';
@@ -15,7 +15,7 @@ const ProfileLink = ({ href, title, children }: ProfileLinkProps) => (
       className="w-6 h-6 mr-3 duration-300 fill-current primary-text-hover"
       title={title}
     >
-      <motion.div {...hoverRotateMotion}>{children}</motion.div>
+      <m.div {...hoverRotateMotion}>{children}</m.div>
     </a>
   </Link>
 );
