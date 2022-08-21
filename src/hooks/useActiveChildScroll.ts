@@ -1,14 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-
-import useThrottle from './useThrottle';
+import React, { useCallback, useEffect, useRef } from 'react';
 
 interface UseActiveItemScrollProps<P> {
   activeId: string | null;
   parentRef: React.Ref<P>;
+  pageScrolling?: boolean;
 }
-
-const PAGE_SCROLL_DETECT_TIMEOUT_TIME_MS = 100;
-const THROTTLE_TIME_MS = 50;
 
 const isRefObject = <T>(ref: React.Ref<T>): ref is React.RefObject<T> =>
   ref !== null && typeof ref !== 'function';
@@ -16,38 +12,12 @@ const isRefObject = <T>(ref: React.Ref<T>): ref is React.RefObject<T> =>
 const useActiveChildScroll = <P extends HTMLElement, C extends HTMLElement>({
   activeId,
   parentRef,
+  pageScrolling,
 }: UseActiveItemScrollProps<P>) => {
-  const [pageScrolling, setPageScrolling] = useState(false);
   const itemRefs = useRef<Record<string, C | null>>({});
-  const scrollingTimeoutIdRef = useRef<NodeJS.Timeout | null>(null);
 
   const activeChildNode = activeId ? itemRefs.current[activeId] : null;
   const parentNodeExists = isRefObject(parentRef) && parentRef.current;
-
-  const detectPageScrolling = useCallback(
-    useThrottle(() => {
-      setPageScrolling(true);
-      if (scrollingTimeoutIdRef.current) {
-        clearTimeout(scrollingTimeoutIdRef.current);
-      }
-
-      scrollingTimeoutIdRef.current = setTimeout(() => {
-        setPageScrolling(false);
-      }, PAGE_SCROLL_DETECT_TIMEOUT_TIME_MS);
-    }, THROTTLE_TIME_MS),
-    [setPageScrolling, scrollingTimeoutIdRef.current],
-  );
-
-  useEffect(() => {
-    document.addEventListener('scroll', detectPageScrolling);
-
-    return () => {
-      document.removeEventListener('scroll', detectPageScrolling);
-      if (scrollingTimeoutIdRef.current) {
-        clearTimeout(scrollingTimeoutIdRef.current);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     if (!parentNodeExists || !activeChildNode || pageScrolling) {
