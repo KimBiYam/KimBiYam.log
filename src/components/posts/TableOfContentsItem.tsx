@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { TableOfContentHeading } from '../../hooks/useTableOfContents';
 
 interface TableOfContentsItemProps {
@@ -7,18 +8,17 @@ interface TableOfContentsItemProps {
   activeId: string | null;
 }
 
-const TableOfContentsItem = ({
-  heading,
-  onClick,
-  children,
-  activeId,
-}: TableOfContentsItemProps) => {
+const TableOfContentsItem = forwardRef<
+  HTMLButtonElement,
+  TableOfContentsItemProps
+>(({ heading, onClick, children, activeId }, ref) => {
   const { id, title } = heading;
 
   return (
     <li className="my-1 overflow-hidden text-sm text-ellipsis whitespace-nowrap">
       <button
         type="button"
+        ref={ref}
         onClick={() => onClick(id)}
         className={`
         hover:opacity-100
@@ -31,6 +31,6 @@ const TableOfContentsItem = ({
       {children}
     </li>
   );
-};
+});
 
 export default TableOfContentsItem;
