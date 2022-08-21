@@ -3,16 +3,19 @@ import { forwardRef } from 'react';
 import withDragScroll from '../../hocs/withDragScroll';
 import useActiveChildScroll from '../../hooks/useActiveChildScroll';
 import useActiveHeadingDetector from '../../hooks/useActiveHeadingDetector';
+import useDetectPageScrolling from '../../hooks/useDetectPageScrolling';
 import useTableOfContents from '../../hooks/useTableOfContents';
 import TableOfContentsItem from './TableOfContentsItem';
 
 const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
   const headings = useTableOfContents();
   const activeId = useActiveHeadingDetector();
+  const pageScrolling = useDetectPageScrolling();
 
   const registerChildRef = useActiveChildScroll({
     activeId,
     parentRef: ref,
+    pageScrolling,
   });
 
   const handleItemClick = (id: string) => {
