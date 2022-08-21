@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+
 import { TableOfContentHeading } from '../../hooks/useTableOfContents';
 
 interface TableOfContentsItemProps {

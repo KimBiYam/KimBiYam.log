@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import useThrottle from './useThrottle';
 
 interface HeadingScrollPosition {

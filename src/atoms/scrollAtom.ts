@@ -1,4 +1,5 @@
 import { atom } from 'jotai';
+
 import { ScrollDirection } from '../constants';
 
 export interface ScrollAtom {

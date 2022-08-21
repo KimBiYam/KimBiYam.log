@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-extraneous-dependencies */
-const colors = require('tailwindcss/colors');
 const typographyPlugin = require('@tailwindcss/typography');
+const colors = require('tailwindcss/colors');
+
 const breakPoints = require('./src/lib/styles/breakPoints.json');
 
 delete colors.lightBlue;

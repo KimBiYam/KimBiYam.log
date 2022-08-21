@@ -1,5 +1,6 @@
-import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
+
+import { useRouter } from 'next/router';
 
 export const usePreserveScroll = () => {
   const router = useRouter();

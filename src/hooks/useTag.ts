@@ -1,6 +1,9 @@
-import { useSetAtom } from 'jotai';
-import { NextRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
+
+import { NextRouter } from 'next/router';
+
+import { useSetAtom } from 'jotai';
+
 import postPageAtom from '../atoms/postPageAtom';
 import { Tag } from '../constants';
 
