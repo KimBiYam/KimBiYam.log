@@ -6,7 +6,6 @@ import smoothscroll from 'smoothscroll-polyfill';
 import Footer from '../components/base/Footer';
 import Header from '../components/base/Header';
 import MainLayout from '../components/base/MainLayout';
-import PageHead from '../components/base/PageHead';
 import ScrollToTopButton from '../components/base/ScrollToTopButton';
 import { IS_BROWSER, IS_PRODUCTION } from '../constants';
 import useGoogleAnalyticsPageView from '../hooks/useGoogleAnalyticsPageView';
@@ -25,19 +24,16 @@ const App = ({ Component, pageProps }: AppProps) => {
   usePreserveScroll();
 
   return (
-    <>
-      <PageHead />
-      <LazyMotion strict features={domAnimation}>
-        <Header />
-        <MainLayout>
-          <AnimatePresence>
-            <Component {...pageProps} />
-          </AnimatePresence>
-        </MainLayout>
-        <Footer />
-        <ScrollToTopButton />
-      </LazyMotion>
-    </>
+    <LazyMotion strict features={domAnimation}>
+      <Header />
+      <MainLayout>
+        <AnimatePresence>
+          <Component {...pageProps} />
+        </AnimatePresence>
+      </MainLayout>
+      <Footer />
+      <ScrollToTopButton />
+    </LazyMotion>
   );
 };
 

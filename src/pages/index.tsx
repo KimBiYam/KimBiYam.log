@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { m } from 'framer-motion';
 import { GetStaticProps } from 'next';
 
+import PageHead from '../components/base/PageHead';
 import ProfileCard from '../components/base/ProfileCard';
 import PostList from '../components/posts/PostList';
 import TagSelector from '../components/posts/TagSelector';
@@ -33,17 +34,20 @@ const Home = ({ postPreviews }: HomeProps) => {
   );
 
   return (
-    <m.div className="pb-12" {...routingMotion}>
-      <div className="my-2">
-        <ProfileCard />
-      </div>
-      <TagSelector
-        tags={tags}
-        onTagClick={handleTagClick}
-        selectedTag={selectedTag}
-      />
-      <PostList postPreviews={postPreviews} selectedTag={selectedTag} />
-    </m.div>
+    <>
+      <PageHead title="Home" />
+      <m.div className="pb-12" {...routingMotion}>
+        <div className="my-2">
+          <ProfileCard />
+        </div>
+        <TagSelector
+          tags={tags}
+          onTagClick={handleTagClick}
+          selectedTag={selectedTag}
+        />
+        <PostList postPreviews={postPreviews} selectedTag={selectedTag} />
+      </m.div>
+    </>
   );
 };
 
