@@ -1,6 +1,9 @@
-import { useAtom } from 'jotai';
-import { useRouter } from 'next/router';
 import { useCallback, useEffect } from 'react';
+
+import { useRouter } from 'next/router';
+
+import { useAtom } from 'jotai';
+
 import scrollAtom from '../atoms/scrollAtom';
 import { ScrollDirection } from '../constants';
 import useThrottle from './useThrottle';

@@ -14,7 +14,7 @@
     "build": "next build",
     "build:analyze": "ANALYZE=true next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --dir .",
     "postbuild": "next-sitemap"
   },
   "dependencies": {
@@ -39,6 +39,7 @@
     "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^12.2.5",
     "@svgr/webpack": "^5.5.0",
     "@tailwindcss/typography": "^0.5.2",
     "@types/node": "16.11.7",

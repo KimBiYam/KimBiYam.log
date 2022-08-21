@@ -1,5 +1,7 @@
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+
+import { useRouter } from 'next/router';
+
 import { IS_PRODUCTION } from '../constants';
 import * as googleAnalytics from '../lib/googleAnalytics';
 
