@@ -26,6 +26,7 @@ class MyDocument extends Document {
           />
           <script src="/theme.js" />
           <script src="/setViewportProperty.js" />
+          <script src="/prettyConsole.js" defer />
           {IS_PRODUCTION && <GoogleAnalytics />}
         </Head>
         <body className="main-container main-font-color">
