@@ -15,3 +15,10 @@ export const ScrollDirection = {
 } as const;
 export type ScrollDirection =
   typeof ScrollDirection[keyof typeof ScrollDirection];
+
+export const GoogleAnalyticsEvents = {
+  darkModeOn: 'dark_mode_on',
+  darkModeOff: 'dark_mode_off',
+} as const;
+export type GoogleAnalyticsEvents =
+  typeof GoogleAnalyticsEvents[keyof typeof GoogleAnalyticsEvents];

@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 
 import themeAtom from '../atoms/themeAtom';
 import { Theme } from '../constants';
+import * as googleAnalytics from '../lib/googleAnalytics';
 import themeStorage from '../lib/storage/themeStorage';
 
 const useTheme = () => {
@@ -18,8 +19,10 @@ const useTheme = () => {
   useEffect(() => {
     if (theme === Theme.dark) {
       document.documentElement.classList.add(Theme.dark);
+      googleAnalytics.darkModeOn();
     } else {
       document.documentElement.classList.remove(Theme.dark);
+      googleAnalytics.darkModeOff();
     }
   }, [theme]);
 
