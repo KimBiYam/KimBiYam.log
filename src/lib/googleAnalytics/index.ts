@@ -1,4 +1,4 @@
-import { GOOGLE_ANALYTICS_TRACKING_ID } from '../../constants';
+import { GOOGLE_ANALYTICS_TRACKING_ID, IS_PRODUCTION } from '../../constants';
 
 declare global {
   type GoogleAnalyticsEvents = 'dark_mode_on' | 'dark_mode_off';
@@ -12,22 +12,28 @@ declare global {
   }
 
   interface Window {
-    gtag: Gtag;
+    gtag?: Gtag;
   }
 }
 
 export const pageView = (url: URL) => {
-  if (!GOOGLE_ANALYTICS_TRACKING_ID) return;
+  if (!GOOGLE_ANALYTICS_TRACKING_ID || !window.gtag) return;
 
-  window.gtag('config', GOOGLE_ANALYTICS_TRACKING_ID, {
-    page_path: url,
-  });
+  const options: Record<string, unknown> = { page_path: url };
+
+  if (!IS_PRODUCTION) {
+    options.debug_mode = true;
+  }
+
+  window.gtag('config', GOOGLE_ANALYTICS_TRACKING_ID, options);
 };
 
 export const darkModeOn = () => {
+  if (!window.gtag) return;
   window.gtag('event', 'dark_mode_on', {});
 };
 
 export const darkModeOff = () => {
+  if (!window.gtag) return;
   window.gtag('event', 'dark_mode_off', {});
 };

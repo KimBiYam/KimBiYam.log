@@ -8,7 +8,6 @@ import Document, {
 } from 'next/document';
 
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
-import { IS_PRODUCTION } from '../constants';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -27,7 +26,7 @@ class MyDocument extends Document {
           <script src="/theme.js" />
           <script src="/setViewportProperty.js" />
           <script src="/prettyConsole.js" defer />
-          {IS_PRODUCTION && <GoogleAnalytics />}
+          <GoogleAnalytics />
         </Head>
         <body className="main-container main-font-color">
           <Main />
