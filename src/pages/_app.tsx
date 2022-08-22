@@ -28,8 +28,6 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <Script src="/theme.js" strategy="beforeInteractive" />
-      <Script src="/setViewportProperty.js" strategy="beforeInteractive" />
       <Script src="/prettyConsole.js" strategy="lazyOnload" />
       <GoogleAnalytics />
       <LazyMotion strict features={domAnimation}>

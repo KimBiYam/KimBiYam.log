@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import Document, {
   Html,
   Head,
@@ -20,6 +21,8 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap"
             rel="stylesheet"
           />
+          <script src="/theme.js" />
+          <script src="/setViewportProperty.js" />
         </Head>
         <body className="main-container main-font-color">
           <Main />
