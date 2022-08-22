@@ -1,4 +1,6 @@
+/* eslint-disable @next/next/no-before-interactive-script-outside-document */
 import type { AppProps } from 'next/app';
+import Script from 'next/script';
 
 import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
 import smoothscroll from 'smoothscroll-polyfill';
@@ -7,6 +9,7 @@ import Footer from '../components/base/Footer';
 import Header from '../components/base/Header';
 import MainLayout from '../components/base/MainLayout';
 import ScrollToTopButton from '../components/base/ScrollToTopButton';
+import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
 import { IS_BROWSER, IS_PRODUCTION } from '../constants';
 import useGoogleAnalyticsPageView from '../hooks/useGoogleAnalyticsPageView';
 import { usePreserveScroll } from '../hooks/usePreserveScroll';
@@ -24,16 +27,22 @@ const App = ({ Component, pageProps }: AppProps) => {
   usePreserveScroll();
 
   return (
-    <LazyMotion strict features={domAnimation}>
-      <Header />
-      <MainLayout>
-        <AnimatePresence>
-          <Component {...pageProps} />
-        </AnimatePresence>
-      </MainLayout>
-      <Footer />
-      <ScrollToTopButton />
-    </LazyMotion>
+    <>
+      <Script src="/theme.js" strategy="beforeInteractive" />
+      <Script src="/setViewportProperty.js" strategy="beforeInteractive" />
+      <Script src="/prettyConsole.js" strategy="lazyOnload" />
+      <GoogleAnalytics />
+      <LazyMotion strict features={domAnimation}>
+        <Header />
+        <MainLayout>
+          <AnimatePresence>
+            <Component {...pageProps} />
+          </AnimatePresence>
+        </MainLayout>
+        <Footer />
+        <ScrollToTopButton />
+      </LazyMotion>
+    </>
   );
 };
 

@@ -1,13 +1,16 @@
+import Script from 'next/script';
+
 import { GOOGLE_ANALYTICS_TRACKING_ID } from '../../constants';
 
 const GoogleAnalytics = () => (
   <>
-    <script
-      async
+    <Script
+      strategy="afterInteractive"
       src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_TRACKING_ID}`}
     />
-    <script
-      // eslint-disable-next-line react/no-danger
+    <Script
+      strategy="afterInteractive"
+      id="google-analytics"
       dangerouslySetInnerHTML={{
         __html: `
 window.dataLayer = window.dataLayer || [];
