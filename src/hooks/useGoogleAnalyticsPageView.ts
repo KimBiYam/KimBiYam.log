@@ -9,13 +9,12 @@ const useGoogleAnalyticsPageView = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!IS_PRODUCTION) {
-      return;
-    }
+    if (!IS_PRODUCTION) return;
 
     const handleRouteChange = (url: URL) => {
       googleAnalytics.pageView(url);
     };
+
     router.events.on('routeChangeComplete', handleRouteChange);
 
     return () => {
