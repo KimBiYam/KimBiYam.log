@@ -2,8 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import useThrottle from './useThrottle';
 
-const PAGE_SCROLL_DETECT_TIMEOUT_TIME_MS = 100;
-const THROTTLE_TIME_MS = 50;
+const PAGE_SCROLL_DETECT_TIMEOUT_TIME_MS = 50;
+const THROTTLE_TIME_MS = 10;
 
 const useDetectPageScrolling = () => {
   const [pageScrolling, setPageScrolling] = useState(false);
