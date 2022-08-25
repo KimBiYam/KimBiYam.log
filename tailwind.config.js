@@ -51,10 +51,12 @@ module.exports = {
               fontWeight: 700,
             },
             code: {
-              padding: '2px 4px',
+              padding: '0.05em 0.4em',
+              whiteSpace: 'pre-wrap',
+              wordBreak: 'break-all',
               margin: '0 0.1em',
               borderRadius: '4px',
-              background: theme('colors.neutral.300'),
+              background: theme('colors.neutral.200'),
               '&:before': {
                 display: 'none',
               },
@@ -74,6 +76,16 @@ module.exports = {
         dark: {
           css: {
             color: theme('colors.neutral.100'),
+            code: {
+              background: theme('colors.neutral.700'),
+              color: theme('colors.neutral.100'),
+            },
+            pre: {
+              code: {
+                background: 'inherit',
+                color: 'inherit',
+              },
+            },
             h1: {
               color: theme('colors.neutral.100'),
             },
