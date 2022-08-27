@@ -10,7 +10,7 @@ const themeStorage = {
     const theme = localStorage.getItem(THEME);
 
     if (!isTheme(theme)) {
-      return null;
+      return Theme.light;
     }
 
     return theme;
