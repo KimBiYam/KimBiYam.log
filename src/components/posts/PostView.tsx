@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 
 import { m } from 'framer-motion';
 
-import useClientSide from '../../hooks/useClientSide';
+import useMounted from '../../hooks/useMounted';
 import breakPoints from '../../lib/styles/breakPoints.json';
 import { routingMotion } from '../../lib/styles/motions';
 import { PostDetail } from '../../types/post.types';
@@ -22,7 +22,7 @@ interface PostViewProps {
 const PostView = ({ postDetail }: PostViewProps) => {
   const { title, date, contentHtml, tag } = postDetail;
 
-  const isClientSide = useClientSide();
+  const mounted = useMounted();
   const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
 
   return (
@@ -37,7 +37,7 @@ const PostView = ({ postDetail }: PostViewProps) => {
         <ProfileCard />
       </div>
       <Utterances />
-      {isClientSide && isUpExtraLargeScreen && <DynamicTableOfContents />}
+      {mounted && isUpExtraLargeScreen && <DynamicTableOfContents />}
     </m.article>
   );
 };
