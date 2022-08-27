@@ -14,7 +14,7 @@ const ISSUE_TERM = 'pathname';
 
 const MESSAGE_TARGET_ORIGIN = 'https://utteranc.es/';
 
-const getThemeByAppTheme = (theme: Theme | null) =>
+const getThemeByAppTheme = (theme: Theme) =>
   theme === Theme.dark ? DARK_THEME : LIGHT_THEME;
 
 const Utterances = () => {
