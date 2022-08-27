@@ -69,21 +69,22 @@ const rotateScaleSpring: Transition = {
   damping: 15,
 };
 
-export const createRotateScaleMotion = (isShown: boolean): MotionProps => ({
-  initial: 'hidden',
-  animate: isShown ? 'show' : 'hidden',
-  variants: {
-    show: {
-      scale: 1,
-      opacity: 1,
-      rotate: 0,
-      transition: rotateScaleSpring,
-    },
-    hidden: {
-      scale: 0,
-      opacity: 0,
-      rotate: 360,
-      transition: rotateScaleSpring,
-    },
+export const createRotateScaleMotion = (): MotionProps => ({
+  initial: {
+    scale: 0,
+    opacity: 0,
+    rotate: 360,
+  },
+  animate: {
+    scale: 1,
+    opacity: 1,
+    rotate: 0,
+    transition: rotateScaleSpring,
+  },
+  exit: {
+    scale: 0,
+    opacity: 0,
+    rotate: 360,
+    transition: rotateScaleSpring,
   },
 });

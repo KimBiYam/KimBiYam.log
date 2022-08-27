@@ -1,6 +1,4 @@
-import { memo } from 'react';
-
-import { m } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 
 import MoonIcon from '../../assets/svgs/moon.svg';
 import SunIcon from '../../assets/svgs/sun.svg';
@@ -20,8 +18,6 @@ const DarkModeButton = () => {
     toggleTheme();
   };
 
-  if (!mounted) return null;
-
   return (
     <button
       type="button"
@@ -30,21 +26,31 @@ const DarkModeButton = () => {
       title="dark-mode-button"
     >
       <div className="relative w-6 h-6">
-        <m.div
-          className="absolute w-full"
-          {...createRotateScaleMotion(theme === Theme.dark)}
-        >
-          <MoonIcon />
-        </m.div>
-        <m.div
-          className="absolute w-full"
-          {...createRotateScaleMotion(theme === Theme.light)}
-        >
-          <SunIcon />
-        </m.div>
+        {mounted && (
+          <AnimatePresence initial={false}>
+            {theme === Theme.dark && (
+              <m.div
+                key="dark-mode-dark"
+                className="absolute w-full"
+                {...createRotateScaleMotion()}
+              >
+                <MoonIcon />
+              </m.div>
+            )}
+            {theme === Theme.light && (
+              <m.div
+                key="dark-mode-light"
+                className="absolute w-full"
+                {...createRotateScaleMotion()}
+              >
+                <SunIcon />
+              </m.div>
+            )}
+          </AnimatePresence>
+        )}
       </div>
     </button>
   );
 };
 
-export default memo(DarkModeButton);
+export default DarkModeButton;
