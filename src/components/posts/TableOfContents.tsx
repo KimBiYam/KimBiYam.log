@@ -1,20 +1,20 @@
-import { forwardRef } from 'react';
+import { useRef } from 'react';
 
-import withDragScroll from '../../hocs/withDragScroll';
 import useActiveChildScroll from '../../hooks/useActiveChildScroll';
 import useActiveHeadingDetector from '../../hooks/useActiveHeadingDetector';
 import useDetectPageScrolling from '../../hooks/useDetectPageScrolling';
 import useTableOfContents from '../../hooks/useTableOfContents';
 import TableOfContentsItem from './TableOfContentsItem';
 
-const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
+const TableOfContents = () => {
   const headings = useTableOfContents();
   const activeId = useActiveHeadingDetector();
   const pageScrolling = useDetectPageScrolling();
+  const navRef = useRef<HTMLElement>(null);
 
   const registerChildRef = useActiveChildScroll({
     activeId,
-    parentRef: ref,
+    parentRef: navRef,
     pageScrolling,
   });
 
@@ -27,7 +27,7 @@ const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
     <aside className="absolute left-full">
       <nav
         className="fixed flex flex-col w-56 pr-4 ml-12 overflow-y-auto 2xl:right-8 scrollbar-thin h-2/3 top-36"
-        ref={ref}
+        ref={navRef}
       >
         <ul>
           {headings.map((heading) => (
@@ -57,6 +57,6 @@ const TableOfContents = forwardRef<HTMLElement>((_: unknown, ref) => {
       </nav>
     </aside>
   );
-});
+};
 
-export default withDragScroll(TableOfContents);
+export default TableOfContents;
