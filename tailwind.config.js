@@ -52,6 +52,7 @@ module.exports = {
             },
             code: {
               padding: '0.05em 0.4em',
+              fontWeight: 500,
               whiteSpace: 'pre-wrap',
               wordBreak: 'break-all',
               margin: '0 0.1em',
