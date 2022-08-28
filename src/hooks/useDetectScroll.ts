@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { useRouter } from 'next/router';
 
@@ -26,25 +26,22 @@ const useDetectScroll = () => {
     return () => {
       router.events.off('beforeHistoryChange', setIsRouting);
     };
-  }, []);
+  }, [router.events, setScroll]);
 
-  const handleScroll = useCallback(
-    useThrottle(() => {
-      const { scrollY } = window;
+  const handleScroll = useThrottle(() => {
+    const { scrollY } = window;
 
-      const deltaY = scrollY - pageY;
-      const isScrollUp = scrollY === 0 || deltaY < 0;
-      const direction = isScrollUp ? ScrollDirection.up : ScrollDirection.down;
+    const deltaY = scrollY - pageY;
+    const isScrollUp = scrollY === 0 || deltaY < 0;
+    const direction = isScrollUp ? ScrollDirection.up : ScrollDirection.down;
 
-      setScroll({ direction, pageY: scrollY, isRouting: false });
-    }, THROTTLE_TIME_MS),
-    [pageY, setScroll],
-  );
+    setScroll({ direction, pageY: scrollY, isRouting: false });
+  }, THROTTLE_TIME_MS);
 
   useEffect(() => {
     document.addEventListener('scroll', handleScroll);
     return () => document.removeEventListener('scroll', handleScroll);
-  }, [pageY]);
+  }, [handleScroll, pageY]);
 };
 
 export default useDetectScroll;

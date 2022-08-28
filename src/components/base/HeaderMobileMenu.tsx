@@ -19,7 +19,7 @@ const HeaderMobileMenu = () => {
 
   useEffect(() => {
     if (isUpMediumScreen) setIsMenuOpen(false);
-  }, [isUpMediumScreen]);
+  }, [isUpMediumScreen, setIsMenuOpen]);
 
   const toggleMenu = () => {
     setIsMenuOpen((prevDropdownOpen) => !prevDropdownOpen);

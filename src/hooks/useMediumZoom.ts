@@ -32,7 +32,7 @@ const useMediumZoom = (ref: React.RefObject<HTMLElement>) => {
     return () => {
       if (zoomRef.current) zoomRef.current.detach();
     };
-  }, []);
+  }, [background, ref]);
 
   useEffect(() => {
     zoomRef.current?.update({ background });

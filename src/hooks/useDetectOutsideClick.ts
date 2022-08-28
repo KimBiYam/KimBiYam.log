@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useState } from 'react';
+import { RefObject, useCallback, useEffect, useState } from 'react';
 
 const useDetectOutsideClick = (
   ref: RefObject<HTMLElement>,
@@ -6,11 +6,14 @@ const useDetectOutsideClick = (
 ) => {
   const [isOpen, setIsOpen] = useState(initialState);
 
-  const onClick = (event: MouseEvent) => {
-    if (ref.current !== null && !ref.current.contains(event.target as Node)) {
-      setIsOpen(false);
-    }
-  };
+  const onClick = useCallback(
+    (event: MouseEvent) => {
+      if (ref.current !== null && !ref.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    },
+    [ref],
+  );
 
   useEffect(() => {
     if (isOpen) {
@@ -20,7 +23,7 @@ const useDetectOutsideClick = (
     return () => {
       window.removeEventListener('click', onClick);
     };
-  }, [isOpen, ref]);
+  }, [isOpen, onClick, ref]);
 
   return [isOpen, setIsOpen] as const;
 };

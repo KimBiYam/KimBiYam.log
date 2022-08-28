@@ -42,7 +42,7 @@ const useHeadingLink = (ref: React.RefObject<HTMLElement>) => {
         el.innerHTML = innerHTML;
       }
     };
-  }, []);
+  }, [ref]);
 };
 
 export default useHeadingLink;
