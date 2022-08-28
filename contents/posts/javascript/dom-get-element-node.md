@@ -243,7 +243,7 @@ $elems.forEach(elem => elem.className = 'blue');
       $fruits.removeChild(childNodes[i]);
     }
 
-    // 예상과 다르게 $fruits 요ㅕ소의 모든 자식 노드가 삭제되지 않는다.
+    // 예상과 다르게 $fruits 요소의 모든 자식 노드가 삭제되지 않는다.
     console.log(childNodes); // NodeList(2) [li, li]
   </script>
 </html>
