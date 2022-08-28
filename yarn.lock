@@ -2542,10 +2542,10 @@ eslint-config-airbnb@^19.0.4:
     object.assign "^4.1.2"
     object.entries "^1.1.5"
 
-eslint-config-kimbiyam-react@^1.0.25:
-  version "1.0.25"
-  resolved "https://registry.npmjs.org/eslint-config-kimbiyam-react/-/eslint-config-kimbiyam-react-1.0.25.tgz"
-  integrity sha512-JQ6KXjxRxgsTmPJ+CibgV4L2Im1vRqJZUQbtdtzSIZVre0k/sKpJE5kokyaJU6IJh+n4wpRJFqo+u6emdNbKQg==
+eslint-config-kimbiyam-react@^1.0.26:
+  version "1.0.26"
+  resolved "https://registry.yarnpkg.com/eslint-config-kimbiyam-react/-/eslint-config-kimbiyam-react-1.0.26.tgz#85fe73da39b51b850a42121bf4c2c6898401abde"
+  integrity sha512-XemkBr1K/EHCuOmgSVBcqiEj/vKUGuVa7wsYNQRodBsNBy4mT0GSzQTqljv7/Y4HEEYDO2ShNL2QAor8UAz8/Q==
 
 eslint-config-prettier@^8.3.0:
   version "8.3.0"
