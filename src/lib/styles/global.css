@@ -4,12 +4,16 @@
 
 html,
 body {
-  font-family: "IBM Plex Sans KR", sans-serif;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto;
+}
+
+body {
+  font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont,
+    "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", sans-serif;
 }
 
 code,
