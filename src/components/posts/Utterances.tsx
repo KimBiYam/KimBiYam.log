@@ -22,6 +22,7 @@ const Utterances = () => {
   const { theme } = useTheme();
 
   useEffect(() => {
+    const copiedRef = ref.current;
     const utterances = document.createElement('script');
     const config: Record<string, string> = {
       src: SOURCE_URL,
@@ -37,7 +38,11 @@ const Utterances = () => {
       utterances.setAttribute(key, value);
     });
 
-    ref.current?.appendChild(utterances);
+    copiedRef?.appendChild(utterances);
+
+    return () => {
+      if (copiedRef) copiedRef.innerHTML = '';
+    };
   }, []);
 
   useEffect(() => {
