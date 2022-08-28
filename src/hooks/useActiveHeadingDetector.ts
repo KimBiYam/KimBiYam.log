@@ -81,7 +81,7 @@ const useActiveHeadingDetector = () => {
     return () => {
       document.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   return activeId;
 };

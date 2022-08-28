@@ -33,7 +33,7 @@ const useScrollObserver = ({
     return () => {
       if (observer) observer.unobserve(element);
     };
-  }, [targetRef.current, enabled]);
+  }, [enabled, root, threshold, rootMargin, targetRef, onIntersect]);
 };
 
 export default useScrollObserver;

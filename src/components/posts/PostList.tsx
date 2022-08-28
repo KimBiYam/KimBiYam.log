@@ -21,7 +21,7 @@ const PostList = ({ postPreviews, selectedTag }: PostListProps) => {
 
   const handleIntersect = useCallback(
     () => setPostPage((prev) => prev + 1),
-    [],
+    [setPostPage],
   );
 
   useScrollObserver({

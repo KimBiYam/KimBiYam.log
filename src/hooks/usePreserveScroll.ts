@@ -40,5 +40,5 @@ export const usePreserveScroll = () => {
       router.events.off('routeChangeStart', handleRouteChangeStart);
       router.events.off('routeChangeComplete', handleRouteChangeComplete);
     };
-  }, [router]);
+  }, [router, url]);
 };
