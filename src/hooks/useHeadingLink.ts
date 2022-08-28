@@ -6,9 +6,13 @@ const LINK_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" f
 
 const useHeadingLink = (ref: React.RefObject<HTMLElement>) => {
   useEffect(() => {
+    const originalHeadingElements: Map<Element, string> = new Map();
     const headingElements = ref.current?.querySelectorAll('h2,h3');
+    if (!headingElements) return;
 
-    headingElements?.forEach((headingEl) => {
+    [...headingElements]?.forEach((headingEl) => {
+      originalHeadingElements.set(headingEl, headingEl.innerHTML);
+
       headingEl.classList.add('flex');
 
       const anchorEl = document.createElement('a');
@@ -31,6 +35,13 @@ const useHeadingLink = (ref: React.RefObject<HTMLElement>) => {
       anchorEl.appendChild(iconEl);
       headingEl.appendChild(anchorEl);
     });
+
+    return () => {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const [el, innerHTML] of originalHeadingElements) {
+        el.innerHTML = innerHTML;
+      }
+    };
   }, []);
 };
 
