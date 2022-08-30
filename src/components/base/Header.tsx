@@ -25,7 +25,7 @@ const Header = () => {
         isRouting ? 0 : VISIBLE_TRANSITION_MS,
       )}
     >
-      <div className="container flex items-center justify-between h-full max-w-screen-md px-4 md:px-8 ">
+      <div className="container flex items-center justify-between h-full px-4 max-w-screen-md md:px-8 ">
         <Logo />
         <HeaderDesktopNav />
         <HeaderButtonSection />
