@@ -12,7 +12,7 @@
   }
 
   .primary-text-hover {
-    @apply duration-300 transition-color hover:bg-slate-300 dark:hover:text-neutral-500;
+    @apply duration-300 transition-color hover:text-slate-300 dark:hover:text-neutral-500;
   }
 
   .primary-button {
