@@ -4,7 +4,7 @@
 
 @layer utilities {
   .main-container {
-    @apply transition-backgroundColor duration-300 bg-white dark:bg-neutral-900;
+    @apply duration-300 bg-white transition-backgroundColor dark:bg-neutral-900;
   }
 
   .main-font-color {
@@ -12,11 +12,15 @@
   }
 
   .primary-text-hover {
-    @apply transition-color duration-300 hover:text-neutral-200 dark:hover:text-neutral-500;
+    @apply duration-300 transition-color hover:text-neutral-200 dark:hover:text-neutral-500;
+  }
+
+  .primary-button {
+    @apply bg-slate-200 main-font-color dark:bg-neutral-700;
   }
 
   .primary-button-hover {
-    @apply transition-backgroundColor duration-300 hover:bg-neutral-200 dark:hover:bg-neutral-500;
+    @apply duration-300 transition-backgroundColor hover:bg-neutral-200 dark:hover:bg-neutral-500;
   }
 
   .scrollbar-hide {
