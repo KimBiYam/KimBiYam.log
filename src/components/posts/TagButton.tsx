@@ -9,12 +9,8 @@ interface TagButtonProps {
 const TagButton = forwardRef<HTMLButtonElement, TagButtonProps>(
   ({ tag, onTagClick, isSelected }, ref) => (
     <button
-      className={`px-4 py-1 mx-1 mb-2 border-2 rounded-xl text-xs md:text-sm whitespace-pre main-font-color
-    ${
-      isSelected
-        ? 'font-bold border-black dark:border-slate-600'
-        : 'font-semibold'
-    }`}
+      className={`px-4 py-1 mx-1 mb-2 rounded-xl text-xs md:text-sm whitespace-pre main-font-color primary-button primary-button-hover
+    ${isSelected ? 'font-bold' : 'font-semibold'}`}
       ref={ref}
       type="button"
       onClick={() => onTagClick(tag)}
