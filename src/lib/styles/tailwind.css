@@ -12,7 +12,7 @@
   }
 
   .primary-text-hover {
-    @apply duration-300 transition-color hover:text-neutral-200 dark:hover:text-neutral-500;
+    @apply duration-300 transition-color hover:bg-slate-300 dark:hover:text-neutral-500;
   }
 
   .primary-button {
@@ -20,7 +20,7 @@
   }
 
   .primary-button-hover {
-    @apply duration-300 transition-backgroundColor hover:bg-neutral-200 dark:hover:bg-neutral-500;
+    @apply duration-300 transition-backgroundColor hover:bg-slate-300 dark:hover:bg-neutral-500;
   }
 
   .scrollbar-hide {
