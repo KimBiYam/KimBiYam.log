@@ -11,6 +11,7 @@ import MainLayout from '../components/base/MainLayout';
 import ScrollToTopButton from '../components/base/ScrollToTopButton';
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
 import { IS_BROWSER, IS_PRODUCTION } from '../constants';
+import useDetectScroll from '../hooks/useDetectScroll';
 import useGoogleAnalyticsPageView from '../hooks/useGoogleAnalyticsPageView';
 import { usePreserveScroll } from '../hooks/usePreserveScroll';
 import * as sentryUtil from '../lib/utils/sentry.util';
@@ -25,6 +26,7 @@ if (IS_BROWSER) smoothscroll.polyfill();
 const App = ({ Component, pageProps }: AppProps) => {
   useGoogleAnalyticsPageView();
   usePreserveScroll();
+  useDetectScroll();
 
   return (
     <>
