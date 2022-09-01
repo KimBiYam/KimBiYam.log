@@ -6,6 +6,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 module.exports = withBundleAnalyzer({
+  swcMinify: true,
   reactStrictMode: true,
   images: {
     deviceSizes: [480, 768, 1024, 1280],
