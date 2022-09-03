@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 
 import PageHead from '../../../components/base/PageHead';
 import PostView from '../../../components/posts/PostView';
+import Utterances from '../../../components/posts/Utterances';
 import { POST_DIRECTORY } from '../../../constants';
 import { getAllPostPaths, getPostDetail } from '../../../lib/posts/post';
 
@@ -19,6 +20,7 @@ const Post = ({
         ogImagePath={ogImagePath}
       />
       <PostView postDetail={postDetail} />
+      <Utterances />
     </>
   );
 };
