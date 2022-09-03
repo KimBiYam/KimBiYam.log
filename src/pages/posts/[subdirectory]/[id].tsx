@@ -1,3 +1,4 @@
+import { m } from 'framer-motion';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 
 import PageHead from '../../../components/base/PageHead';
@@ -5,6 +6,7 @@ import PostView from '../../../components/posts/PostView';
 import Utterances from '../../../components/posts/Utterances';
 import { POST_DIRECTORY } from '../../../constants';
 import { getAllPostPaths, getPostDetail } from '../../../lib/posts/post';
+import { routingMotion } from '../../../lib/styles/motions';
 
 const Post = ({
   postDetail,
@@ -19,8 +21,10 @@ const Post = ({
         url={`/posts/${tag}/${id}`}
         ogImagePath={ogImagePath}
       />
-      <PostView postDetail={postDetail} />
-      <Utterances />
+      <m.div {...routingMotion}>
+        <PostView postDetail={postDetail} />
+        <Utterances />
+      </m.div>
     </>
   );
 };
