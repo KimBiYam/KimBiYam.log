@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 import useMounted from '../../hooks/useMounted';
 import breakPoints from '../../lib/styles/breakPoints.json';
 import { PostDetail } from '../../types/post.types';
-import ProfileCard from '../base/ProfileCard';
 import MarkdownView from './MarkdownView';
 import TagBadge from './TagBadge';
 
@@ -29,9 +28,6 @@ const PostView = ({ postDetail }: PostViewProps) => {
         <TagBadge tag={tag.toUpperCase()} />
       </div>
       <MarkdownView contentHtml={contentHtml} />
-      <div className="py-4 my-10 border-t border-b">
-        <ProfileCard />
-      </div>
       {mounted && isUpExtraLargeScreen && <DynamicTableOfContents />}
     </article>
   );
