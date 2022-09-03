@@ -2,11 +2,8 @@ import { useMediaQuery } from 'react-responsive';
 
 import dynamic from 'next/dynamic';
 
-import { m } from 'framer-motion';
-
 import useMounted from '../../hooks/useMounted';
 import breakPoints from '../../lib/styles/breakPoints.json';
-import { routingMotion } from '../../lib/styles/motions';
 import { PostDetail } from '../../types/post.types';
 import ProfileCard from '../base/ProfileCard';
 import MarkdownView from './MarkdownView';
@@ -25,7 +22,7 @@ const PostView = ({ postDetail }: PostViewProps) => {
   const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
 
   return (
-    <m.article className="relative mt-8" {...routingMotion}>
+    <article className="relative mt-8">
       <h1 className="text-2xl font-bold md:text-4xl">{title}</h1>
       <div className="flex items-center justify-between my-4">
         <p className="text-sm">{date}</p>
@@ -36,7 +33,7 @@ const PostView = ({ postDetail }: PostViewProps) => {
         <ProfileCard />
       </div>
       {mounted && isUpExtraLargeScreen && <DynamicTableOfContents />}
-    </m.article>
+    </article>
   );
 };
 
