@@ -8,6 +8,7 @@ import Utterances from '../../../components/posts/Utterances';
 import { POST_DIRECTORY } from '../../../constants';
 import { getAllPostPaths, getPostDetail } from '../../../lib/posts/post';
 import { routingMotion } from '../../../lib/styles/motions';
+import { PostDetail } from '../../../types/post.types';
 
 const Post = ({
   postDetail,
@@ -42,7 +43,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<{
+  postDetail: PostDetail;
+}> = async ({ params }) => {
   const subdirectory = params?.subdirectory;
   const id = String(params?.id);
 
