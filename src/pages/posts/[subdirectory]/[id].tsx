@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 
 import PageHead from '../../../components/base/PageHead';
 import ProfileCard from '../../../components/base/ProfileCard';
+import PostShareButtons from '../../../components/posts/PostShareButtons';
 import PostView from '../../../components/posts/PostView';
 import Utterances from '../../../components/posts/Utterances';
 import { POST_DIRECTORY } from '../../../constants';
@@ -25,6 +26,7 @@ const Post = ({
       />
       <m.div {...routingMotion}>
         <PostView postDetail={postDetail} />
+        <PostShareButtons postDetail={postDetail} />
         <div className="py-4 my-10 border-t border-b">
           <ProfileCard />
         </div>
