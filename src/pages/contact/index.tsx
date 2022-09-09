@@ -1,11 +1,10 @@
-import { m } from 'framer-motion';
 import { GetStaticProps } from 'next';
 
 import PageHead from '../../components/base/PageHead';
+import PageRoutingAnimation from '../../components/base/PageRoutingAnimation';
 import MarkdownView from '../../components/posts/MarkdownView';
 import { CONTACT_DIRECTORY, CONTACT_FILE_NAME } from '../../constants';
 import { getMarkdownData } from '../../lib/posts/markdown';
-import { routingMotion } from '../../lib/styles/motions';
 
 interface ContactProps {
   contentHtml: string;
@@ -14,9 +13,9 @@ interface ContactProps {
 const Contact = ({ contentHtml }: ContactProps) => (
   <>
     <PageHead title="Contact" description="Contact" url="/contact" />
-    <m.div className="py-12" {...routingMotion}>
+    <PageRoutingAnimation className="py-12">
       <MarkdownView contentHtml={contentHtml} />
-    </m.div>
+    </PageRoutingAnimation>
   </>
 );
 

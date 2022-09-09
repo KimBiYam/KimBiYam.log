@@ -7,18 +7,6 @@ export const viewportOpacityMotion: MotionProps = {
   transition: { duration: 0.2 },
 };
 
-export const routingMotion: MotionProps = {
-  variants: {
-    hidden: { opacity: 0 },
-    enter: { opacity: 1 },
-    exit: { opacity: 0 },
-  },
-  initial: 'hidden',
-  animate: 'enter',
-  exit: 'exit',
-  transition: { duration: 0.3, ease: 'easeInOut' },
-};
-
 export const hoverRotateMotion: MotionProps = {
   whileHover: {
     rotate: 360,

@@ -2,17 +2,16 @@ import { useMemo } from 'react';
 
 import { useRouter } from 'next/router';
 
-import { m } from 'framer-motion';
 import { GetStaticProps } from 'next';
 
 import PageHead from '../components/base/PageHead';
+import PageRoutingAnimation from '../components/base/PageRoutingAnimation';
 import ProfileCard from '../components/base/ProfileCard';
 import PostList from '../components/posts/PostList';
 import TagSelector from '../components/posts/TagSelector';
 import { Tag } from '../constants';
 import useTag from '../hooks/useTag';
 import { getSortedPostPreviews } from '../lib/posts/post';
-import { routingMotion } from '../lib/styles/motions';
 import { PostPreview } from '../types/post.types';
 
 interface HomeProps {
@@ -36,7 +35,7 @@ const Home = ({ postPreviews }: HomeProps) => {
   return (
     <>
       <PageHead title="Home" />
-      <m.div className="pb-12" {...routingMotion}>
+      <PageRoutingAnimation className="pb-12">
         <div className="my-2">
           <ProfileCard />
         </div>
@@ -46,7 +45,7 @@ const Home = ({ postPreviews }: HomeProps) => {
           selectedTag={selectedTag}
         />
         <PostList postPreviews={postPreviews} selectedTag={selectedTag} />
-      </m.div>
+      </PageRoutingAnimation>
     </>
   );
 };
