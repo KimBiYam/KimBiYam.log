@@ -1,14 +1,13 @@
-import { m } from 'framer-motion';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 
 import PageHead from '../../../components/base/PageHead';
+import PageRoutingAnimation from '../../../components/base/PageRoutingAnimation';
 import ProfileCard from '../../../components/base/ProfileCard';
 import PostShareButtons from '../../../components/posts/PostShareButtons';
 import PostView from '../../../components/posts/PostView';
 import Utterances from '../../../components/posts/Utterances';
 import { POST_DIRECTORY } from '../../../constants';
 import { getAllPostPaths, getPostDetail } from '../../../lib/posts/post';
-import { routingMotion } from '../../../lib/styles/motions';
 import { PostDetail } from '../../../types/post.types';
 
 const Post = ({
@@ -24,14 +23,14 @@ const Post = ({
         url={`/posts/${tag}/${id}`}
         ogImagePath={ogImagePath}
       />
-      <m.div {...routingMotion}>
+      <PageRoutingAnimation>
         <PostView postDetail={postDetail} />
         <PostShareButtons postDetail={postDetail} />
         <div className="py-4 my-10 border-t border-b">
           <ProfileCard />
         </div>
         <Utterances />
-      </m.div>
+      </PageRoutingAnimation>
     </>
   );
 };
