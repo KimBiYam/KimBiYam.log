@@ -82,7 +82,10 @@ const getPostMarkdownFilePaths = () => {
 };
 
 const getPostPreview = (fileName: string): PostPreview => {
+  const POST_PREVIEW_BEFORE_REMOVED_MAX_LENGTH = 500;
   const POST_PREVIEW_CONTENT_MAX_LENGTH = 200;
+  const MARKDOWN_CODE_BLOCK_REG_EXP_1 = RegExp(/```([\s\S]*?)```/g);
+  const MARKDOWN_CODE_BLOCK_REG_EXP_2 = RegExp(/~~~([\s\S]*?)~~~/g);
 
   const id = fileName.replace(/\.md$/, '');
 
@@ -93,17 +96,29 @@ const getPostPreview = (fileName: string): PostPreview => {
 
   const {
     data: { date, title, tag },
-    content,
+    content: fullContent,
   } = matterResult;
 
-  const slicedContent = content.substring(0, POST_PREVIEW_CONTENT_MAX_LENGTH);
-  const previewContent = `${removeMarkdown(slicedContent)}...`;
+  const slicedContent = fullContent.slice(
+    0,
+    POST_PREVIEW_BEFORE_REMOVED_MAX_LENGTH,
+  );
+  let content = removeMarkdown(slicedContent, {
+    useImgAltText: false,
+  })
+    .replace(MARKDOWN_CODE_BLOCK_REG_EXP_1, '')
+    .replace(MARKDOWN_CODE_BLOCK_REG_EXP_2, '')
+    .slice(0, POST_PREVIEW_CONTENT_MAX_LENGTH);
+
+  if (content.length >= POST_PREVIEW_CONTENT_MAX_LENGTH) {
+    content += '...';
+  }
 
   return {
     id,
     date,
     title,
     tag,
-    content: previewContent,
+    content,
   };
 };
