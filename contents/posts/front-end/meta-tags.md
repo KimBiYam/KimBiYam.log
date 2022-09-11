@@ -42,11 +42,11 @@ HTML 문서의 `<head>` 태그 내부에 위치하면 된다.
 
 ---
 
-### OG (Open Graph) 태그
+## OG (Open Graph) 태그
 
 오픈그래프는 기존의 메타태그와 달리 SNS 등에 게시할 때 최적화된 데이터 내용을 정의하는 데 사용하는 태그이다. 일반적으로 카카오톡, 페이스북 등의 SNS로 웹 사이트 URL을 공유할 때 미리 보기로 나오는 내용을 볼 수 있는데 해당 부분에 대한 내용을 정의를 하는데 사용한다.
 
-### og 태그 작성 예시
+### OG 태그 작성 예시
 
 ```html
 <meta property="og:type" content="website">
@@ -77,16 +77,18 @@ HTML 문서의 `<head>` 태그 내부에 위치하면 된다.
 사실상 `twitter:card` 값 외에는 og 태그와 동일한 내용이 중복되는데,
 트위터에서는 og 태그도 허용되어서 og 태그를 작성 후 `twitter:card` 값만 지정해 주어도 무방하다고 한다.
 
+### 페이지 공유 테스트
+
 아래의 링크에서 공유 미리보기를 테스트 해볼 수 있다.
 
 - [페이스북](https://developers.facebook.com/tools/debug/)
 
 ![](/images/posts/front-end/meta-tags_2.png)
 
-- [트위터](https://cards-dev.twitter.com/validator)
-
-![](/images/posts/front-end/meta-tags_3.png)
+- 트위터는 [Card validator 페이지](https://cards-dev.twitter.com/validator)에서 테스트를 해볼 수 있었지만, 최근에 삭제 되었다고 한다.
+    
+    관련 링크 - [Card Validator - preview removal](https://twittercommunity.com/t/card-validator-preview-removal/175006)
 
 - 카카오톡은 [OG 기반 스크랩 api](https://developers.kakao.com/docs/latest/ko/kakaostory/rest-api#scrape-page)를 제공하는데 JSON 형식으로 데이터만 주는 식이라 그냥 직접 톡을 보내보았다.
 
-![](/images/posts/front-end/meta-tags_4.png)
+![](/images/posts/front-end/meta-tags_3.png)
