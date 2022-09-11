@@ -18,7 +18,6 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@next/bundle-analyzer": "^12.1.6",
     "@sentry/nextjs": "^6.19.6",
     "framer-motion": "^5.4.5",
     "gray-matter": "^4.0.3",
@@ -39,6 +38,7 @@
     "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^12.1.6",
     "@next/eslint-plugin-next": "^12.2.5",
     "@svgr/webpack": "^5.5.0",
     "@tailwindcss/typography": "^0.5.2",
