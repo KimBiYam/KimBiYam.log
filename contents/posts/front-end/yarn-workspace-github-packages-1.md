@@ -167,9 +167,6 @@ worksapce를 사용해 보기 위해 샘플로 모듈과 유틸 패키지를 만
     "type": "git",
     "url": "https://github.com/KimBiYam/github-packages-example"
   },
-  "dependencies": {
-    "@kimbiyam/sample-util": "0.0.0"
-  },
 	// github packages registry에 배포하기 위한 설정
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
