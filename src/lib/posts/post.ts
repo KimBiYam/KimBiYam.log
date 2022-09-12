@@ -122,7 +122,7 @@ const getPostPreviewDescription = (content: string) => {
     useImgAltText: false,
   }).slice(0, POST_PREVIEW_CONTENT_MAX_LENGTH);
 
-  if (content.length === POST_PREVIEW_CONTENT_MAX_LENGTH) {
+  if (content.length >= POST_PREVIEW_CONTENT_MAX_LENGTH) {
     description += '...';
   }
 
