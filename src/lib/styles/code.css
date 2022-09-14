@@ -10,6 +10,8 @@ pre[class*="language-"] {
   background: none;
   font-family: "Fira Code", "Consolas", "Monaco", "Andale Mono", "Ubuntu Mono",
     monospace !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
   font-weight: 500 !important;
   font-size: 0.95em;
   text-align: left;

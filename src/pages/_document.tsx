@@ -18,8 +18,9 @@ class MyDocument extends Document {
       <Html lang="ko">
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
             rel="stylesheet"
+            as="style"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard-dynamic-subset.css"
           />
           <script src="/theme.js" />
           <script src="/setViewportProperty.js" />

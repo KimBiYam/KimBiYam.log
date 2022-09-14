@@ -6,10 +6,10 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: auto;
-  font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont,
-    "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", sans-serif;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
 }
 
 code,
