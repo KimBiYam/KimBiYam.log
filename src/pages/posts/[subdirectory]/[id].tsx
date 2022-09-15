@@ -2,9 +2,9 @@ import { useRouter } from 'next/router';
 
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 
-import PageHead from '../../../components/base/PageHead';
 import PageRoutingAnimation from '../../../components/base/PageRoutingAnimation';
 import ProfileCard from '../../../components/base/ProfileCard';
+import SEO from '../../../components/base/SEO';
 import PostShareButtons from '../../../components/posts/PostShareButtons';
 import PostView from '../../../components/posts/PostView';
 import Utterances from '../../../components/posts/Utterances';
@@ -20,7 +20,7 @@ const Post = ({
 
   return (
     <>
-      <PageHead
+      <SEO
         title={title}
         description={description}
         path={router.asPath}
