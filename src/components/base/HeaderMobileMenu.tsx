@@ -41,8 +41,8 @@ const HeaderMobileMenu = () => {
         </li>
         <li>
           <HeaderItem
-            href="/contact"
-            label="CONTACT"
+            href="/about-me"
+            label="ABOUT"
             onClick={handleItemClick}
           />
         </li>
