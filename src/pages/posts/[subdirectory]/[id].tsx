@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 
 import PageHead from '../../../components/base/PageHead';
@@ -13,14 +15,15 @@ import { PostDetail } from '../../../types/post.types';
 const Post = ({
   postDetail,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { title, description, tag, id, ogImagePath } = postDetail;
+  const router = useRouter();
+  const { title, description, ogImagePath } = postDetail;
 
   return (
     <>
       <PageHead
         title={title}
         description={description}
-        url={`/posts/${tag}/${id}`}
+        path={router.asPath}
         ogImagePath={ogImagePath}
       />
       <PageRoutingAnimation>

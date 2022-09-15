@@ -8,7 +8,7 @@ import Favicon from './Favicon';
 interface PageHeadProps {
   title: string;
   description?: string;
-  url?: string;
+  path?: string;
   ogImagePath?: string;
 }
 
@@ -17,13 +17,13 @@ const PAGE_TITLE_SUFFIX = ' | KimBiYam.log';
 const PageHead = ({
   title,
   description = 'KimBiYam의 개발 블로그 입니다.',
-  url = '',
+  path = '',
   ogImagePath = ogTagImage.src,
 }: PageHeadProps) => (
   <Head>
     <Favicon />
     <title>{title + PAGE_TITLE_SUFFIX}</title>
-    <link rel="canonical" href={`${DOMAIN_URL}${url}`} />
+    <link rel="canonical" href={`${DOMAIN_URL}${path}`} />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover"
@@ -36,7 +36,7 @@ const PageHead = ({
     <meta name="format-detection" content="telephone=no" />
     <meta name="twitter:card" content="summary" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={`${DOMAIN_URL}${url}`} />
+    <meta property="og:url" content={`${DOMAIN_URL}${path}`} />
     <meta property="og:image" content={DOMAIN_URL + ogImagePath} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
