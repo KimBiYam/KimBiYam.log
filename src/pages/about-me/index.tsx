@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+
 import { GetStaticProps } from 'next';
 
 import PageHead from '../../components/base/PageHead';
@@ -10,14 +12,18 @@ interface AboutMePageProps {
   contentHtml: string;
 }
 
-const AboutMePage = ({ contentHtml }: AboutMePageProps) => (
-  <>
-    <PageHead title="About Me" url="/about-me" />
-    <PageRoutingAnimation className="py-12">
-      <MarkdownView contentHtml={contentHtml} />
-    </PageRoutingAnimation>
-  </>
-);
+const AboutMePage = ({ contentHtml }: AboutMePageProps) => {
+  const router = useRouter();
+
+  return (
+    <>
+      <PageHead title="About Me" path={router.asPath} />
+      <PageRoutingAnimation className="py-12">
+        <MarkdownView contentHtml={contentHtml} />
+      </PageRoutingAnimation>
+    </>
+  );
+};
 
 export const getStaticProps: GetStaticProps = async () => {
   const aboutMeData = await getMarkdownData(

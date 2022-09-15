@@ -34,7 +34,7 @@ const Home = ({ postPreviews }: HomeProps) => {
 
   return (
     <>
-      <PageHead title="Home" />
+      <PageHead title="Home" path={router.asPath} />
       <PageRoutingAnimation className="pb-12">
         <div className="my-2">
           <ProfileCard />
