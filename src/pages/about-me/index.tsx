@@ -3,16 +3,16 @@ import { GetStaticProps } from 'next';
 import PageHead from '../../components/base/PageHead';
 import PageRoutingAnimation from '../../components/base/PageRoutingAnimation';
 import MarkdownView from '../../components/posts/MarkdownView';
-import { CONTACT_DIRECTORY, CONTACT_FILE_NAME } from '../../constants';
+import { ABOUT_ME_DIRECTORY, ABOUT_ME_FILE_NAME } from '../../constants';
 import { getMarkdownData } from '../../lib/posts/markdown';
 
-interface ContactProps {
+interface AboutMePageProps {
   contentHtml: string;
 }
 
-const Contact = ({ contentHtml }: ContactProps) => (
+const AboutMePage = ({ contentHtml }: AboutMePageProps) => (
   <>
-    <PageHead title="Contact" description="Contact" url="/contact" />
+    <PageHead title="About Me" url="/about-me" />
     <PageRoutingAnimation className="py-12">
       <MarkdownView contentHtml={contentHtml} />
     </PageRoutingAnimation>
@@ -20,12 +20,12 @@ const Contact = ({ contentHtml }: ContactProps) => (
 );
 
 export const getStaticProps: GetStaticProps = async () => {
-  const contactData = await getMarkdownData(
-    CONTACT_DIRECTORY,
-    CONTACT_FILE_NAME,
+  const aboutMeData = await getMarkdownData(
+    ABOUT_ME_DIRECTORY,
+    ABOUT_ME_FILE_NAME,
   );
 
-  const { contentHtml } = contactData;
+  const { contentHtml } = aboutMeData;
 
   return {
     props: {
@@ -34,4 +34,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default Contact;
+export default AboutMePage;
