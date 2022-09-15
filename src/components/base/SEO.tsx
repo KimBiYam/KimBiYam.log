@@ -5,7 +5,7 @@ import ogTagImage from '../../assets/favicon/og_tag_image.png';
 import { DOMAIN_URL } from '../../constants';
 import Favicon from './Favicon';
 
-interface PageHeadProps {
+interface SEOProps {
   title: string;
   description?: string;
   path?: string;
@@ -14,12 +14,12 @@ interface PageHeadProps {
 
 const PAGE_TITLE_SUFFIX = ' | KimBiYam.log';
 
-const PageHead = ({
+const SEO = ({
   title,
   description = 'KimBiYam의 개발 블로그 입니다.',
   path = '',
   ogImagePath = ogTagImage.src,
-}: PageHeadProps) => (
+}: SEOProps) => (
   <Head>
     <Favicon />
     <title>{title + PAGE_TITLE_SUFFIX}</title>
@@ -54,4 +54,4 @@ const PageHead = ({
   </Head>
 );
 
-export default PageHead;
+export default SEO;

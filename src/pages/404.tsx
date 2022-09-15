@@ -1,9 +1,9 @@
-import PageHead from '../components/base/PageHead';
 import PageRoutingAnimation from '../components/base/PageRoutingAnimation';
+import SEO from '../components/base/SEO';
 
 const NotFoundPage = () => (
   <>
-    <PageHead title="Not Found" description="KimBiYam의 개발 블로그 입니다." />
+    <SEO title="Not Found" description="KimBiYam의 개발 블로그 입니다." />
     <PageRoutingAnimation>
       <div className="max-w-xl pt-8 mx-auto text-center">
         <p className="mt-24 text-6xl font-bold md:text-8xl">404</p>

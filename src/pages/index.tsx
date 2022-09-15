@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 
 import { GetStaticProps } from 'next';
 
-import PageHead from '../components/base/PageHead';
 import PageRoutingAnimation from '../components/base/PageRoutingAnimation';
 import ProfileCard from '../components/base/ProfileCard';
+import SEO from '../components/base/SEO';
 import PostList from '../components/posts/PostList';
 import TagSelector from '../components/posts/TagSelector';
 import { Tag } from '../constants';
@@ -34,7 +34,7 @@ const Home = ({ postPreviews }: HomeProps) => {
 
   return (
     <>
-      <PageHead title="Home" path={router.asPath} />
+      <SEO title="Home" path={router.asPath} />
       <PageRoutingAnimation className="pb-12">
         <div className="my-2">
           <ProfileCard />

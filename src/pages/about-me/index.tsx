@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 
 import { GetStaticProps } from 'next';
 
-import PageHead from '../../components/base/PageHead';
 import PageRoutingAnimation from '../../components/base/PageRoutingAnimation';
+import SEO from '../../components/base/SEO';
 import MarkdownView from '../../components/posts/MarkdownView';
 import { ABOUT_ME_DIRECTORY, ABOUT_ME_FILE_NAME } from '../../constants';
 import { getMarkdownData } from '../../lib/posts/markdown';
@@ -17,7 +17,7 @@ const AboutMePage = ({ contentHtml }: AboutMePageProps) => {
 
   return (
     <>
-      <PageHead title="About Me" path={router.asPath} />
+      <SEO title="About Me" path={router.asPath} />
       <PageRoutingAnimation className="py-12">
         <MarkdownView contentHtml={contentHtml} />
       </PageRoutingAnimation>
