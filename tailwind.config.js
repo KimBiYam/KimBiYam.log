@@ -51,7 +51,7 @@ module.exports = {
               fontWeight: 700,
             },
             code: {
-              padding: '0.05em 0.4em',
+              padding: '0.2em 0.4em',
               fontWeight: 500,
               whiteSpace: 'pre-wrap',
               wordBreak: 'break-all',
