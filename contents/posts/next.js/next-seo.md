@@ -80,7 +80,7 @@ Allow: /
 Sitemap: [도메인]/sitemap.xml
 ```
 
-### `NEXT.js`에서 동적으로 `sitemap.xml` 생성하기
+### NEXT.js 에서 동적으로 sitemap.xml 생성하기
 
 위와 같이 `sitemap.xml` 에 크롤링 해야 할 URL을 작성하면 끝이지만, 새로운 페이지가 생길 때마다 매번 사이트맵을 작성하는 것은 굉장히 비효율 적인 작업일 것이다. 직접 [스크립트를 작성](https://medium.com/volla-live/next-js%EB%A5%BC-%EC%9C%84%ED%95%9C-sitemap-generator-%EB%A7%8C%EB%93%A4%EA%B8%B0-10fc917d307e)하는 방법도 있지만 사이트맵을 생성해주는 패키지도 존재하여서 해당 패키지를 사용해보았다.
 
