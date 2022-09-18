@@ -2,7 +2,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const typographyPlugin = require('@tailwindcss/typography');
 const colors = require('tailwindcss/colors');
-const plugin = require('tailwindcss/plugin');
 
 const breakPoints = require('./src/lib/styles/breakPoints.json');
 
@@ -11,23 +10,6 @@ delete colors.warmGray;
 delete colors.trueGray;
 delete colors.coolGray;
 delete colors.blueGray;
-
-const hoverPlugin = plugin(({ addVariant, e, postcss }) => {
-  addVariant('media-hover', ({ container, separator }) => {
-    const hoverRule = postcss.atRule({
-      name: 'media',
-      params: '(hover: hover)',
-    });
-    hoverRule.append(container.nodes);
-    container.append(hoverRule);
-    hoverRule.walkRules((rule) => {
-      // eslint-disable-next-line no-param-reassign
-      rule.selector = `.${e(
-        `hover${separator}${rule.selector.slice(1)}`,
-      )}:hover`;
-    });
-  });
-});
 
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
@@ -143,5 +125,5 @@ module.exports = {
       },
     },
   },
-  plugins: [typographyPlugin, hoverPlugin],
+  plugins: [typographyPlugin],
 };
