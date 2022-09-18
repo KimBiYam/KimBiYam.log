@@ -6,6 +6,7 @@ import useMounted from '../../hooks/useMounted';
 import breakPoints from '../../lib/styles/breakPoints.json';
 import { PostDetail } from '../../types/post.types';
 import MarkdownView from './MarkdownView';
+import PostDateText from './PostDateText';
 import TagBadge from './TagBadge';
 
 const DynamicTableOfContents = dynamic(() => import('./TableOfContents'));
@@ -24,7 +25,7 @@ const PostView = ({ postDetail }: PostViewProps) => {
     <article className="relative mt-8">
       <h1 className="text-2xl font-bold md:text-4xl">{title}</h1>
       <div className="flex items-center justify-between my-4">
-        <p className="text-sm">{date}</p>
+        <PostDateText>{date}</PostDateText>
         <TagBadge tag={tag.toUpperCase()} />
       </div>
       <MarkdownView contentHtml={contentHtml} />
