@@ -5,6 +5,7 @@ import { m } from 'framer-motion';
 import { viewportOpacityMotion } from '../../lib/styles/motions';
 import { PostPreview } from '../../types/post.types';
 import NoScrollLink from '../base/NoScrollLink';
+import PostDateText from './PostDateText';
 import TagBadge from './TagBadge';
 
 interface PostListItemProps {
@@ -26,7 +27,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
               {title}
             </h3>
             <div className="flex items-center justify-between my-1">
-              <p className="text-sm">{date}</p>
+              <PostDateText>{date}</PostDateText>
               <TagBadge tag={tag.toUpperCase()} />
             </div>
             <p className="overflow-hidden text-sm dark:text-zinc-400 text-zinc-700 md:text-base">
