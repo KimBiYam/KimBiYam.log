@@ -19,17 +19,6 @@ export const hoverRotateMotion: MotionProps = {
   },
 };
 
-export const hoverLiftMotion: MotionProps = {
-  whileHover: {
-    y: [0, -5],
-    x: [0, -10],
-    transition: {
-      type: 'spring',
-      duration: 0.3,
-    },
-  },
-};
-
 export const createDynamicallyOpacityMotion = (
   isShown: boolean,
   durationMs: number,

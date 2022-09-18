@@ -2,10 +2,7 @@ import { memo } from 'react';
 
 import { m } from 'framer-motion';
 
-import {
-  hoverLiftMotion,
-  viewportOpacityMotion,
-} from '../../lib/styles/motions';
+import { viewportOpacityMotion } from '../../lib/styles/motions';
 import { PostPreview } from '../../types/post.types';
 import NoScrollLink from '../base/NoScrollLink';
 import TagBadge from './TagBadge';
@@ -22,8 +19,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
       <NoScrollLink href={`/posts/${id}`}>
         <a>
           <m.div
-            className="py-4 cursor-pointer duration-300 transition-textShadow hover:text-shadow dark:hover:text-shadow-dark"
-            {...hoverLiftMotion}
+            className="py-4 duration-300 cursor-pointer transition-textShadow hover:text-shadow dark:hover:text-shadow-dark"
             {...viewportOpacityMotion}
           >
             <h3 className="w-full overflow-hidden text-2xl font-bold truncate whitespace-nowrap">
