@@ -15,7 +15,7 @@ interface ProfileLinkProps
 const ProfileLink = ({ href, title, children }: ProfileLinkProps) => (
   <Link href={href} passHref>
     <a
-      className="w-6 h-6 mr-3 duration-300 fill-current primary-text-hover"
+      className="w-6 h-6 mr-3 fill-current duration-300 primary-text-hover"
       title={title}
     >
       <m.div {...hoverRotateMotion}>{children}</m.div>
