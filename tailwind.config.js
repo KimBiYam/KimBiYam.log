@@ -50,9 +50,6 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            a: {
-              fontWeight: 700,
-            },
             code: {
               padding: '0.2em 0.4em',
               fontWeight: 500,
@@ -69,6 +66,10 @@ module.exports = {
               },
             },
             'h1, h2, h3, h4, h5, h6': {
+              fontWeight: 700,
+              a: {
+                fontWeight: 'inherit',
+              },
               code: {
                 background: 'inherit !important',
                 color: 'inherit',
