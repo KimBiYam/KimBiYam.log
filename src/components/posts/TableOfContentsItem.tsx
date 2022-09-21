@@ -10,22 +10,23 @@ interface TableOfContentsItemProps {
 }
 
 const TableOfContentsItem = forwardRef<
-  HTMLAnchorElement,
+  HTMLButtonElement,
   TableOfContentsItemProps
 >(({ heading, onClick, children, activeId }, ref) => {
   const { id, title } = heading;
 
   return (
-    <li className="my-1 overflow-hidden text-sm text-ellipsis whitespace-nowrap">
-      <a
+    <li className="my-1 text-sm text-left">
+      <button
+        type="button"
         ref={ref}
         onClick={() => onClick(id)}
-        className={`cursor-pointer hover:opacity-100 transition-opacity duration-300 ${
+        className={`text-left w-full overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer hover:opacity-100 transition-opacity duration-300 ${
           activeId === id ? 'opacity-100 font-bold' : 'opacity-60'
         }`}
       >
         {title}
-      </a>
+      </button>
       {children}
     </li>
   );
