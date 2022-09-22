@@ -52,6 +52,7 @@ module.exports = {
           css: {
             code: {
               padding: '0.2em 0.4em',
+              fontSize: '0.9em',
               fontWeight: 500,
               whiteSpace: 'pre-wrap',
               wordBreak: 'break-all',
