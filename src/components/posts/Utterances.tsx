@@ -39,10 +39,6 @@ const Utterances = () => {
     });
 
     copiedRef?.appendChild(utterances);
-
-    return () => {
-      if (copiedRef) copiedRef.innerHTML = '';
-    };
   }, []);
 
   useEffect(() => {
