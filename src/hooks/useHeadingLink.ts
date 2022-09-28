@@ -35,13 +35,6 @@ const useHeadingLink = (ref: React.RefObject<HTMLElement>) => {
       anchorEl.appendChild(iconEl);
       headingEl.appendChild(anchorEl);
     });
-
-    return () => {
-      // eslint-disable-next-line no-restricted-syntax
-      for (const [el, innerHTML] of originalHeadingElements) {
-        el.innerHTML = innerHTML;
-      }
-    };
   }, [ref]);
 };
 
