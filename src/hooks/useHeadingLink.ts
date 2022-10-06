@@ -9,7 +9,6 @@ let initialized = false;
 const useHeadingLink = (ref: React.RefObject<HTMLElement>) => {
   useEffect(() => {
     if (initialized) return;
-
     initialized = true;
 
     const originalHeadingElements: Map<Element, string> = new Map();
@@ -41,6 +40,10 @@ const useHeadingLink = (ref: React.RefObject<HTMLElement>) => {
       anchorEl.appendChild(iconEl);
       headingEl.appendChild(anchorEl);
     });
+
+    return () => {
+      initialized = false;
+    };
   }, [ref]);
 };
 
