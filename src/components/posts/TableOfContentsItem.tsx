@@ -32,4 +32,6 @@ const TableOfContentsItem = forwardRef<
   );
 });
 
+TableOfContentsItem.displayName = 'TableOfContentsItem';
+
 export default TableOfContentsItem;

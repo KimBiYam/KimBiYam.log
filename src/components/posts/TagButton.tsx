@@ -23,4 +23,6 @@ const TagButton = forwardRef<HTMLButtonElement, TagButtonProps>(
   ),
 );
 
+TagButton.displayName = 'TagButton';
+
 export default memo(TagButton);
