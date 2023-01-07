@@ -20,6 +20,7 @@
   "dependencies": {
     "@sentry/nextjs": "^7.12.1",
     "@types/react-dom": "^18.0.6",
+    "firebase": "^9.15.0",
     "framer-motion": "^5.4.5",
     "gray-matter": "^4.0.3",
     "jotai": "^1.7.2",

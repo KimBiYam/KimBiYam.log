@@ -13,19 +13,21 @@ import { IS_BROWSER, IS_PRODUCTION } from '../constants';
 import useDetectScroll from '../hooks/useDetectScroll';
 import useGoogleAnalyticsPageView from '../hooks/useGoogleAnalyticsPageView';
 import { usePreserveScroll } from '../hooks/usePreserveScroll';
-import * as sentryUtil from '../lib/utils/sentry.util';
+import { useFirebase } from '../lib/firebase';
+import * as sentry from '../lib/sentry';
 
 import '../lib/styles/code.css';
 import '../lib/styles/global.css';
 import '../lib/styles/tailwind.css';
 
-if (IS_PRODUCTION) sentryUtil.init();
+if (IS_PRODUCTION) sentry.init();
 if (IS_BROWSER) smoothscroll.polyfill();
 
 const App = ({ Component, pageProps }: AppProps) => {
   useGoogleAnalyticsPageView();
   usePreserveScroll();
   useDetectScroll();
+  useFirebase();
 
   return (
     <>
