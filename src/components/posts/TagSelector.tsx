@@ -48,4 +48,6 @@ const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
   },
 );
 
+TagSelector.displayName = 'TagSelector';
+
 export default withDragScroll(TagSelector);
