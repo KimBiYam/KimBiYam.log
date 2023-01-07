@@ -9,13 +9,12 @@ interface HeaderItemProps {
 }
 
 const HeaderItem = ({ href, label, onClick }: HeaderItemProps) => (
-  <NoScrollLink href={href}>
-    <a
-      onClick={onClick}
-      className="flex px-2 py-2 my-1 text-sm font-bold rounded-md primary-button-hover"
-    >
-      {label}
-    </a>
+  <NoScrollLink
+    href={href}
+    onClick={onClick}
+    className="flex px-2 py-2 my-1 text-sm font-bold rounded-md primary-button-hover"
+  >
+    {label}
   </NoScrollLink>
 );
 
