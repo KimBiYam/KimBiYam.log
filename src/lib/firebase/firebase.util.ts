@@ -4,7 +4,7 @@ import { fetchAndActivate, getRemoteConfig } from '@firebase/remote-config';
 import { getApps, initializeApp } from 'firebase/app';
 import { useSetAtom } from 'jotai';
 
-import { firebaseAppAtom, remoteConfigAtom } from '../../atoms/firebaseAtom';
+import { remoteConfigAtom } from '../../atoms/firebaseAtom';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -16,14 +16,12 @@ const firebaseConfig = {
 };
 
 export const useInitFirebase = () => {
-  const setFirebaseApp = useSetAtom(firebaseAppAtom);
   const setRemoteConfig = useSetAtom(remoteConfigAtom);
 
   useEffect(() => {
     const init = async () => {
       if (!getApps().length) {
         const firebaseApp = initializeApp(firebaseConfig);
-        setFirebaseApp(firebaseApp);
 
         const remoteConfig = getRemoteConfig(firebaseApp);
         await fetchAndActivate(remoteConfig);
@@ -32,5 +30,5 @@ export const useInitFirebase = () => {
     };
 
     init();
-  }, [setFirebaseApp, setRemoteConfig]);
+  }, [setRemoteConfig]);
 };
