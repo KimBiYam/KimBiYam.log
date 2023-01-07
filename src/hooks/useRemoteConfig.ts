@@ -6,10 +6,8 @@ import { remoteConfigAtom } from '../atoms/firebaseAtom';
 export const useRemoteConfig = () => {
   const remoteConfig = useAtomValue(remoteConfigAtom);
 
-  const getValue = (key: string) => {
-    if (!remoteConfig) return null;
-    return remoteConfigGetValue(remoteConfig, key);
-  };
+  const getValue = (key: string) =>
+    remoteConfig ? remoteConfigGetValue(remoteConfig, key) : null;
 
   return { getValue };
 };

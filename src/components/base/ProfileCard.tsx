@@ -8,6 +8,7 @@ import GithubIcon from '../../assets/svgs/github.svg';
 import LinkedInIcon from '../../assets/svgs/linked_in.svg';
 import NotionIcon from '../../assets/svgs/notion.svg';
 import remoteConfigKeys from '../../constants/remoteConfigKeys';
+import defaultProfile from '../../data/defaultProfile.json';
 import { useRemoteConfig } from '../../hooks/useRemoteConfig';
 import ProfileLink from './ProfileLink';
 
@@ -27,11 +28,15 @@ interface Profile {
 const parseProfileRemoteConfig = (profile: Value | null): Profile | null => {
   if (!profile) return null;
 
-  const { name, description, imageSrc, social } = JSON.parse(
-    profile.asString(),
-  );
-
-  return { name, description, imageSrc, social };
+  try {
+    const { name, description, imageSrc, social } = JSON.parse(
+      profile.asString(),
+    );
+    return { name, description, imageSrc, social };
+  } catch {
+    const { name, description, imageSrc, social } = defaultProfile;
+    return { name, description, imageSrc, social };
+  }
 };
 
 const ProfileCard = () => {
