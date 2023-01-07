@@ -54,10 +54,10 @@ const ProfileCard = () => {
         src={imageSrc}
         alt="profile"
         quality={100}
-        width="64px"
-        height="64px"
-        layout="fixed"
+        width={64}
+        height={64}
         className="rounded-full"
+        priority
       />
       <div className="ml-4 w-fit">
         <p className="font-bold">{name}</p>
