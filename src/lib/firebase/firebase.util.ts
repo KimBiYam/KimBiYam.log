@@ -4,7 +4,7 @@ import { fetchAndActivate, getRemoteConfig } from '@firebase/remote-config';
 import { getApps, initializeApp } from 'firebase/app';
 import { useSetAtom } from 'jotai';
 
-import { remoteConfigAtom } from '../../atoms/firebaseAtom';
+import { remoteConfigAtom } from '../../atoms/remoteConfigAtom';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,

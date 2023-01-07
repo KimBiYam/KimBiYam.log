@@ -1,7 +1,7 @@
 import { getValue as remoteConfigGetValue } from '@firebase/remote-config';
 import { useAtomValue } from 'jotai';
 
-import { remoteConfigAtom } from '../atoms/firebaseAtom';
+import { remoteConfigAtom } from '../atoms/remoteConfigAtom';
 
 export const useRemoteConfig = () => {
   const remoteConfig = useAtomValue(remoteConfigAtom);
