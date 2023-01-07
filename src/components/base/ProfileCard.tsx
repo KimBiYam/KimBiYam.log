@@ -2,10 +2,13 @@ import React, { memo } from 'react';
 
 import Image from 'next/image';
 
+import { Value } from '@firebase/remote-config';
+
 import GithubIcon from '../../assets/svgs/github.svg';
 import LinkedInIcon from '../../assets/svgs/linked_in.svg';
 import NotionIcon from '../../assets/svgs/notion.svg';
-import profileData from '../../data/profile.json';
+import remoteConfigKeys from '../../constants/remoteConfigKeys';
+import { useRemoteConfig } from '../../hooks/useRemoteConfig';
 import ProfileLink from './ProfileLink';
 
 const SOCIAL_ICONS: Record<string, RenderSVGComponent> = {
@@ -14,8 +17,31 @@ const SOCIAL_ICONS: Record<string, RenderSVGComponent> = {
   notion: NotionIcon,
 } as const;
 
+interface Profile {
+  name: string;
+  description: string;
+  imageSrc: string;
+  social: Record<string, string>;
+}
+
+const parseProfileRemoteConfig = (profile: Value | null): Profile | null => {
+  if (!profile) return null;
+
+  const { name, description, imageSrc, social } = JSON.parse(
+    profile.asString(),
+  );
+
+  return { name, description, imageSrc, social };
+};
+
 const ProfileCard = () => {
-  const { description, imageSrc, name, social } = profileData;
+  const { getValue } = useRemoteConfig();
+  const profile = getValue(remoteConfigKeys.profile);
+  const profileData = parseProfileRemoteConfig(profile);
+
+  if (!profileData) return <ProfileCardSkeleton />;
+
+  const { name, description, imageSrc, social } = profileData;
 
   return (
     <div className="flex items-center">
@@ -42,5 +68,7 @@ const ProfileCard = () => {
     </div>
   );
 };
+
+const ProfileCardSkeleton = () => <div className="h-20" />;
 
 export default memo(ProfileCard);

@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 
+import { fetchAndActivate, getRemoteConfig } from '@firebase/remote-config';
 import { getApps, initializeApp } from 'firebase/app';
+import { useSetAtom } from 'jotai';
 
-import useMounted from '../../hooks/useMounted';
+import { firebaseAppAtom, remoteConfigAtom } from '../../atoms/firebaseAtom';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,16 +15,22 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-export const useFirebase = () => {
-  const mounted = useMounted();
-
-  const init = () => {
-    if (!getApps().length) {
-      initializeApp(firebaseConfig);
-    }
-  };
+export const useInitFirebase = () => {
+  const setFirebaseApp = useSetAtom(firebaseAppAtom);
+  const setRemoteConfig = useSetAtom(remoteConfigAtom);
 
   useEffect(() => {
-    if (mounted) init();
-  }, [mounted]);
+    const init = async () => {
+      if (!getApps().length) {
+        const firebaseApp = initializeApp(firebaseConfig);
+        setFirebaseApp(firebaseApp);
+
+        const remoteConfig = getRemoteConfig(firebaseApp);
+        await fetchAndActivate(remoteConfig);
+        setRemoteConfig(remoteConfig);
+      }
+    };
+
+    init();
+  }, [setFirebaseApp, setRemoteConfig]);
 };
