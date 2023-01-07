@@ -17,16 +17,15 @@ const MESSAGE_TARGET_ORIGIN = 'https://utteranc.es/';
 const getThemeByAppTheme = (theme: Theme) =>
   theme === Theme.dark ? DARK_THEME : LIGHT_THEME;
 
-let initialized = false;
-
 const Utterances = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const initializedRef = useRef<boolean | null>(null);
   const { theme } = useTheme();
 
   useEffect(() => {
-    if (initialized) return;
+    if (initializedRef.current) return;
 
-    initialized = true;
+    initializedRef.current = true;
     const copiedRef = ref.current;
     const utterances = document.createElement('script');
     const config: Record<string, string> = {
