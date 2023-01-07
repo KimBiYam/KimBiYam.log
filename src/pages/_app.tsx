@@ -13,7 +13,7 @@ import { IS_BROWSER, IS_PRODUCTION } from '../constants';
 import useDetectScroll from '../hooks/useDetectScroll';
 import useGoogleAnalyticsPageView from '../hooks/useGoogleAnalyticsPageView';
 import { usePreserveScroll } from '../hooks/usePreserveScroll';
-import { useFirebase } from '../lib/firebase';
+import { useInitFirebase } from '../lib/firebase';
 import * as sentry from '../lib/sentry';
 
 import '../lib/styles/code.css';
@@ -27,7 +27,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   useGoogleAnalyticsPageView();
   usePreserveScroll();
   useDetectScroll();
-  useFirebase();
+  useInitFirebase();
 
   return (
     <>
