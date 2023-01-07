@@ -73,6 +73,15 @@ const ProfileCard = () => {
   );
 };
 
-const ProfileCardSkeleton = () => <div className="h-20" />;
+const ProfileCardSkeleton = () => (
+  <div className="flex items-center h-20 animate-pulse">
+    <div className="w-16 h-16 rounded-full primary-button" />
+    <div className="ml-4">
+      <div className="w-32 h-4 rounded-full primary-button" />
+      <div className="w-40 h-3 mt-2 rounded-full primary-button" />
+      <div className="w-20 h-6 mt-2 rounded-full primary-button" />
+    </div>
+  </div>
+);
 
 export default memo(ProfileCard);
