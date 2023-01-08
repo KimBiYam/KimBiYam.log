@@ -14,7 +14,7 @@ const PageRoutingAnimation = ({
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
-    transition={{ duration: 0.225, ease: 'easeInOut' }}
+    transition={{ duration: 0.15, ease: 'linear' }}
   >
     {children}
   </m.div>
