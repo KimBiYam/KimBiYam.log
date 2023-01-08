@@ -40,7 +40,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Header />
         <MainLayout>
           <AnimatePresence mode="wait">
-            <Component {...pageProps} key={router.asPath} />
+            <Component {...pageProps} key={router.pathname} />
           </AnimatePresence>
         </MainLayout>
         <Footer />
