@@ -39,7 +39,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <LazyMotion strict features={domAnimation}>
         <Header />
         <MainLayout>
-          <AnimatePresence mode="wait" initial={false}>
+          <AnimatePresence mode="wait">
             <Component {...pageProps} key={router.asPath} />
           </AnimatePresence>
         </MainLayout>
