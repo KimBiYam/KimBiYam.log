@@ -37,7 +37,7 @@ yarn-error.log*
 *.tsbuildinfo
 
 # assets
-public/sitemap.xml
+public/sitemap*.xml
 public/robots.txt
 
 # yarn berry
