@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 import Script from 'next/script';
 
 import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
@@ -24,6 +25,8 @@ if (IS_PRODUCTION) sentry.init();
 if (IS_BROWSER) smoothscroll.polyfill();
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const router = useRouter();
+
   useGoogleAnalyticsPageView();
   usePreserveScroll();
   useDetectScroll();
@@ -36,8 +39,8 @@ const App = ({ Component, pageProps }: AppProps) => {
       <LazyMotion strict features={domAnimation}>
         <Header />
         <MainLayout>
-          <AnimatePresence>
-            <Component {...pageProps} />
+          <AnimatePresence mode="wait" initial={false}>
+            <Component {...pageProps} key={router.asPath} />
           </AnimatePresence>
         </MainLayout>
         <Footer />
