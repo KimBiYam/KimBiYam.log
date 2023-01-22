@@ -20,13 +20,15 @@ export const useInitFirebase = () => {
 
   useEffect(() => {
     const init = async () => {
-      if (!getApps().length) {
-        const firebaseApp = initializeApp(firebaseConfig);
+      try {
+        if (!getApps().length) {
+          const firebaseApp = initializeApp(firebaseConfig);
 
-        const remoteConfig = getRemoteConfig(firebaseApp);
-        await fetchAndActivate(remoteConfig);
-        setRemoteConfig(remoteConfig);
-      }
+          const remoteConfig = getRemoteConfig(firebaseApp);
+          await fetchAndActivate(remoteConfig);
+          setRemoteConfig(remoteConfig);
+        }
+      } catch (e) {}
     };
 
     init();
