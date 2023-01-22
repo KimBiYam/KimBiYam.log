@@ -58,7 +58,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:7.28.0"],\
             ["eslint-plugin-react-hooks", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:4.3.0"],\
             ["firebase", "npm:9.15.0"],\
-            ["framer-motion", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:8.2.4"],\
+            ["framer-motion", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:8.5.0"],\
             ["gray-matter", "npm:4.0.3"],\
             ["jotai", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:1.7.2"],\
             ["medium-zoom", "npm:1.0.6"],\
@@ -3812,10 +3812,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@motionone/dom", [\
-        ["npm:10.15.3", {\
-          "packageLocation": "./.yarn/cache/@motionone-dom-npm-10.15.3-a0343c9f8b-e43746b837.zip/node_modules/@motionone/dom/",\
+        ["npm:10.15.5", {\
+          "packageLocation": "./.yarn/cache/@motionone-dom-npm-10.15.5-4add8e8195-2453fe3df6.zip/node_modules/@motionone/dom/",\
           "packageDependencies": [\
-            ["@motionone/dom", "npm:10.15.3"],\
+            ["@motionone/dom", "npm:10.15.5"],\
             ["@motionone/animation", "npm:10.15.1"],\
             ["@motionone/generators", "npm:10.15.1"],\
             ["@motionone/types", "npm:10.15.1"],\
@@ -8151,19 +8151,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["framer-motion", [\
-        ["npm:8.2.4", {\
-          "packageLocation": "./.yarn/cache/framer-motion-npm-8.2.4-f00c73c29b-e5598a84a9.zip/node_modules/framer-motion/",\
+        ["npm:8.5.0", {\
+          "packageLocation": "./.yarn/cache/framer-motion-npm-8.5.0-474c56d92b-d35f109d87.zip/node_modules/framer-motion/",\
           "packageDependencies": [\
-            ["framer-motion", "npm:8.2.4"]\
+            ["framer-motion", "npm:8.5.0"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:8.2.4", {\
-          "packageLocation": "./.yarn/__virtual__/framer-motion-virtual-88377179e1/0/cache/framer-motion-npm-8.2.4-f00c73c29b-e5598a84a9.zip/node_modules/framer-motion/",\
+        ["virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:8.5.0", {\
+          "packageLocation": "./.yarn/__virtual__/framer-motion-virtual-f91b2c95af/0/cache/framer-motion-npm-8.5.0-474c56d92b-d35f109d87.zip/node_modules/framer-motion/",\
           "packageDependencies": [\
-            ["framer-motion", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:8.2.4"],\
+            ["framer-motion", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:8.5.0"],\
             ["@emotion/is-prop-valid", "npm:0.8.8"],\
-            ["@motionone/dom", "npm:10.15.3"],\
+            ["@motionone/dom", "npm:10.15.5"],\
             ["@types/react", "npm:18.0.21"],\
             ["@types/react-dom", "npm:18.0.6"],\
             ["hey-listen", "npm:1.0.8"],\
@@ -9654,7 +9654,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:7.28.0"],\
             ["eslint-plugin-react-hooks", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:4.3.0"],\
             ["firebase", "npm:9.15.0"],\
-            ["framer-motion", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:8.2.4"],\
+            ["framer-motion", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:8.5.0"],\
             ["gray-matter", "npm:4.0.3"],\
             ["jotai", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:1.7.2"],\
             ["medium-zoom", "npm:1.0.6"],\
