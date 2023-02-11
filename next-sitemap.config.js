@@ -4,5 +4,6 @@ module.exports = {
   sitemapSize: 7000,
   changefreq: 'weekly',
   generateRobotsTxt: true,
+  generateIndexSitemap: false,
   priority: 1,
 };
