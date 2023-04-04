@@ -1,33 +1,30 @@
 import { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import LinkIcon from '../assets/svgs/link_icon.svg';
+import HeadingLink from '../components/posts/HeadingLink';
 
-const useHeadingLink = (ref: React.RefObject<HTMLElement>) => {
+const TARGET_TAGS = ['h2', 'h3'];
+
+const useCreateHeadingLink = (ref: React.RefObject<HTMLElement>) => {
   const initializedRef = useRef(false);
 
   useEffect(() => {
     if (initializedRef.current) return;
     initializedRef.current = true;
 
-    const headingElements = ref.current?.querySelectorAll('h2,h3');
+    const headingElements = ref.current?.querySelectorAll(
+      TARGET_TAGS.join(','),
+    );
     if (!headingElements) return;
 
-    [...headingElements]?.forEach((headingEl) => {
-      const id = headingEl.id;
-      const text = headingEl.innerHTML;
+    headingElements?.forEach((headingEl) => {
+      const { id, textContent } = headingEl;
 
       ReactDOM.createRoot(headingEl).render(
-        <a
-          href={`#${id}`}
-          className="flex items-center no-underline hover:underline group"
-        >
-          {text}
-          <LinkIcon className="hidden w-4 h-4 ml-1 group-hover:block opacity-60" />
-        </a>,
+        <HeadingLink href={`#${id}`} text={textContent} />,
       );
     });
   }, [ref]);
 };
 
-export default useHeadingLink;
+export default useCreateHeadingLink;

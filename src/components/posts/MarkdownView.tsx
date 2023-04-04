@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-import useHeadingLink from '../../hooks/useHeadingLink';
+import useCreateHeadingLink from '../../hooks/useHeadingLink';
 import useMediumZoom from '../../hooks/useMediumZoom';
 
 interface MarkdownViewProps {
@@ -11,7 +11,7 @@ const MarkdownView = ({ contentHtml }: MarkdownViewProps) => {
   const markdownRef = useRef<HTMLDivElement>(null);
 
   useMediumZoom(markdownRef);
-  useHeadingLink(markdownRef);
+  useCreateHeadingLink(markdownRef);
 
   return (
     <div
