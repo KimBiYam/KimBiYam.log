@@ -20,7 +20,7 @@ import '../lib/styles/code.css';
 import '../lib/styles/global.css';
 import '../lib/styles/tailwind.css';
 
-if (IS_PRODUCTION) sentry.init();
+if (IS_PRODUCTION && IS_BROWSER) sentry.init();
 if (IS_BROWSER) smoothscroll.polyfill();
 
 const App = ({ Component, pageProps }: AppProps) => {
