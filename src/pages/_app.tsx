@@ -9,18 +9,16 @@ import Header from '../components/base/Header';
 import MainLayout from '../components/base/MainLayout';
 import ScrollToTopButton from '../components/base/ScrollToTopButton';
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
-import { IS_BROWSER, IS_PRODUCTION } from '../constants';
+import { IS_BROWSER } from '../constants';
 import useDetectScroll from '../hooks/useDetectScroll';
 import useGoogleAnalyticsPageView from '../hooks/useGoogleAnalyticsPageView';
 import { usePreserveScroll } from '../hooks/usePreserveScroll';
 import { useInitFirebase } from '../lib/firebase';
-import * as sentry from '../lib/sentry';
 
 import '../lib/styles/code.css';
 import '../lib/styles/global.css';
 import '../lib/styles/tailwind.css';
 
-if (IS_PRODUCTION && IS_BROWSER) sentry.init();
 if (IS_BROWSER) smoothscroll.polyfill();
 
 const App = ({ Component, pageProps }: AppProps) => {
