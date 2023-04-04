@@ -48,3 +48,8 @@ public/robots.txt
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+# Sentry
+.sentryclirc
+
+# Sentry
+next.config.original.js
