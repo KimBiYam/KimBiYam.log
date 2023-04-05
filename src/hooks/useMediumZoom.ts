@@ -6,7 +6,7 @@ import { theme as tailwindTheme } from '../../tailwind.config';
 import { Theme } from '../constants';
 import useTheme from './useTheme';
 
-const useMediumZoom = (ref: React.RefObject<HTMLElement>) => {
+const useMediumZoom = (ref: React.Ref<HTMLElement>) => {
   const { theme } = useTheme();
   const zoomRef = useRef<Zoom | null>(null);
 
@@ -19,6 +19,7 @@ const useMediumZoom = (ref: React.RefObject<HTMLElement>) => {
   );
 
   useEffect(() => {
+    if (typeof ref === 'function' || !ref) return;
     const images = ref.current?.querySelectorAll('img');
 
     if (!images) return;

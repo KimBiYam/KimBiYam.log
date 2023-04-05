@@ -1,7 +1,9 @@
+import { useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import dynamic from 'next/dynamic';
 
+import useCreateHeadingLink from '../../hooks/useCreateHeadingLink';
 import useMounted from '../../hooks/useMounted';
 import breakPoints from '../../lib/styles/breakPoints.json';
 import { PostDetail } from '../../types/post.types';
@@ -18,8 +20,11 @@ interface PostViewProps {
 const PostView = ({ postDetail }: PostViewProps) => {
   const { title, date, contentHtml, tag } = postDetail;
 
+  const markdownRef = useRef<HTMLDivElement>(null);
   const mounted = useMounted();
   const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
+
+  useCreateHeadingLink(markdownRef);
 
   return (
     <article className="relative mt-8">
@@ -28,7 +33,7 @@ const PostView = ({ postDetail }: PostViewProps) => {
         <PostDateText>{date}</PostDateText>
         <TagBadge tag={tag.toUpperCase()} />
       </div>
-      <MarkdownView contentHtml={contentHtml} />
+      <MarkdownView contentHtml={contentHtml} ref={markdownRef} />
       {mounted && isUpExtraLargeScreen && <DynamicTableOfContents />}
     </article>
   );
