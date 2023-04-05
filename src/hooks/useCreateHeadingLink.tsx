@@ -5,10 +5,11 @@ import HeadingLink from '../components/posts/HeadingLink';
 
 const TARGET_TAGS = ['h2', 'h3'];
 
-const useCreateHeadingLink = (ref: React.RefObject<HTMLElement>) => {
+const useCreateHeadingLink = (ref: React.Ref<HTMLElement>) => {
   const initializedRef = useRef(false);
 
   useEffect(() => {
+    if (typeof ref === 'function' || !ref) return;
     if (initializedRef.current) return;
     initializedRef.current = true;
 
