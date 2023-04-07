@@ -13,7 +13,6 @@ import { IS_BROWSER } from '../constants';
 import useDetectScroll from '../hooks/useDetectScroll';
 import useGoogleAnalyticsPageView from '../hooks/useGoogleAnalyticsPageView';
 import { usePreserveScroll } from '../hooks/usePreserveScroll';
-import { useInitFirebase } from '../lib/firebase';
 
 import '../lib/styles/code.css';
 import '../lib/styles/global.css';
@@ -25,7 +24,6 @@ const App = ({ Component, pageProps }: AppProps) => {
   useGoogleAnalyticsPageView();
   usePreserveScroll();
   useDetectScroll();
-  useInitFirebase();
 
   return (
     <>
