@@ -1,23 +1,24 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { NextRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
-import { useSetAtom } from 'jotai';
-
-import postPageAtom from '../atoms/postPageAtom';
 import { Tag } from '../constants';
 
-const useTag = (router: NextRouter) => {
+interface UseTagOptions {
+  onChanged?: () => void;
+}
+
+const useTag = ({ onChanged }: UseTagOptions = {}) => {
+  const router = useRouter();
   const [selectedTag, setSelectedTag] = useState<string>(Tag.all);
-  const setPostPage = useSetAtom(postPageAtom);
 
   const handleTagClick = useCallback(
     (tag: string) => {
       const path = tag === Tag.all ? '/' : `/?tag=${tag}`;
       router.push(path, undefined, { shallow: true, scroll: true });
-      setPostPage(1);
+      onChanged?.();
     },
-    [router, setPostPage],
+    [onChanged, router],
   );
 
   useEffect(() => {

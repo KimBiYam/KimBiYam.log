@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
@@ -20,7 +20,12 @@ interface HomeProps {
 
 const Home = ({ postPreviews }: HomeProps) => {
   const router = useRouter();
-  const { selectedTag, handleTagClick } = useTag(router);
+  const [postPage, setPostPage] = useState(1);
+  const { selectedTag, handleTagClick } = useTag({
+    onChanged() {
+      setPostPage(1);
+    },
+  });
 
   const tags = useMemo(
     () => [
@@ -44,7 +49,12 @@ const Home = ({ postPreviews }: HomeProps) => {
           onTagClick={handleTagClick}
           selectedTag={selectedTag}
         />
-        <PostList postPreviews={postPreviews} selectedTag={selectedTag} />
+        <PostList
+          postPreviews={postPreviews}
+          selectedTag={selectedTag}
+          postPage={postPage}
+          setPostPage={setPostPage}
+        />
       </PageRoutingAnimation>
     </>
   );
