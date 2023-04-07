@@ -14,7 +14,7 @@
     "build": "next build && yarn postbuild",
     "build:analyze": "ANALYZE=true next build",
     "start": "next start",
-    "lint": "next lint --dir .",
+    "lint": "next lint --dir . --ext .js",
     "postbuild": "next-sitemap"
   },
   "dependencies": {
