@@ -1,5 +1,3 @@
-/* eslint-disable import/order */
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -22,9 +20,8 @@ const nextConfig = {
 // with Sentry.
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
-const { withSentryConfig } = require('@sentry/nextjs');
-
 const withBundleAnalyzer = require('@next/bundle-analyzer');
+const { withSentryConfig } = require('@sentry/nextjs');
 
 module.exports =
   process.env.ANALYZE === 'true'
