@@ -3327,8 +3327,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/__virtual__/@sentry-nextjs-virtual-c0afc86ed7/0/cache/@sentry-nextjs-npm-7.46.0-b6c55bc38e-3c9022fcfd.zip/node_modules/@sentry/nextjs/",\
           "packageDependencies": [\
             ["@sentry/nextjs", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:7.46.0"],\
-            ["@babel/core", "npm:7.20.12"],\
-            ["@babel/preset-env", "virtual:388a8b2a89937f340c752c3bc1b0426d3d325132ecbdd9e670254690d35fc807639274cf62d067745f76a19fef7bf3bfc29ee293d6628dcf5d05c2265d1eb62f#npm:7.20.2"],\
             ["@rollup/plugin-commonjs", "virtual:c0afc86ed7f54a758d367f1d2068736c51ef637011d79646700d795b8e598aeef7ee1392f62ab041eedc8e96fc996cc07d24338278a09d208a31b7e2689e50da#npm:24.0.0"],\
             ["@sentry/core", "npm:7.46.0"],\
             ["@sentry/integrations", "npm:7.46.0"],\
