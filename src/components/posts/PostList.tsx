@@ -1,8 +1,5 @@
 import { useCallback, useMemo, useRef } from 'react';
 
-import { useAtom } from 'jotai';
-
-import postPageAtom from '../../atoms/postPageAtom';
 import { Tag } from '../../constants';
 import useScrollObserver from '../../hooks/useScrollObserver';
 import { PostPreview } from '../../types/post.types';
@@ -11,13 +8,19 @@ import PostListItem from './PostListItem';
 interface PostListProps {
   postPreviews: PostPreview[];
   selectedTag: string;
+  postPage: number;
+  setPostPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const POST_COUNT_BY_PAGE = 10;
 
-const PostList = ({ postPreviews, selectedTag }: PostListProps) => {
+const PostList = ({
+  postPreviews,
+  selectedTag,
+  postPage,
+  setPostPage,
+}: PostListProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [postPage, setPostPage] = useAtom(postPageAtom);
 
   const handleIntersect = useCallback(
     () => setPostPage((prev) => prev + 1),
