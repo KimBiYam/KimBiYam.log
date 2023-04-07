@@ -3,6 +3,6 @@
 |              |                                                                                                         |
 | :----------: | ------------------------------------------------------------------------------------------------------- |
 |  **GitHub**  | <https://github.com/KimBiYam>                                                                           |
-|  **Notion**  | [Chang Hyun Kim](https://kimbiyam.notion.site/kimbiyam/Chang-Hyun-Kim-1b09ea16ce074e858c3c8ae9e999c04f) |
-| **LinkedIN** | [김창현](https://www.linkedin.com/in/%EC%B0%BD%ED%98%84-%EA%B9%80-467b55228)                            |
+|  **Resume**  | [Chang Hyun Kim](https://kimbiyam.notion.site/Chang-Hyun-Kim-fc59c09adfa34304b00a587a35f9e38c) |
+| **LinkedIN** | [김창현](https://www.linkedin.com/in/kimbiyam/)                            |
 |  **E-mail**  | ckdvk9998@gmail.com                                                                                     |
