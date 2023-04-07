@@ -14,7 +14,7 @@ const useTag = (router: NextRouter) => {
   const handleTagClick = useCallback(
     (tag: string) => {
       const path = tag === Tag.all ? '/' : `/?tag=${tag}`;
-      router.replace(path, undefined, { shallow: true, scroll: true });
+      router.push(path, undefined, { shallow: true, scroll: true });
       setPostPage(1);
     },
     [router, setPostPage],
