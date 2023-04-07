@@ -1,10 +1,10 @@
 {
-  "name": "ChangHyunKim",
-  "description": "Junior Frontend Engineer in <a href='https://www.hackle.io/' class='underline'>Hackle</a>",
+  "name": "Chang Hyun Kim",
+  "description": "Frontend Engineer in <a href='https://www.hackle.io/' class='underline'>Hackle</a>",
   "imageSrc": "/images/profile.jpeg",
   "social": {
     "github": "https://github.com/KimBiYam",
-    "linkedIn": "https://www.linkedin.com/in/%EC%B0%BD%ED%98%84-%EA%B9%80-467b55228",
-    "notion": "https://kimbiyam.notion.site/kimbiyam/Chang-Hyun-Kim-1b09ea16ce074e858c3c8ae9e999c04f"
+    "linkedIn": "https://www.linkedin.com/in/kimbiyam",
+    "notion": "https://kimbiyam.notion.site/kimbiyam/Chang-Hyun-Kim-fc59c09adfa34304b00a587a35f9e38c"
   }
 }
