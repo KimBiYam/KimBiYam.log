@@ -13,7 +13,7 @@ const themeAtom = atom<Theme, Theme>(Theme.light, (_, set, update) => {
   }
 });
 
-export const getThemeFromStorage = () => {
+export const getThemeFromLocalStorage = () => {
   const theme = StorageUtil.getItem(StorageKeys.theme);
 
   if (!isTheme(theme)) {
@@ -24,7 +24,7 @@ export const getThemeFromStorage = () => {
 };
 
 themeAtom.onMount = (set) => {
-  set(getThemeFromStorage());
+  set(getThemeFromLocalStorage());
 };
 
 export default themeAtom;

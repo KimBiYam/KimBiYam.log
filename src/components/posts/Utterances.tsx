@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { getThemeFromStorage as getThemeFromLocalStorage } from '../../atoms/themeAtom';
+import { getThemeFromLocalStorage } from '../../atoms/themeAtom';
 import { Theme } from '../../constants';
 import useTheme from '../../hooks/useTheme';
 
