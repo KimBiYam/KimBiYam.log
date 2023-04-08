@@ -1,24 +1,18 @@
-export const Theme = {
-  dark: 'dark',
-  light: 'light',
-} as const;
-export type Theme = typeof Theme[keyof typeof Theme];
+export enum Theme {
+  dark = 'dark',
+  light = 'light',
+}
 
-export const Tag = {
-  all: 'all',
-} as const;
-export type Tag = typeof Tag[keyof typeof Tag];
+export enum Tag {
+  all = 'all',
+}
 
-export const ScrollDirection = {
-  up: 'UP',
-  down: 'DOWN',
-} as const;
-export type ScrollDirection =
-  typeof ScrollDirection[keyof typeof ScrollDirection];
+export enum ScrollDirection {
+  up = 'UP',
+  down = 'DOWN',
+}
 
-export const GoogleAnalyticsEvents = {
-  darkModeOn: 'dark_mode_on',
-  darkModeOff: 'dark_mode_off',
-} as const;
-export type GoogleAnalyticsEvents =
-  typeof GoogleAnalyticsEvents[keyof typeof GoogleAnalyticsEvents];
+export enum GoogleAnalyticsEvents {
+  darkModeOn = 'dark_mode_on',
+  darkModeOff = 'dark_mode_off',
+}
