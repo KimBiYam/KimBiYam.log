@@ -1,7 +1,7 @@
 import { atom } from 'jotai';
 
-import { Theme } from '../constants';
-import themeStorage from '../lib/storage/themeStorage';
+import { isTheme, Theme } from '../constants';
+import StorageUtil, { StorageKeys } from '../lib/storage/storage.util';
 
 const themeAtom = atom<Theme, Theme>(Theme.light, (_, set, update) => {
   set(themeAtom, update);
@@ -13,8 +13,18 @@ const themeAtom = atom<Theme, Theme>(Theme.light, (_, set, update) => {
   }
 });
 
+export const getThemeFromStorage = () => {
+  const theme = StorageUtil.getItem(StorageKeys.theme);
+
+  if (!isTheme(theme)) {
+    return Theme.light;
+  }
+
+  return theme;
+};
+
 themeAtom.onMount = (set) => {
-  set(themeStorage.getTheme());
+  set(getThemeFromStorage());
 };
 
 export default themeAtom;
