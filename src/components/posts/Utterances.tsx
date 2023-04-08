@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 
+import { getThemeFromStorage as getThemeFromLocalStorage } from '../../atoms/themeAtom';
 import { Theme } from '../../constants';
 import useTheme from '../../hooks/useTheme';
-import themeStorage from '../../lib/storage/themeStorage';
 
 const SOURCE_URL = 'https://utteranc.es/client.js';
 const REPO = 'KimBiYam/KimBiYam.log';
@@ -32,7 +32,7 @@ const Utterances = () => {
       src: SOURCE_URL,
       repo: REPO,
       branch: BRANCH,
-      theme: getThemeByAppTheme(themeStorage.getTheme()),
+      theme: getThemeByAppTheme(getThemeFromLocalStorage()),
       label: LABEL,
       async: 'true',
       'issue-term': ISSUE_TERM,

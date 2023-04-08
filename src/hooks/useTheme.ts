@@ -2,7 +2,7 @@ import { useAtom } from 'jotai';
 
 import themeAtom from '../atoms/themeAtom';
 import { Theme } from '../constants';
-import themeStorage from '../lib/storage/themeStorage';
+import StorageUtil, { StorageKeys } from '../lib/storage/storage.util';
 
 const useTheme = () => {
   const [theme, setTheme] = useAtom(themeAtom);
@@ -10,7 +10,7 @@ const useTheme = () => {
   const toggleTheme = () => {
     const changedTheme = theme === Theme.light ? Theme.dark : Theme.light;
 
-    themeStorage.setTheme(changedTheme);
+    StorageUtil.setItem(StorageKeys.theme, changedTheme);
     setTheme(changedTheme);
   };
 
