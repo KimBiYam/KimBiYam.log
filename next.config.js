@@ -23,10 +23,21 @@ const nextConfig = {
 const withBundleAnalyzer = require('@next/bundle-analyzer');
 const { withSentryConfig } = require('@sentry/nextjs');
 
-module.exports =
-  process.env.ANALYZE === 'true'
-    ? withBundleAnalyzer(nextConfig)
-    : withSentryConfig({
+module.exports = (() => {
+  try {
+    if (process.env.ANALYZE && JSON.parse(process.env.ANALYZE) === true) {
+      return withBundleAnalyzer(nextConfig);
+    }
+
+    if (process.env.NODE_ENV === 'production') {
+      return withSentryConfig({
         ...nextConfig,
-        sentry: { silent: true, hideSourcemaps: true },
+        sentry: { silent: true },
       });
+    }
+
+    return nextConfig;
+  } catch (e) {
+    return nextConfig;
+  }
+})();
