@@ -1,5 +1,7 @@
 import { forwardRef } from 'react';
 
+import clsx from 'clsx';
+
 import { TableOfContentHeading } from '../../hooks/useTableOfContents';
 
 interface TableOfContentsItemProps {
@@ -21,9 +23,13 @@ const TableOfContentsItem = forwardRef<
         type="button"
         ref={ref}
         onClick={() => onClick(id)}
-        className={`text-left w-full overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer hover:opacity-100 transition-opacity duration-300 ${
-          activeId === id ? 'opacity-100 font-bold' : 'opacity-60'
-        }`}
+        className={clsx(
+          'text-left w-full overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer hover:opacity-100 transition-opacity duration-300',
+          {
+            'opacity-100 font-bold': activeId === id,
+            'opacity-60': activeId !== id,
+          },
+        )}
       >
         {title}
       </button>

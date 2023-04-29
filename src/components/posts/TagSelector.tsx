@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 
+import clsx from 'clsx';
 import { useAtomValue } from 'jotai';
 
 import scrollAtom from '../../atoms/scrollAtom';
@@ -24,9 +25,10 @@ const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
 
     return (
       <div
-        className={`sticky z-40 ${
-          direction === ScrollDirection.up ? 'top-14' : 'top-0'
-        }`}
+        className={clsx('sticky z-40', {
+          'top-14': direction === ScrollDirection.up,
+          'top-0': direction !== ScrollDirection.down,
+        })}
       >
         <div
           className="flex pt-4 -mx-6 overflow-auto md:mx-0 scrollbar-hide main-container"

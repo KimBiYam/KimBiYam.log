@@ -20,6 +20,7 @@
   "dependencies": {
     "@sentry/nextjs": "^7.46.0",
     "@types/react-dom": "^18.0.6",
+    "clsx": "^1.2.1",
     "framer-motion": "^8.2.4",
     "gray-matter": "^4.0.3",
     "jotai": "^1.7.2",
