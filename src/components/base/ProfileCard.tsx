@@ -38,7 +38,7 @@ const ProfileCard = () => {
       <div className="ml-4 w-fit">
         <p className="font-bold">{name}</p>
         <p
-          className="mt-1 overflow-hidden text-sm"
+          className="mt-1 overflow-hidden text-sm [&>a]:underline"
           dangerouslySetInnerHTML={{ __html: description }}
         />
         <div className="flex items-center mt-2">
