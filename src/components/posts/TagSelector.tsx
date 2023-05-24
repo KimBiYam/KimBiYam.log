@@ -1,10 +1,5 @@
 import { forwardRef } from 'react';
 
-import clsx from 'clsx';
-import { useAtomValue } from 'jotai';
-
-import scrollAtom from '../../atoms/scrollAtom';
-import { ScrollDirection } from '../../constants';
 import withDragScroll from '../../hocs/withDragScroll';
 import useActiveChildScroll from '../../hooks/useActiveChildScroll';
 import TagButton from './TagButton';
@@ -17,19 +12,13 @@ interface TagSelectorProps {
 
 const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
   ({ tags, onTagClick, selectedTag }, ref) => {
-    const { direction } = useAtomValue(scrollAtom);
     const registerChildRef = useActiveChildScroll({
       activeId: selectedTag,
       parentRef: ref,
     });
 
     return (
-      <div
-        className={clsx('sticky z-40', {
-          'top-14': direction === ScrollDirection.up,
-          'top-0': direction !== ScrollDirection.down,
-        })}
-      >
+      <div className="sticky z-40 top-14">
         <div
           className="flex pt-4 -mx-6 overflow-auto md:mx-0 scrollbar-hide main-container"
           ref={ref}
