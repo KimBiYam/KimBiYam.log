@@ -26,7 +26,7 @@ const TableOfContents = () => {
   return (
     <aside className="absolute left-full">
       <nav
-        className="fixed flex flex-col w-56 pr-4 ml-12 overflow-y-auto 2xl:right-8 scrollbar-thin h-2/3 top-36"
+        className="fixed flex flex-col w-56 pr-4 ml-12 overflow-y-auto 2xl:right-8 scrollbar-thin h-2/3 top-36 max-h-[480px]"
         ref={navRef}
       >
         <ul>
