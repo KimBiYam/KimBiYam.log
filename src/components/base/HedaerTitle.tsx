@@ -11,9 +11,9 @@ export default function HeaderTitle() {
   };
 
   return (
-    <div className="flex-1 pl-4 overflow-hidden xs:pl-2 sm:pl2">
-      <m.p
-        className="overflow-hidden cursor-pointer text-ellipsis whitespace-nowrap xs:text-sm sm:text-sm"
+    <div className="flex-1 pl-4">
+      <m.div
+        className="cursor-pointer"
         initial="hidden"
         animate={isShowTitle ? 'show' : 'hidden'}
         transition={{ duration: 0.3 }}
@@ -31,8 +31,8 @@ export default function HeaderTitle() {
           },
         }}
       >
-        {title}
-      </m.p>
+        <p className="font-bold xs:text-sm sm:text-sm line-clamp-2">{title}</p>
+      </m.div>
     </div>
   );
 }
