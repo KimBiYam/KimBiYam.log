@@ -29,7 +29,7 @@
     "postcss-viewport-height-correction": "^1.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-responsive": "^9.0.0-beta.4",
+    "react-responsive": "^9.0.2",
     "rehype-slug": "^5.0.1",
     "rehype-stringify": "^9.0.3",
     "remark": "^14.0.2",
