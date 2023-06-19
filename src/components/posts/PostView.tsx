@@ -1,10 +1,14 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import dynamic from 'next/dynamic';
 
+import { useSetAtom } from 'jotai';
+
+import headerTitleAtom from '../../atoms/headerTitleAtom';
 import useCreateHeadingLink from '../../hooks/useCreateHeadingLink';
 import useMounted from '../../hooks/useMounted';
+import useScrollOverElementDetect from '../../hooks/useScrollOverElementDetect';
 import breakPoints from '../../lib/styles/breakPoints.json';
 import { PostDetail } from '../../types/post.types';
 import MarkdownView from './MarkdownView';
@@ -19,16 +23,33 @@ interface PostViewProps {
 
 const PostView = ({ postDetail }: PostViewProps) => {
   const { title, date, contentHtml, tag } = postDetail;
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const setHeaderTitleAtom = useSetAtom(headerTitleAtom);
 
   const markdownRef = useRef<HTMLDivElement>(null);
   const mounted = useMounted();
   const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
+  const isScrollOverTitle = useScrollOverElementDetect(titleRef);
 
   useCreateHeadingLink(markdownRef);
 
+  useEffect(() => {
+    setHeaderTitleAtom((prev) => ({ ...prev, isShowTitle: isScrollOverTitle }));
+  }, [isScrollOverTitle, setHeaderTitleAtom]);
+
+  useEffect(() => {
+    setHeaderTitleAtom((prev) => ({ ...prev, title }));
+
+    return () => {
+      setHeaderTitleAtom({ isShowTitle: false, title: null });
+    };
+  }, [setHeaderTitleAtom, title]);
+
   return (
     <article className="relative mt-8">
-      <h1 className="text-3xl font-bold md:text-4xl">{title}</h1>
+      <h1 className="text-3xl font-bold md:text-4xl" ref={titleRef}>
+        {title}
+      </h1>
       <div className="flex items-center justify-between my-4">
         <PostDateText>{date}</PostDateText>
         <TagBadge tag={tag.toUpperCase()} />
