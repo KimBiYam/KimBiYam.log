@@ -6302,7 +6302,7 @@ __metadata:
     prettier: ^2.5.1
     react: ^18.2.0
     react-dom: ^18.2.0
-    react-responsive: ^9.0.0-beta.4
+    react-responsive: ^9.0.2
     rehype-slug: ^5.0.1
     rehype-stringify: ^9.0.3
     remark: ^14.0.2
@@ -8260,9 +8260,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-responsive@npm:^9.0.0-beta.4":
-  version: 9.0.0-beta.4
-  resolution: "react-responsive@npm:9.0.0-beta.4"
+"react-responsive@npm:^9.0.2":
+  version: 9.0.2
+  resolution: "react-responsive@npm:9.0.2"
   dependencies:
     hyphenate-style-name: ^1.0.0
     matchmediaquery: ^0.3.0
@@ -8270,7 +8270,7 @@ __metadata:
     shallow-equal: ^1.2.1
   peerDependencies:
     react: ">=16.8.0"
-  checksum: c03496a6e408f1e4026fb5eb52e4e9ff435324d1a85dfd845fcc0728069047eb75c88580a5c2e91b5f4004b804b577b5cd5901a88971eef31428e295560fe93e
+  checksum: 97c827db903125f256d7197161bf4c1d77044b12aa2fee05b7d0dc2317eab62897c006a68940c5399c209da2732e4901e92a93bf09c113ac9334232bb842ffd4
   languageName: node
   linkType: hard
 

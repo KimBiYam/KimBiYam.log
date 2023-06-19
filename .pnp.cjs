@@ -67,7 +67,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.5.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:18.2.0"],\
-            ["react-responsive", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:9.0.0-beta.4"],\
+            ["react-responsive", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:9.0.2"],\
             ["rehype-slug", "npm:5.0.1"],\
             ["rehype-stringify", "npm:9.0.3"],\
             ["remark", "npm:14.0.2"],\
@@ -8606,7 +8606,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.5.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:18.2.0"],\
-            ["react-responsive", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:9.0.0-beta.4"],\
+            ["react-responsive", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:9.0.2"],\
             ["rehype-slug", "npm:5.0.1"],\
             ["rehype-stringify", "npm:9.0.3"],\
             ["remark", "npm:14.0.2"],\
@@ -10840,17 +10840,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["react-responsive", [\
-        ["npm:9.0.0-beta.4", {\
-          "packageLocation": "./.yarn/cache/react-responsive-npm-9.0.0-beta.4-24e9ba7c01-c03496a6e4.zip/node_modules/react-responsive/",\
+        ["npm:9.0.2", {\
+          "packageLocation": "./.yarn/cache/react-responsive-npm-9.0.2-bca9a3ccf7-97c827db90.zip/node_modules/react-responsive/",\
           "packageDependencies": [\
-            ["react-responsive", "npm:9.0.0-beta.4"]\
+            ["react-responsive", "npm:9.0.2"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:9.0.0-beta.4", {\
-          "packageLocation": "./.yarn/__virtual__/react-responsive-virtual-109985580b/0/cache/react-responsive-npm-9.0.0-beta.4-24e9ba7c01-c03496a6e4.zip/node_modules/react-responsive/",\
+        ["virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:9.0.2", {\
+          "packageLocation": "./.yarn/__virtual__/react-responsive-virtual-d98511d564/0/cache/react-responsive-npm-9.0.2-bca9a3ccf7-97c827db90.zip/node_modules/react-responsive/",\
           "packageDependencies": [\
-            ["react-responsive", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:9.0.0-beta.4"],\
+            ["react-responsive", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:9.0.2"],\
             ["@types/react", "npm:18.0.21"],\
             ["hyphenate-style-name", "npm:1.0.4"],\
             ["matchmediaquery", "npm:0.3.1"],\
