@@ -6,7 +6,7 @@ import Link from 'next/link';
 import favicon from '../../assets/favicon/apple-icon-57x57.png';
 
 const Logo = () => (
-  <Link href="/" passHref className="absolute w-6 h-6">
+  <Link href="/" passHref className="w-6 h-6">
     <Image priority src={favicon} alt="logo" quality={100} />
   </Link>
 );
