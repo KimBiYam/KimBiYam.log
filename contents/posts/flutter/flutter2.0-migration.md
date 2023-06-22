@@ -1,5 +1,5 @@
 ---
-title: 'Flutter 2.0 기존 프로젝트 null safety 로 마이그레이션 하기'
+title: 'Flutter 기존 프로젝트 2.0(null safety) 로 마이그레이션 하기'
 date: '2021-03-07'
 tag: 'flutter'
 ---
