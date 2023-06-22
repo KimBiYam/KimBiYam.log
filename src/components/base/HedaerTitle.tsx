@@ -22,12 +22,12 @@ export default function HeaderTitle() {
           show: {
             display: 'block',
             opacity: 1,
-            y: [-10, 0],
+            y: [10, 0],
           },
           hidden: {
             transitionEnd: { display: 'none' },
             opacity: 0,
-            y: [0, -10],
+            y: [0, 10],
           },
         }}
       >
