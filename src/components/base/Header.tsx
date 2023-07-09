@@ -2,8 +2,7 @@ import { memo } from 'react';
 
 import { m } from 'framer-motion';
 
-import HeaderButtonSection from './HeaderButtonSection';
-import HeaderDesktopNav from './HeaderDesktopNav';
+import DarkModeButton from './DarkModeButton';
 import HeaderTitle from './HedaerTitle';
 import Logo from './Logo';
 
@@ -13,8 +12,7 @@ const Header = () => {
       <div className="container flex items-center h-full max-w-screen-md px-4 md:px-8 ">
         <Logo />
         <HeaderTitle />
-        <HeaderDesktopNav />
-        <HeaderButtonSection />
+        <DarkModeButton />
       </div>
     </m.header>
   );
