@@ -2,15 +2,13 @@ import fs from 'fs';
 import path from 'path';
 
 import matter from 'gray-matter';
-import removeMarkdown from 'remove-markdown';
+import RemoveMarkdown from 'remove-markdown';
 
 import { POST_DIRECTORY } from '../../constants';
-import { PostDetail, PostPath, PostPreview } from '../../types/post.types';
-import { getMarkdownData } from './markdown';
-
-const MARKDOWN_FILE_EXTENSION_REG_EXP = RegExp(/\.md$/);
+import { PostPath, PostPreview } from '../../types/post.types';
 
 export const getAllPostPaths = (): { params: PostPath }[] => {
+  const MARKDOWN_FILE_EXTENSION_REG_EXP = RegExp(/\.md$/);
   const markdownFilePaths = getPostMarkdownFilePaths();
 
   const paths = markdownFilePaths.map((markdownFilePath) => {
@@ -28,34 +26,6 @@ export const getAllPostPaths = (): { params: PostPath }[] => {
   return paths;
 };
 
-export const getPostDetail = async (
-  directory: string,
-  id: string,
-): Promise<PostDetail> => {
-  const LINE_BREAK_REG_EXP = RegExp(/\n/g);
-
-  const {
-    matterResult: { data, content },
-    contentHtml,
-  } = await getMarkdownData(directory, id);
-
-  const description = getPostPreviewDescription(content).replace(
-    LINE_BREAK_REG_EXP,
-    '',
-  );
-  const { title, date, tag, ...rest } = data;
-
-  return {
-    id,
-    title,
-    date,
-    tag,
-    contentHtml,
-    description,
-    ...rest,
-  };
-};
-
 export const getSortedPostPreviews = () => {
   const filePaths = getPostMarkdownFilePaths();
 
@@ -71,7 +41,7 @@ export const getSortedPostPreviews = () => {
 const getPostMarkdownFilePaths = () => {
   const directories = fs.readdirSync(POST_DIRECTORY);
 
-  const markdownFilePaths = directories.map((directory) => {
+  return directories.flatMap((directory) => {
     const fileNames = fs.readdirSync(`${POST_DIRECTORY}/${directory}`);
     const markdownFileNames = fileNames.filter((fileName) =>
       fileName.endsWith('.md'),
@@ -81,8 +51,6 @@ const getPostMarkdownFilePaths = () => {
       (markdownFileName) => `${directory}/${markdownFileName}`,
     );
   });
-
-  return markdownFilePaths.flat();
 };
 
 const getPostPreview = (fileName: string): PostPreview => {
@@ -107,7 +75,7 @@ const getPostPreview = (fileName: string): PostPreview => {
   };
 };
 
-const getPostPreviewDescription = (content: string) => {
+export const getPostPreviewDescription = (content: string) => {
   const POST_PREVIEW_CONTENT_MAX_LENGTH = 200;
   const MARKDOWN_CODE_BLOCK_REG_EXP_1 = RegExp(/```([\s\S]*?)```/g);
   const MARKDOWN_CODE_BLOCK_REG_EXP_2 = RegExp(/~~~([\s\S]*?)~~~/g);
@@ -118,7 +86,7 @@ const getPostPreviewDescription = (content: string) => {
     .replace(MARKDOWN_CODE_BLOCK_REG_EXP_1, '')
     .replace(MARKDOWN_CODE_BLOCK_REG_EXP_2, '');
 
-  let description = removeMarkdown(preProcessedContent, {
+  let description = RemoveMarkdown(preProcessedContent, {
     useImgAltText: false,
   }).slice(0, POST_PREVIEW_CONTENT_MAX_LENGTH);
 

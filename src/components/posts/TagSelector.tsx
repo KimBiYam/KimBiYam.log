@@ -1,17 +1,19 @@
+'use client';
+
 import { forwardRef } from 'react';
 
 import withDragScroll from '../../hocs/withDragScroll';
 import useActiveChildScroll from '../../hooks/useActiveChildScroll';
+import useTag from '../../hooks/useTag';
 import TagButton from './TagButton';
 
 interface TagSelectorProps {
   tags: string[];
-  onTagClick: (tag: string) => void;
-  selectedTag: string;
 }
 
 const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
-  ({ tags, onTagClick, selectedTag }, ref) => {
+  ({ tags }, ref) => {
+    const { selectedTag, handleTagClick } = useTag();
     const registerChildRef = useActiveChildScroll({
       activeId: selectedTag,
       parentRef: ref,
@@ -27,7 +29,7 @@ const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
             <TagButton
               key={tag}
               tag={tag}
-              onTagClick={onTagClick}
+              onTagClick={handleTagClick}
               isSelected={tag === selectedTag}
               ref={(instance) => registerChildRef(instance, tag)}
             />

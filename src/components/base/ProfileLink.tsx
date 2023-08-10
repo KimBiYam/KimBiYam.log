@@ -1,3 +1,5 @@
+'use client';
+
 import { HTMLAttributes } from 'react';
 
 import Link, { LinkProps } from 'next/link';

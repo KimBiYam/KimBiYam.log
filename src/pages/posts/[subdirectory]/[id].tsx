@@ -9,7 +9,8 @@ import PostShareButtons from '../../../components/posts/PostShareButtons';
 import PostView from '../../../components/posts/PostView';
 import Utterances from '../../../components/posts/Utterances';
 import { POST_DIRECTORY } from '../../../constants';
-import { getAllPostPaths, getPostDetail } from '../../../lib/posts/post';
+import { getPostDetail } from '../../../lib/posts/postDetail';
+import { getAllPostPaths } from '../../../lib/posts/postList';
 import { PostDetail } from '../../../types/post.types';
 
 const Post = ({
