@@ -4,13 +4,37 @@ import { PropsWithChildren } from 'react';
 
 import Script from 'next/script';
 
+import { theme as tailwindTheme } from '../../tailwind.config';
 import Header from '../components/base/Header';
 import MainLayout from '../components/base/MainLayout';
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
+import { generateOpenGraphMetaData } from './metadataBase';
+
+import type { Metadata } from 'next';
 
 import '../lib/styles/code.css';
 import '../lib/styles/global.css';
 import '../lib/styles/tailwind.css';
+
+export const metadata: Metadata = {
+  title: `KimBiYam.log`,
+  description: 'KimBiYam의 개발 블로그 입니다.',
+  viewport:
+    'width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover',
+  keywords: 'blog,블로그,kimbiyam,kimbiyam.log,hot9998',
+  formatDetection: { telephone: false },
+  twitter: { card: 'summary' },
+  themeColor: tailwindTheme.colors.neutral[900],
+  openGraph: generateOpenGraphMetaData({ title: 'KimBiYam.log' }),
+  other: {
+    ['google-site-verification']: String(
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION_KEY,
+    ),
+    ['naver-site-verification']: String(
+      process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION_KEY,
+    ),
+  },
+};
 
 export default function RootLayout({ children }: PropsWithChildren<unknown>) {
   return (
