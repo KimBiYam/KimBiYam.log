@@ -27,7 +27,7 @@ tag: 'next.js'
 
 `robots.txt 작성 예시`
 
-```
+```bash
 User-agent: *
 Allow: /
 ```
@@ -75,7 +75,7 @@ Allow: /
 
 `robots.txt`
 
-```
+```bash
 ...
 Sitemap: [도메인]/sitemap.xml
 ```
@@ -124,7 +124,7 @@ module.exports = {
 
 `자동적으로 생성된 robots.txt`
 
-```
+```bash
 # *
 User-agent: *
 Allow: /
