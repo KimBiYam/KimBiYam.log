@@ -1,4 +1,4 @@
-import { m } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useAtomValue } from 'jotai';
 
 import ArrowUpIcon from '../../assets/svgs/arrow_up.svg';
@@ -16,7 +16,7 @@ const ScrollToTopButton = () => {
   };
 
   return (
-    <m.div
+    <motion.div
       className="fixed z-50 right-4 bottom-12 md:right-8 lg:right-16"
       {...createDynamicallyOpacityMotion(
         pageY > VISIBLE_PAGE_Y_PX,
@@ -33,7 +33,7 @@ const ScrollToTopButton = () => {
           <ArrowUpIcon />
         </div>
       </button>
-    </m.div>
+    </motion.div>
   );
 };
 

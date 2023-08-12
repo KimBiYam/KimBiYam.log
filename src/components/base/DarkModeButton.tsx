@@ -1,4 +1,5 @@
-import { AnimatePresence, m } from 'framer-motion';
+'use client';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import MoonIcon from '../../assets/svgs/moon.svg';
 import SunIcon from '../../assets/svgs/sun.svg';
@@ -29,22 +30,22 @@ const DarkModeButton = () => {
         {mounted && (
           <AnimatePresence initial={false}>
             {theme === Theme.dark && (
-              <m.div
+              <motion.div
                 key="dark-mode-dark"
                 className="absolute w-full"
                 {...createRotateScaleMotion()}
               >
                 <MoonIcon />
-              </m.div>
+              </motion.div>
             )}
             {theme === Theme.light && (
-              <m.div
+              <motion.div
                 key="dark-mode-light"
                 className="absolute w-full"
                 {...createRotateScaleMotion()}
               >
                 <SunIcon />
-              </m.div>
+              </motion.div>
             )}
           </AnimatePresence>
         )}
