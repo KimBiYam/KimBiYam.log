@@ -16,24 +16,12 @@ const nextConfig = {
   },
 };
 
-// This file sets a custom webpack configuration to use your Next.js app
-// with Sentry.
-// https://nextjs.org/docs/api-reference/next.config.js/introduction
-// https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 const withBundleAnalyzer = require('@next/bundle-analyzer');
-const { withSentryConfig } = require('@sentry/nextjs');
 
 module.exports = (() => {
   try {
     if (process.env.ANALYZE && JSON.parse(process.env.ANALYZE) === true) {
       return withBundleAnalyzer(nextConfig);
-    }
-
-    if (process.env.NODE_ENV === 'production') {
-      return withSentryConfig({
-        ...nextConfig,
-        sentry: { silent: true },
-      });
     }
 
     return nextConfig;
