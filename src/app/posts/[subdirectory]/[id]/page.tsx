@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+
 import PageRoutingAnimation from '../../../../components/base/PageRoutingAnimation';
 import ProfileCard from '../../../../components/base/ProfileCard';
 import PostShareButtons from '../../../../components/posts/PostShareButtons';
@@ -7,10 +9,41 @@ import { POST_DIRECTORY } from '../../../../constants';
 import { getPostDetail } from '../../../../lib/posts/postDetail';
 import { getAllPostPaths } from '../../../../lib/posts/postList';
 import { PostPath } from '../../../../types/post.types';
+import {
+  generateOpenGraphMetaData,
+  generateTitle,
+} from '../../../metadataBase';
 
 export function generateStaticParams() {
   const paths = getAllPostPaths();
   return paths;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: PostPath;
+}): Promise<Metadata> {
+  const subdirectory = params?.subdirectory;
+  const id = String(params?.id);
+
+  const postDetail = await getPostDetail(
+    `${POST_DIRECTORY}/${subdirectory}`,
+    id,
+  );
+
+  const { title, description, ogImagePath } = postDetail;
+
+  return {
+    title: generateTitle(title),
+    description,
+    openGraph: generateOpenGraphMetaData({
+      title: generateTitle(title),
+      description,
+      ogImagePath,
+      path: `posts/${subdirectory}/${id}`,
+    }),
+  };
 }
 
 export default async function PostDetailPage({ params }: { params: PostPath }) {
