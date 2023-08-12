@@ -8,8 +8,6 @@ import headerTitleAtom from '../../atoms/headerTitleAtom';
 export default function HeaderTitle() {
   const { isShowTitle, title } = useAtomValue(headerTitleAtom);
 
-  console.log('log::isShowTitle, title', isShowTitle, title);
-
   const handleTitleClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
