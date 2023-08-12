@@ -1,5 +1,3 @@
-import { ParsedUrlQuery } from 'querystring';
-
 export interface Post {
   id: string;
   date: string;
