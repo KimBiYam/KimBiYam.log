@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable @next/next/no-page-custom-font */
 import { PropsWithChildren } from 'react';
 
@@ -24,7 +25,7 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
           href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap"
           rel="stylesheet"
         />
-        <Script src="/theme.js" />
+        <script src="/theme.js" />
         <Script src="/setViewportProperty.js" />
         <Script src="/prettyConsole.js" strategy="lazyOnload" />
         <GoogleAnalytics />
