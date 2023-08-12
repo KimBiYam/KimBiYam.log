@@ -62,7 +62,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jotai", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:1.7.2"],\
             ["medium-zoom", "npm:1.0.6"],\
             ["next", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:13.4.13"],\
-            ["next-sitemap", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:3.1.44"],\
             ["postcss", "npm:8.4.14"],\
             ["postcss-viewport-height-correction", "npm:1.1.1"],\
             ["prettier", "npm:2.5.1"],\
@@ -2788,15 +2787,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/helper-string-parser", "npm:7.22.5"],\
             ["@babel/helper-validator-identifier", "npm:7.22.5"],\
             ["to-fast-properties", "npm:2.0.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@corex/deepmerge", [\
-        ["npm:4.0.29", {\
-          "packageLocation": "./.yarn/cache/@corex-deepmerge-npm-4.0.29-aacab9d89d-78626fd29c.zip/node_modules/@corex/deepmerge/",\
-          "packageDependencies": [\
-            ["@corex/deepmerge", "npm:4.0.29"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9271,7 +9261,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jotai", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:1.7.2"],\
             ["medium-zoom", "npm:1.0.6"],\
             ["next", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:13.4.13"],\
-            ["next-sitemap", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:3.1.44"],\
             ["postcss", "npm:8.4.14"],\
             ["postcss-viewport-height-correction", "npm:1.1.1"],\
             ["prettier", "npm:2.5.1"],\
@@ -10658,34 +10647,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "react-dom",\
             "react",\
             "sass"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["next-sitemap", [\
-        ["npm:3.1.44", {\
-          "packageLocation": "./.yarn/cache/next-sitemap-npm-3.1.44-40166d7b6e-0d5e154c6b.zip/node_modules/next-sitemap/",\
-          "packageDependencies": [\
-            ["next-sitemap", "npm:3.1.44"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:3.1.44", {\
-          "packageLocation": "./.yarn/__virtual__/next-sitemap-virtual-f839896100/0/cache/next-sitemap-npm-3.1.44-40166d7b6e-0d5e154c6b.zip/node_modules/next-sitemap/",\
-          "packageDependencies": [\
-            ["next-sitemap", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:3.1.44"],\
-            ["@corex/deepmerge", "npm:4.0.29"],\
-            ["@next/env", "npm:13.1.1"],\
-            ["@types/next", null],\
-            ["@types/next__env", null],\
-            ["minimist", "npm:1.2.7"],\
-            ["next", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:13.4.13"]\
-          ],\
-          "packagePeers": [\
-            "@next/env",\
-            "@types/next",\
-            "@types/next__env",\
-            "next"\
           ],\
           "linkType": "HARD"\
         }]\

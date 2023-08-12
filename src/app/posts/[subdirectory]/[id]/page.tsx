@@ -41,7 +41,7 @@ export async function generateMetadata({
       title: generateTitle(title),
       description,
       ogImagePath,
-      path: `posts/${subdirectory}/${id}`,
+      path: `/posts/${subdirectory}/${id}`,
     }),
   };
 }

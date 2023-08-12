@@ -11,11 +11,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && yarn postbuild",
+    "build": "next build",
     "build:analyze": "ANALYZE=true next build",
     "start": "next start",
-    "lint": "next lint --dir . --ext .js",
-    "postbuild": "next-sitemap"
+    "lint": "next lint --dir . --ext .js"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.8.0",
@@ -67,7 +66,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "next-sitemap": "^3.1.44",
     "postcss": "^8.4.14",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.3.2",
