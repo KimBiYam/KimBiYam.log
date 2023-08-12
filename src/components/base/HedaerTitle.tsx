@@ -1,4 +1,6 @@
-import { m } from 'framer-motion';
+'use client';
+
+import { motion } from 'framer-motion';
 import { useAtomValue } from 'jotai';
 
 import headerTitleAtom from '../../atoms/headerTitleAtom';
@@ -6,13 +8,15 @@ import headerTitleAtom from '../../atoms/headerTitleAtom';
 export default function HeaderTitle() {
   const { isShowTitle, title } = useAtomValue(headerTitleAtom);
 
+  console.log('log::isShowTitle, title', isShowTitle, title);
+
   const handleTitleClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <div className="flex-1 pl-4">
-      <m.div
+      <motion.div
         className="cursor-pointer"
         initial="hidden"
         animate={isShowTitle ? 'show' : 'hidden'}
@@ -32,7 +36,7 @@ export default function HeaderTitle() {
         }}
       >
         <p className="font-bold xs:text-sm sm:text-sm line-clamp-2">{title}</p>
-      </m.div>
+      </motion.div>
     </div>
   );
 }

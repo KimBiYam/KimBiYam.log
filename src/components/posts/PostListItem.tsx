@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { m } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import { viewportOpacityMotion } from '../../lib/styles/motions';
 import { PostPreview } from '../../types/post.types';
@@ -18,7 +18,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
   return (
     <li>
       <NoScrollLink href={`/posts/${id}`}>
-        <m.div
+        <motion.div
           className="py-4 duration-300 cursor-pointer transition-textShadow hover:text-shadow dark:hover:text-shadow-dark"
           {...viewportOpacityMotion}
         >
@@ -32,7 +32,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
           <p className="overflow-hidden text-sm dark:text-zinc-400 text-zinc-700 md:text-base">
             {content}
           </p>
-        </m.div>
+        </motion.div>
       </NoScrollLink>
     </li>
   );

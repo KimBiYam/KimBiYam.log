@@ -1,6 +1,6 @@
 'use client';
 
-import { m } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export interface PageRoutingAnimationProps {
   children: React.ReactNode;
@@ -11,7 +11,7 @@ const PageRoutingAnimation = ({
   children,
   className,
 }: PageRoutingAnimationProps) => (
-  <m.div
+  <motion.div
     className={className}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
@@ -19,7 +19,7 @@ const PageRoutingAnimation = ({
     transition={{ duration: 0.25, ease: 'easeInOut' }}
   >
     {children}
-  </m.div>
+  </motion.div>
 );
 
 export default PageRoutingAnimation;
