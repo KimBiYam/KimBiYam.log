@@ -17,7 +17,7 @@ export interface PostPreview extends Post {
   content: string;
 }
 
-export interface PostPath extends ParsedUrlQuery {
+export interface PostPath {
   id: string;
   subdirectory: string;
 }

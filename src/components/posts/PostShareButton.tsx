@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import FacebookIcon from '../../assets/svgs/facebook.svg';
