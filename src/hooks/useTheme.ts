@@ -1,16 +1,14 @@
-import { useAtom } from 'jotai';
+import { useTheme as useNextTheme } from 'next-themes';
 
-import themeAtom from '../atoms/themeAtom';
-import { Theme } from '../constants';
-import StorageUtil, { StorageKeys } from '../lib/storage/storage.util';
+import { isTheme, Theme } from '../constants';
 
 const useTheme = () => {
-  const [theme, setTheme] = useAtom(themeAtom);
+  const { theme: nextTheme, setTheme } = useNextTheme();
+
+  const theme = isTheme(nextTheme) ? nextTheme : Theme.light;
 
   const toggleTheme = () => {
     const changedTheme = theme === Theme.light ? Theme.dark : Theme.light;
-
-    StorageUtil.setItem(StorageKeys.theme, changedTheme);
     setTheme(changedTheme);
   };
 

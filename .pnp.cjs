@@ -61,6 +61,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jotai", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:1.7.2"],\
             ["medium-zoom", "npm:1.0.6"],\
             ["next", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:13.4.13"],\
+            ["next-themes", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:0.2.1"],\
             ["postcss", "npm:8.4.14"],\
             ["postcss-viewport-height-correction", "npm:1.1.1"],\
             ["prettier", "npm:2.5.1"],\
@@ -8873,6 +8874,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jotai", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:1.7.2"],\
             ["medium-zoom", "npm:1.0.6"],\
             ["next", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:13.4.13"],\
+            ["next-themes", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:0.2.1"],\
             ["postcss", "npm:8.4.14"],\
             ["postcss-viewport-height-correction", "npm:1.1.1"],\
             ["prettier", "npm:2.5.1"],\
@@ -10212,6 +10214,36 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "react-dom",\
             "react",\
             "sass"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["next-themes", [\
+        ["npm:0.2.1", {\
+          "packageLocation": "./.yarn/cache/next-themes-npm-0.2.1-16a440cf6e-ebc248b956.zip/node_modules/next-themes/",\
+          "packageDependencies": [\
+            ["next-themes", "npm:0.2.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:0.2.1", {\
+          "packageLocation": "./.yarn/__virtual__/next-themes-virtual-d5c1ce908d/0/cache/next-themes-npm-0.2.1-16a440cf6e-ebc248b956.zip/node_modules/next-themes/",\
+          "packageDependencies": [\
+            ["next-themes", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:0.2.1"],\
+            ["@types/next", null],\
+            ["@types/react", "npm:18.2.20"],\
+            ["@types/react-dom", "npm:18.2.7"],\
+            ["next", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:13.4.13"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/next",\
+            "@types/react-dom",\
+            "@types/react",\
+            "next",\
+            "react-dom",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\

@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 
-import { getThemeFromLocalStorage } from '../../atoms/themeAtom';
 import { Theme } from '../../constants';
 import useTheme from '../../hooks/useTheme';
 
@@ -34,7 +33,7 @@ const Utterances = () => {
       src: SOURCE_URL,
       repo: REPO,
       branch: BRANCH,
-      theme: getThemeByAppTheme(getThemeFromLocalStorage()),
+      theme: getThemeByAppTheme(theme),
       label: LABEL,
       async: 'true',
       'issue-term': ISSUE_TERM,
@@ -45,7 +44,7 @@ const Utterances = () => {
     });
 
     copiedRef?.appendChild(utterances);
-  }, []);
+  }, [theme]);
 
   useEffect(() => {
     const utterancesFrame = document.querySelector<HTMLIFrameElement>(

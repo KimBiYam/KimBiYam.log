@@ -7,6 +7,7 @@ import Script from 'next/script';
 import { theme as tailwindTheme } from '../../tailwind.config';
 import Header from '../components/base/Header';
 import MainLayout from '../components/base/MainLayout';
+import ThemeProvider from '../components/base/ThemeProvider';
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
 import { generateOpenGraphMetaData } from './metadataBase';
 
@@ -49,14 +50,15 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
           href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap"
           rel="stylesheet"
         />
-        <script src="/theme.js" />
         <Script src="/setViewportProperty.js" />
         <Script src="/prettyConsole.js" strategy="lazyOnload" />
         <GoogleAnalytics />
       </head>
       <body className="main-container main-font-color">
-        <Header />
-        <MainLayout>{children}</MainLayout>
+        <ThemeProvider>
+          <Header />
+          <MainLayout>{children}</MainLayout>
+        </ThemeProvider>
       </body>
     </html>
   );
