@@ -1,3 +1,5 @@
+'use client';
+
 import { DOMAIN_URL } from '../../constants';
 import { PostDetail } from '../../types/post.types';
 import PostShareButton from './PostShareButton';
