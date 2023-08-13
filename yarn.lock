@@ -2254,6 +2254,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/prop-types@npm:^15.0.0":
+  version: 15.7.5
+  resolution: "@types/prop-types@npm:15.7.5"
+  checksum: 5b43b8b15415e1f298243165f1d44390403bb2bd42e662bca3b5b5633fdd39c938e91b7fce3a9483699db0f7a715d08cef220c121f723a634972fdf596aec980
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:^18.2.7":
   version: 18.2.7
   resolution: "@types/react-dom@npm:18.2.7"
@@ -5826,6 +5833,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"inline-style-parser@npm:0.1.1":
+  version: 0.1.1
+  resolution: "inline-style-parser@npm:0.1.1"
+  checksum: 5d545056a3e1f2bf864c928a886a0e1656a3517127d36917b973de581bd54adc91b4bf1febcb0da054f204b4934763f1a4e09308b4d55002327cf1d48ac5d966
+  languageName: node
+  linkType: hard
+
 "inquirer@npm:^7.0.4":
   version: 7.3.3
   resolution: "inquirer@npm:7.3.3"
@@ -6559,6 +6573,7 @@ __metadata:
     framer-motion: ^10.15.1
     gray-matter: ^4.0.3
     jotai: ^1.7.2
+    medium-zoom: ^1.0.8
     next: ^13.4.13
     next-themes: ^0.2.1
     postcss: ^8.4.14
@@ -6566,12 +6581,11 @@ __metadata:
     prettier: ^2.5.1
     react: ^18.2.0
     react-dom: ^18.2.0
+    react-markdown: ^8.0.7
     react-responsive: ^9.0.2
     rehype-slug: ^5.0.1
     rehype-stringify: ^9.0.3
-    remark: ^14.0.2
     remark-gfm: ^3.0.1
-    remark-rehype: ^10.1.0
     remove-markdown: ^0.5.0
     sharp: ^0.31.3
     smoothscroll-polyfill: ^0.4.4
@@ -7055,6 +7069,13 @@ __metadata:
   version: 1.0.1
   resolution: "mdurl@npm:1.0.1"
   checksum: 71731ecba943926bfbf9f9b51e28b5945f9411c4eda80894221b47cc105afa43ba2da820732b436f0798fd3edbbffcd1fc1415843c41a87fea08a41cc1e3d02b
+  languageName: node
+  linkType: hard
+
+"medium-zoom@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "medium-zoom@npm:1.0.8"
+  checksum: b65be8546ab255936271e15a17524677808774140199e58c4dc0bae131b504a13e481c4f483ca8a862d32636dd4996bd7ed0a005c1f6213c3c764aa03fbbc48e
   languageName: node
   linkType: hard
 
@@ -8645,6 +8666,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prop-types@npm:^15.0.0, prop-types@npm:^15.8.1":
+  version: 15.8.1
+  resolution: "prop-types@npm:15.8.1"
+  dependencies:
+    loose-envify: ^1.4.0
+    object-assign: ^4.1.1
+    react-is: ^16.13.1
+  checksum: c056d3f1c057cb7ff8344c645450e14f088a915d078dcda795041765047fa080d38e5d626560ccaac94a4e16e3aa15f3557c1a9a8d1174530955e992c675e459
+  languageName: node
+  linkType: hard
+
 "prop-types@npm:^15.6.1, prop-types@npm:^15.7.2":
   version: 15.7.2
   resolution: "prop-types@npm:15.7.2"
@@ -8653,17 +8685,6 @@ __metadata:
     object-assign: ^4.1.1
     react-is: ^16.8.1
   checksum: 5eef82fdda64252c7e75aa5c8cc28a24bbdece0f540adb60ce67c205cf978a5bd56b83e4f269f91c6e4dcfd80b36f2a2dec24d362e278913db2086ca9c6f9430
-  languageName: node
-  linkType: hard
-
-"prop-types@npm:^15.8.1":
-  version: 15.8.1
-  resolution: "prop-types@npm:15.8.1"
-  dependencies:
-    loose-envify: ^1.4.0
-    object-assign: ^4.1.1
-    react-is: ^16.13.1
-  checksum: c056d3f1c057cb7ff8344c645450e14f088a915d078dcda795041765047fa080d38e5d626560ccaac94a4e16e3aa15f3557c1a9a8d1174530955e992c675e459
   languageName: node
   linkType: hard
 
@@ -8753,6 +8774,39 @@ __metadata:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
+  languageName: node
+  linkType: hard
+
+"react-is@npm:^18.0.0":
+  version: 18.2.0
+  resolution: "react-is@npm:18.2.0"
+  checksum: e72d0ba81b5922759e4aff17e0252bd29988f9642ed817f56b25a3e217e13eea8a7f2322af99a06edb779da12d5d636e9fda473d620df9a3da0df2a74141d53e
+  languageName: node
+  linkType: hard
+
+"react-markdown@npm:^8.0.7":
+  version: 8.0.7
+  resolution: "react-markdown@npm:8.0.7"
+  dependencies:
+    "@types/hast": ^2.0.0
+    "@types/prop-types": ^15.0.0
+    "@types/unist": ^2.0.0
+    comma-separated-tokens: ^2.0.0
+    hast-util-whitespace: ^2.0.0
+    prop-types: ^15.0.0
+    property-information: ^6.0.0
+    react-is: ^18.0.0
+    remark-parse: ^10.0.0
+    remark-rehype: ^10.0.0
+    space-separated-tokens: ^2.0.0
+    style-to-object: ^0.4.0
+    unified: ^10.0.0
+    unist-util-visit: ^4.0.0
+    vfile: ^5.0.0
+  peerDependencies:
+    "@types/react": ">=16"
+    react: ">=16"
+  checksum: 0f3e570975134a3382c3fe5189e04e742ae154941463bdfaab2293319da1f1585cb9b75b6f07d99f514c4d728d69cc1af3c96ab37df90003b3bcc210dd0001ba
   languageName: node
   linkType: hard
 
@@ -9020,7 +9074,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-rehype@npm:^10.1.0":
+"remark-rehype@npm:^10.0.0":
   version: 10.1.0
   resolution: "remark-rehype@npm:10.1.0"
   dependencies:
@@ -9029,29 +9083,6 @@ __metadata:
     mdast-util-to-hast: ^12.1.0
     unified: ^10.0.0
   checksum: b9ac8acff3383b204dfdc2599d0bdf86e6ca7e837033209584af2e6aaa6a9013e519a379afa3201299798cab7298c8f4b388de118c312c67234c133318aec084
-  languageName: node
-  linkType: hard
-
-"remark-stringify@npm:^10.0.0":
-  version: 10.0.2
-  resolution: "remark-stringify@npm:10.0.2"
-  dependencies:
-    "@types/mdast": ^3.0.0
-    mdast-util-to-markdown: ^1.0.0
-    unified: ^10.0.0
-  checksum: 25424201e698353f6c0afc9ec29a8cac1dac8c06750d92214e3216bd76ac37902a0ba3702ac2a11c1040938a667b3bc22d6949af1d35e8fc81a3572643cdc263
-  languageName: node
-  linkType: hard
-
-"remark@npm:^14.0.2":
-  version: 14.0.2
-  resolution: "remark@npm:14.0.2"
-  dependencies:
-    "@types/mdast": ^3.0.0
-    remark-parse: ^10.0.0
-    remark-stringify: ^10.0.0
-    unified: ^10.0.0
-  checksum: a534b6c6bb8a0db7e22580c73d820af9c2468af24d434eb0d54c9b50577d609ec5383a90e81c921f334c1426494c5cf7460ae68b5027123f159bbf1ca8a5a85f
   languageName: node
   linkType: hard
 
@@ -9879,6 +9910,15 @@ __metadata:
   version: 2.0.1
   resolution: "strip-json-comments@npm:2.0.1"
   checksum: 1074ccb63270d32ca28edfb0a281c96b94dc679077828135141f27d52a5a398ef5e78bcf22809d23cadc2b81dfbe345eb5fd8699b385c8b1128907dec4a7d1e1
+  languageName: node
+  linkType: hard
+
+"style-to-object@npm:^0.4.0":
+  version: 0.4.2
+  resolution: "style-to-object@npm:0.4.2"
+  dependencies:
+    inline-style-parser: 0.1.1
+  checksum: 314a80bcfadde41c2b9c8d717a4b1f2220954561040c2c7740496715da5cb95f99920a8eeefe2d4a862149875f352a12eda9bbef5816d7e0a71910da00d1521f
   languageName: node
   linkType: hard
 
