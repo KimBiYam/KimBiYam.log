@@ -1,23 +1,23 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 
 import * as googleAnalytics from '../lib/googleAnalytics';
 
 const useGoogleAnalyticsPageView = () => {
-  const router = useRouter();
+  const pathname = usePathname();
+  const savedPathNameRef = useRef(pathname);
 
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
       googleAnalytics.pageView(url);
     };
 
-    router.events.on('routeChangeComplete', handleRouteChange);
-
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
+    if (savedPathNameRef.current !== pathname) {
+      handleRouteChange(new URL(window.location.href));
+      savedPathNameRef.current = pathname;
+    }
+  }, [pathname]);
 };
 
 export default useGoogleAnalyticsPageView;
