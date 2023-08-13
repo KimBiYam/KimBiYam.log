@@ -1,6 +1,5 @@
+'use client';
 import { forwardRef, useRef } from 'react';
-
-import useMediumZoom from '../../hooks/useMediumZoom';
 
 interface MarkdownViewProps {
   contentHtml: string;
@@ -12,8 +11,6 @@ const MarkdownView = forwardRef(function MarkdownView(
 ) {
   const innerRef = useRef<HTMLDivElement>(null);
   const ref = forwardedRef ?? innerRef;
-
-  useMediumZoom(ref);
 
   return (
     <div
