@@ -1,28 +1,22 @@
 import { useEffect, useRef } from 'react';
 
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 
 export const usePreserveScroll = () => {
-  const router = useRouter();
-  const url = router.asPath;
+  const pathname = usePathname();
 
   const scrollPositionsRef = useRef<Record<string, number>>({});
   const isPopRef = useRef(false);
 
   useEffect(() => {
-    router.beforePopState(() => {
-      isPopRef.current = true;
-      return true;
-    });
-
     const handleRouteChangeStart = () => {
-      scrollPositionsRef.current[url] = window.scrollY;
+      isPopRef.current = true;
+      scrollPositionsRef.current[pathname] = window.scrollY;
     };
 
     const handleRouteChangeComplete = (currentUrl: string) => {
       const currentScrollPosition = scrollPositionsRef.current[currentUrl];
-      const shouldScrollRestore =
-        isPopRef.current && currentScrollPosition !== 0;
+      const shouldScrollRestore = currentScrollPosition !== 0;
 
       if (shouldScrollRestore) {
         window.scrollTo({ top: currentScrollPosition });
@@ -33,12 +27,10 @@ export const usePreserveScroll = () => {
       isPopRef.current = false;
     };
 
-    router.events.on('routeChangeStart', handleRouteChangeStart);
-    router.events.on('routeChangeComplete', handleRouteChangeComplete);
+    handleRouteChangeStart();
 
     return () => {
-      router.events.off('routeChangeStart', handleRouteChangeStart);
-      router.events.off('routeChangeComplete', handleRouteChangeComplete);
+      handleRouteChangeComplete(pathname);
     };
-  }, [router, url]);
+  }, [pathname]);
 };

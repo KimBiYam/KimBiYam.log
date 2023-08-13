@@ -1,7 +1,5 @@
 import { useEffect, useRef } from 'react';
 
-import { useRouter } from 'next/router';
-
 import { useSetAtom } from 'jotai';
 
 import scrollAtom from '../atoms/scrollAtom';
@@ -13,20 +11,6 @@ const THROTTLE_TIME_MS = 100;
 const useDetectScroll = () => {
   const setScroll = useSetAtom(scrollAtom);
   const pageYRef = useRef(0);
-
-  const router = useRouter();
-
-  useEffect(() => {
-    const setIsRouting = () => {
-      setScroll((prev) => ({ ...prev, isRouting: true }));
-    };
-
-    router.events.on('beforeHistoryChange', setIsRouting);
-
-    return () => {
-      router.events.off('beforeHistoryChange', setIsRouting);
-    };
-  }, [router.events, setScroll]);
 
   const handleScroll = useThrottle(() => {
     const { scrollY } = window;
