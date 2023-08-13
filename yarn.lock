@@ -6559,7 +6559,6 @@ __metadata:
     framer-motion: ^10.15.1
     gray-matter: ^4.0.3
     jotai: ^1.7.2
-    medium-zoom: ^1.0.6
     next: ^13.4.13
     next-themes: ^0.2.1
     postcss: ^8.4.14
@@ -7056,13 +7055,6 @@ __metadata:
   version: 1.0.1
   resolution: "mdurl@npm:1.0.1"
   checksum: 71731ecba943926bfbf9f9b51e28b5945f9411c4eda80894221b47cc105afa43ba2da820732b436f0798fd3edbbffcd1fc1415843c41a87fea08a41cc1e3d02b
-  languageName: node
-  linkType: hard
-
-"medium-zoom@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "medium-zoom@npm:1.0.6"
-  checksum: 728b9f661262fd084da26f401ffe9bf98afc6d14ad93d4bfb08b95d32f9c4494a97dc8cb3a62353e8d350dc09c84a3f6f686a0fec321bfb609e5ba5e24bdb9d2
   languageName: node
   linkType: hard
 

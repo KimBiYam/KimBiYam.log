@@ -59,7 +59,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["framer-motion", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:10.15.1"],\
             ["gray-matter", "npm:4.0.3"],\
             ["jotai", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:1.7.2"],\
-            ["medium-zoom", "npm:1.0.6"],\
             ["next", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:13.4.13"],\
             ["next-themes", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:0.2.1"],\
             ["postcss", "npm:8.4.14"],\
@@ -8872,7 +8871,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["framer-motion", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:10.15.1"],\
             ["gray-matter", "npm:4.0.3"],\
             ["jotai", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:1.7.2"],\
-            ["medium-zoom", "npm:1.0.6"],\
             ["next", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:13.4.13"],\
             ["next-themes", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:0.2.1"],\
             ["postcss", "npm:8.4.14"],\
@@ -9419,15 +9417,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/mdurl-npm-1.0.1-054d974269-71731ecba9.zip/node_modules/mdurl/",\
           "packageDependencies": [\
             ["mdurl", "npm:1.0.1"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["medium-zoom", [\
-        ["npm:1.0.6", {\
-          "packageLocation": "./.yarn/cache/medium-zoom-npm-1.0.6-d01c066b72-728b9f6612.zip/node_modules/medium-zoom/",\
-          "packageDependencies": [\
-            ["medium-zoom", "npm:1.0.6"]\
           ],\
           "linkType": "HARD"\
         }]\

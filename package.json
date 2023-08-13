@@ -23,7 +23,6 @@
     "framer-motion": "^10.15.1",
     "gray-matter": "^4.0.3",
     "jotai": "^1.7.2",
-    "medium-zoom": "^1.0.6",
     "next": "^13.4.13",
     "next-themes": "^0.2.1",
     "postcss-viewport-height-correction": "^1.1.1",
