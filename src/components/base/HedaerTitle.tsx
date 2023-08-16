@@ -8,18 +8,12 @@ import headerTitleAtom from '../../atoms/headerTitleAtom';
 export default function HeaderTitle() {
   const { isShowTitle, title } = useAtomValue(headerTitleAtom);
 
-  const handleTitleClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <div className="flex-1 pl-4">
       <motion.div
-        className="cursor-pointer"
         initial="hidden"
         animate={isShowTitle ? 'show' : 'hidden'}
         transition={{ duration: 0.3 }}
-        onClick={handleTitleClick}
         variants={{
           show: {
             display: 'block',
