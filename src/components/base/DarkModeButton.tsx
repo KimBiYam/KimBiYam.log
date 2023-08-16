@@ -1,5 +1,6 @@
 'use client';
-import { AnimatePresence, motion } from 'framer-motion';
+
+import { motion } from 'framer-motion';
 
 import MoonIcon from '../../assets/svgs/moon.svg';
 import SunIcon from '../../assets/svgs/sun.svg';
@@ -28,7 +29,7 @@ const DarkModeButton = () => {
     >
       <div className="relative w-6 h-6">
         {mounted && (
-          <AnimatePresence initial={false}>
+          <>
             {theme === Theme.dark && (
               <motion.div
                 key="dark-mode-dark"
@@ -47,7 +48,7 @@ const DarkModeButton = () => {
                 <SunIcon />
               </motion.div>
             )}
-          </AnimatePresence>
+          </>
         )}
       </div>
     </button>
