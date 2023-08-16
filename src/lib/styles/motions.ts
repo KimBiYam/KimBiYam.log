@@ -58,10 +58,4 @@ export const createRotateScaleMotion = (): MotionProps => ({
     rotate: 0,
     transition: rotateScaleSpring,
   },
-  exit: {
-    scale: 0,
-    opacity: 0,
-    rotate: 360,
-    transition: rotateScaleSpring,
-  },
 });
