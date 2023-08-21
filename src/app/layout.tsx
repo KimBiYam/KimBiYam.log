@@ -6,10 +6,7 @@ import Script from 'next/script';
 
 import { theme as tailwindTheme } from '../../tailwind.config';
 import ClientRootLayout from '../components/base/ClientRootLayout';
-import Footer from '../components/base/Footer';
-import Header from '../components/base/Header';
 import MainLayout from '../components/base/MainLayout';
-import ScrollToTopButton from '../components/base/ScrollToTopButton';
 import ThemeProvider from '../components/base/ThemeProvider';
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
 import { generateOpenGraphMetaData } from './metadataBase';
@@ -60,11 +57,8 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
       <body className="main-container main-font-color">
         <ClientRootLayout>
           <ThemeProvider>
-            <Header />
             <MainLayout>{children}</MainLayout>
           </ThemeProvider>
-          <Footer />
-          <ScrollToTopButton />
         </ClientRootLayout>
       </body>
     </html>
