@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import rehypePrism from '@mapbox/rehype-prism';
@@ -14,14 +14,20 @@ interface MarkdownViewProps {
   contentHtml: string;
 }
 
-const MarkdownView = forwardRef(function MarkdownView(
-  { contentHtml }: MarkdownViewProps,
-  forwardedRef: React.ForwardedRef<HTMLDivElement>,
-) {
-  const innerRef = useRef<HTMLDivElement>(null);
-  const ref = forwardedRef ?? innerRef;
+const MarkdownView = function MarkdownView({ contentHtml }: MarkdownViewProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { attach } = useMediumZoom();
 
-  useMediumZoom(ref);
+  useEffect(() => {
+    const images = ref.current?.querySelectorAll('img');
+    if (!images) return;
+
+    const paragraphChildImages = Array.from(images).filter(
+      (el) => el.parentElement?.tagName === 'P',
+    );
+
+    attach?.(paragraphChildImages);
+  }, [attach, ref]);
 
   return (
     <div className="w-full max-w-full prose dark:prose-dark" ref={ref}>
@@ -33,6 +39,6 @@ const MarkdownView = forwardRef(function MarkdownView(
       </ReactMarkdown>
     </div>
   );
-});
+};
 
 export default MarkdownView;
