@@ -6,10 +6,8 @@ import { theme as tailwindTheme } from '../../tailwind.config';
 import { Theme } from '../constants';
 import useTheme from './useTheme';
 
-const useMediumZoom = (ref: React.Ref<HTMLElement>) => {
+const useMediumZoom = () => {
   const { theme } = useTheme();
-  const zoomRef = useRef<Zoom | null>(null);
-
   const background = useMemo(
     () =>
       theme === Theme.dark
@@ -18,26 +16,13 @@ const useMediumZoom = (ref: React.Ref<HTMLElement>) => {
     [theme],
   );
 
-  useEffect(() => {
-    if (typeof ref === 'function' || !ref) return;
-    const images = ref.current?.querySelectorAll('img');
-
-    if (!images) return;
-
-    const filtered = Array.from(images).filter(
-      (el) => el.parentElement?.tagName === 'P',
-    );
-
-    zoomRef.current = mediumZoom(filtered, { background, margin: 24 });
-
-    return () => {
-      if (zoomRef.current) zoomRef.current.detach();
-    };
-  }, [background, ref]);
+  const zoomRef = useRef<Zoom | null>(null);
 
   useEffect(() => {
-    zoomRef.current?.update({ background });
+    zoomRef.current = mediumZoom({ background, margin: 24 });
   }, [background]);
+
+  return { ...zoomRef.current };
 };
 
 export default useMediumZoom;

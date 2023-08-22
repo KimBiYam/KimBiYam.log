@@ -56,7 +56,7 @@ const PostView = ({ postDetail }: PostViewProps) => {
         <PostDateText>{date}</PostDateText>
         <TagBadge tag={tag.toUpperCase()} />
       </div>
-      <MarkdownView contentHtml={contentHtml} ref={markdownRef} />
+      <MarkdownView contentHtml={contentHtml} />
       {mounted && isUpExtraLargeScreen && <DynamicTableOfContents />}
     </article>
   );
