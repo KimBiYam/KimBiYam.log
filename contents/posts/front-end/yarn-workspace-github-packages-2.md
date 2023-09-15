@@ -1,5 +1,5 @@
 ---
-title: 'Yarn berry workspaces 패키지 Github Packages에 배포해보기 - 2'
+title: 'Yarn berry + Yarn workspaces 패키지 Github Packages에 배포해보기 - 2'
 date: '2022-09-12'
 tag: 'front-end'
 ogImagePath: '/images/posts/front-end/yarn-workspace-github-packages-2_1.png'
