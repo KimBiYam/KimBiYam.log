@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useRef } from 'react';
 
 interface UseActiveItemScrollProps<P> {
   activeId: string | null;
-  parentRef: React.Ref<P>;
+  parentRef?: React.Ref<P>;
   pageScrolling?: boolean;
 }
 
-const isRefObject = <T>(ref: React.Ref<T>): ref is React.RefObject<T> =>
-  ref !== null && typeof ref !== 'function';
+const isRefObject = <T>(ref?: React.Ref<T>): ref is React.RefObject<T> =>
+  !!ref && typeof ref !== 'function';
 
 const useActiveChildScroll = <P extends HTMLElement, C extends HTMLElement>({
   activeId,
@@ -17,7 +17,7 @@ const useActiveChildScroll = <P extends HTMLElement, C extends HTMLElement>({
   const itemRefs = useRef<Record<string, C | null>>({});
 
   const activeChildNode = activeId ? itemRefs.current[activeId] : null;
-  const parentNodeExists = isRefObject(parentRef) && parentRef.current;
+  const parentNodeExists = isRefObject(parentRef) && !!parentRef.current;
 
   useEffect(() => {
     if (!parentNodeExists || !activeChildNode || pageScrolling) {

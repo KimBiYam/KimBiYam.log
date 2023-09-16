@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 
+import DragScrollContainer from '../components/base/DragScrollContainer';
 import PageRoutingAnimation from '../components/base/PageRoutingAnimation';
 import ProfileCard from '../components/base/ProfileCard';
 import PostList from '../components/posts/PostList';
@@ -29,7 +30,9 @@ export default async function HomePage() {
       <div className="my-2">
         <ProfileCard />
       </div>
-      <TagSelector tags={tags} />
+      <DragScrollContainer>
+        <TagSelector tags={tags} />
+      </DragScrollContainer>
       <PostList postPreviews={postPreviews} />
     </PageRoutingAnimation>
   );

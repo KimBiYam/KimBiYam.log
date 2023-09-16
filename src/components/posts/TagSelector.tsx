@@ -2,7 +2,6 @@
 
 import { forwardRef } from 'react';
 
-import withDragScroll from '../../hocs/withDragScroll';
 import useActiveChildScroll from '../../hooks/useActiveChildScroll';
 import useTag from '../../hooks/useTag';
 import TagButton from './TagButton';
@@ -43,4 +42,4 @@ const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
 
 TagSelector.displayName = 'TagSelector';
 
-export default withDragScroll(TagSelector);
+export default TagSelector;
