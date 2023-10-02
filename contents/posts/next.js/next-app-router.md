@@ -50,11 +50,10 @@ export default function SomeServerComponent() {
 클라이언트 컴포넌트의 사용 방법은 컴포넌트 파일 최상단에 `'use client'`를 선언하여 클라이언트 컴포넌트를 명시하는 것으로 사용합니다.
 
 ```tsx
-'use client';
+'use client'; // 클라이언트 컴포넌트임을 명시
 
 import { useState } from 'react';
 
-// 클라이언트 컴포넌트임을 명시
 export default function SomeClientComponent() {
   const [count, setCount] = useState(0); // hook의 사용이 가능합니다.
 
@@ -62,7 +61,7 @@ export default function SomeClientComponent() {
     <>
       <div>count: {count}</div>
       <button
-				// 이벤트 리스너의 사용이 가능합니다.
+        // 이벤트 리스너의 사용이 가능합니다.
         onClick={() => {
           setCount((prev) => prev + 1);
         }}
@@ -76,7 +75,7 @@ export default function SomeClientComponent() {
 
 - 위처럼 `'use client'`를 선언하면 `interactive`한 기능을 사용할 수 있는 클라이언트 컴포넌트가 됩니다.
 - 기존의 Next.js에서 브라우저 API 등을 사용 시 Client Side 인지 구분을 위해 `useEffect`내에서 접근하거나 `window` 객체가 있는지 체크를 하는 작업이 필수였는데, 클라이언트 컴포넌트에서는 해당 부분이 필요 없지 않을까 싶었지만 이는 기존과 동일하게 체크가 필요합니다.
-
+---
 ## Pages 디렉토리에서 App 디렉토리로 옮겨가기
 
 ### Root Layout 파일
@@ -217,6 +216,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 - path에 포함된 params는 전부 반환하도록 구성해야 합니다.
     - 예시로 `/posts/[category]/[id]` 라는 path를 구성한다면 `Array<{ category: string, id: string }>` 형태로 반환을해야 합니다.
 
+---
 ## SEO 관련
 
 기존 Next.js에서 SEO 관련한 기능으로 `next/head`가 지원됐지만, app 디렉토리에서는 `metadata` 객체를 만드는 형태로 변경되었고 이외에도 `robots.txt, sitemap` 같은 파일을 생성하는 기능도 추가되었습니다.
@@ -271,7 +271,7 @@ export async function generateMetadata({
   const subdirectory = params?.subdirectory;
   const id = String(params?.id);
 
-	// post의 상세 정보를 불러옵니다.
+  // post의 상세 정보를 불러옵니다.
   const postDetail = await getPostDetail(
     `${POST_DIRECTORY}/${subdirectory}`,
     id,
@@ -279,7 +279,7 @@ export async function generateMetadata({
 
   const { title, description, ogImagePath } = postDetail;
 
-	// 상세 정보를 기반으로 Metadata 객체를 만들어 반환합니다.
+  // 상세 정보를 기반으로 Metadata 객체를 만들어 반환합니다.
   return {
     title: generateTitle(title),
     description,
@@ -299,12 +299,12 @@ SEO를 위한 정적인 `robots.txt` 파일을 넣을 수 있게 지원하며, �
 
 `/app/robots.txt`
 
-```
+```bash
 User-Agent: *
 Allow: /
 Disallow: /private/
 
-Sitemap: https://acme.com/sitemap.xml
+Sitemap: https://www.kimbiyam.me/sitemap.xml
 ```
 
 `/app/robots.ts`
@@ -319,7 +319,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-		// 환경 변수 등의 값을 이용해서 동적으로 변경 가능합니다.
+    // 환경 변수 등의 값을 이용해서 동적으로 변경 가능합니다.
     sitemap: `${process.env.NEXT_PUBLIC_DOMAIN_URL}/sitemap.xml`, 
   }
 }
@@ -334,22 +334,10 @@ robots.txt와 마찬가지로 SEO를 위한 정적인 `sitemap.xml` 파일을 �
 ```xml
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://acme.com</loc>
-    <lastmod>2023-04-06T15:02:24.021Z</lastmod>
+    <loc>https://www.kimbiyam.me</loc>
+    <lastmod>2023-10-02T15:00:00.000Z</lastmod>
     <changefreq>yearly</changefreq>
     <priority>1</priority>
-  </url>
-  <url>
-    <loc>https://acme.com/about</loc>
-    <lastmod>2023-04-06T15:02:24.021Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://acme.com/blog</loc>
-    <lastmod>2023-04-06T15:02:24.021Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
 </urlset>
 ```
@@ -377,7 +365,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 }
 ```
-
+---
 ## 기타 예약 파일 변경
 
 ### **404.js 변경**
@@ -398,19 +386,59 @@ export default function NotFound() {
 
 - not-found 페이지도 기본적으로 Server Components에 해당되기 때문에, 다른 페이지 파일처럼 컴포넌트 내부에서 data fetching이 가능합니다.
 
+---
 ## Troubleshooting
 
-### metadata title template 미적용
+### metadata title template 적용
 
-Next.js 공식 문서에는 metadata 사용 시 [Template object](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#template)를 지원한다고 가이드가 되어있는데요. 각 페이지 타이틀에 suffix를 붙여주기 위해서 사용하려 했으나, 저의 경우에는 제대로 적용되지 않았습니다. (테스트 버전:  v13.4.13 및 v13.5.3)
+Next.js 공식 문서에는 metadata 사용 시 [Template object](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#template)를 지원한다고 가이드가 되어있는데요. 각 페이지 타이틀에 suffix를 붙여주기 위해서 사용하려 했으나, 저의 경우에는 root page에 제대로 적용되지 않는 이슈가 있었습니다.
 
-어떻게 구성을 해도 적용이 안돼서 그냥 매번 metadata 생성 시 title 뒤에 suffix를 붙여주는 방식으로 사용했습니다.
+문서를 보니 적용한 경로의 하위 경로에만 적용이 되는 방식이라, 예시로 root layout 파일에 적용한다면 root page에는 title을 명시하지 않은 채로 사용해야 하고 이는 metadata 내의 openGraph 필드도 마찬가지입니다.
+
+`/app/layout.tsx`
 
 ```tsx
 export const metadata: Metadata = {
-  title: generateTitle('Home'), // 타이틀에 suffix를 붙여주는 함수를 만듦
-	...
+  title: {
+    template: '%s | suffix', // title | suffix 같은 형태로 포맷팅됩니다.
+    default: '기본 페이지 명' // metadata title이 없는 페이지는 해당 이름을 사용합니다.
+  },
+  openGraph: {
+    title: {
+      template: '%s | suffix',
+      default: '기본 페이지 명'
+    },
+  },
 };
+```
+
+`/app/page.tsx`
+
+```tsx
+// 해당 페이지 파일에서는 metadata 내의 title을 적용을 하지 않습니다.
+// 같은 레벨에 있는 페이지라 root layout에 적용한 title template object가 무시됩니다.
+
+// export const metadata: Metadata = {
+//   title: 'Home',
+// };
+
+export default function HomePage() {
+  ...
+}
+```
+
+`/app/posts/page.tsx`
+
+```tsx
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'posts' // root layout의 template이 적용되어 `posts | suffix`로 포맷팅됩니다.
+}
+
+export default function PostsPage() {
+	...
+}
 ```
 
 ### 사용이 불가능한 라이브러리 존재
@@ -421,6 +449,7 @@ import 관련 이슈라 yarn berry 환경에서의 이슈인가 했지만 다른
 
 이외에도 사용이 불가능한 라이브러리가 있을 것으로 보이고, 마이그레이션을 한다면 이를 해결하는 비용도 고려를 해야 할 것 같습니다.
 
+---
 ## 소감
 
 Next.js 13의 App Router로 적용하면서 변경점 등을 간단하게 정리해보았는데요.
