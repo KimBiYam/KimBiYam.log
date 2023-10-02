@@ -8,6 +8,7 @@ import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify/lib';
 import remarkGfm from 'remark-gfm';
 
+import useCreateHeadingLink from '../../hooks/useCreateHeadingLink';
 import useMediumZoom from '../../hooks/useMediumZoom';
 
 interface MarkdownViewProps {
@@ -17,6 +18,7 @@ interface MarkdownViewProps {
 const MarkdownView = function MarkdownView({ contentHtml }: MarkdownViewProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { attach } = useMediumZoom();
+  useCreateHeadingLink(ref);
 
   useEffect(() => {
     const images = ref.current?.querySelectorAll('img');
