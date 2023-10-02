@@ -9,10 +9,7 @@ import { POST_DIRECTORY } from '../../../../constants';
 import { getPostDetail } from '../../../../lib/posts/postDetail';
 import { getAllPostPaths } from '../../../../lib/posts/postList';
 import { PostPath } from '../../../../types/post.types';
-import {
-  generateOpenGraphMetaData,
-  generateTitle,
-} from '../../../metadataBase';
+import { generateOpenGraphMetaData } from '../../../metadataBase';
 
 export function generateStaticParams() {
   const paths = getAllPostPaths();
@@ -35,10 +32,10 @@ export async function generateMetadata({
   const { title, description, ogImagePath } = postDetail;
 
   return {
-    title: generateTitle(title),
+    title,
     description,
     openGraph: generateOpenGraphMetaData({
-      title: generateTitle(title),
+      title,
       description,
       ogImagePath,
       path: `/posts/${subdirectory}/${id}`,

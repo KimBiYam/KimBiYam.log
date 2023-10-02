@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import DragScrollContainer from '../components/base/DragScrollContainer';
 import PageRoutingAnimation from '../components/base/PageRoutingAnimation';
 import ProfileCard from '../components/base/ProfileCard';
@@ -7,13 +5,6 @@ import PostList from '../components/posts/PostList';
 import TagSelector from '../components/posts/TagSelector';
 import { Tag } from '../constants';
 import { getSortedPostPreviews } from '../lib/posts/postList';
-import { generateOpenGraphMetaData, generateTitle } from './metadataBase';
-
-export const metadata: Metadata = {
-  title: generateTitle('Home'),
-  twitter: { card: 'summary' },
-  openGraph: generateOpenGraphMetaData({ title: generateTitle('Home') }),
-};
 
 export default function HomePage() {
   const postPreviews = getSortedPostPreviews();

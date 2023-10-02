@@ -8,6 +8,7 @@ import ClientRootLayout from '../components/base/ClientRootLayout';
 import MainLayout from '../components/base/MainLayout';
 import ThemeProvider from '../components/base/ThemeProvider';
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
+import { PAGE_TITLE_SUFFIX } from '../constants';
 import { generateOpenGraphMetaData } from './metadataBase';
 
 import type { Metadata } from 'next';
@@ -17,7 +18,10 @@ import '../lib/styles/global.css';
 import '../lib/styles/tailwind.css';
 
 export const metadata: Metadata = {
-  title: `KimBiYam.log`,
+  title: {
+    template: `%s${PAGE_TITLE_SUFFIX}`,
+    default: `KimBiYam.log`,
+  },
   description: 'KimBiYam의 개발 블로그 입니다.',
   viewport:
     'width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover',
@@ -25,7 +29,12 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false },
   twitter: { card: 'summary' },
   themeColor: tailwindTheme.colors.neutral[900],
-  openGraph: generateOpenGraphMetaData({ title: 'KimBiYam.log' }),
+  openGraph: generateOpenGraphMetaData({
+    title: {
+      template: `%s${PAGE_TITLE_SUFFIX}`,
+      default: `KimBiYam.log`,
+    },
+  }),
   other: {
     ['google-site-verification']: String(
       process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION_KEY,
