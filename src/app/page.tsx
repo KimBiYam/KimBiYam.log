@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: generateOpenGraphMetaData({ title: generateTitle('Home') }),
 };
 
-export default async function HomePage() {
+export default function HomePage() {
   const postPreviews = getSortedPostPreviews();
 
   const tags = [
