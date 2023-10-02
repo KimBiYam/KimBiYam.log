@@ -62,7 +62,7 @@ export default function SomeClientComponent() {
     <>
       <div>count: {count}</div>
       <button
-				// 이벤트 리스너의 사용이 가능합니다.
+        // 이벤트 리스너의 사용이 가능합니다.
         onClick={() => {
           setCount((prev) => prev + 1);
         }}
@@ -271,7 +271,7 @@ export async function generateMetadata({
   const subdirectory = params?.subdirectory;
   const id = String(params?.id);
 
-	// post의 상세 정보를 불러옵니다.
+  // post의 상세 정보를 불러옵니다.
   const postDetail = await getPostDetail(
     `${POST_DIRECTORY}/${subdirectory}`,
     id,
@@ -279,7 +279,7 @@ export async function generateMetadata({
 
   const { title, description, ogImagePath } = postDetail;
 
-	// 상세 정보를 기반으로 Metadata 객체를 만들어 반환합니다.
+  // 상세 정보를 기반으로 Metadata 객체를 만들어 반환합니다.
   return {
     title: generateTitle(title),
     description,
@@ -299,12 +299,12 @@ SEO를 위한 정적인 `robots.txt` 파일을 넣을 수 있게 지원하며, �
 
 `/app/robots.txt`
 
-```
+```bash
 User-Agent: *
 Allow: /
 Disallow: /private/
 
-Sitemap: https://acme.com/sitemap.xml
+Sitemap: https://www.kimbiyam.me/sitemap.xml
 ```
 
 `/app/robots.ts`
@@ -319,7 +319,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-		// 환경 변수 등의 값을 이용해서 동적으로 변경 가능합니다.
+    // 환경 변수 등의 값을 이용해서 동적으로 변경 가능합니다.
     sitemap: `${process.env.NEXT_PUBLIC_DOMAIN_URL}/sitemap.xml`, 
   }
 }
@@ -334,22 +334,10 @@ robots.txt와 마찬가지로 SEO를 위한 정적인 `sitemap.xml` 파일을 �
 ```xml
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://acme.com</loc>
-    <lastmod>2023-04-06T15:02:24.021Z</lastmod>
+    <loc>https://www.kimbiyam.me</loc>
+    <lastmod>2023-10-02T15:00:00.000Z</lastmod>
     <changefreq>yearly</changefreq>
     <priority>1</priority>
-  </url>
-  <url>
-    <loc>https://acme.com/about</loc>
-    <lastmod>2023-04-06T15:02:24.021Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://acme.com/blog</loc>
-    <lastmod>2023-04-06T15:02:24.021Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
 </urlset>
 ```
