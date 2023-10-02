@@ -8,7 +8,6 @@ import dynamic from 'next/dynamic';
 import { useSetAtom } from 'jotai';
 
 import headerTitleAtom from '../../atoms/headerTitleAtom';
-import useCreateHeadingLink from '../../hooks/useCreateHeadingLink';
 import useMounted from '../../hooks/useMounted';
 import useScrollOverElementDetect from '../../hooks/useScrollOverElementDetect';
 import breakPoints from '../../lib/styles/breakPoints.json';
@@ -28,12 +27,9 @@ const PostView = ({ postDetail }: PostViewProps) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const setHeaderTitleAtom = useSetAtom(headerTitleAtom);
 
-  const markdownRef = useRef<HTMLDivElement>(null);
   const mounted = useMounted();
   const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
   const isScrollOverTitle = useScrollOverElementDetect(titleRef);
-
-  useCreateHeadingLink(markdownRef);
 
   useEffect(() => {
     setHeaderTitleAtom((prev) => ({ ...prev, isShowTitle: isScrollOverTitle }));
