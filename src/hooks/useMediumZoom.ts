@@ -8,6 +8,7 @@ import useTheme from './useTheme';
 
 const useMediumZoom = () => {
   const { theme } = useTheme();
+  const zoomRef = useRef<Zoom | null>(null);
   const background = useMemo(
     () =>
       theme === Theme.dark
@@ -16,10 +17,12 @@ const useMediumZoom = () => {
     [theme],
   );
 
-  const zoomRef = useRef<Zoom | null>(null);
+  useEffect(() => {
+    zoomRef.current = mediumZoom({ margin: 24 });
+  }, []);
 
   useEffect(() => {
-    zoomRef.current = mediumZoom({ background, margin: 24 });
+    zoomRef.current?.update({ background });
   }, [background]);
 
   return { ...zoomRef.current };
