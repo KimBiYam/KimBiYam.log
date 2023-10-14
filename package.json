@@ -17,6 +17,7 @@
     "lint": "next lint --dir . --ext .js"
   },
   "dependencies": {
+    "@hackler/react-sdk": "^11.22.2",
     "@mapbox/rehype-prism": "^0.8.0",
     "@types/react-dom": "^18.2.7",
     "clsx": "^1.2.1",
