@@ -1656,6 +1656,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hackler/javascript-sdk@npm:11.22.2":
+  version: 11.22.2
+  resolution: "@hackler/javascript-sdk@npm:11.22.2"
+  dependencies:
+    uuid: ^8.3.2
+  checksum: 4220826105e62665342ec4ec33ab3a87277da7e687084156e4e1fe70377ae4a59349862a154a22b7988fd9a7ac39fb83338da8bb38d1b70ba36343a4c6421ea5
+  languageName: node
+  linkType: hard
+
+"@hackler/react-sdk@npm:^11.22.2":
+  version: 11.22.2
+  resolution: "@hackler/react-sdk@npm:11.22.2"
+  dependencies:
+    "@hackler/javascript-sdk": 11.22.2
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 719f1cca103aa6edd094c4a028738bc4559c0c24979868c456587185aa8b65b2e6a141b82f608000aeefa7a42bdc42d44dd374c8cfe72527c9844112b3b62396
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.9.2":
   version: 0.9.3
   resolution: "@humanwhocodes/config-array@npm:0.9.3"
@@ -6542,6 +6562,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "kimbiyam.log@workspace:."
   dependencies:
+    "@hackler/react-sdk": ^11.22.2
     "@mapbox/rehype-prism": ^0.8.0
     "@next/bundle-analyzer": ^13.1.1
     "@next/env": ^13.1.1
@@ -10717,6 +10738,15 @@ __metadata:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 474acf1146cb2701fe3b074892217553dfcf9a031280919ba1b8d651a068c9b15d863b7303cb15bd00a862b498e6cf4ad7b4a08fb134edd5a6f7641681cb54a2
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^8.3.2":
+  version: 8.3.2
+  resolution: "uuid@npm:8.3.2"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
   languageName: node
   linkType: hard
 

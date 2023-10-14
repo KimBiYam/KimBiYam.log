@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@hackler/react-sdk", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:11.22.2"],\
             ["@mapbox/rehype-prism", "npm:0.8.0"],\
             ["@next/bundle-analyzer", "npm:13.1.1"],\
             ["@next/env", "npm:13.1.1"],\
@@ -2832,6 +2833,39 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@gar-promisify-npm-1.1.3-ac1a325862-4059f790e2.zip/node_modules/@gar/promisify/",\
           "packageDependencies": [\
             ["@gar/promisify", "npm:1.1.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@hackler/javascript-sdk", [\
+        ["npm:11.22.2", {\
+          "packageLocation": "./.yarn/cache/@hackler-javascript-sdk-npm-11.22.2-3f7de87776-4220826105.zip/node_modules/@hackler/javascript-sdk/",\
+          "packageDependencies": [\
+            ["@hackler/javascript-sdk", "npm:11.22.2"],\
+            ["uuid", "npm:8.3.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@hackler/react-sdk", [\
+        ["npm:11.22.2", {\
+          "packageLocation": "./.yarn/cache/@hackler-react-sdk-npm-11.22.2-cec9521ee7-719f1cca10.zip/node_modules/@hackler/react-sdk/",\
+          "packageDependencies": [\
+            ["@hackler/react-sdk", "npm:11.22.2"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:11.22.2", {\
+          "packageLocation": "./.yarn/__virtual__/@hackler-react-sdk-virtual-71406caa9a/0/cache/@hackler-react-sdk-npm-11.22.2-cec9521ee7-719f1cca10.zip/node_modules/@hackler/react-sdk/",\
+          "packageDependencies": [\
+            ["@hackler/react-sdk", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:11.22.2"],\
+            ["@hackler/javascript-sdk", "npm:11.22.2"],\
+            ["@types/react", "npm:18.2.20"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -8856,6 +8890,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["kimbiyam.log", "workspace:."],\
+            ["@hackler/react-sdk", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:11.22.2"],\
             ["@mapbox/rehype-prism", "npm:0.8.0"],\
             ["@next/bundle-analyzer", "npm:13.1.1"],\
             ["@next/env", "npm:13.1.1"],\
@@ -13467,6 +13502,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/util-deprecate-npm-1.0.2-e3fe1a219c-474acf1146.zip/node_modules/util-deprecate/",\
           "packageDependencies": [\
             ["util-deprecate", "npm:1.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["uuid", [\
+        ["npm:8.3.2", {\
+          "packageLocation": "./.yarn/cache/uuid-npm-8.3.2-eca0baba53-5575a8a75c.zip/node_modules/uuid/",\
+          "packageDependencies": [\
+            ["uuid", "npm:8.3.2"]\
           ],\
           "linkType": "HARD"\
         }]\
