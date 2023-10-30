@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 
-import { Theme } from '../../constants';
-import useTheme from '../../hooks/useTheme';
+import { Theme } from '@src/constants';
+import useTheme from '@src/hooks/useTheme';
 
 const SOURCE_URL = 'https://utteranc.es/client.js';
 const REPO = 'KimBiYam/KimBiYam.log';

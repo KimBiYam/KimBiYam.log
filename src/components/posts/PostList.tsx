@@ -4,11 +4,12 @@ import { useCallback, useMemo, useRef } from 'react';
 
 import { useAtom } from 'jotai';
 
-import postPageAtom from '../../atoms/postPageAtom';
-import { Tag } from '../../constants';
-import useScrollObserver from '../../hooks/useScrollObserver';
-import useTag from '../../hooks/useTag';
-import { PostPreview } from '../../types/post.types';
+import postPageAtom from '@src/atoms/postPageAtom';
+import { Tag } from '@src/constants';
+import useScrollObserver from '@src/hooks/useScrollObserver';
+import useTag from '@src/hooks/useTag';
+import { PostPreview } from '@src/types/post.types';
+
 import PostListItem from './PostListItem';
 
 interface PostListProps {

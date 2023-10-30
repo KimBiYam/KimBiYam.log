@@ -4,8 +4,8 @@ import path from 'path';
 import matter from 'gray-matter';
 import RemoveMarkdown from 'remove-markdown';
 
-import { POST_DIRECTORY } from '../../constants';
-import { PostPath, PostPreview } from '../../types/post.types';
+import { POST_DIRECTORY } from '@src/constants';
+import { PostPath, PostPreview } from '@src/types/post.types';
 
 export const getAllPostPaths = (): { params: PostPath }[] => {
   const MARKDOWN_FILE_EXTENSION_REG_EXP = RegExp(/\.md$/);

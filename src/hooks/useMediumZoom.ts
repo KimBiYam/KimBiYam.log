@@ -2,8 +2,9 @@ import { useEffect, useMemo, useRef } from 'react';
 
 import mediumZoom, { Zoom } from 'medium-zoom';
 
+import { Theme } from '@src/constants';
+
 import { theme as tailwindTheme } from '../../tailwind.config';
-import { Theme } from '../constants';
 import useTheme from './useTheme';
 
 const useMediumZoom = () => {

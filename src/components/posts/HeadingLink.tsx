@@ -1,4 +1,4 @@
-import LinkIcon from '../../assets/svgs/link_icon.svg';
+import LinkIcon from '@src/assets/svgs/link_icon.svg';
 
 type HeadingLinkProps = {
   href: string;

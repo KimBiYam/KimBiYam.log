@@ -1,15 +1,15 @@
 import { Metadata } from 'next';
 
-import PageRoutingAnimation from '../../../../components/base/PageRoutingAnimation';
-import ProfileCard from '../../../../components/base/ProfileCard';
-import PostShareButtons from '../../../../components/posts/PostShareButtons';
-import PostView from '../../../../components/posts/PostView';
-import Utterances from '../../../../components/posts/Utterances';
-import { POST_DIRECTORY } from '../../../../constants';
-import { getPostDetail } from '../../../../lib/posts/postDetail';
-import { getAllPostPaths } from '../../../../lib/posts/postList';
-import { PostPath } from '../../../../types/post.types';
-import { generateOpenGraphMetaData } from '../../../metadataBase';
+import { generateOpenGraphMetaData } from '@src/app/metadataBase';
+import PageRoutingAnimation from '@src/components/base/PageRoutingAnimation';
+import ProfileCard from '@src/components/base/ProfileCard';
+import PostShareButtons from '@src/components/posts/PostShareButtons';
+import PostView from '@src/components/posts/PostView';
+import Utterances from '@src/components/posts/Utterances';
+import { POST_DIRECTORY } from '@src/constants';
+import { getPostDetail } from '@src/lib/posts/postDetail';
+import { getAllPostPaths } from '@src/lib/posts/postList';
+import { PostPath } from '@src/types/post.types';
 
 export function generateStaticParams() {
   const paths = getAllPostPaths();

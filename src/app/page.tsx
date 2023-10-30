@@ -1,10 +1,10 @@
-import DragScrollContainer from '../components/base/DragScrollContainer';
-import PageRoutingAnimation from '../components/base/PageRoutingAnimation';
-import ProfileCard from '../components/base/ProfileCard';
-import PostList from '../components/posts/PostList';
-import TagSelector from '../components/posts/TagSelector';
-import { Tag } from '../constants';
-import { getSortedPostPreviews } from '../lib/posts/postList';
+import DragScrollContainer from '@src/components/base/DragScrollContainer';
+import PageRoutingAnimation from '@src/components/base/PageRoutingAnimation';
+import ProfileCard from '@src/components/base/ProfileCard';
+import PostList from '@src/components/posts/PostList';
+import TagSelector from '@src/components/posts/TagSelector';
+import { Tag } from '@src/constants';
+import { getSortedPostPreviews } from '@src/lib/posts/postList';
 
 export default function HomePage() {
   const postPreviews = getSortedPostPreviews();

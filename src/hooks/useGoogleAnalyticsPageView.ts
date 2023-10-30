@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 
 import { usePathname } from 'next/navigation';
 
-import * as googleAnalytics from '../lib/googleAnalytics';
+import * as googleAnalytics from '@src/lib/googleAnalytics';
 
 const useGoogleAnalyticsPageView = () => {
   const pathname = usePathname();

@@ -2,8 +2,8 @@
 
 import React from 'react';
 
-import FacebookIcon from '../../assets/svgs/facebook.svg';
-import TwitterIcon from '../../assets/svgs/twitter.svg';
+import FacebookIcon from '@src/assets/svgs/facebook.svg';
+import TwitterIcon from '@src/assets/svgs/twitter.svg';
 
 type PostShareButtonType = 'facebook' | 'twitter';
 

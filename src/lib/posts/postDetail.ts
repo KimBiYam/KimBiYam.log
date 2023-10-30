@@ -1,4 +1,5 @@
-import { PostDetail } from '../../types/post.types';
+import { PostDetail } from '@src/types/post.types';
+
 import { getMarkdownData } from './markdown';
 import { getPostPreviewDescription } from './postList';
 

@@ -2,12 +2,12 @@
 
 import { motion, Transition, Variants } from 'framer-motion';
 
-import MoonIcon from '../../assets/svgs/moon.svg';
-import SunIcon from '../../assets/svgs/sun.svg';
-import { Theme } from '../../constants';
-import useMounted from '../../hooks/useMounted';
-import useTheme from '../../hooks/useTheme';
-import * as googleAnalytics from '../../lib/googleAnalytics';
+import MoonIcon from '@src/assets/svgs/moon.svg';
+import SunIcon from '@src/assets/svgs/sun.svg';
+import { Theme } from '@src/constants';
+import useMounted from '@src/hooks/useMounted';
+import useTheme from '@src/hooks/useTheme';
+import * as googleAnalytics from '@src/lib/googleAnalytics';
 
 const rotateScaleSpring: Transition = {
   type: 'spring',

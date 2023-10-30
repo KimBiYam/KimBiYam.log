@@ -1,10 +1,11 @@
 'use client';
+
 import { motion } from 'framer-motion';
 import { useAtomValue } from 'jotai';
 
-import ArrowUpIcon from '../../assets/svgs/arrow_up.svg';
-import scrollAtom from '../../atoms/scrollAtom';
-import { createDynamicallyOpacityMotion } from '../../lib/styles/motions';
+import ArrowUpIcon from '@src/assets/svgs/arrow_up.svg';
+import scrollAtom from '@src/atoms/scrollAtom';
+import { createDynamicallyOpacityMotion } from '@src/lib/styles/motions';
 
 const VISIBLE_TRANSITION_MS = 250;
 const VISIBLE_PAGE_Y_PX = 500;
