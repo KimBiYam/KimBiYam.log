@@ -4,6 +4,11 @@
     "eslint-config-kimbiyam-react/typescript",
     "next"
   ],
+  "settings": {
+    "next": {
+      "rootDir": "src"
+    }
+  },
   "rules": {
     "import/order": [
       "error",

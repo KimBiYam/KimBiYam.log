@@ -14,7 +14,7 @@
     "build": "next build",
     "build:analyze": "ANALYZE=true next build",
     "start": "next start",
-    "lint": "next lint --dir . --ext .js"
+    "lint": "next lint"
   },
   "dependencies": {
     "@hackler/react-sdk": "^11.22.2",
