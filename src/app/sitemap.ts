@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
-import { DOMAIN_URL } from '../constants';
-import { getAllPostPaths } from '../lib/posts/postList';
+import { DOMAIN_URL } from '@src/constants';
+import { getAllPostPaths } from '@src/lib/posts/postList';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const postPaths = getAllPostPaths();

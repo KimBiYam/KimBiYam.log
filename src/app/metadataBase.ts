@@ -1,5 +1,3 @@
-import {} from 'next/dist/lib/metadata/types/metadata-types';
-
 import { Metadata } from 'next';
 
 import ogTagImage from '../assets/favicon/og_tag_image.png';

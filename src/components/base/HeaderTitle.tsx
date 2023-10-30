@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useAtomValue } from 'jotai';
 
-import headerTitleAtom from '../../atoms/headerTitleAtom';
+import headerTitleAtom from '@src/atoms/headerTitleAtom';
 
 export default function HeaderTitle() {
   const { isShowTitle, title } = useAtomValue(headerTitleAtom);

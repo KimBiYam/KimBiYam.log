@@ -1,6 +1,6 @@
 import { useTheme as useNextTheme } from 'next-themes';
 
-import { isTheme, Theme } from '../constants';
+import { isTheme, Theme } from '@src/constants';
 
 const useTheme = () => {
   const { theme: nextTheme, setTheme } = useNextTheme();

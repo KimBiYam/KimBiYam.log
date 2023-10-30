@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import HeadingLink from '../components/posts/HeadingLink';
+import HeadingLink from '@src/components/posts/HeadingLink';
 
 const TARGET_TAGS = ['h2', 'h3'];
 

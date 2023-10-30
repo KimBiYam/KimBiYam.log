@@ -6,7 +6,7 @@ import Link, { LinkProps } from 'next/link';
 
 import { motion } from 'framer-motion';
 
-import { hoverRotateMotion } from '../../lib/styles/motions';
+import { hoverRotateMotion } from '@src/lib/styles/motions';
 
 interface ProfileLinkProps
   extends Pick<LinkProps, 'href'>,

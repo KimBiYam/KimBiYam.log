@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import clsx from 'clsx';
 
-import { TableOfContentHeading } from '../../hooks/useTableOfContents';
+import { TableOfContentHeading } from '@src/hooks/useTableOfContents';
 
 interface TableOfContentsItemProps {
   heading: TableOfContentHeading;

@@ -7,11 +7,12 @@ import dynamic from 'next/dynamic';
 
 import { useSetAtom } from 'jotai';
 
-import headerTitleAtom from '../../atoms/headerTitleAtom';
-import useMounted from '../../hooks/useMounted';
-import useScrollOverElementDetect from '../../hooks/useScrollOverElementDetect';
-import breakPoints from '../../lib/styles/breakPoints.json';
-import { PostDetail } from '../../types/post.types';
+import headerTitleAtom from '@src/atoms/headerTitleAtom';
+import useMounted from '@src/hooks/useMounted';
+import useScrollOverElementDetect from '@src/hooks/useScrollOverElementDetect';
+import breakPoints from '@src/lib/styles/breakPoints.json';
+import { PostDetail } from '@src/types/post.types';
+
 import MarkdownView from './MarkdownView';
 import PostDateText from './PostDateText';
 import TagBadge from './TagBadge';

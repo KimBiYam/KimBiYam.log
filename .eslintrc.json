@@ -28,6 +28,11 @@
             "position": "before"
           },
           {
+            "pattern": "@src*/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
             "pattern": "*.css",
             "group": "unknown",
             "patternOptions": { "matchBase": true },
@@ -35,7 +40,6 @@
           }
         ],
         "pathGroupsExcludedImportTypes": [],
-
         "alphabetize": {
           "order": "asc",
           "caseInsensitive": true

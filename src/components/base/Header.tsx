@@ -5,7 +5,7 @@ import { memo } from 'react';
 import { motion } from 'framer-motion';
 
 import DarkModeButton from './DarkModeButton';
-import HeaderTitle from './HedaerTitle';
+import HeaderTitle from './HeaderTitle';
 import Logo from './Logo';
 
 const Header = () => {

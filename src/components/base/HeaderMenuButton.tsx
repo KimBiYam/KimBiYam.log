@@ -1,4 +1,4 @@
-import MenuIcon from '../../assets/svgs/menu.svg';
+import MenuIcon from '@src/assets/svgs/menu.svg';
 
 type HeaderMenuButtonProps = {
   onClick: () => void;

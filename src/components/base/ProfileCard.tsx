@@ -2,10 +2,11 @@ import React, { memo } from 'react';
 
 import Image from 'next/image';
 
-import GithubIcon from '../../assets/svgs/github.svg';
-import LinkedInIcon from '../../assets/svgs/linked_in.svg';
-import NotionIcon from '../../assets/svgs/notion.svg';
-import profile from '../../data/profile.json';
+import GithubIcon from '@src/assets/svgs/github.svg';
+import LinkedInIcon from '@src/assets/svgs/linked_in.svg';
+import NotionIcon from '@src/assets/svgs/notion.svg';
+import profile from '@src/data/profile.json';
+
 import ProfileLink from './ProfileLink';
 
 const SOCIAL_ICONS: Record<string, RenderSVGComponent> = {

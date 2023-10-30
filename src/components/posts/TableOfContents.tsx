@@ -1,9 +1,10 @@
 import { useRef } from 'react';
 
-import useActiveChildScroll from '../../hooks/useActiveChildScroll';
-import useActiveHeadingDetector from '../../hooks/useActiveHeadingDetector';
-import useDetectPageScrolling from '../../hooks/useDetectPageScrolling';
-import useTableOfContents from '../../hooks/useTableOfContents';
+import useActiveChildScroll from '@src/hooks/useActiveChildScroll';
+import useActiveHeadingDetector from '@src/hooks/useActiveHeadingDetector';
+import useDetectPageScrolling from '@src/hooks/useDetectPageScrolling';
+import useTableOfContents from '@src/hooks/useTableOfContents';
+
 import TableOfContentsItem from './TableOfContentsItem';
 
 const TableOfContents = () => {

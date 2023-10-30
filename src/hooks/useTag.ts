@@ -4,8 +4,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 import { useSetAtom } from 'jotai';
 
-import postPageAtom from '../atoms/postPageAtom';
-import { Tag } from '../constants';
+import postPageAtom from '@src/atoms/postPageAtom';
+import { Tag } from '@src/constants';
 
 const useTag = () => {
   const setPostPage = useSetAtom(postPageAtom);

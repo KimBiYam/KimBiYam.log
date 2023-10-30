@@ -4,8 +4,8 @@ import { PropsWithChildren } from 'react';
 
 import { ThemeProvider as NextThemeProvider } from 'next-themes';
 
-import { Theme } from '../../constants';
-import { StorageKeys } from '../../lib/storage/storage.util';
+import { Theme } from '@src/constants';
+import { StorageKeys } from '@src/lib/storage/storage.util';
 
 export default function ThemeProvider({
   children,

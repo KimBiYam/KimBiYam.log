@@ -2,8 +2,9 @@
 
 import { forwardRef } from 'react';
 
-import useActiveChildScroll from '../../hooks/useActiveChildScroll';
-import useTag from '../../hooks/useTag';
+import useActiveChildScroll from '@src/hooks/useActiveChildScroll';
+import useTag from '@src/hooks/useTag';
+
 import TagButton from './TagButton';
 
 interface TagSelectorProps {

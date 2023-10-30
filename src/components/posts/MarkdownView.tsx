@@ -8,8 +8,8 @@ import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify/lib';
 import remarkGfm from 'remark-gfm';
 
-import useCreateHeadingLink from '../../hooks/useCreateHeadingLink';
-import useMediumZoom from '../../hooks/useMediumZoom';
+import useCreateHeadingLink from '@src/hooks/useCreateHeadingLink';
+import useMediumZoom from '@src/hooks/useMediumZoom';
 
 interface MarkdownViewProps {
   contentHtml: string;

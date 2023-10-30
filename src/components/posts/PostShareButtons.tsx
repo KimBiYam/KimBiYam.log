@@ -1,7 +1,8 @@
 'use client';
 
-import { DOMAIN_URL } from '../../constants';
-import { PostDetail } from '../../types/post.types';
+import { DOMAIN_URL } from '@src/constants';
+import { PostDetail } from '@src/types/post.types';
+
 import PostShareButton from './PostShareButton';
 
 interface PostShareButtonProps {
