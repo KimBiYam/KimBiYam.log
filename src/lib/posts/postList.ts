@@ -4,7 +4,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import RemoveMarkdown from 'remove-markdown';
 
-import { POST_DIRECTORY } from '@src/constants';
+import { POST_DIRECTORY } from '@src/constants/directories';
 import { PostPath, PostPreview } from '@src/types/post.types';
 
 export const getAllPostPaths = (): { params: PostPath }[] => {

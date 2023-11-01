@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 
-import { ScrollDirection } from '../constants';
+import { ScrollDirection } from '@src/constants/enums';
 
 export interface ScrollAtom {
   direction: ScrollDirection;

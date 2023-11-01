@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { useSetAtom } from 'jotai';
 
 import scrollAtom from '@src/atoms/scrollAtom';
-import { ScrollDirection } from '@src/constants';
+import { ScrollDirection } from '@src/constants/enums';
 
 import useThrottle from './useThrottle';
 

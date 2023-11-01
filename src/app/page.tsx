@@ -3,7 +3,7 @@ import PageRoutingAnimation from '@src/components/base/PageRoutingAnimation';
 import ProfileCard from '@src/components/base/ProfileCard';
 import PostList from '@src/components/posts/PostList';
 import TagSelector from '@src/components/posts/TagSelector';
-import { Tag } from '@src/constants';
+import { Tag } from '@src/constants/enums';
 import { getSortedPostPreviews } from '@src/lib/posts/postList';
 
 export default function HomePage() {

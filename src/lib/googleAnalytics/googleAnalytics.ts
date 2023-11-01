@@ -1,4 +1,7 @@
-import { GOOGLE_ANALYTICS_TRACKING_ID, IS_PRODUCTION } from '@src/constants';
+import {
+  GOOGLE_ANALYTICS_TRACKING_ID,
+  IS_PRODUCTION,
+} from '@src/constants/foundation';
 
 declare global {
   type GoogleAnalyticsEvents = 'dark_mode_on' | 'dark_mode_off';

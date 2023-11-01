@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 
+import { DOMAIN_URL } from '@src/constants/server';
+
 import ogTagImage from '../assets/favicon/og_tag_image.png';
-import { DOMAIN_URL } from '../constants';
 
 export const generateOpenGraphMetaData = ({
   title,
