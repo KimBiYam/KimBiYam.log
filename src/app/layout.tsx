@@ -3,13 +3,14 @@ import { PropsWithChildren } from 'react';
 
 import Script from 'next/script';
 
+import { PAGE_TITLE_SUFFIX } from '@src/constants/metadata';
+
 import { theme as tailwindTheme } from '../../tailwind.config';
 import ClientRootLayout from '../components/base/ClientRootLayout';
 import ClientHackleProvider from '../components/base/HackleProvider';
 import MainLayout from '../components/base/MainLayout';
 import ThemeProvider from '../components/base/ThemeProvider';
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
-import { PAGE_TITLE_SUFFIX } from '../constants';
 import { generateOpenGraphMetaData } from './metadataBase';
 
 import type { Metadata } from 'next';

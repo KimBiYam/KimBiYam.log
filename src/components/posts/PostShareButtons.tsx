@@ -1,6 +1,6 @@
 'use client';
 
-import { DOMAIN_URL } from '@src/constants';
+import { DOMAIN_URL } from '@src/constants/server';
 import { PostDetail } from '@src/types/post.types';
 
 import PostShareButton from './PostShareButton';

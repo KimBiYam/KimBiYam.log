@@ -6,7 +6,7 @@ import ProfileCard from '@src/components/base/ProfileCard';
 import PostShareButtons from '@src/components/posts/PostShareButtons';
 import PostView from '@src/components/posts/PostView';
 import Utterances from '@src/components/posts/Utterances';
-import { POST_DIRECTORY } from '@src/constants';
+import { POST_DIRECTORY } from '@src/constants/directories';
 import { getPostDetail } from '@src/lib/posts/postDetail';
 import { getAllPostPaths } from '@src/lib/posts/postList';
 import { PostPath } from '@src/types/post.types';

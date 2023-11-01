@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
-import { Theme } from '@src/constants';
+import { Theme } from '@src/constants/enums';
 import useTheme from '@src/hooks/useTheme';
 
 const SOURCE_URL = 'https://utteranc.es/client.js';

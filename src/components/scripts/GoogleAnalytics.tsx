@@ -1,6 +1,6 @@
 import Script from 'next/script';
 
-import { GOOGLE_ANALYTICS_TRACKING_ID } from '../../constants';
+import { GOOGLE_ANALYTICS_TRACKING_ID } from '@src/constants/foundation';
 
 const GoogleAnalytics = () => (
   <>

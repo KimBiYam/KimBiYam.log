@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 
 import { usePathname } from 'next/navigation';
 
-import * as googleAnalytics from '@src/lib/googleAnalytics';
+import { pageView } from '@src/lib/googleAnalytics/googleAnalytics';
 
 const useGoogleAnalyticsPageView = () => {
   const pathname = usePathname();
@@ -10,7 +10,7 @@ const useGoogleAnalyticsPageView = () => {
 
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
-      googleAnalytics.pageView(url);
+      pageView(url);
     };
 
     if (savedPathNameRef.current !== pathname) {
