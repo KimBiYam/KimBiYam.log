@@ -20,6 +20,11 @@ const useMediumZoom = () => {
 
   useEffect(() => {
     zoomRef.current = mediumZoom({ margin: 24 });
+
+    return () => {
+      zoomRef.current?.close();
+      zoomRef.current?.detach();
+    };
   }, []);
 
   useEffect(() => {
