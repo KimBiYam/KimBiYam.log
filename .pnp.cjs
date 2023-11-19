@@ -28,7 +28,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
-            ["@hackler/react-sdk", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:11.24.1"],\
             ["@mapbox/rehype-prism", "npm:0.8.0"],\
             ["@next/bundle-analyzer", "npm:14.0.1"],\
             ["@next/env", "npm:14.0.1"],\
@@ -2873,40 +2872,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@gar-promisify-npm-1.1.3-ac1a325862-4059f790e2.zip/node_modules/@gar/promisify/",\
           "packageDependencies": [\
             ["@gar/promisify", "npm:1.1.3"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@hackler/javascript-sdk", [\
-        ["npm:11.24.1", {\
-          "packageLocation": "./.yarn/cache/@hackler-javascript-sdk-npm-11.24.1-30ec93d202-fb0c208af8.zip/node_modules/@hackler/javascript-sdk/",\
-          "packageDependencies": [\
-            ["@hackler/javascript-sdk", "npm:11.24.1"],\
-            ["js-base64", "npm:3.7.5"],\
-            ["uuid", "npm:8.3.2"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@hackler/react-sdk", [\
-        ["npm:11.24.1", {\
-          "packageLocation": "./.yarn/cache/@hackler-react-sdk-npm-11.24.1-e24d48f698-910babf62f.zip/node_modules/@hackler/react-sdk/",\
-          "packageDependencies": [\
-            ["@hackler/react-sdk", "npm:11.24.1"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:11.24.1", {\
-          "packageLocation": "./.yarn/__virtual__/@hackler-react-sdk-virtual-ff9bb04018/0/cache/@hackler-react-sdk-npm-11.24.1-e24d48f698-910babf62f.zip/node_modules/@hackler/react-sdk/",\
-          "packageDependencies": [\
-            ["@hackler/react-sdk", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:11.24.1"],\
-            ["@hackler/javascript-sdk", "npm:11.24.1"],\
-            ["@types/react", "npm:18.2.20"],\
-            ["react", "npm:18.2.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/react",\
-            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9153,15 +9118,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["js-base64", [\
-        ["npm:3.7.5", {\
-          "packageLocation": "./.yarn/cache/js-base64-npm-3.7.5-81a9ad2ffd-67a78c8b1c.zip/node_modules/js-base64/",\
-          "packageDependencies": [\
-            ["js-base64", "npm:3.7.5"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["js-tokens", [\
         ["npm:3.0.2", {\
           "packageLocation": "./.yarn/cache/js-tokens-npm-3.0.2-fe6fb334bd-ff24cf90e6.zip/node_modules/js-tokens/",\
@@ -9321,7 +9277,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["kimbiyam.log", "workspace:."],\
-            ["@hackler/react-sdk", "virtual:ca19a6a5509118d93fd69888d2f718d569605e48fbc97683f40af5c61a2fd243d9fb38eb044febe1b1854a65d7ee89d2f0eb68273a01bc34f987bec09099a248#npm:11.24.1"],\
             ["@mapbox/rehype-prism", "npm:0.8.0"],\
             ["@next/bundle-analyzer", "npm:14.0.1"],\
             ["@next/env", "npm:14.0.1"],\
@@ -14139,15 +14094,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/util-deprecate-npm-1.0.2-e3fe1a219c-474acf1146.zip/node_modules/util-deprecate/",\
           "packageDependencies": [\
             ["util-deprecate", "npm:1.0.2"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["uuid", [\
-        ["npm:8.3.2", {\
-          "packageLocation": "./.yarn/cache/uuid-npm-8.3.2-eca0baba53-5575a8a75c.zip/node_modules/uuid/",\
-          "packageDependencies": [\
-            ["uuid", "npm:8.3.2"]\
           ],\
           "linkType": "HARD"\
         }]\

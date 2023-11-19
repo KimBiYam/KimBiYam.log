@@ -7,7 +7,6 @@ import { PAGE_TITLE_SUFFIX } from '@src/constants/metadata';
 
 import { theme as tailwindTheme } from '../../tailwind.config';
 import ClientRootLayout from '../components/base/ClientRootLayout';
-import ClientHackleProvider from '../components/base/HackleProvider';
 import MainLayout from '../components/base/MainLayout';
 import ThemeProvider from '../components/base/ThemeProvider';
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
@@ -65,13 +64,11 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
         <GoogleAnalytics />
       </head>
       <body className="main-container main-font-color">
-        <ClientHackleProvider>
-          <ClientRootLayout>
-            <ThemeProvider>
-              <MainLayout>{children}</MainLayout>
-            </ThemeProvider>
-          </ClientRootLayout>
-        </ClientHackleProvider>
+        <ClientRootLayout>
+          <ThemeProvider>
+            <MainLayout>{children}</MainLayout>
+          </ThemeProvider>
+        </ClientRootLayout>
       </body>
     </html>
   );
