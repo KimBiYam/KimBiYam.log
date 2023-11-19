@@ -15,7 +15,7 @@ interface MarkdownViewProps {
   contentHtml: string;
 }
 
-const MarkdownView = function MarkdownView({ contentHtml }: MarkdownViewProps) {
+export default function MarkdownView({ contentHtml }: MarkdownViewProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { attach } = useMediumZoom();
   useCreateHeadingLink(ref);
@@ -41,6 +41,4 @@ const MarkdownView = function MarkdownView({ contentHtml }: MarkdownViewProps) {
       </ReactMarkdown>
     </div>
   );
-};
-
-export default MarkdownView;
+}
