@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 import { viewportOpacityMotion } from '@src/lib/styles/motions';
 import { PostPreview } from '@src/types/post.types';
 
-import NoScrollLink from '../base/NoScrollLink';
 import PostDateText from './PostDateText';
 import TagBadge from './TagBadge';
+import NoScrollLink from '../base/NoScrollLink';
 
 interface PostListItemProps {
   postPreview: PostPreview;

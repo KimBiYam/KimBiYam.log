@@ -4,8 +4,8 @@ import mediumZoom, { Zoom } from 'medium-zoom';
 
 import { Theme } from '@src/constants/enums';
 
-import { theme as tailwindTheme } from '../../tailwind.config';
 import useTheme from './useTheme';
+import { theme as tailwindTheme } from '../../tailwind.config';
 
 const useMediumZoom = () => {
   const { theme } = useTheme();
