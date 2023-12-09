@@ -5,12 +5,12 @@ import Script from 'next/script';
 
 import { PAGE_TITLE_SUFFIX } from '@src/constants/metadata';
 
+import { generateOpenGraphMetaData } from './metadataBase';
 import { theme as tailwindTheme } from '../../tailwind.config';
 import ClientRootLayout from '../components/base/ClientRootLayout';
 import MainLayout from '../components/base/MainLayout';
 import ThemeProvider from '../components/base/ThemeProvider';
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
-import { generateOpenGraphMetaData } from './metadataBase';
 
 import type { Metadata } from 'next';
 
