@@ -13,13 +13,13 @@ Next.js 13 버전이 릴리즈 되고 가장 큰 변화인 App Router 기능이 
 
 ## Server Components vs Client Components
 
-app 디렉토리 적용 이후에는 서버 컴포넌트와 클라이언트 컴포넌트는 필수로 알아야 하는 개념인 것 같아 간단하게 정리해 보고자 합니다.
+app router 적용 이후에는 서버 컴포넌트와 클라이언트 컴포넌트는 필수로 알아야 하는 개념인 것 같아 간단하게 정리해 보고자 합니다.
 
 ### Server Components
 
 [Next.js 공식 문서의 서버 컴포넌트 문서](https://nextjs.org/docs/app/building-your-application/rendering/server-components#benefits-of-server-rendering)를 보면 서버 컴포넌트의 장점에 대해서 정리가 되어있습니다.
 
-app 디렉토리에서는 모든 페이지, 컴포넌트는 기본이 서버 컴포넌트로 동작하며 최초 페이지 로딩의 퍼포먼스, 번들 사이즈 최적화 등의 이유로 가능하면 서버 컴포넌트 사용을 권장하는 것 같습니다.
+app router에서는 모든 페이지, 컴포넌트는 기본이 서버 컴포넌트로 동작하며 최초 페이지 로딩의 퍼포먼스, 번들 사이즈 최적화 등의 이유로 가능하면 서버 컴포넌트 사용을 권장하는 것 같습니다.
 
 클라이언트 컴포넌트와의 차이를 보자면 `브라우저 API`를 사용할 수 없으며 `interactive`한 기능들도 사용할 수 없습니다. 여기서의 `interactive`한 기능들이란 `이벤트 리스너, React hook` 등을 포함합니다.
 
@@ -75,8 +75,10 @@ export default function SomeClientComponent() {
 
 - 위처럼 `'use client'`를 선언하면 `interactive`한 기능을 사용할 수 있는 클라이언트 컴포넌트가 됩니다.
 - 기존의 Next.js에서 브라우저 API 등을 사용 시 Client Side 인지 구분을 위해 `useEffect`내에서 접근하거나 `window` 객체가 있는지 체크를 하는 작업이 필수였는데, 클라이언트 컴포넌트에서는 해당 부분이 필요 없지 않을까 싶었지만 이는 기존과 동일하게 체크가 필요합니다.
+
 ---
-## Pages 디렉토리에서 App 디렉토리로 옮겨가기
+
+## Pages Router에서 App Router로 옮겨가기
 
 ### Root Layout 파일
 
@@ -108,7 +110,7 @@ export default function RootLayout({
 
 ### Page 파일
 
-app 디렉토리에서는 기존의 페이지 디렉토리 대신 `page.tsx` 파일로 대체되었습니다.
+app router에서는 기존의 페이지 디렉토리 대신 `page.tsx` 파일로 대체되었습니다.
 
 기존처럼 디렉토리 기반의 라우팅은 유지가 되지만 디렉토리 내의 `index.tsx` 파일 혹은 `blog/[slug].tsx` 같은 파일을 생성하는 것이 아니라 app 디렉토리 내에 위치하는 것으로 변경되었습니다.
 
@@ -129,11 +131,11 @@ export default function BlogPostPage() {
 ```
 
 - 기존의 `getServerSideProps, getStaticProps, getInitialProps` 등의 함수는 새로운 data fetching 방식으로 변경되었습니다.
-- app 디렉토리의 페이지는 기본적으로 Server Components입니다.
+- app router의 페이지는 기본적으로 Server Components입니다.
 
 ### getServerSideProps 변경
 
-pages 디렉토리에서 서버 사이드 렌더링을 위해 사용하던 `getServerSideProps` 대신 Server Components에서는 컴포넌트 내에서 `async/await`를 사용할 수 있게 변경되어서 바로 데이터를 불러올 수 있습니다.
+pages router에서 서버 사이드 렌더링을 위해 사용하던 `getServerSideProps` 대신 Server Components에서는 컴포넌트 내에서 `async/await`를 사용할 수 있게 변경되어서 바로 데이터를 불러올 수 있습니다.
 
 이때 cache 옵션을 `no-store`로 주게되면 캐싱을 하지 않으므로 기존의 `getServerSideProps`와 유사하게 구현이 가능합니다.
 
@@ -161,7 +163,7 @@ export default async function SomePage() {
 
 ### getStaticProps 변경
 
-pages 디렉토리에서 SSG를 위해 사용하던 `getStaticProps`도 `getServerSideProps`의 변경과 동일한 형태로 데이터를 가져오면 됩니다.
+pages router에서 SSG를 위해 사용하던 `getStaticProps`도 `getServerSideProps`의 변경과 동일한 형태로 데이터를 가져오면 됩니다.
 
 이떄 cache 옵션을 주지 않으면 fetch의 기본 캐싱 정책이 `force-cache` 이므로 항상 요청 데이터를 캐싱 하게 되어서 `getStaticProps`와 유사하게 구현이 가능합니다.
 
@@ -189,7 +191,7 @@ export default async function SomePage() {
 
 ### getStaticPaths 변경
 
-pages 디렉토리에서 `getStaticProps`와 함께 dynamic routes를 사용하기 위해서 `getStaticPaths`를 사용하였는데, app 디렉토리에서는 유사한 기능을 제공하는 `generateStaticParams`를 사용하도록 변경되었습니다.
+pages router에서 `getStaticProps`와 함께 dynamic routes를 사용하기 위해서 `getStaticPaths`를 사용하였는데, app 디렉토리에서는 유사한 기능을 제공하는 `generateStaticParams`를 사용하도록 변경되었습니다.
 
 `/app/blog/[slug]/page.js`
 
@@ -217,9 +219,10 @@ export default function Page({ params }: { params: { slug: string } }) {
     - 예시로 `/posts/[category]/[id]` 라는 path를 구성한다면 `Array<{ category: string, id: string }>` 형태로 반환을해야 합니다.
 
 ---
+
 ## SEO 관련
 
-기존 Next.js에서 SEO 관련한 기능으로 `next/head`가 지원됐지만, app 디렉토리에서는 `metadata` 객체를 만드는 형태로 변경되었고 이외에도 `robots.txt, sitemap` 같은 파일을 생성하는 기능도 추가되었습니다.
+기존 Next.js에서 SEO 관련한 기능으로 `next/head`가 지원됐지만, app router에서는 `metadata` 객체를 만드는 형태로 변경되었고 이외에도 `robots.txt, sitemap` 같은 파일을 생성하는 기능도 추가되었습니다.
 
 ### Metadata
 
@@ -248,7 +251,7 @@ export default function Page() {
 
 해당 블로그에서는 아래와 같은 방식으로 작성하였습니다.
 
-`/src/app/posts/[subdirectory]/[id]/page.tsx`
+`/app/posts/[subdirectory]/[id]/page.tsx`
 
 ```tsx
 import { Metadata } from 'next';
@@ -365,7 +368,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 }
 ```
+
 ---
+
 ## 기타 예약 파일 변경
 
 ### **404.js 변경**
@@ -387,7 +392,8 @@ export default function NotFound() {
 - not-found 페이지도 기본적으로 Server Components에 해당되기 때문에, 다른 페이지 파일처럼 컴포넌트 내부에서 data fetching이 가능합니다.
 
 ---
-## Troubleshooting
+
+## ****Troubleshooting****
 
 ### metadata title template 적용
 
@@ -443,13 +449,14 @@ export default function PostsPage() {
 
 ### 사용이 불가능한 라이브러리 존재
 
-해당 블로그에서는 마크다운 파싱 및 코드 하이라이팅을 위해서 remark와 [remark-prism](https://github.com/sergioramos/remark-prism)을 사용하고 있었는데요. app 디렉토리로 변경 후에는 모듈을 가져올 수 없는 에러가 발생하여서 이를 해결하기 위해 여러가지 시도를 해보았지만 결국 해결이 되지 않았고 비교적 메인테이닝이 잘 되고있는 [rehype-prism](https://github.com/Val-istar-Guo/rehype-prism)을 사용하는 것으로 변경하였습니다.
+해당 블로그에서는 마크다운 파싱 및 코드 하이라이팅을 위해서 remark와 [remark-prism](https://github.com/sergioramos/remark-prism)을 사용하고 있었는데요. app router로 변경 후에는 모듈을 가져올 수 없는 에러가 발생하여서 이를 해결하기 위해 여러가지 시도를 해보았지만 결국 해결이 되지 않았고 비교적 메인테이닝이 잘 되고있는 [rehype-prism](https://github.com/Val-istar-Guo/rehype-prism)을 사용하는 것으로 변경하였습니다.
 
-import 관련 이슈라 yarn berry 환경에서의 이슈인가 했지만 다른 환경으로 변경하여도 마찬가지로 발생하였고, 해당 레포에도 [동일한 이슈](https://github.com/sergioramos/remark-prism/issues/457)가 있는 것으로 보아서 app 디렉토리에서는 해당 라이브러리 사용이 힘든 것 같습니다.
+import 관련 이슈라 yarn berry 환경에서의 이슈인가 했지만 다른 환경으로 변경하여도 마찬가지로 발생하였고, 해당 레포에도 [동일한 이슈](https://github.com/sergioramos/remark-prism/issues/457)가 있는 것으로 보아서 app router에서는 해당 라이브러리 사용이 힘든 것 같습니다.
 
 이외에도 사용이 불가능한 라이브러리가 있을 것으로 보이고, 마이그레이션을 한다면 이를 해결하는 비용도 고려를 해야 할 것 같습니다.
 
 ---
+
 ## 소감
 
 Next.js 13의 App Router로 적용하면서 변경점 등을 간단하게 정리해보았는데요.
