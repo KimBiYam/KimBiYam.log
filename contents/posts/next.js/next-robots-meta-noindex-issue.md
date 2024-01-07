@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 
 `Pages Router`에서 `App Router`로 전환을 하긴 했지만, SEO 관련 세팅은 대부분 기존 설정을 유지하도록 마이그레이션 하였는데, 기존에 없던 meta 태그가 추가된 게 이상한 것 같아서 Next.js 레포에서 관련 이슈를 검색해보았습니다.
 
-검색하다보니 App Router에서 새로 추가된 `[useSearchParams`를 사용하면 production 빌드 시 robots meta 태그에 noindex 값이 추가된다는 이슈](https://github.com/vercel/next.js/issues/58615)를 발견하였습니다.
+검색하다보니 App Router에서 새로 추가된 [useSearchParams를 사용하면 production 빌드 시 robots meta 태그에 noindex 값이 추가된다는 이슈](https://github.com/vercel/next.js/issues/58615)를 발견하였습니다.
 
 해당 이슈에서 나와있는 해결책으로는 해당 이슈가 해결될 때까지 Web API인 `URLSearchParams`를 사용하거나 Route 설정의 `dynamic` 값을 `force-dynamic`으로 설정하라는 등의 방법을 제시하고 있는 상태입니다.
 
@@ -65,9 +65,9 @@ export const metadata: Metadata = {
 
 위에서 찾은 이슈에서 임시로 `URLSearchParams`를 사용하는 방법도 있었지만 현재 블로그에서 사용하던 곳의 구현 상 선택한 태그와 `searchParams`가 매번 동일한 값을 유지해야 하는데, `URLSearchParams`만으로는 구현할 수 없고 `useSearchParams`를 사용해야 하는 상황이었습니다.
 
-그러다 `[useSearchParams`의 문서의 `Static Rendering` 섹션](https://nextjs.org/docs/app/api-reference/functions/use-search-params#static-rendering)에 나와있는 `Suspense` 관련 내용이 눈에 띄었습니다.
+그러다 [useSearchParams의 문서의 Static Rendering 섹션](https://nextjs.org/docs/app/api-reference/functions/use-search-params#static-rendering)에 나와있는 `Suspense` 관련 내용이 눈에 띄었습니다.
 
-> If a route is [statically rendered](https://nextjs.org/docs/app/building-your-application/rendering/server-components#static-rendering-default), calling `useSearchParams` will cause the Client Component tree up to the closest `[Suspense` boundary](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#example) to be client-side rendered.
+> If a route is [statically rendered](https://nextjs.org/docs/app/building-your-application/rendering/server-components#static-rendering-default), calling `useSearchParams` will cause the Client Component tree up to the closest [Suspense boundary](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#example) to be client-side rendered.
 > 
 > 
 > This allows a part of the route to be statically rendered while the dynamic part that uses `useSearchParams` is client-side rendered.
