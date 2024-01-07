@@ -30,6 +30,19 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false },
   twitter: { card: 'summary' },
   themeColor: tailwindTheme.colors.neutral[900],
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: generateOpenGraphMetaData({
     title: {
       template: `%s${PAGE_TITLE_SUFFIX}`,
