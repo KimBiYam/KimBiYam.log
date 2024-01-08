@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 
 import { DOMAIN_URL } from '@src/constants/server';
 
@@ -12,7 +12,7 @@ export const generateOpenGraphMetaData = ({
 }: {
   path?: string;
   ogImagePath?: string;
-} & Metadata['openGraph']): Metadata['openGraph'] => {
+} & OpenGraph): OpenGraph => {
   return {
     title,
     description,
