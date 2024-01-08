@@ -12,7 +12,7 @@ import MainLayout from '../components/base/MainLayout';
 import ThemeProvider from '../components/base/ThemeProvider';
 import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 import '../lib/styles/code.css';
 import '../lib/styles/global.css';
@@ -24,12 +24,9 @@ export const metadata: Metadata = {
     default: `KimBiYam.log`,
   },
   description: 'KimBiYam의 개발 블로그 입니다.',
-  viewport:
-    'width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover',
   keywords: 'blog,블로그,kimbiyam,kimbiyam.log,hot9998',
   formatDetection: { telephone: false },
   twitter: { card: 'summary' },
-  themeColor: tailwindTheme.colors.neutral[900],
   openGraph: generateOpenGraphMetaData({
     title: {
       template: `%s${PAGE_TITLE_SUFFIX}`,
@@ -44,6 +41,10 @@ export const metadata: Metadata = {
       process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION_KEY,
     ),
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: tailwindTheme.colors.neutral[900],
 };
 
 export default function RootLayout({ children }: PropsWithChildren<unknown>) {
