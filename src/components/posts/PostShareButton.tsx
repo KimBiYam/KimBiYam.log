@@ -17,7 +17,7 @@ const shareIconMap: Record<
   { icon: React.ReactNode; color: string }
 > = {
   facebook: { icon: <FacebookIcon />, color: '#4267B2' },
-  twitter: { icon: <TwitterIcon />, color: '#1DA1F2' },
+  twitter: { icon: <TwitterIcon />, color: '#000000' },
 };
 
 const PostShareButton = ({ type, onClick }: PostShareButtonProps) => {
