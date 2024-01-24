@@ -23,11 +23,11 @@ export default function HomePage() {
       <div className="my-2">
         <ProfileCard />
       </div>
-      <DragScrollContainer>
-        <Suspense fallback={null}>
+      <Suspense fallback={null}>
+        <DragScrollContainer>
           <TagSelector tags={tags} />
-        </Suspense>
-      </DragScrollContainer>
+        </DragScrollContainer>
+      </Suspense>
       <PostList postPreviews={postPreviews} />
     </PageRoutingAnimation>
   );
