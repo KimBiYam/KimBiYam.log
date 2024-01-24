@@ -32,17 +32,26 @@ const PostView = ({ postDetail }: PostViewProps) => {
   const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
   const isScrollOverTitle = useScrollOverElementDetect(titleRef);
 
-  useEffect(() => {
-    setHeaderTitleAtom((prev) => ({ ...prev, isShowTitle: isScrollOverTitle }));
-  }, [isScrollOverTitle, setHeaderTitleAtom]);
+  useEffect(
+    function setScrollOverTitle() {
+      setHeaderTitleAtom((prev) => ({
+        ...prev,
+        isShowTitle: isScrollOverTitle,
+      }));
+    },
+    [isScrollOverTitle, setHeaderTitleAtom],
+  );
 
-  useEffect(() => {
-    setHeaderTitleAtom((prev) => ({ ...prev, title }));
+  useEffect(
+    function setHeaderTitle() {
+      setHeaderTitleAtom((prev) => ({ ...prev, title }));
 
-    return () => {
-      setHeaderTitleAtom({ isShowTitle: false, title: null });
-    };
-  }, [setHeaderTitleAtom, title]);
+      return function cleanupHeaderTitle() {
+        setHeaderTitleAtom({ isShowTitle: false, title: null });
+      };
+    },
+    [setHeaderTitleAtom, title],
+  );
 
   return (
     <article className="relative mt-8">
