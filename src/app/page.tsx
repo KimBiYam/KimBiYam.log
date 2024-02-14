@@ -5,6 +5,7 @@ import PageRoutingAnimation from '@src/components/base/PageRoutingAnimation';
 import ProfileCard from '@src/components/base/ProfileCard';
 import PostList from '@src/components/posts/PostList';
 import TagSelector from '@src/components/posts/TagSelector';
+import TagSelectorSkeleton from '@src/components/posts/TagSelectorSkeleton';
 import { Tag } from '@src/constants/enums';
 import { getSortedPostPreviews } from '@src/lib/posts/postList';
 
@@ -23,7 +24,7 @@ export default function HomePage() {
       <div className="my-2">
         <ProfileCard />
       </div>
-      <Suspense fallback={null}>
+      <Suspense fallback={<TagSelectorSkeleton />}>
         <DragScrollContainer>
           <TagSelector tags={tags} />
         </DragScrollContainer>

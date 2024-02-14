@@ -36,7 +36,6 @@ const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
             />
           ))}
         </div>
-        <div className="absolute top-0 left-0 right-0 hidden h-full md:-mx-8 md:block -z-10 main-container" />
       </div>
     );
   },
