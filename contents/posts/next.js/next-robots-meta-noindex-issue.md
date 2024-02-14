@@ -98,3 +98,17 @@ export const metadata: Metadata = {
 Vercel에서는 `App Router`가 stable한 기능이라고 발표를 했었지만, 여전히 회사의 production에 사용한다면 조금 꺼려지는 부분이 많다는 생각이 들었습니다.
 
 ![Untitled](/images/posts/next.js/next-robots-meta-noindex-issue_2.png)
+
+---
+
+## 추가 내용 (2024-02-15)
+
+![Untitled](/images/posts/next.js/next-robots-meta-noindex-issue_3.png)
+
+[Next.js v14.1.0이 릴리즈](https://github.com/vercel/next.js/releases/tag/v14.1.0) 되면서 noindex 관련 이슈도 같이 수정이 되었습니다.
+
+하지만 SSG 환경에서 `useSearchParams` 를 사용하며 `Suspense` 를 사용하지 않는 경우 빌드 시에 에러가 발생하며 [관련 문서](https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout)를 살펴보니 기본 설정으로 `useSearchParams` 를 사용하는 경우에는 무조건 `Suspense` 를 사용하도록 가이드가 되어있습니다.
+
+`next.configs.js` 에서 `missingSuspenseWithCSRBailout` 설정을 끄는 것으로 정상적으로 사용은 가능하지만, 권장되지 않는 설정이며 추후 메이저 버전에서 해당 옵션 자체가 없어질 예정이라고 합니다.
+
+결국 `Suspense` 로 감싸는 방법이 권장되는 방법인 것 같고 이를 따르는 것이 좋다고 생각이 듭니다.
