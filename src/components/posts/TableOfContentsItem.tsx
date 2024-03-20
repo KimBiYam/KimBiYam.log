@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 
 import { TableOfContentHeading } from '@src/hooks/useTableOfContents';
 
@@ -9,16 +10,22 @@ interface TableOfContentsItemProps {
   onClick: (id: string) => void;
   children?: React.ReactNode;
   activeId: string | null;
+  level: number;
 }
 
 const TableOfContentsItem = forwardRef<
   HTMLButtonElement,
   TableOfContentsItemProps
->(({ heading, onClick, children, activeId }, ref) => {
+>(({ heading, onClick, children, activeId, level }, ref) => {
   const { id, title } = heading;
 
   return (
-    <li className="my-1 text-sm text-left">
+    <motion.li
+      className="my-1 text-sm text-left"
+      initial={{ x: -15, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.3, delay: level * 0.15 }}
+    >
       <button
         type="button"
         ref={ref}
@@ -34,7 +41,7 @@ const TableOfContentsItem = forwardRef<
         {title}
       </button>
       {children}
-    </li>
+    </motion.li>
   );
 });
 
