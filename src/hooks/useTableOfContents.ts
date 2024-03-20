@@ -4,7 +4,7 @@ export interface TableOfContentHeading {
   id: string;
   title: string;
   nodeName: string;
-  items?: TableOfContentHeading[];
+  children?: TableOfContentHeading[];
 }
 
 const getTableOfContentHeadings = (headingElements: NodeListOf<HTMLElement>) =>
@@ -17,13 +17,13 @@ const getTableOfContentHeadings = (headingElements: NodeListOf<HTMLElement>) =>
         total.length > 0 &&
         total[total.length - 1].nodeName === 'H2'
       ) {
-        total[total.length - 1].items?.push({
+        total[total.length - 1].children?.push({
           id,
           title,
           nodeName,
         });
       } else {
-        total.push({ id, title, nodeName, items: [] });
+        total.push({ id, title, nodeName, children: [] });
       }
 
       return total;
