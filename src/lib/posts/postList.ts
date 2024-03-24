@@ -62,7 +62,7 @@ const getPostPreview = (fileName: string): PostPreview => {
   const matterResult = matter(fileContents);
 
   const {
-    data: { date, title, tag },
+    data: { date, title, tag, ogImagePath },
     content,
   } = matterResult;
 
@@ -71,12 +71,13 @@ const getPostPreview = (fileName: string): PostPreview => {
     date,
     title,
     tag,
+    ogImagePath,
     content: getPostPreviewDescription(content),
   };
 };
 
 export const getPostPreviewDescription = (content: string) => {
-  const POST_PREVIEW_CONTENT_MAX_LENGTH = 200;
+  const POST_PREVIEW_CONTENT_MAX_LENGTH = 100;
   const MARKDOWN_CODE_BLOCK_REG_EXP_1 = RegExp(/```([\s\S]*?)```/g);
   const MARKDOWN_CODE_BLOCK_REG_EXP_2 = RegExp(/~~~([\s\S]*?)~~~/g);
   const MARKDOWN_HEADING_REG_EXP = RegExp(/#{1,6}.+(?=\n)/);
