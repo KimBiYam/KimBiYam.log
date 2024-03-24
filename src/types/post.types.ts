@@ -3,12 +3,12 @@ export interface Post {
   date: string;
   title: string;
   tag: string;
+  ogImagePath?: string;
 }
 
 export interface PostDetail extends Post {
   contentHtml: string;
   description: string;
-  ogImagePath?: string;
 }
 
 export interface PostPreview extends Post {

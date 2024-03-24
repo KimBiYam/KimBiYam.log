@@ -1,5 +1,6 @@
 import { memo } from 'react';
 
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { motion } from 'framer-motion';
@@ -9,21 +10,32 @@ import { PostPreview } from '@src/types/post.types';
 
 import PostDateText from './PostDateText';
 import TagBadge from './TagBadge';
+import ogTagImage from '../../assets/favicon/og_tag_image.png';
 
 interface PostListItemProps {
   postPreview: PostPreview;
 }
 
 const PostListItem = ({ postPreview }: PostListItemProps) => {
-  const { id, title, date, content, tag } = postPreview;
+  const { id, title, date, content, tag, ogImagePath } = postPreview;
 
   return (
-    <li>
-      <Link href={`/posts/${id}`}>
-        <motion.div
-          className="py-4 duration-300 cursor-pointer transition-textShadow hover:text-shadow dark:hover:text-shadow-dark"
-          {...viewportOpacityMotion}
-        >
+    <motion.li className="h-full" {...viewportOpacityMotion}>
+      <Link
+        href={`/posts/${id}`}
+        className="flex flex-col h-full duration-300 hover:text-shadow dark:hover:text-shadow-dark transition-textShadow"
+      >
+        <div className="flex items-center pt-[53%] relative mb-2">
+          <Image
+            alt={title}
+            src={ogImagePath ?? ogTagImage.src}
+            sizes="(max-width: 767px) 100vw, 50vw"
+            width="0"
+            height="0"
+            className="absolute inset-0 object-cover w-auto h-full ml-auto mr-auto rounded-xl"
+          />
+        </div>
+        <div className="flex-1">
           <h3 className="w-full overflow-hidden text-2xl font-bold truncate whitespace-nowrap">
             {title}
           </h3>
@@ -34,9 +46,9 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
           <p className="overflow-hidden text-sm dark:text-zinc-400 text-zinc-700 md:text-base">
             {content}
           </p>
-        </motion.div>
+        </div>
       </Link>
-    </li>
+    </motion.li>
   );
 };
 
