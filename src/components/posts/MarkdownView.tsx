@@ -12,6 +12,7 @@ import remarkGfm from 'remark-gfm';
 
 import useCreateHeadingLink from '@src/hooks/useCreateHeadingLink';
 import useMediumZoom from '@src/hooks/useMediumZoom';
+import '@src/lib/styles/code.css';
 
 const firaCode = Fira_Code({
   weight: '500',
