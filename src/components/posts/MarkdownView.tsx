@@ -17,7 +17,7 @@ import '@src/lib/styles/code.css';
 const firaCode = Fira_Code({
   weight: '500',
   preload: false,
-  display: 'swap',
+  display: 'block',
   variable: '--font-fira-code',
 });
 
