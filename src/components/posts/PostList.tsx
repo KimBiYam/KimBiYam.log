@@ -46,7 +46,7 @@ const PostList = ({ postPreviews }: PostListProps) => {
   );
 
   return (
-    <ul className="grid grid-cols-1 gap-8 py-4 md:grid md:grid-cols-2">
+    <ul className="grid grid-cols-1 gap-8 py-4 md:grid-cols-2 lg:grid-cols-3">
       {filteredPostPreviews.map((postPreview) => (
         <PostListItem
           key={postPreview.id + postPreview.title}
