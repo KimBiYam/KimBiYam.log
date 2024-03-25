@@ -29,7 +29,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
           <Image
             alt={title}
             src={ogImagePath ?? ogTagImage.src}
-            sizes="(max-width: 767px) 100vw, 50vw"
+            sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
             width="0"
             height="0"
             className="absolute inset-0 object-cover w-auto h-full ml-auto mr-auto rounded-xl"
