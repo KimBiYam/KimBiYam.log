@@ -12,7 +12,7 @@ import { PostPreview } from '@src/types/post.types';
 
 import PostListItem from './PostListItem';
 
-const POST_COUNT_BY_PAGE = 10;
+const POST_COUNT_BY_PAGE = 9;
 
 interface PostListProps {
   postPreviews: PostPreview[];
