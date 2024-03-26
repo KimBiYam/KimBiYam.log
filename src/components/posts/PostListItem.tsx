@@ -33,6 +33,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
             width="0"
             height="0"
             className="absolute inset-0 object-cover w-auto h-full ml-auto mr-auto rounded-xl"
+            priority
           />
         </div>
         <div className="flex-1">
