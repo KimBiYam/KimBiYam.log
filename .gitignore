@@ -40,11 +40,5 @@ yarn-error.log*
 public/sitemap*.xml
 public/robots.txt
 
-# yarn berry
-.yarn/*
-!.yarn/cache
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+# IDE
+.vscode
