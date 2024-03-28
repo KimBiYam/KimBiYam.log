@@ -5,7 +5,6 @@ import Script from 'next/script';
 
 import { PAGE_TITLE_SUFFIX } from '@src/constants/metadata';
 
-import Pretendard from './fonts/Prtendard/Pretendard';
 import { generateOpenGraphMetaData } from './metadataBase';
 import { theme as tailwindTheme } from '../../tailwind.config';
 import ClientRootLayout from '../components/base/ClientRootLayout';
@@ -49,8 +48,13 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: PropsWithChildren<unknown>) {
   return (
-    <html lang="ko" className={Pretendard.className}>
+    <html lang="ko">
       <head>
+        <link
+          rel="stylesheet"
+          as="style"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard-dynamic-subset.css"
+        />
         <Script src="/setViewportProperty.js" />
         <Script src="/prettyConsole.js" strategy="lazyOnload" />
         <GoogleAnalytics />
