@@ -20,7 +20,7 @@ export default function HomePage() {
   ];
 
   return (
-    <PageRoutingAnimation className="container max-w-screen-lg pb-12">
+    <PageRoutingAnimation className="pb-12">
       <div className="my-2">
         <ProfileCard />
       </div>
