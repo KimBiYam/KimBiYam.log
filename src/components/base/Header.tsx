@@ -11,7 +11,7 @@ import Logo from './Logo';
 const Header = () => {
   return (
     <motion.header className="fixed z-50 flex items-center w-full h-14 bg-inherit">
-      <div className="flex items-center w-full px-4 md:px-8">
+      <div className="container flex items-center w-full max-w-screen-lg px-4 md:px-8">
         <Logo />
         <HeaderTitle />
         <DarkModeButton />
