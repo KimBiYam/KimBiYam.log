@@ -16,10 +16,10 @@ const useActiveChildScroll = <P extends HTMLElement, C extends HTMLElement>({
 }: UseActiveItemScrollProps<P>) => {
   const itemRefs = useRef<Record<string, C | null>>({});
 
-  const activeChildNode = activeId ? itemRefs.current[activeId] : null;
-  const parentNodeExists = isRefObject(parentRef) && !!parentRef.current;
-
   useEffect(() => {
+    const activeChildNode = activeId ? itemRefs.current[activeId] : null;
+    const parentNodeExists = isRefObject(parentRef) && !!parentRef.current;
+
     if (!parentNodeExists || !activeChildNode || pageScrolling) {
       return;
     }
@@ -46,7 +46,7 @@ const useActiveChildScroll = <P extends HTMLElement, C extends HTMLElement>({
 
     const { top, left } = scrollPosition;
     parentRef.current.scroll({ top, left, behavior: 'smooth' });
-  }, [activeChildNode, activeId, pageScrolling, parentNodeExists, parentRef]);
+  }, [activeId, pageScrolling, parentRef]);
 
   const registerChildRef = useCallback(
     (instance: C | null, id: string) => {
