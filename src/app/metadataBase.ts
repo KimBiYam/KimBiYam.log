@@ -18,7 +18,7 @@ export const generateOpenGraphMetaData = ({
     ogImageUrl.searchParams.set('title', ogImageTitle);
   }
   if (!!ogImagePath) {
-    ogImageUrl.searchParams.set('ogImagePath', `${DOMAIN_URL}/${ogImagePath}`);
+    ogImageUrl.searchParams.set('ogImagePath', `${DOMAIN_URL}${ogImagePath}`);
   }
 
   return {
