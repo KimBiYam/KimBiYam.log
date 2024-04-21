@@ -37,8 +37,9 @@ export async function generateMetadata({
     openGraph: generateOpenGraphMetaData({
       title,
       description,
-      ogImagePath,
       path: `/posts/${subdirectory}/${id}`,
+      ogImageTitle: title,
+      ogImagePath,
     }),
   };
 }
