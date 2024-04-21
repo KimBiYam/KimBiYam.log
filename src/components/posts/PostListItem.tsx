@@ -3,6 +3,7 @@ import { memo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import clsx from 'clsx';
 import { motion } from 'framer-motion';
 
 import { viewportOpacityMotion } from '@src/lib/styles/motions';
@@ -10,7 +11,7 @@ import { PostPreview } from '@src/types/post.types';
 
 import PostDateText from './PostDateText';
 import TagBadge from './TagBadge';
-import ogTagImage from '../../assets/favicon/og_tag_image.png';
+import ogTagImage from '../../assets/images/logo_image.png';
 
 interface PostListItemProps {
   postPreview: PostPreview;
@@ -32,7 +33,12 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
             sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
             width="0"
             height="0"
-            className="absolute inset-0 object-cover w-auto h-full ml-auto mr-auto rounded-xl"
+            className={clsx(
+              'absolute inset-0 object-cover w-auto h-full ml-auto mr-auto rounded-xl',
+              {
+                'bg-white': !ogImagePath,
+              },
+            )}
             priority
           />
         </div>
