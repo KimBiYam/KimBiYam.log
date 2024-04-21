@@ -29,7 +29,7 @@ export async function generateMetadata({
     id,
   );
 
-  const { title, description, ogImagePath } = postDetail;
+  const { title, description } = postDetail;
 
   return {
     title,
@@ -39,7 +39,6 @@ export async function generateMetadata({
       description,
       path: `/posts/${subdirectory}/${id}`,
       ogImageTitle: title,
-      ogImagePath,
     }),
   };
 }

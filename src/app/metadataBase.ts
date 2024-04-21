@@ -7,18 +7,13 @@ export const generateOpenGraphMetaData = ({
   description,
   path = '',
   ogImageTitle,
-  ogImagePath,
 }: {
   path?: string;
   ogImageTitle?: string;
-  ogImagePath?: string;
 } & OpenGraph): OpenGraph => {
   const ogImageUrl = new URL(`${DOMAIN_URL}/api/og`);
   if (!!ogImageTitle) {
     ogImageUrl.searchParams.set('title', ogImageTitle);
-  }
-  if (!!ogImagePath) {
-    ogImageUrl.searchParams.set('ogImagePath', `${DOMAIN_URL}${ogImagePath}`);
   }
 
   return {
