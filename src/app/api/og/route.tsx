@@ -59,6 +59,7 @@ const generateTitleImageResponse = async (
             src={ogImagePath ?? (logoImageData as unknown as string)}
             alt="main-image"
             width={700}
+            style={{ backgroundColor: !ogImagePath ? 'white' : undefined }}
             tw="rounded-3xl mb-8"
           />
           <div tw="flex justify-center items-center text-5xl text-neutral-100 text-center px-16">
