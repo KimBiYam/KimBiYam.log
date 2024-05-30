@@ -7,7 +7,7 @@ import { Fira_Code } from 'next/font/google';
 
 import rehypePrism from '@mapbox/rehype-prism';
 import rehypeSlug from 'rehype-slug';
-import rehypeStringify from 'rehype-stringify/lib';
+import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 
 import useCreateHeadingLink from '@src/hooks/useCreateHeadingLink';
