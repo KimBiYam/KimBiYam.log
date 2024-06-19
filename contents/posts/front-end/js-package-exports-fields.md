@@ -1,5 +1,5 @@
 ---
-title: 'JavaScript 패키지에서 각 환경에 맞는 파일 제공하기'
+title: 'JavaScript 라이브러리에서 exports 필드로 여러 환경 대응하기 '
 date: '2024-06-16'
 tag: 'front-end'
 ---
