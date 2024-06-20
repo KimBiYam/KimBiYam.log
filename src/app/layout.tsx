@@ -4,13 +4,13 @@ import { PropsWithChildren } from 'react';
 import Script from 'next/script';
 
 import { PAGE_TITLE_SUFFIX } from '@src/constants/metadata';
+import GoogleAnalyticsScript from '@src/lib/googleAnalytics/GoogleAnalyticsScript';
 
 import { generateOpenGraphMetaData } from './metadataBase';
 import { theme as tailwindTheme } from '../../tailwind.config';
 import ClientRootLayout from '../components/base/ClientRootLayout';
 import MainLayout from '../components/base/MainLayout';
 import ThemeProvider from '../components/base/ThemeProvider';
-import GoogleAnalytics from '../components/scripts/GoogleAnalytics';
 
 import type { Metadata, Viewport } from 'next';
 
@@ -57,7 +57,7 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
         />
         <Script src="/setViewportProperty.js" />
         <Script src="/prettyConsole.js" strategy="lazyOnload" />
-        <GoogleAnalytics />
+        <GoogleAnalyticsScript />
       </head>
       <body className="main-container main-font-color">
         <ClientRootLayout>

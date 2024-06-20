@@ -2,7 +2,7 @@ import Script from 'next/script';
 
 import { GOOGLE_ANALYTICS_TRACKING_ID } from '@src/constants/foundation';
 
-const GoogleAnalytics = () => (
+const GoogleAnalyticsScript = () => (
   <>
     <Script
       strategy="afterInteractive"
@@ -19,4 +19,4 @@ page_path: window.location.pathname,
   </>
 );
 
-export default GoogleAnalytics;
+export default GoogleAnalyticsScript;
