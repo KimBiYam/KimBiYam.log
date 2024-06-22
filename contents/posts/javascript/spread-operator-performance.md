@@ -295,7 +295,7 @@ const arr = Array.from({ length: 1000 }, (_, i) => ({ id: i }));
 const t0 = performance.now();
 const result = arr.reduce((acc, cur) => ({ ...acc, [cur.id]: cur }), {});
 const t1 = performance.now();
-console.debug(`${t1 - t0}milliseconds`); // 평균 0.5 ~ 1milliseconds
+console.debug(`${t1 - t0}milliseconds`); // 평균 0.5 ~ 1 milliseconds
 ```
 
 1,000개의 데이터 기준으로 평균 0.5 ~ 1ms 정도로 크게 문제는 없어보입니다.
@@ -306,7 +306,7 @@ const arr = Array.from({ length: 10000 }, (_, i) => ({ id: i }));
 const t0 = performance.now();
 const result = arr.reduce((acc, cur) => ({ ...acc, [cur.id]: cur }), {});
 const t1 = performance.now();
-console.debug(`${t1 - t0}milliseconds`); // 평균 13 ~ 16milliseconds
+console.debug(`${t1 - t0}milliseconds`); // 평균 13 ~ 16 milliseconds
 ```
 
 만약 10,000개의 데이터라면 10배정도인 5 ~ 10ms 정도의 결과가 나와야 맞아보이는데요, 하지만 실제로는 10배보다 조금 더 큰 결과값이 나오게 됩니다.
@@ -317,7 +317,7 @@ const arr = Array.from({ length: 100000 }, (_, i) => ({ id: i }));
 const t0 = performance.now();
 const result = arr.reduce((acc, cur) => ({ ...acc, [cur.id]: cur }), {});
 const t1 = performance.now();
-console.debug(`${t1 - t0}milliseconds`); // 평균 2300 ~ 2400milliseconds
+console.debug(`${t1 - t0}milliseconds`); // 평균 2300 ~ 2400 milliseconds
 ```
 
 그럼 100,000개의 데이터라면 어떻게 될까요??
