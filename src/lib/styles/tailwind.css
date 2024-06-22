@@ -52,4 +52,8 @@
   .text-shadow-dark {
     text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.4);
   }
+
+  .btn-hover {
+    @apply hover:bg-slate-300 dark:hover:bg-neutral-500;
+  }
 }
