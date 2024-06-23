@@ -7,10 +7,7 @@ import SunIcon from '@src/assets/svgs/sun.svg';
 import { Theme } from '@src/constants/enums';
 import useMounted from '@src/hooks/useMounted';
 import useTheme from '@src/hooks/useTheme';
-import {
-  darkModeOff,
-  darkModeOn,
-} from '@src/lib/googleAnalytics/googleAnalytics';
+import GA from '@src/lib/googleAnalytics/googleAnalytics';
 
 const rotateScaleSpring: Transition = {
   type: 'spring',
@@ -48,8 +45,8 @@ const DarkModeButton = () => {
   const mounted = useMounted();
 
   const handleClick = () => {
-    if (theme === Theme.dark) darkModeOff();
-    if (theme === Theme.light) darkModeOn();
+    if (theme === Theme.dark) GA.trackEvent('dark_mode_on');
+    if (theme === Theme.light) GA.trackEvent('dark_mode_off');
     toggleTheme();
   };
 

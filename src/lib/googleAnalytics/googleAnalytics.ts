@@ -1,17 +1,10 @@
-import {
-  GOOGLE_ANALYTICS_TRACKING_ID,
-  IS_PRODUCTION,
-} from '@src/constants/foundation';
-
 declare global {
-  type GoogleAnalyticsEvents = 'dark_mode_on' | 'dark_mode_off';
-
   interface Gtag {
-    (param1: string, param2: string, param3: object): void;
-  }
-
-  interface Gtag {
-    (param1: 'event', param2: GoogleAnalyticsEvents, param3: object): void;
+    (
+      param1: 'event',
+      param2: string,
+      param3?: Record<string | number | symbol, unknown>,
+    ): void;
   }
 
   interface Window {
@@ -19,24 +12,17 @@ declare global {
   }
 }
 
-export const pageView = (url: URL) => {
-  if (!GOOGLE_ANALYTICS_TRACKING_ID || !window.gtag) return;
+const GA_EVENT_KEYS = {
+  darkModeOn: 'dark_mode_on',
+  darkModeOff: 'dark_mode_off',
+} as const;
 
-  const options: Record<string, unknown> = { page_path: url };
-
-  if (!IS_PRODUCTION) {
-    options.debug_mode = true;
+export default class GA {
+  static trackEvent(
+    eventKey: (typeof GA_EVENT_KEYS)[keyof typeof GA_EVENT_KEYS],
+    params?: Record<string | number | symbol, unknown>,
+  ) {
+    if (!window.gtag) return;
+    window.gtag('event', eventKey, params);
   }
-
-  window.gtag('config', GOOGLE_ANALYTICS_TRACKING_ID, options);
-};
-
-export const darkModeOn = () => {
-  if (!window.gtag) return;
-  window.gtag('event', 'dark_mode_on', {});
-};
-
-export const darkModeOff = () => {
-  if (!window.gtag) return;
-  window.gtag('event', 'dark_mode_off', {});
-};
+}

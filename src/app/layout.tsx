@@ -3,8 +3,10 @@ import { PropsWithChildren } from 'react';
 
 import Script from 'next/script';
 
+import { GoogleAnalytics } from '@next/third-parties/google';
+
+import { GOOGLE_ANALYTICS_TRACKING_ID } from '@src/constants/foundation';
 import { PAGE_TITLE_SUFFIX } from '@src/constants/metadata';
-import GoogleAnalyticsScript from '@src/lib/googleAnalytics/GoogleAnalyticsScript';
 
 import { generateOpenGraphMetaData } from './metadataBase';
 import { theme as tailwindTheme } from '../../tailwind.config';
@@ -57,7 +59,6 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
         />
         <Script src="/setViewportProperty.js" />
         <Script src="/prettyConsole.js" strategy="lazyOnload" />
-        <GoogleAnalyticsScript />
       </head>
       <body className="main-container main-font-color">
         <ClientRootLayout>
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
           </ThemeProvider>
         </ClientRootLayout>
       </body>
+      <GoogleAnalytics gaId={GOOGLE_ANALYTICS_TRACKING_ID} />
     </html>
   );
 }
