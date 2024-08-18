@@ -5,6 +5,7 @@ import Script from 'next/script';
 
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { GOOGLE_ANALYTICS_TRACKING_ID } from '@src/constants/foundation';
 import { PAGE_TITLE_SUFFIX } from '@src/constants/metadata';
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
           </ThemeProvider>
         </ClientRootLayout>
         <Analytics />
+        <SpeedInsights />
       </body>
       <GoogleAnalytics gaId={GOOGLE_ANALYTICS_TRACKING_ID} />
     </html>
