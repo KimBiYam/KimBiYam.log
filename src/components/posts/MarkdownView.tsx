@@ -60,6 +60,7 @@ export default function MarkdownView({
                 alt={props.alt ?? ''}
                 width={imageSize?.width ?? 700}
                 height={imageSize?.height ?? 400}
+                priority
               />
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
