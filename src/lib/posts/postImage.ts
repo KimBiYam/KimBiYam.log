@@ -12,13 +12,15 @@ export const getPostImageSizes = (postContentHtml: string) => {
 
   for (const match of matches) {
     const [, src] = match;
+    const filePath = join(process.cwd(), 'public', src);
+
     try {
-      const { width, height } = sizeOf(join('public', src));
+      const { width, height } = sizeOf(filePath);
       if (width !== undefined && height !== undefined) {
         imageSizes[src] = { width, height };
       }
     } catch (err) {
-      console.error(`Can’t get dimensions for ${src}:`, err);
+      console.error(`Can’t get dimensions for ${filePath}:`, err);
     }
   }
 
