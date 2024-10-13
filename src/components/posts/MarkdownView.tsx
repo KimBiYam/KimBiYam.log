@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import { Fira_Code } from 'next/font/google';
@@ -32,24 +32,18 @@ export default function MarkdownView({
   contentHtml,
   imageSizes,
 }: MarkdownViewProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const { attach } = useMediumZoom();
 
-  useCreateHeadingLink(ref);
+  useCreateHeadingLink(containerRef);
 
-  useEffect(() => {
-    const images = ref.current?.querySelectorAll('img');
-    if (!images) return;
-
-    const paragraphChildImages = Array.from(images).filter(
-      (el) => el.parentElement?.tagName === 'P',
-    );
-
-    attach?.(paragraphChildImages);
-  }, [attach, ref]);
+  const applyMediumZoom = (imageEl: HTMLImageElement | null) => {
+    if (!imageEl || !attach) return;
+    attach(imageEl);
+  };
 
   return (
-    <div className="w-full max-w-full prose dark:prose-dark" ref={ref}>
+    <div className="w-full max-w-full prose dark:prose-dark" ref={containerRef}>
       <ReactMarkdown
         className={firaCode.variable}
         remarkPlugins={[remarkGfm]}
@@ -61,6 +55,7 @@ export default function MarkdownView({
 
             return imageSize ? (
               <Image
+                ref={applyMediumZoom}
                 src={props.src ?? ''}
                 alt={props.alt ?? ''}
                 width={imageSize?.width ?? 700}
@@ -68,7 +63,7 @@ export default function MarkdownView({
               />
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={props.src} alt={props.alt} />
+              <img ref={applyMediumZoom} src={props.src} alt={props.alt} />
             );
           },
         }}
