@@ -8,6 +8,7 @@ import PostView from '@src/components/posts/PostView';
 import Utterances from '@src/components/posts/Utterances';
 import { POST_DIRECTORY } from '@src/constants/directories';
 import { getPostDetail } from '@src/lib/posts/postDetail';
+import { getPostImageSizes } from '@src/lib/posts/postImage';
 import { getAllPostPaths } from '@src/lib/posts/postList';
 import { PostPath } from '@src/types/post.types';
 
@@ -52,9 +53,11 @@ export default async function PostDetailPage({ params }: { params: PostPath }) {
     id,
   );
 
+  const imageSizes = getPostImageSizes(postDetail.contentHtml);
+
   return (
     <PageRoutingAnimation>
-      <PostView postDetail={postDetail} />
+      <PostView postDetail={postDetail} imageSizes={imageSizes} />
       <PostShareButtons postDetail={postDetail} />
       <div className="py-4 my-10 border-t border-b">
         <ProfileCard />
