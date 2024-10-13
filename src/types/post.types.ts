@@ -19,3 +19,8 @@ export interface PostPath {
   id: string;
   subdirectory: string;
 }
+
+export interface PostImageSize {
+  width: number;
+  height: number;
+}

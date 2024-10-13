@@ -11,7 +11,7 @@ import headerTitleAtom from '@src/atoms/headerTitleAtom';
 import useMounted from '@src/hooks/useMounted';
 import useScrollOverElementDetect from '@src/hooks/useScrollOverElementDetect';
 import breakPoints from '@src/lib/styles/breakPoints.json';
-import { PostDetail } from '@src/types/post.types';
+import { PostDetail, PostImageSize } from '@src/types/post.types';
 
 import MarkdownView from './MarkdownView';
 import PostDateText from './PostDateText';
@@ -21,9 +21,10 @@ const DynamicTableOfContents = dynamic(() => import('./TableOfContents'));
 
 interface PostViewProps {
   postDetail: PostDetail;
+  imageSizes?: Record<string, PostImageSize>;
 }
 
-const PostView = ({ postDetail }: PostViewProps) => {
+const PostView = ({ postDetail, imageSizes }: PostViewProps) => {
   const { title, date, contentHtml, tag } = postDetail;
   const titleRef = useRef<HTMLHeadingElement>(null);
   const setHeaderTitleAtom = useSetAtom(headerTitleAtom);
@@ -62,7 +63,7 @@ const PostView = ({ postDetail }: PostViewProps) => {
         <PostDateText>{date}</PostDateText>
         <TagBadge tag={tag.toUpperCase()} />
       </div>
-      <MarkdownView contentHtml={contentHtml} />
+      <MarkdownView contentHtml={contentHtml} imageSizes={imageSizes} />
       {mounted && isUpExtraLargeScreen && <DynamicTableOfContents />}
     </article>
   );
