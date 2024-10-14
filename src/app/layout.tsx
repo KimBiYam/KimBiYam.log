@@ -55,9 +55,10 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
     <html lang="ko" suppressHydrationWarning>
       <head>
         <link
-          rel="stylesheet"
+          rel="stylesheet preload"
           as="style"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard-dynamic-subset.css"
+          crossOrigin=""
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css"
         />
       </head>
       <body className="main-container main-font-color">
