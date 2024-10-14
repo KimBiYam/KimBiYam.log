@@ -56,11 +56,15 @@ export default function MarkdownView({
             return imageSize ? (
               <Image
                 ref={applyMediumZoom}
-                src={props.src ?? ''}
+                src={props.src}
                 alt={props.alt ?? ''}
                 width={imageSize?.width ?? 700}
                 height={imageSize?.height ?? 400}
-                priority
+                /**
+                 * set loading strategy to "eager" to temporally fix safari flickering issue
+                 * https://github.com/vercel/next.js/discussions/20991
+                 */
+                loading="eager"
               />
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
