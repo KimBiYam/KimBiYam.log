@@ -59,8 +59,6 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
           as="style"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard-dynamic-subset.css"
         />
-        <Script src="/setViewportProperty.js" />
-        <Script src="/prettyConsole.js" strategy="lazyOnload" />
       </head>
       <body className="main-container main-font-color">
         <ClientRootLayout>
@@ -68,10 +66,12 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
             <MainLayout>{children}</MainLayout>
           </ThemeProvider>
         </ClientRootLayout>
+        <Script src="/setViewportProperty.js" strategy="lazyOnload" />
+        <Script src="/prettyConsole.js" strategy="lazyOnload" />
         <Analytics />
         <SpeedInsights />
+        <GoogleAnalytics gaId={GOOGLE_ANALYTICS_TRACKING_ID} />
       </body>
-      <GoogleAnalytics gaId={GOOGLE_ANALYTICS_TRACKING_ID} />
     </html>
   );
 }
