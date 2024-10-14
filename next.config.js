@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: true,
   reactStrictMode: true,
   images: {
+    formats: ['image/avif', 'image/webp'],
     deviceSizes: [480, 768, 1024, 1280],
   },
   webpack(config) {
