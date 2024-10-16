@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 
 import { generateOpenGraphMetaData } from '@src/app/metadataBase';
-import PageRoutingAnimation from '@src/components/base/PageRoutingAnimation';
 import ProfileCard from '@src/components/base/ProfileCard';
 import PostShareButtons from '@src/components/posts/PostShareButtons';
 import PostView from '@src/components/posts/PostView';
@@ -56,13 +55,13 @@ export default async function PostDetailPage({ params }: { params: PostPath }) {
   const imageSizes = getPostImageSizes(postDetail.contentHtml);
 
   return (
-    <PageRoutingAnimation>
+    <div>
       <PostView postDetail={postDetail} imageSizes={imageSizes} />
       <PostShareButtons postDetail={postDetail} />
       <div className="py-4 my-10 border-t border-b">
         <ProfileCard />
       </div>
       <Utterances />
-    </PageRoutingAnimation>
+    </div>
   );
 }
