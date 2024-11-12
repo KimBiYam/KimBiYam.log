@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import { useRef } from 'react';
@@ -11,10 +12,14 @@ import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 
+import { Theme } from '@src/constants/enums';
 import useCreateHeadingLink from '@src/hooks/useCreateHeadingLink';
-import useMediumZoom from '@src/hooks/useMediumZoom';
+import useTheme from '@src/hooks/useTheme';
 import '@src/lib/styles/code.css';
 import { PostImageSize } from '@src/types/post.types';
+
+import { theme as tailwindTheme } from '../../../tailwind.config';
+import MediumZoom from '../base/MediumZoom';
 
 const firaCode = Fira_Code({
   weight: '500',
@@ -33,14 +38,14 @@ export default function MarkdownView({
   imageSizes,
 }: MarkdownViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { attach } = useMediumZoom();
+  const { theme } = useTheme();
 
   useCreateHeadingLink(containerRef);
 
-  const applyMediumZoom = (imageEl: HTMLImageElement | null) => {
-    if (!imageEl || !attach) return;
-    attach(imageEl);
-  };
+  const mediumZoomBackground =
+    theme === Theme.dark
+      ? tailwindTheme.colors.neutral[900]
+      : tailwindTheme.colors.white;
 
   return (
     <div className="w-full max-w-full prose dark:prose-dark" ref={containerRef}>
@@ -54,21 +59,23 @@ export default function MarkdownView({
             const imageSize = imageSizes?.[props.src];
 
             return imageSize ? (
-              <Image
-                ref={applyMediumZoom}
-                src={props.src}
-                alt={props.alt ?? ''}
-                width={imageSize?.width ?? 700}
-                height={imageSize?.height ?? 400}
-                /**
-                 * set loading strategy to "eager" to temporally fix safari flickering issue
-                 * https://github.com/vercel/next.js/discussions/20991
-                 */
-                loading="eager"
-              />
+              <MediumZoom margin={24} background={mediumZoomBackground}>
+                <Image
+                  src={props.src}
+                  alt={props.alt ?? ''}
+                  width={imageSize?.width ?? 700}
+                  height={imageSize?.height ?? 400}
+                  /**
+                   * set loading strategy to "eager" to temporally fix safari flickering issue
+                   * https://github.com/vercel/next.js/discussions/20991
+                   */
+                  loading="eager"
+                />
+              </MediumZoom>
             ) : (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img ref={applyMediumZoom} src={props.src} alt={props.alt} />
+              <MediumZoom margin={24} background={mediumZoomBackground}>
+                <img src={props.src} alt={props.alt} />
+              </MediumZoom>
             );
           },
         }}
