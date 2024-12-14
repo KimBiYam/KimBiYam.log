@@ -1,5 +1,7 @@
 import { RefObject, useEffect } from 'react';
 
+import useEventCallback from './useEventCallback';
+
 const useScrollObserver = ({
   targetRef,
   enabled,
@@ -15,12 +17,14 @@ const useScrollObserver = ({
   threshold?: number | number[] | undefined;
   rootMargin?: string;
 }) => {
+  const _onIntersect = useEventCallback(onIntersect, []);
+
   useEffect(() => {
     if (!enabled) return;
 
     const observer = new IntersectionObserver(
       (entries) =>
-        entries.forEach((entry) => entry.isIntersecting && onIntersect()),
+        entries.forEach((entry) => entry.isIntersecting && _onIntersect()),
       { root, threshold, rootMargin },
     );
 
@@ -33,7 +37,7 @@ const useScrollObserver = ({
     return () => {
       if (observer) observer.unobserve(element);
     };
-  }, [enabled, root, threshold, rootMargin, targetRef, onIntersect]);
+  }, [enabled, root, threshold, rootMargin, targetRef, _onIntersect]);
 };
 
 export default useScrollObserver;
