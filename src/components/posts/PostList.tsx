@@ -7,7 +7,7 @@ import { useAtom } from 'jotai';
 import postPageAtom from '@src/atoms/postPageAtom';
 import { Tag } from '@src/constants/enums';
 import useScrollObserver from '@src/hooks/useScrollObserver';
-import { useSelectedTag } from '@src/hooks/useTag';
+import { useTag } from '@src/hooks/useTag';
 import { PostPreview } from '@src/types/post.types';
 
 import PostListItem from './PostListItem';
@@ -21,7 +21,7 @@ interface PostListProps {
 const PostList = ({ postPreviews }: PostListProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [postPage, setPostPage] = useAtom(postPageAtom);
-  const selectedTag = useSelectedTag();
+  const { selectedTag } = useTag();
 
   const handleIntersect = useCallback(
     () => setPostPage((prev) => prev + 1),

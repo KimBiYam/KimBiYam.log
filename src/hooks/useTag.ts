@@ -1,24 +1,18 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 
 import postPageAtom from '@src/atoms/postPageAtom';
-import tagAtom from '@src/atoms/tagAtom';
 import { Tag } from '@src/constants/enums';
 
-export const useSetTag = () => {
+export const useTag = () => {
   const setPostPage = useSetAtom(postPageAtom);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const setSelectedTag = useSetAtom(tagAtom);
 
-  const tagSearchParam = searchParams?.get('tag') ?? Tag.all;
-
-  useEffect(() => {
-    setSelectedTag(tagSearchParam);
-  }, [setSelectedTag, tagSearchParam]);
+  const selectedTag = searchParams?.get('tag') ?? Tag.all;
 
   const handleTagClick = useCallback(
     (tag: string) => {
@@ -29,9 +23,5 @@ export const useSetTag = () => {
     [router, setPostPage],
   );
 
-  return handleTagClick;
-};
-
-export const useSelectedTag = () => {
-  return useAtomValue(tagAtom);
+  return { handleTagClick, selectedTag };
 };
