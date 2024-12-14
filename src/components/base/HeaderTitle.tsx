@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useAtomValue } from 'jotai';
+import { motion } from 'motion/react';
 
 import headerTitleAtom from '@src/atoms/headerTitleAtom';
 

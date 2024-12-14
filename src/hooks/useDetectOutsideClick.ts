@@ -1,7 +1,7 @@
 import { RefObject, useCallback, useEffect, useState } from 'react';
 
 const useDetectOutsideClick = (
-  ref: RefObject<HTMLElement>,
+  ref: RefObject<HTMLElement | null>,
   initialState = false,
 ) => {
   const [isOpen, setIsOpen] = useState(initialState);

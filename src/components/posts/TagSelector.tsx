@@ -32,7 +32,9 @@ const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
               tag={tag}
               onTagClick={setTag}
               isSelected={tag === selectedTag}
-              ref={(instance) => registerChildRef(instance, tag)}
+              ref={(instance) => {
+                registerChildRef(instance, tag);
+              }}
             />
           ))}
         </div>

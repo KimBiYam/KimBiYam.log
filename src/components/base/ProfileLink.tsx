@@ -4,7 +4,7 @@ import { HTMLAttributes } from 'react';
 
 import Link, { LinkProps } from 'next/link';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 import { hoverRotateMotion } from '@src/lib/styles/motions';
 

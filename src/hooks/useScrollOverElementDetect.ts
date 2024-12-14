@@ -5,7 +5,7 @@ import useThrottle from './useThrottle';
 const THROTTLE_TIME_MS = 100;
 
 export default function useScrollOverElementDetect(
-  ref: React.RefObject<HTMLElement>,
+  ref: React.RefObject<HTMLElement | null>,
 ) {
   const [isOverElement, setIsOverElement] = useState(false);
 

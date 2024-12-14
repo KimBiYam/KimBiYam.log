@@ -3,6 +3,7 @@
 
 import { useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { PluggableList } from 'react-markdown/lib';
 
 import { Fira_Code } from 'next/font/google';
 import Image from 'next/image';
@@ -52,7 +53,11 @@ export default function MarkdownView({
       <ReactMarkdown
         className={firaCode.variable}
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypePrism, rehypeSlug, rehypeStringify]}
+        rehypePlugins={[
+          rehypePrism as PluggableList[number],
+          rehypeSlug,
+          rehypeStringify,
+        ]}
         components={{
           img: (props) => {
             if (!props.src) return null;

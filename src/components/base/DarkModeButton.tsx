@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, Transition, Variants } from 'framer-motion';
+import { motion, Transition, Variants } from 'motion/react';
 
 import MoonIcon from '@src/assets/svgs/moon.svg';
 import SunIcon from '@src/assets/svgs/sun.svg';

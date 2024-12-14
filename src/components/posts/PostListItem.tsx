@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import Link from 'next/link';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 import { viewportOpacityMotion } from '@src/lib/styles/motions';
 import { PostPreview } from '@src/types/post.types';

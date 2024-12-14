@@ -2,7 +2,7 @@
 
 import { memo } from 'react';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 import DarkModeButton from './DarkModeButton';
 import HeaderTitle from './HeaderTitle';

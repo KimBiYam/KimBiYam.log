@@ -25,7 +25,9 @@ export default function TableOfContentsList({
           heading={heading}
           onClick={onItemClick}
           activeId={activeId}
-          ref={(instance) => registerChildRef(instance, heading.id)}
+          ref={(instance) => {
+            registerChildRef(instance, heading.id);
+          }}
           level={level}
         >
           {Array.isArray(heading.children) && heading.children.length > 0 && (
