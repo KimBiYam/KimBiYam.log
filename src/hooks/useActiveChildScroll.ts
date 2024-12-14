@@ -48,12 +48,9 @@ const useActiveChildScroll = <P extends HTMLElement, C extends HTMLElement>({
     parentRef.current?.scroll({ top, left, behavior: 'smooth' });
   }, [activeId, pageScrolling, parentRef]);
 
-  const registerChildRef = useCallback(
-    (instance: C | null, id: string) => {
-      itemRefs.current[id] = instance;
-    },
-    [itemRefs],
-  );
+  const registerChildRef = useCallback((instance: C | null, id: string) => {
+    itemRefs.current[id] = instance;
+  }, []);
 
   return registerChildRef;
 };

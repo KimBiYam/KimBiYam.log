@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { useCallback } from 'react';
 
 import clsx from 'clsx';
 import { motion } from 'motion/react';
@@ -11,13 +11,23 @@ interface TableOfContentsItemProps {
   children?: React.ReactNode;
   activeId: string | null;
   level: number;
+  registerChildRef: (instance: HTMLElement | null, id: string) => void;
 }
 
-const TableOfContentsItem = forwardRef<
-  HTMLButtonElement,
-  TableOfContentsItemProps
->(({ heading, onClick, children, activeId, level }, ref) => {
+const TableOfContentsItem = ({
+  heading,
+  onClick,
+  children,
+  activeId,
+  level,
+  registerChildRef,
+}: TableOfContentsItemProps) => {
   const { id, title } = heading;
+
+  const attachRef = useCallback(
+    (element: HTMLButtonElement | null) => registerChildRef(element, id),
+    [id, registerChildRef],
+  );
 
   return (
     <motion.li
@@ -28,7 +38,7 @@ const TableOfContentsItem = forwardRef<
     >
       <button
         type="button"
-        ref={ref}
+        ref={attachRef}
         onClick={() => onClick(id)}
         className={clsx(
           'text-left w-full cursor-pointer hover:opacity-100 transition-opacity duration-300 btn-hover p-1 rounded-md',
@@ -43,8 +53,6 @@ const TableOfContentsItem = forwardRef<
       {children}
     </motion.li>
   );
-});
-
-TableOfContentsItem.displayName = 'TableOfContentsItem';
+};
 
 export default TableOfContentsItem;
