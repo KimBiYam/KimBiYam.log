@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useAtomValue } from 'jotai';
+import { motion } from 'motion/react';
 
 import ArrowUpIcon from '@src/assets/svgs/arrow_up.svg';
 import scrollAtom from '@src/atoms/scrollAtom';

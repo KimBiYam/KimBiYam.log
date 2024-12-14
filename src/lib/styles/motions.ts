@@ -1,4 +1,4 @@
-import { MotionProps } from 'framer-motion';
+import { MotionProps } from 'motion/react';
 
 export const viewportOpacityMotion: MotionProps = {
   initial: { opacity: 0 },
