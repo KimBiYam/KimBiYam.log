@@ -8,7 +8,7 @@ const useScrollObserver = ({
   threshold = 1.0,
   rootMargin,
 }: {
-  targetRef: RefObject<HTMLElement>;
+  targetRef: RefObject<HTMLElement | null>;
   enabled: boolean | undefined;
   onIntersect: () => void;
   root?: Element | Document | null | undefined;

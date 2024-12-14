@@ -21,7 +21,7 @@ const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
     });
 
     return (
-      <div className="sticky z-40 top-14">
+      (<div className="sticky z-40 top-14">
         <div
           className="flex pt-4 -mx-6 overflow-auto md:mx-0 scrollbar-hide main-container"
           ref={ref}
@@ -32,11 +32,13 @@ const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
               tag={tag}
               onTagClick={setTag}
               isSelected={tag === selectedTag}
-              ref={(instance) => registerChildRef(instance, tag)}
+              ref={instance => {
+                registerChildRef(instance, tag);
+              }}
             />
           ))}
         </div>
-      </div>
+      </div>)
     );
   },
 );

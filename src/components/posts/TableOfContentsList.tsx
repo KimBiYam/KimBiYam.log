@@ -18,14 +18,16 @@ export default function TableOfContentsList({
   level = 0,
 }: TableOfContentsListProps) {
   return (
-    <ul style={{ marginLeft: level ? `${level * 0.75}rem` : 0 }}>
+    (<ul style={{ marginLeft: level ? `${level * 0.75}rem` : 0 }}>
       {headings.map((heading) => (
         <TableOfContentsItem
           key={heading.id}
           heading={heading}
           onClick={onItemClick}
           activeId={activeId}
-          ref={(instance) => registerChildRef(instance, heading.id)}
+          ref={instance => {
+            registerChildRef(instance, heading.id);
+          }}
           level={level}
         >
           {Array.isArray(heading.children) && heading.children.length > 0 && (
@@ -39,6 +41,6 @@ export default function TableOfContentsList({
           )}
         </TableOfContentsItem>
       ))}
-    </ul>
+    </ul>)
   );
 }

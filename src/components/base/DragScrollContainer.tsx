@@ -10,7 +10,7 @@ interface Position {
 }
 
 interface DragScrollContainerProps {
-  children: React.ReactElement<{ ref: React.RefObject<HTMLElement> }>;
+  children: React.ReactElement<{ ref: React.RefObject<HTMLElement | null> }>;
 }
 
 const DragScrollContainer = ({ children }: DragScrollContainerProps) => {

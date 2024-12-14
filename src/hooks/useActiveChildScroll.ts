@@ -6,7 +6,7 @@ interface UseActiveItemScrollProps<P> {
   pageScrolling?: boolean;
 }
 
-const isRefObject = <T>(ref?: React.Ref<T>): ref is React.RefObject<T> =>
+const isRefObject = <T>(ref?: React.Ref<T>): ref is React.RefObject<T | null> =>
   !!ref && typeof ref !== 'function';
 
 const useActiveChildScroll = <P extends HTMLElement, C extends HTMLElement>({
