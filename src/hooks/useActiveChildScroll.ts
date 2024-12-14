@@ -45,7 +45,7 @@ const useActiveChildScroll = <P extends HTMLElement, C extends HTMLElement>({
     if (!scrollPosition) return;
 
     const { top, left } = scrollPosition;
-    parentRef.current.scroll({ top, left, behavior: 'smooth' });
+    parentRef.current?.scroll({ top, left, behavior: 'smooth' });
   }, [activeId, pageScrolling, parentRef]);
 
   const registerChildRef = useCallback(
