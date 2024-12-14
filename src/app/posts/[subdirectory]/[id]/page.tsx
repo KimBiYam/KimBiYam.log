@@ -16,11 +16,9 @@ export function generateStaticParams() {
   return paths;
 }
 
-export async function generateMetadata(
-  props: {
-    params: Promise<PostPath>;
-  }
-): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<PostPath>;
+}): Promise<Metadata> {
   const params = await props.params;
   const subdirectory = params?.subdirectory;
   const id = String(params?.id);
@@ -44,7 +42,9 @@ export async function generateMetadata(
   };
 }
 
-export default async function PostDetailPage(props: { params: Promise<PostPath> }) {
+export default async function PostDetailPage(props: {
+  params: Promise<PostPath>;
+}) {
   const params = await props.params;
   const subdirectory = params?.subdirectory;
   const id = String(params?.id);
