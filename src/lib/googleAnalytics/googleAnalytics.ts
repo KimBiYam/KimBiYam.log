@@ -12,14 +12,11 @@ declare global {
   }
 }
 
-const GA_EVENT_KEYS = {
-  darkModeOn: 'dark_mode_on',
-  darkModeOff: 'dark_mode_off',
-} as const;
+export type GaEventKeys = 'dark_mode_on' | 'dark_mode_off';
 
 export default class GA {
   static trackEvent(
-    eventKey: (typeof GA_EVENT_KEYS)[keyof typeof GA_EVENT_KEYS],
+    eventKey: GaEventKeys,
     params?: Record<string | number | symbol, unknown>,
   ) {
     if (!window.gtag) return;
