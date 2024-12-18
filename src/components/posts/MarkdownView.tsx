@@ -38,7 +38,7 @@ export default function MarkdownView({
   imageSizes,
 }: MarkdownViewProps) {
   const { theme } = useTheme();
-  const { setEl } = useCreateHeadingLink();
+  const { attachRef } = useCreateHeadingLink();
 
   const mediumZoomBackground =
     theme === Theme.dark
@@ -46,7 +46,7 @@ export default function MarkdownView({
       : tailwindTheme.colors.white;
 
   return (
-    <div className="w-full max-w-full prose dark:prose-dark" ref={setEl}>
+    <div className="w-full max-w-full prose dark:prose-dark" ref={attachRef}>
       <ReactMarkdown
         className={firaCode.variable}
         remarkPlugins={[remarkGfm]}
