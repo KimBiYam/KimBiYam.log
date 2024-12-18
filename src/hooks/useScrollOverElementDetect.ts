@@ -1,19 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
+import useEventCallback from './useEventCallback';
 import useThrottle from './useThrottle';
 
 const THROTTLE_TIME_MS = 100;
 
-export default function useScrollOverElementDetect(
-  ref: React.RefObject<HTMLElement | null>,
-) {
+interface UseScrollOverElementDetectProps {
+  onOverElementChanged?: (isOverElement: boolean) => void;
+}
+export default function useScrollOverElementDetect({
+  onOverElementChanged,
+}: UseScrollOverElementDetectProps = {}) {
   const [isOverElement, setIsOverElement] = useState(false);
+  const [el, setEl] = useState<HTMLElement | null>(null);
 
-  const handleScroll = useThrottle(() => {
-    if (!ref.current) return;
-    const { bottom } = ref.current.getBoundingClientRect();
-    setIsOverElement(bottom < 0);
-  }, THROTTLE_TIME_MS);
+  const attachRef = useCallback((el: HTMLElement | null) => {
+    setEl(el);
+  }, []);
+
+  const checkIsOverElement = useEventCallback(() => {
+    if (!el) return;
+    const { bottom } = el.getBoundingClientRect();
+
+    const currentIsOverElement = bottom < 0;
+    setIsOverElement(currentIsOverElement);
+
+    if (isOverElement !== currentIsOverElement) {
+      onOverElementChanged?.(currentIsOverElement);
+    }
+  }, [el, isOverElement, onOverElementChanged]);
+
+  const handleScroll = useThrottle(checkIsOverElement, THROTTLE_TIME_MS);
 
   useEffect(() => {
     document.addEventListener('scroll', handleScroll);
@@ -21,7 +38,13 @@ export default function useScrollOverElementDetect(
     return () => {
       document.removeEventListener('scroll', handleScroll);
     };
-  }, [handleScroll]);
+  }, [el, handleScroll]);
 
-  return isOverElement;
+  useEffect(() => {
+    if (el) {
+      checkIsOverElement();
+    }
+  }, [el, checkIsOverElement]);
+
+  return { isOverElement, attachRef };
 }

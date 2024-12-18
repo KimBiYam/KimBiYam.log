@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import dynamic from 'next/dynamic';
@@ -26,22 +26,18 @@ interface PostViewProps {
 
 const PostView = ({ postDetail, imageSizes }: PostViewProps) => {
   const { title, date, contentHtml, tag } = postDetail;
-  const titleRef = useRef<HTMLHeadingElement>(null);
   const setHeaderTitleAtom = useSetAtom(headerTitleAtom);
 
   const mounted = useMounted();
   const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
-  const isScrollOverTitle = useScrollOverElementDetect(titleRef);
-
-  useEffect(
-    function setScrollOverTitle() {
+  const { attachRef } = useScrollOverElementDetect({
+    onOverElementChanged(isOverElement) {
       setHeaderTitleAtom((prev) => ({
         ...prev,
-        isShowTitle: isScrollOverTitle,
+        isShowTitle: isOverElement,
       }));
     },
-    [isScrollOverTitle, setHeaderTitleAtom],
-  );
+  });
 
   useEffect(
     function setHeaderTitle() {
@@ -56,7 +52,7 @@ const PostView = ({ postDetail, imageSizes }: PostViewProps) => {
 
   return (
     <article className="relative mt-8">
-      <h1 className="text-3xl font-bold md:text-4xl" ref={titleRef}>
+      <h1 className="text-3xl font-bold md:text-4xl" ref={attachRef}>
         {title}
       </h1>
       <div className="flex items-center justify-between my-4">
