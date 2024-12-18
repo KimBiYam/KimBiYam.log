@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 
 import HeadingLink from '@src/components/posts/HeadingLink';
@@ -23,8 +23,6 @@ const findHeadingElements = (element: HTMLElement): HTMLElement[] => {
 const useCreateHeadingLink = () => {
   const [el, setEl] = useState<HTMLElement | null>(null);
 
-  const attachRef = useCallback(setEl, [setEl]);
-
   useEffect(() => {
     if (!el) return;
 
@@ -39,7 +37,7 @@ const useCreateHeadingLink = () => {
     });
   }, [el]);
 
-  return { attachRef };
+  return { setEl };
 };
 
 export default useCreateHeadingLink;
