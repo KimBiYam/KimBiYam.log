@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import { useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { PluggableList } from 'react-markdown/lib';
 
@@ -38,10 +37,8 @@ export default function MarkdownView({
   contentHtml,
   imageSizes,
 }: MarkdownViewProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
-
-  useCreateHeadingLink(containerRef);
+  const { attachRef } = useCreateHeadingLink();
 
   const mediumZoomBackground =
     theme === Theme.dark
@@ -49,7 +46,7 @@ export default function MarkdownView({
       : tailwindTheme.colors.white;
 
   return (
-    <div className="w-full max-w-full prose dark:prose-dark" ref={containerRef}>
+    <div className="w-full max-w-full prose dark:prose-dark" ref={attachRef}>
       <ReactMarkdown
         className={firaCode.variable}
         remarkPlugins={[remarkGfm]}
