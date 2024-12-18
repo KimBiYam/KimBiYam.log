@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import useThrottle from './useThrottle';
 
@@ -42,11 +42,14 @@ const useActiveHeadingDetector = () => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const headingsScrollRef = useRef<HeadingScrollPosition[]>([]);
 
-  const handleScroll = useThrottle(() => {
-    const { scrollY } = window;
+  const handleScroll = useThrottle(
+    useCallback(() => {
+      const { scrollY } = window;
 
-    setActiveId(findClosestScrollId(headingsScrollRef.current, scrollY));
-  }, THROTTLE_TIME_MS);
+      setActiveId(findClosestScrollId(headingsScrollRef.current, scrollY));
+    }, []),
+    THROTTLE_TIME_MS,
+  );
 
   useEffect(() => {
     headingsScrollRef.current = getHeadingsScrollPosition();
