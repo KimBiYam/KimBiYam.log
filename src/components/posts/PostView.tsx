@@ -30,7 +30,7 @@ const PostView = ({ postDetail, imageSizes }: PostViewProps) => {
 
   const mounted = useMounted();
   const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
-  const { attachRef } = useScrollOverElementDetect({
+  const { setEl } = useScrollOverElementDetect({
     onOverElementChanged(isOverElement) {
       setHeaderTitleAtom((prev) => ({
         ...prev,
@@ -52,7 +52,7 @@ const PostView = ({ postDetail, imageSizes }: PostViewProps) => {
 
   return (
     <article className="relative mt-8">
-      <h1 className="text-3xl font-bold md:text-4xl" ref={attachRef}>
+      <h1 className="text-3xl font-bold md:text-4xl" ref={setEl}>
         {title}
       </h1>
       <div className="flex items-center justify-between my-4">

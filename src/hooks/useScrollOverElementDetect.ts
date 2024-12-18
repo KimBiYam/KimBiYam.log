@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import useEventCallback from './useEventCallback';
 import useThrottle from './useThrottle';
@@ -13,10 +13,6 @@ export default function useScrollOverElementDetect({
 }: UseScrollOverElementDetectProps = {}) {
   const [isOverElement, setIsOverElement] = useState(false);
   const [el, setEl] = useState<HTMLElement | null>(null);
-
-  const attachRef = useCallback((el: HTMLElement | null) => {
-    setEl(el);
-  }, []);
 
   const checkIsOverElement = useEventCallback(() => {
     if (!el) return;
@@ -46,5 +42,5 @@ export default function useScrollOverElementDetect({
     }
   }, [el, checkIsOverElement]);
 
-  return { isOverElement, attachRef };
+  return { isOverElement, setEl };
 }
