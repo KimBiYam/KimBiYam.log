@@ -1,6 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
-const useThrottle = (callback: () => void, throttleTimeMs: number) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const useThrottle = <F extends (...args: any[]) => any>(
+  callback: F,
+  throttleTimeMs: number,
+) => {
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(
@@ -10,16 +14,19 @@ const useThrottle = (callback: () => void, throttleTimeMs: number) => {
     [],
   );
 
-  return () => {
-    if (timeoutIdRef.current) {
-      return;
-    }
+  return useCallback(
+    (...args: Parameters<F>) => {
+      if (timeoutIdRef.current) {
+        return;
+      }
 
-    timeoutIdRef.current = setTimeout(() => {
-      callback();
-      timeoutIdRef.current = null;
-    }, throttleTimeMs);
-  };
+      timeoutIdRef.current = setTimeout(() => {
+        callback(...args);
+        timeoutIdRef.current = null;
+      }, throttleTimeMs);
+    },
+    [callback, throttleTimeMs],
+  );
 };
 
 export default useThrottle;
