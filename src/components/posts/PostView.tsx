@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import dynamic from 'next/dynamic';
@@ -27,6 +27,9 @@ interface PostViewProps {
 const PostView = ({ postDetail, imageSizes }: PostViewProps) => {
   const { title, date, contentHtml, tag } = postDetail;
   const setHeaderTitleAtom = useSetAtom(headerTitleAtom);
+  const [markdownViewEl, setMarkdownViewEl] = useState<HTMLDivElement | null>(
+    null,
+  );
 
   const mounted = useMounted();
   const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
@@ -59,8 +62,14 @@ const PostView = ({ postDetail, imageSizes }: PostViewProps) => {
         <PostDateText>{date}</PostDateText>
         <TagBadge tag={tag.toUpperCase()} />
       </div>
-      <MarkdownView contentHtml={contentHtml} imageSizes={imageSizes} />
-      {mounted && isUpExtraLargeScreen && <DynamicTableOfContents />}
+      <MarkdownView
+        ref={setMarkdownViewEl}
+        contentHtml={contentHtml}
+        imageSizes={imageSizes}
+      />
+      {mounted && isUpExtraLargeScreen && (
+        <DynamicTableOfContents targetElement={markdownViewEl} />
+      )}
     </article>
   );
 };

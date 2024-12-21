@@ -2,29 +2,14 @@ import React, { useCallback } from 'react';
 import ReactDOM from 'react-dom/client';
 
 import HeadingLink from '@src/components/posts/HeadingLink';
-
-const TARGET_TAGS = ['h2', 'h3'];
-
-const findHeadingElements = (element: HTMLElement): HTMLElement[] => {
-  return Array.from(element.children).reduce<HTMLElement[]>(
-    (results, child) => {
-      if (!(child instanceof HTMLElement)) return results;
-
-      const newResults = TARGET_TAGS.includes(child.tagName.toLowerCase())
-        ? [...results, child]
-        : results;
-
-      return [...newResults, ...findHeadingElements(child)];
-    },
-    [],
-  );
-};
+import { POST_HEADING_TARGET_TAGS } from '@src/constants/posts';
+import { findElementsByTags } from '@src/utils/elementUtils';
 
 const useCreateHeadingLink = () => {
-  const attachRef = useCallback((el: HTMLElement | null) => {
+  const attachRef = useCallback(<T extends HTMLElement>(el: T | null) => {
     if (!el) return;
 
-    const headingElements = findHeadingElements(el);
+    const headingElements = findElementsByTags(el, POST_HEADING_TARGET_TAGS);
 
     headingElements.forEach((headingEl) => {
       const { id, textContent } = headingEl;

@@ -9,8 +9,11 @@ import TableOfContentsList from './TableOfContentsList';
 
 const MemoizedTableOfContentsList = memo(TableOfContentsList);
 
-const TableOfContents = () => {
-  const headings = useTableOfContents();
+interface TableOfContentsProps {
+  targetElement: HTMLElement | null;
+}
+const TableOfContents = ({ targetElement }: TableOfContentsProps) => {
+  const headings = useTableOfContents(targetElement);
   const activeId = useActiveHeadingDetector();
   const pageScrolling = useDetectPageScrolling();
   const navRef = useRef<HTMLElement>(null);
