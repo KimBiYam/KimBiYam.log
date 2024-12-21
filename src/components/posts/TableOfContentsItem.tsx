@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 
 import clsx from 'clsx';
 import { motion } from 'motion/react';
@@ -9,7 +9,7 @@ interface TableOfContentsItemProps {
   heading: TableOfContentHeading;
   onClick: (id: string) => void;
   children?: React.ReactNode;
-  activeId: string | null;
+  isActive: boolean;
   level: number;
   registerChildRef: (instance: HTMLElement | null, id: string) => void;
 }
@@ -18,7 +18,7 @@ const TableOfContentsItem = ({
   heading,
   onClick,
   children,
-  activeId,
+  isActive,
   level,
   registerChildRef,
 }: TableOfContentsItemProps) => {
@@ -43,8 +43,8 @@ const TableOfContentsItem = ({
         className={clsx(
           'text-left w-full cursor-pointer hover:opacity-100 transition-opacity duration-300 btn-hover p-1 rounded-md',
           {
-            'opacity-100 font-bold': activeId === id,
-            'opacity-60': activeId !== id,
+            'opacity-100 font-bold': isActive,
+            'opacity-60': !isActive,
           },
         )}
       >
@@ -55,4 +55,4 @@ const TableOfContentsItem = ({
   );
 };
 
-export default TableOfContentsItem;
+export default memo(TableOfContentsItem);
