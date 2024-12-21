@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import ReactMarkdown from 'react-markdown';
 import { PluggableList } from 'react-markdown/lib';
@@ -61,11 +61,13 @@ export default React.forwardRef<HTMLDivElement, MarkdownViewProps>(
       });
     }, []);
 
+    const mergedRefs = useMemo(
+      () => mergeRefs(renderHeadingLink, ref),
+      [ref, renderHeadingLink],
+    );
+
     return (
-      <div
-        className="w-full max-w-full prose dark:prose-dark"
-        ref={mergeRefs(renderHeadingLink, ref)}
-      >
+      <div className="w-full max-w-full prose dark:prose-dark" ref={mergedRefs}>
         <ReactMarkdown
           className={firaCode.variable}
           remarkPlugins={[remarkGfm]}
