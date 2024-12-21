@@ -18,7 +18,7 @@ import useCreateHeadingLink from '@src/hooks/useCreateHeadingLink';
 import useTheme from '@src/hooks/useTheme';
 import '@src/lib/styles/code.css';
 import { PostImageSize } from '@src/types/post.types';
-import { mergeRefs } from '@src/utils/mergeRefs';
+import { mergeRefs } from '@src/utils/refUtils';
 
 import { theme as tailwindTheme } from '../../../tailwind.config';
 import MediumZoom from '../base/MediumZoom';

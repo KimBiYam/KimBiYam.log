@@ -5,7 +5,7 @@ import React, { useEffect, useRef } from 'react';
 import mediumZoom, { ZoomOptions } from 'medium-zoom';
 
 import { isServer } from '@src/utils/isServer';
-import { mergeRefs } from '@src/utils/mergeRefs';
+import { mergeRefs } from '@src/utils/refUtils';
 
 interface MediumZoomProps<P> extends ZoomOptions {
   children: React.ReactElement<P>;
