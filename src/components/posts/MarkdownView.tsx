@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import ReactMarkdown from 'react-markdown';
 import { PluggableList } from 'react-markdown/lib';
 
@@ -14,12 +15,14 @@ import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 
 import { Theme } from '@src/constants/enums';
-import useCreateHeadingLink from '@src/hooks/useCreateHeadingLink';
+import { POST_HEADING_TARGET_TAGS } from '@src/constants/posts';
 import useTheme from '@src/hooks/useTheme';
 import '@src/lib/styles/code.css';
 import { PostImageSize } from '@src/types/post.types';
+import { findElementsByTags } from '@src/utils/elementUtils';
 import { mergeRefs } from '@src/utils/refUtils';
 
+import HeadingLink from './HeadingLink';
 import { theme as tailwindTheme } from '../../../tailwind.config';
 import MediumZoom from '../base/MediumZoom';
 
@@ -38,17 +41,30 @@ interface MarkdownViewProps {
 export default React.forwardRef<HTMLDivElement, MarkdownViewProps>(
   function MarkdownView({ contentHtml, imageSizes }, ref) {
     const { theme } = useTheme();
-    const { attachRef } = useCreateHeadingLink();
 
     const mediumZoomBackground =
       theme === Theme.dark
         ? tailwindTheme.colors.neutral[900]
         : tailwindTheme.colors.white;
 
+    const renderHeadingLink = useCallback((el: HTMLDivElement) => {
+      if (!el) return;
+
+      const headingElements = findElementsByTags(el, POST_HEADING_TARGET_TAGS);
+
+      headingElements.forEach((headingEl) => {
+        const { id, textContent } = headingEl;
+
+        headingEl.innerHTML = renderToStaticMarkup(
+          <HeadingLink href={`#${id}`} text={textContent} />,
+        );
+      });
+    }, []);
+
     return (
       <div
         className="w-full max-w-full prose dark:prose-dark"
-        ref={mergeRefs(attachRef<HTMLDivElement>, ref)}
+        ref={mergeRefs(renderHeadingLink, ref)}
       >
         <ReactMarkdown
           className={firaCode.variable}
