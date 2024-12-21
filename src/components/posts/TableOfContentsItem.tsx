@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { useCallback } from 'react';
 
 import clsx from 'clsx';
 import { motion } from 'motion/react';
@@ -55,4 +55,4 @@ const TableOfContentsItem = ({
   );
 };
 
-export default memo(TableOfContentsItem);
+export default TableOfContentsItem;
