@@ -14,7 +14,7 @@ interface TableOfContentsProps {
 }
 const TableOfContents = ({ targetElement }: TableOfContentsProps) => {
   const headings = useTableOfContents(targetElement);
-  const activeId = useActiveHeadingDetector();
+  const activeId = useActiveHeadingDetector(targetElement);
   const pageScrolling = useDetectPageScrolling();
   const navRef = useRef<HTMLElement>(null);
 

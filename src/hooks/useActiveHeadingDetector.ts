@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import { POST_HEADING_TARGET_TAGS } from '@src/constants/posts';
+import { findElementsByTags } from '@src/utils/elementUtils';
+
 import useThrottle from './useThrottle';
 
 interface HeadingScrollPosition {
@@ -11,8 +14,11 @@ const THROTTLE_TIME_MS = 100;
 const CHECK_SCROLL_HEIGHT_INTERVAL_MS = 250;
 const SCROLL_MARGIN_PX = 10;
 
-const getHeadingsScrollPosition = () => {
-  const headingElements = document.querySelectorAll<HTMLElement>('h2, h3');
+const getHeadingsScrollPosition = (targetElement: HTMLElement) => {
+  const headingElements = findElementsByTags(
+    targetElement,
+    POST_HEADING_TARGET_TAGS,
+  );
 
   return Array.from(headingElements).map((el) => ({
     id: el.id,
@@ -38,7 +44,7 @@ const findClosestScrollId = (
   return closest.id;
 };
 
-const useActiveHeadingDetector = () => {
+const useActiveHeadingDetector = (targetElement: HTMLElement | null) => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const headingsScrollRef = useRef<HeadingScrollPosition[]>([]);
 
@@ -52,7 +58,9 @@ const useActiveHeadingDetector = () => {
   );
 
   useEffect(() => {
-    headingsScrollRef.current = getHeadingsScrollPosition();
+    if (!targetElement) return;
+
+    headingsScrollRef.current = getHeadingsScrollPosition(targetElement);
 
     let prevScrollHeight = document.body.scrollHeight;
     let timeoutId: NodeJS.Timeout | null = null;
@@ -61,7 +69,7 @@ const useActiveHeadingDetector = () => {
       const { scrollHeight } = document.body;
 
       if (prevScrollHeight !== scrollHeight) {
-        headingsScrollRef.current = getHeadingsScrollPosition();
+        headingsScrollRef.current = getHeadingsScrollPosition(targetElement);
       }
 
       prevScrollHeight = scrollHeight;
@@ -76,7 +84,7 @@ const useActiveHeadingDetector = () => {
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, []);
+  }, [targetElement]);
 
   useEffect(() => {
     document.addEventListener('scroll', handleScroll);
