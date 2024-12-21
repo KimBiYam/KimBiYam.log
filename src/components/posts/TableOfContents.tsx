@@ -7,8 +7,6 @@ import useTableOfContents from '@src/hooks/useTableOfContents';
 
 import TableOfContentsList from './TableOfContentsList';
 
-const MemoizedTableOfContentsList = memo(TableOfContentsList);
-
 interface TableOfContentsProps {
   targetElement: HTMLElement | null;
 }
@@ -35,7 +33,7 @@ const TableOfContents = ({ targetElement }: TableOfContentsProps) => {
         className="fixed flex flex-col w-56 pr-4 ml-12 overflow-y-auto 2xl:right-8 scrollbar-thin h-2/3 top-36 max-h-[480px]"
         ref={navRef}
       >
-        <MemoizedTableOfContentsList
+        <TableOfContentsList
           activeId={activeId}
           headings={headings}
           onItemClick={handleItemClick}
@@ -46,4 +44,4 @@ const TableOfContents = ({ targetElement }: TableOfContentsProps) => {
   );
 };
 
-export default TableOfContents;
+export default memo(TableOfContents);
