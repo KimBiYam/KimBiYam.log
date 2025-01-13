@@ -13,8 +13,6 @@ import { PAGE_TITLE_SUFFIX } from '@src/constants/metadata';
 import { generateOpenGraphMetaData } from './metadataBase';
 import { theme as tailwindTheme } from '../../tailwind.config';
 import ClientRootLayout from '../components/base/ClientRootLayout';
-import MainLayout from '../components/base/MainLayout';
-import ThemeProvider from '../components/base/ThemeProvider';
 
 import type { Metadata, Viewport } from 'next';
 
@@ -62,11 +60,7 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
         />
       </head>
       <body className="main-container main-font-color">
-        <ClientRootLayout>
-          <ThemeProvider>
-            <MainLayout>{children}</MainLayout>
-          </ThemeProvider>
-        </ClientRootLayout>
+        <ClientRootLayout>{children}</ClientRootLayout>
         <Script src="/setViewportProperty.js" strategy="lazyOnload" />
         <Script src="/prettyConsole.js" strategy="lazyOnload" />
         <Analytics />
