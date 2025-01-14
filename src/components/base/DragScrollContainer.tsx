@@ -71,6 +71,7 @@ const DragScrollContainer = ({ children }: DragScrollContainerProps) => {
     };
   }, [handleMouseDown, handleMouseMove, handleMouseUp]);
 
+  // eslint-disable-next-line react-compiler/react-compiler
   return React.cloneElement(children, { ref });
 };
 

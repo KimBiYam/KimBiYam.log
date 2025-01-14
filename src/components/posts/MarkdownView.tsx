@@ -55,6 +55,7 @@ export default React.forwardRef<HTMLDivElement, MarkdownViewProps>(
       headingElements.forEach((headingEl) => {
         const { id, textContent } = headingEl;
 
+        // eslint-disable-next-line react-compiler/react-compiler
         headingEl.innerHTML = renderToStaticMarkup(
           <HeadingLink href={`#${id}`} text={textContent} />,
         );

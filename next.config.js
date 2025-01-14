@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const defaultConfig = {
   reactStrictMode: true,
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -14,28 +14,32 @@ const nextConfig = {
 
     return config;
   },
+  experimental: {
+    reactCompiler: true,
+  },
 };
 
-// eslint-disable-next-line import/order
+// eslint-disable-next-line import/order, @typescript-eslint/no-require-imports
 const withBundleAnalyzer = require('@next/bundle-analyzer');
 
-module.exports = (() => {
+const nextConfig = (() => {
   try {
     if (process.env.ANALYZE && JSON.parse(process.env.ANALYZE) === true) {
-      return withBundleAnalyzer(nextConfig);
+      return withBundleAnalyzer(defaultConfig);
     }
 
-    return nextConfig;
+    return defaultConfig;
   } catch (e) {
-    return nextConfig;
+    return defaultConfig;
   }
 })();
 
 // Injected content via Sentry wizard below
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const { withSentryConfig } = require('@sentry/nextjs');
 
-module.exports = withSentryConfig(module.exports, {
+module.exports = withSentryConfig(nextConfig, {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
 
