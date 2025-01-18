@@ -34,6 +34,7 @@ export async function generateMetadata(props: {
     title,
     description,
     openGraph: generateOpenGraphMetaData({
+      type: 'article',
       title,
       description,
       path: `/posts/${subdirectory}/${id}`,
