@@ -1,3 +1,4 @@
+import { captureException } from '@sentry/nextjs';
 import { Metadata } from 'next';
 
 import { generateOpenGraphMetaData } from '@src/app/metadataBase';
@@ -43,6 +44,7 @@ export async function generateMetadata(props: {
       }),
     };
   } catch (e) {
+    captureException(e);
     return {};
   }
 }

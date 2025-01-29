@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 import { PostDetail } from '@src/types/post.types';
 
 import { getMarkdownData } from './markdown';
@@ -31,6 +33,9 @@ export const getPostDetail = async (
       ...rest,
     };
   } catch (e) {
+    if (e instanceof Error && (e as NodeJS.ErrnoException).code === 'ENOENT') {
+      notFound();
+    }
     throw e;
   }
 };
