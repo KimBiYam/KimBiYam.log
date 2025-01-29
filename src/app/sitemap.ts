@@ -3,8 +3,8 @@ import { MetadataRoute } from 'next';
 import { DOMAIN_URL } from '@src/constants/server';
 import { getAllPostPaths } from '@src/lib/posts/postList';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const postPaths = getAllPostPaths();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const postPaths = await getAllPostPaths();
 
   return [
     {
