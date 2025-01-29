@@ -7,9 +7,9 @@ import RemoveMarkdown from 'remove-markdown';
 import { POST_DIRECTORY } from '@src/constants/directories';
 import { PostPath, PostPreview } from '@src/types/post.types';
 
-export const getAllPostPaths = (): { params: PostPath }[] => {
+export const getAllPostPaths = async (): Promise<{ params: PostPath }[]> => {
   const MARKDOWN_FILE_EXTENSION_REG_EXP = RegExp(/\.md$/);
-  const markdownFilePaths = getPostMarkdownFilePaths();
+  const markdownFilePaths = await getPostMarkdownFilePaths();
 
   const paths = markdownFilePaths.map((markdownFilePath) => {
     const [subdirectory, fileName] = markdownFilePath.split('/');
@@ -26,10 +26,9 @@ export const getAllPostPaths = (): { params: PostPath }[] => {
   return paths;
 };
 
-export const getSortedPostPreviews = () => {
-  const filePaths = getPostMarkdownFilePaths();
-
-  const allPosts = filePaths.map(getPostPreview);
+export const getSortedPostPreviews = async () => {
+  const filePaths = await getPostMarkdownFilePaths();
+  const allPosts = await Promise.all(filePaths.map(getPostPreview));
 
   const sortedAllPosts = [...allPosts].sort((a, b) =>
     a.date < b.date ? 1 : -1,
@@ -38,26 +37,25 @@ export const getSortedPostPreviews = () => {
   return sortedAllPosts;
 };
 
-const getPostMarkdownFilePaths = () => {
-  const directories = fs.readdirSync(POST_DIRECTORY);
-
-  return directories.flatMap((directory) => {
-    const fileNames = fs.readdirSync(`${POST_DIRECTORY}/${directory}`);
-    const markdownFileNames = fileNames.filter((fileName) =>
-      fileName.endsWith('.md'),
-    );
-
-    return markdownFileNames.map(
-      (markdownFileName) => `${directory}/${markdownFileName}`,
-    );
-  });
+const getPostMarkdownFilePaths = async () => {
+  const directories = await fs.promises.readdir(POST_DIRECTORY);
+  const filePaths = await Promise.all(directories.map(getMarkdownFileNames));
+  return filePaths.flat();
 };
 
-const getPostPreview = (fileName: string): PostPreview => {
+const getMarkdownFileNames = async (directory: string) => {
+  const fileNames = await fs.promises.readdir(`${POST_DIRECTORY}/${directory}`);
+
+  return fileNames
+    .filter((fileName) => fileName.endsWith('.md'))
+    .map((fileName) => `${directory}/${fileName}`);
+};
+
+const getPostPreview = async (fileName: string): Promise<PostPreview> => {
   const id = fileName.replace(/\.md$/, '');
 
   const fullPath = path.join(POST_DIRECTORY, fileName);
-  const fileContents = fs.readFileSync(fullPath, 'utf-8');
+  const fileContents = await fs.promises.readFile(fullPath, 'utf-8');
 
   const matterResult = matter(fileContents);
 
