@@ -8,8 +8,8 @@ import TagSelectorSkeleton from '@src/components/posts/TagSelectorSkeleton';
 import { Tag } from '@src/constants/enums';
 import { getSortedPostPreviews } from '@src/lib/posts/postList';
 
-export default function HomePage() {
-  const postPreviews = getSortedPostPreviews();
+export default async function HomePage() {
+  const postPreviews = await getSortedPostPreviews();
 
   const tags = [
     Tag.all,

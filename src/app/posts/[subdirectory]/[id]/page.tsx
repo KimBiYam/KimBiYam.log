@@ -11,36 +11,40 @@ import { getPostImageSizes } from '@src/lib/posts/postImage';
 import { getAllPostPaths } from '@src/lib/posts/postList';
 import { PostPath } from '@src/types/post.types';
 
-export function generateStaticParams() {
-  const paths = getAllPostPaths();
+export async function generateStaticParams() {
+  const paths = await getAllPostPaths();
   return paths;
 }
 
 export async function generateMetadata(props: {
   params: Promise<PostPath>;
 }): Promise<Metadata> {
-  const params = await props.params;
-  const subdirectory = params?.subdirectory;
-  const id = String(params?.id);
+  try {
+    const params = await props.params;
+    const subdirectory = params?.subdirectory;
+    const id = String(params?.id);
 
-  const postDetail = await getPostDetail(
-    `${POST_DIRECTORY}/${subdirectory}`,
-    id,
-  );
+    const postDetail = await getPostDetail(
+      `${POST_DIRECTORY}/${subdirectory}`,
+      id,
+    );
 
-  const { title, description } = postDetail;
+    const { title, description } = postDetail;
 
-  return {
-    title,
-    description,
-    openGraph: generateOpenGraphMetaData({
-      type: 'article',
+    return {
       title,
       description,
-      path: `/posts/${subdirectory}/${id}`,
-      ogImageTitle: title,
-    }),
-  };
+      openGraph: generateOpenGraphMetaData({
+        type: 'article',
+        title,
+        description,
+        path: `/posts/${subdirectory}/${id}`,
+        ogImageTitle: title,
+      }),
+    };
+  } catch (e) {
+    return {};
+  }
 }
 
 export default async function PostDetailPage(props: {
