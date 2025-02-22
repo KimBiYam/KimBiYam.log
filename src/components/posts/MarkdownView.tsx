@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import React, { useCallback, useMemo } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { PluggableList } from 'react-markdown/lib';
 
@@ -19,12 +18,15 @@ import { POST_HEADING_TARGET_TAGS } from '@src/constants/posts';
 import useTheme from '@src/hooks/useTheme';
 import '@src/lib/styles/code.css';
 import { PostImageSize } from '@src/types/post.types';
-import { findElementsByTags } from '@src/utils/elementUtils';
-import { mergeRefs } from '@src/utils/refUtils';
 
 import HeadingLink from './HeadingLink';
 import { theme as tailwindTheme } from '../../../tailwind.config';
 import MediumZoom from '../base/MediumZoom';
+
+type HeadingComponent = (props: {
+  id: string;
+  children: React.ReactNode;
+}) => React.ReactNode;
 
 const firaCode = Fira_Code({
   weight: '500',
@@ -47,28 +49,8 @@ export default React.forwardRef<HTMLDivElement, MarkdownViewProps>(
         ? tailwindTheme.colors.neutral[900]
         : tailwindTheme.colors.white;
 
-    const renderHeadingLink = useCallback((el: HTMLDivElement) => {
-      if (!el) return;
-
-      const headingElements = findElementsByTags(el, POST_HEADING_TARGET_TAGS);
-
-      headingElements.forEach((headingEl) => {
-        const { id, textContent } = headingEl;
-
-        // eslint-disable-next-line react-compiler/react-compiler
-        headingEl.innerHTML = renderToStaticMarkup(
-          <HeadingLink href={`#${id}`} text={textContent} />,
-        );
-      });
-    }, []);
-
-    const mergedRefs = useMemo(
-      () => mergeRefs(renderHeadingLink, ref),
-      [ref, renderHeadingLink],
-    );
-
     return (
-      <div className="w-full max-w-full prose dark:prose-dark" ref={mergedRefs}>
+      <div className="w-full max-w-full prose dark:prose-dark" ref={ref}>
         <ReactMarkdown
           className={firaCode.variable}
           remarkPlugins={[remarkGfm]}
@@ -78,6 +60,18 @@ export default React.forwardRef<HTMLDivElement, MarkdownViewProps>(
             rehypeStringify,
           ]}
           components={{
+            ...POST_HEADING_TARGET_TAGS.reduce<
+              Record<string, HeadingComponent>
+            >((acc, tag) => {
+              const HeadingComponent: HeadingComponent = ({ children, id }) => (
+                <HeadingLink id={id} tag={tag}>
+                  {children}
+                </HeadingLink>
+              );
+
+              acc[tag] = HeadingComponent;
+              return acc;
+            }, {}),
             img: (props) => {
               if (!props.src) return null;
               const imageSize = imageSizes?.[props.src];
