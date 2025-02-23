@@ -8,9 +8,7 @@ type HeadingLinkProps = PropsWithChildren<{
   id: string;
 }>;
 
-const HeadingLink = ({ tag, id, children }: HeadingLinkProps) => {
-  const Tag = tag;
-
+const HeadingLink = ({ tag: Tag, id, children }: HeadingLinkProps) => {
   return (
     <Tag id={id}>
       <a
