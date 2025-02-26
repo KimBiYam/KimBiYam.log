@@ -4,7 +4,8 @@ import { HTMLAttributes } from 'react';
 
 import Link, { LinkProps } from 'next/link';
 
-import { motion } from 'motion/react';
+import { domAnimation, LazyMotion } from 'motion/react';
+import * as m from 'motion/react-m';
 
 import { hoverRotateMotion } from '@src/lib/styles/motions';
 
@@ -21,7 +22,9 @@ const ProfileLink = ({ href, title, children }: ProfileLinkProps) => (
     className="w-6 h-6 mr-3 duration-300 fill-current primary-text-hover"
     title={title}
   >
-    <motion.div {...hoverRotateMotion}>{children}</motion.div>
+    <LazyMotion features={domAnimation} strict>
+      <m.div {...hoverRotateMotion}>{children}</m.div>
+    </LazyMotion>
   </Link>
 );
 
