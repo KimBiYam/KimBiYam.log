@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const typographyPlugin = require('@tailwindcss/typography');
 const colors = require('tailwindcss/colors');
 
-const breakPoints = require('./src/lib/styles/breakPoints.json');
+const breakPoints = require('./src/shared/styles/breakPoints.json');
 
 delete colors.lightBlue;
 delete colors.warmGray;

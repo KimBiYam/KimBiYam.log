@@ -1,6 +1,6 @@
 import { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 
-import { DOMAIN_URL } from '@src/constants/server';
+import { DOMAIN_URL } from '@src/shared';
 
 export const generateOpenGraphMetaData = ({
   path = '',

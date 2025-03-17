@@ -1,12 +1,9 @@
 import { Suspense } from 'react';
 
-import DragScrollContainer from '@src/components/base/DragScrollContainer';
-import ProfileCard from '@src/components/base/ProfileCard';
-import PostList from '@src/components/posts/PostList';
-import TagSelector from '@src/components/posts/TagSelector';
-import TagSelectorSkeleton from '@src/components/posts/TagSelectorSkeleton';
-import { Tag } from '@src/constants/enums';
-import { getSortedPostPreviews } from '@src/lib/posts/postList';
+import { getSortedPostPreviews } from '@src/features/post/server';
+import { Tag, TagSelector, TagSelectorSkeleton } from '@src/features/tag';
+import { DragScrollContainer, ProfileCard } from '@src/shared';
+import { PostList } from '@src/widgets/post';
 
 export default async function HomePage() {
   const postPreviews = await getSortedPostPreviews();

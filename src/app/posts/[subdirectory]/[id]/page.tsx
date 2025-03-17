@@ -2,15 +2,18 @@ import { captureException } from '@sentry/nextjs';
 import { Metadata } from 'next';
 
 import { generateOpenGraphMetaData } from '@src/app/metadataBase';
-import ProfileCard from '@src/components/base/ProfileCard';
-import PostShareButtons from '@src/components/posts/PostShareButtons';
-import PostView from '@src/components/posts/PostView';
-import Utterances from '@src/components/posts/Utterances';
-import { POST_DIRECTORY } from '@src/constants/directories';
-import { getPostDetail } from '@src/lib/posts/postDetail';
-import { getPostImageSizes } from '@src/lib/posts/postImage';
-import { getAllPostPaths } from '@src/lib/posts/postList';
-import { PostPath } from '@src/types/post.types';
+import {
+  PostPath,
+  PostShareButtons,
+  PostView,
+} from '@src/features/post/client';
+import { POST_DIRECTORY } from '@src/features/post/constants/directories';
+import {
+  getPostDetail,
+  getPostImageSizes,
+  getAllPostPaths,
+} from '@src/features/post/server';
+import { ProfileCard, Utterances } from '@src/shared';
 
 export async function generateStaticParams() {
   const paths = await getAllPostPaths();
