@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
-import { DOMAIN_URL } from '@src/constants/server';
-import { getAllPostPaths } from '@src/lib/posts/postList';
+import { getAllPostPaths } from '@src/features/post/server';
+import { DOMAIN_URL } from '@src/shared';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const postPaths = await getAllPostPaths();

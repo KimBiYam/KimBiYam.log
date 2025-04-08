@@ -7,17 +7,17 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
-import { GOOGLE_ANALYTICS_TRACKING_ID } from '@src/constants/foundation';
-import { PAGE_TITLE_SUFFIX } from '@src/constants/metadata';
+import { PAGE_TITLE_SUFFIX } from '@src/_app';
+import { GOOGLE_ANALYTICS_TRACKING_ID } from '@src/shared/constants/foundation';
 
 import { generateOpenGraphMetaData } from './metadataBase';
 import { theme as tailwindTheme } from '../../tailwind.config';
-import ClientRootLayout from '../components/base/ClientRootLayout';
+import ClientRootLayout from '../_app/ui/ClientRootLayout';
 
 import type { Metadata, Viewport } from 'next';
 
-import '../lib/styles/global.css';
-import '../lib/styles/tailwind.css';
+import '../shared/styles/global.css';
+import '../shared/styles/tailwind.css';
 
 export const metadata: Metadata = {
   title: {
