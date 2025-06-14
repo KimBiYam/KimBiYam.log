@@ -1,3 +1,8 @@
+/* eslint-disable import/order */
+/* eslint-disable @typescript-eslint/no-require-imports */
+
+const { codeInspectorPlugin } = require('code-inspector-plugin');
+
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
 const defaultConfig = {
@@ -11,6 +16,8 @@ const defaultConfig = {
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
+
+    config.plugins.push(codeInspectorPlugin({ bundler: 'webpack' }));
 
     return config;
   },
