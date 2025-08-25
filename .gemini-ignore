@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output
+.next/
+
+# Git
+.git/
+
+# Lockfile
+pnpm-lock.yaml
+
+# Environment variables
+.env*
+!.env.local.sample
+
+# Editor settings
+.vscode/
+
+# Logs
+*.log
+
+# OS-specific
+.DS_Store
