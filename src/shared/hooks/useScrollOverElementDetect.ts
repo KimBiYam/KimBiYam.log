@@ -26,7 +26,7 @@ export default function useScrollOverElementDetect({
     if (isOverElement !== currentIsOverElement) {
       onOverElementChanged?.(currentIsOverElement);
     }
-  }, [el, isOverElement, onOverElementChanged]);
+  });
 
   const handleScroll = useThrottle(checkIsOverElement, THROTTLE_TIME_MS);
 
