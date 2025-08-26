@@ -4,10 +4,10 @@ import LinkIcon from '@src/assets/svgs/link_icon.svg';
 
 import { POST_HEADING_TARGET_TAGS } from '../constants';
 
-type HeadingLinkProps = PropsWithChildren<{
+interface HeadingLinkProps extends PropsWithChildren {
   tag: (typeof POST_HEADING_TARGET_TAGS)[number];
   id: string;
-}>;
+}
 
 const HeadingLink = ({ tag: Tag, id, children }: HeadingLinkProps) => {
   return (
