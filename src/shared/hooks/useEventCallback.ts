@@ -1,21 +1,17 @@
 'use client';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { DependencyList, useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
-const useEventCallback = <T extends (...args: any[]) => any>(
-  fn: T,
-  deps: DependencyList,
-) => {
-  const fnRef = useRef(fn);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const useEventCallback = <T extends (...args: any[]) => any>(callback: T) => {
+  const fnRef = useRef(callback);
 
   useEffect(() => {
-    fnRef.current = fn;
-    // eslint-disable-next-line react-compiler/react-compiler
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fn, ...deps]);
+    fnRef.current = callback;
+  }, [callback]);
 
-  return useCallback((...args: any[]) => fnRef.current(...args), [fnRef]) as T;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return useCallback((...args: any[]) => fnRef.current(...args), []) as T;
 };
 
 export default useEventCallback;

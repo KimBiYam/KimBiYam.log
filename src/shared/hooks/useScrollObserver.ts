@@ -19,7 +19,7 @@ const useScrollObserver = ({
   threshold?: number | number[] | undefined;
   rootMargin?: string;
 }) => {
-  const _onIntersect = useEventCallback(onIntersect, []);
+  const _onIntersect = useEventCallback(onIntersect);
 
   useEffect(() => {
     if (!enabled) return;
