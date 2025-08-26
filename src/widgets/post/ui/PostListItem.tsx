@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import Link from 'next/link';
 
 import { domAnimation, LazyMotion } from 'motion/react';
@@ -42,4 +40,4 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
   );
 };
 
-export default memo(PostListItem);
+export default PostListItem;
