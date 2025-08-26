@@ -1,7 +1,5 @@
 'use client';
 
-import { memo } from 'react';
-
 import { LazyMotion, domAnimation } from 'motion/react';
 import * as m from 'motion/react-m';
 
@@ -23,4 +21,4 @@ const Header = () => {
   );
 };
 
-export default memo(Header);
+export default Header;

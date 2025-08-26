@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useRef } from 'react';
+import { useRef } from 'react';
 
 import { useAtom } from 'jotai';
 
@@ -21,27 +21,18 @@ const PostList = ({ postPreviews }: PostListProps) => {
   const [postPage, setPostPage] = useAtom(postPageAtom);
   const selectedTag = useSelectedTag();
 
-  const handleIntersect = useCallback(
-    () => setPostPage((prev) => prev + 1),
-    [setPostPage],
-  );
-
   useScrollObserver({
     enabled: postPreviews.length > POST_COUNT_BY_PAGE * postPage,
-    onIntersect: handleIntersect,
+    onIntersect: () => setPostPage((prev) => prev + 1),
     targetRef: scrollRef,
   });
 
-  const filteredPostPreviews = useMemo(
-    () =>
-      postPreviews
-        .filter(
-          (postPreview) =>
-            selectedTag === Tag.all || postPreview.tag === selectedTag,
-        )
-        .splice(0, postPage * POST_COUNT_BY_PAGE),
-    [postPreviews, selectedTag, postPage],
-  );
+  const filteredPostPreviews = postPreviews
+    .filter(
+      (postPreview) =>
+        selectedTag === Tag.all || postPreview.tag === selectedTag,
+    )
+    .splice(0, postPage * POST_COUNT_BY_PAGE);
 
   return (
     <ul>
