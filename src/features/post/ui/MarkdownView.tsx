@@ -78,7 +78,7 @@ export default React.forwardRef<HTMLDivElement, MarkdownViewProps>(
                 <MediumZoom margin={24} background={mediumZoomBackground}>
                   <Image
                     src={props.src}
-                    alt={props.alt ?? ''}
+                    alt={props.alt ?? 'Blog post image'}
                     width={imageSize?.width ?? 700}
                     height={imageSize?.height ?? 400}
                     /**
@@ -90,7 +90,7 @@ export default React.forwardRef<HTMLDivElement, MarkdownViewProps>(
                 </MediumZoom>
               ) : (
                 <MediumZoom margin={24} background={mediumZoomBackground}>
-                  <img src={props.src} alt={props.alt} />
+                  <img src={props.src} alt={props.alt ?? 'Blog post image'} />
                 </MediumZoom>
               );
             },
