@@ -1,5 +1,6 @@
 import { join } from 'path';
 
+import * as Sentry from '@sentry/nextjs';
 import sizeOf from 'image-size';
 
 import { PostImageSize } from '../types';
@@ -20,7 +21,14 @@ export const getPostImageSizes = (postContentHtml: string) => {
         imageSizes[src] = { width, height };
       }
     } catch (err) {
-      console.error(`Can’t get dimensions for ${filePath}:`, err);
+      Sentry.captureException(err, (scope) => {
+        const relativePath = filePath.replace(process.cwd(), '');
+        scope.setContext('imageProcessing', { src, path: relativePath });
+        scope.setTag('operation', 'getImageDimensions');
+        scope.setTag('feature', 'postImage');
+        scope.setLevel('warning');
+        return scope;
+      });
     }
   }
 

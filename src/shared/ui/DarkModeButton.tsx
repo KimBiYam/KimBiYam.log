@@ -58,7 +58,7 @@ const DarkModeButton = () => {
       type="button"
       className="p-2 rounded-full cursor-pointer primary-button-hover"
       onClick={handleClick}
-      title="dark-mode-button"
+      aria-label="dark-mode-button"
     >
       <div className="relative w-6 h-6">
         <LazyMotion features={domAnimation} strict>

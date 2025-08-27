@@ -42,5 +42,6 @@ public/robots.txt
 
 # IDE
 .vscode
+.claude
 # Sentry Config File
 .env.sentry-build-plugin
