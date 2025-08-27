@@ -21,16 +21,13 @@ export const getPostImageSizes = (postContentHtml: string) => {
         imageSizes[src] = { width, height };
       }
     } catch (err) {
-      Sentry.captureException(err, {
-        contexts: {
-          imageProcessing: {
-            filePath,
-            src,
-          },
-        },
-        tags: {
-          operation: 'getImageDimensions',
-        },
+      Sentry.captureException(err, (scope) => {
+        const relativePath = filePath.replace(process.cwd(), '');
+        scope.setContext('imageProcessing', { src, path: relativePath });
+        scope.setTag('operation', 'getImageDimensions');
+        scope.setTag('feature', 'postImage');
+        scope.setLevel('warning');
+        return scope;
       });
     }
   }
