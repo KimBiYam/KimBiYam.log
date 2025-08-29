@@ -17,15 +17,19 @@ export default async function HomePage() {
 
   return (
     <div className="pb-12">
-      <div className="my-2">
+      <section aria-label="Author profile" className="my-2">
         <ProfileCard />
-      </div>
-      <Suspense fallback={<TagSelectorSkeleton />}>
-        <DragScrollContainer>
-          <TagSelector tags={tags} />
-        </DragScrollContainer>
-      </Suspense>
-      <PostList postPreviews={postPreviews} />
+      </section>
+      <section aria-label="Post filters">
+        <Suspense fallback={<TagSelectorSkeleton />}>
+          <DragScrollContainer>
+            <TagSelector tags={tags} />
+          </DragScrollContainer>
+        </Suspense>
+      </section>
+      <section aria-label="Blog posts">
+        <PostList postPreviews={postPreviews} />
+      </section>
     </div>
   );
 }

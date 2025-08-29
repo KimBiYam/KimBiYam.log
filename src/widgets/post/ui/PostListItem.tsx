@@ -27,7 +27,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
               {title}
             </h3>
             <div className="flex items-center justify-between my-1">
-              <PostDateText>{date}</PostDateText>
+              <PostDateText dateTime={date} />
               <TagBadge tag={tag.toUpperCase()} />
             </div>
             <p className="overflow-hidden text-sm dark:text-zinc-400 text-zinc-700 md:text-base">

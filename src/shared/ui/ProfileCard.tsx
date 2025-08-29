@@ -21,10 +21,10 @@ const SOCIAL_ICONS: Record<keyof Social, RenderSVGComponent> = {
 
 const ProfileCard = () => {
   return (
-    <div className="flex items-center">
+    <address className="flex items-center not-italic">
       <Image
         src={imageSrc}
-        alt="profile"
+        alt="Profile picture of KimBiYam"
         quality={100}
         width={64}
         height={64}
@@ -43,7 +43,7 @@ const ProfileCard = () => {
           )}
         </div>
       </div>
-    </div>
+    </address>
   );
 };
 

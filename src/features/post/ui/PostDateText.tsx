@@ -1,9 +1,14 @@
 interface PostDateTextProps {
-  children: React.ReactNode;
+  dateTime: string;
 }
 
-const PostDateText = ({ children }: PostDateTextProps) => (
-  <p className="text-sm text-zinc-400 dark:text-zinc-500">{children}</p>
+const PostDateText = ({ dateTime }: PostDateTextProps) => (
+  <time
+    className="text-sm text-zinc-400 dark:text-zinc-500"
+    dateTime={dateTime}
+  >
+    {dateTime}
+  </time>
 );
 
 export default PostDateText;

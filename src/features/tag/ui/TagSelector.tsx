@@ -12,7 +12,7 @@ interface TagSelectorProps {
   tags: string[];
 }
 
-const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
+const TagSelector = forwardRef<HTMLUListElement, TagSelectorProps>(
   ({ tags }, ref) => {
     const selectedTag = useSelectedTag();
     const setTag = useSetTag();
@@ -22,22 +22,23 @@ const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
     });
 
     return (
-      <div className="sticky z-40 top-14">
-        <div
+      <nav aria-label="Post categories" className="sticky z-40 top-14">
+        <ul
           className="flex pt-4 -mx-6 overflow-auto md:mx-0 scrollbar-hide main-container"
           ref={ref}
         >
           {tags.map((tag) => (
-            <TagButton
-              key={tag}
-              tag={tag}
-              onTagClick={setTag}
-              isSelected={tag === selectedTag}
-              registerChildRef={registerChildRef}
-            />
+            <li key={tag}>
+              <TagButton
+                tag={tag}
+                onTagClick={setTag}
+                isSelected={tag === selectedTag}
+                registerChildRef={registerChildRef}
+              />
+            </li>
           ))}
-        </div>
-      </div>
+        </ul>
+      </nav>
     );
   },
 );

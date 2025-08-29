@@ -62,7 +62,7 @@ const PostView = ({ postDetail, imageSizes }: PostViewProps) => {
         {title}
       </h1>
       <div className="flex items-center justify-between my-4">
-        <PostDateText>{date}</PostDateText>
+        <PostDateText dateTime={date} />
         <TagBadge tag={tag.toUpperCase()} />
       </div>
       <MarkdownView

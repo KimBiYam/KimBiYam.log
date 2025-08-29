@@ -32,10 +32,16 @@ const PostShareButtons = ({ postDetail }: PostShareButtonProps) => {
   };
 
   return (
-    <div className="flex justify-end mt-8">
-      <PostShareButton onClick={handleFacebookShareClick} type="facebook" />
-      <PostShareButton onClick={handleTwitterShareClick} type="twitter" />
-    </div>
+    <aside className="flex justify-end mt-8" aria-label="Share this post">
+      <ul className="flex space-x-2">
+        <li>
+          <PostShareButton onClick={handleFacebookShareClick} type="facebook" />
+        </li>
+        <li>
+          <PostShareButton onClick={handleTwitterShareClick} type="twitter" />
+        </li>
+      </ul>
+    </aside>
   );
 };
 
