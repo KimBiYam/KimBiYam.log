@@ -26,7 +26,7 @@ const PostShareButton = ({ type, onClick }: PostShareButtonProps) => {
   return (
     <button
       type="button"
-      className="flex items-center px-4 py-2 mr-2 text-white transition-opacity duration-300 rounded-md hover:opacity-70 last:mr-0"
+      className="flex items-center px-4 py-2 text-white transition-opacity duration-300 rounded-md hover:opacity-70"
       style={{ backgroundColor: color }}
       onClick={onClick}
     >
