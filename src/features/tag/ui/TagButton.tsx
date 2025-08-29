@@ -34,7 +34,6 @@ const TagButton = ({
       type="button"
       onClick={() => onTagClick(tag)}
       aria-pressed={isSelected}
-      aria-label={`Filter posts by ${tag} category`}
     >
       {tag.toUpperCase()}
     </button>

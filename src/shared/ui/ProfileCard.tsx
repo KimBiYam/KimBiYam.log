@@ -24,7 +24,7 @@ const ProfileCard = () => {
     <address className="flex items-center not-italic">
       <Image
         src={imageSrc}
-        alt="Profile picture of KimBiYam"
+        alt={name}
         quality={100}
         width={64}
         height={64}

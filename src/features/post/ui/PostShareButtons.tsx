@@ -10,10 +10,10 @@ interface PostShareButtonProps {
 }
 
 const createFacebookShareUrl = (url: string) =>
-  `http://www.facebook.com/sharer/sharer.php?u=${url}`;
+  `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
 
 const createTwitterShareUrl = (title: string, url: string) =>
-  `https://twitter.com/intent/tweet?text=${title}&url=${url}`;
+  `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
 
 const POPUP_OPTIONS =
   'resizable=yes, status=no, menubar=no, width=600, height=400, top=0, left=0';
