@@ -4,7 +4,6 @@ import Image from 'next/image';
 
 import GithubIcon from '@src/assets/svgs/github.svg';
 import LinkedInIcon from '@src/assets/svgs/linked_in.svg';
-import NotionIcon from '@src/assets/svgs/notion.svg';
 import { ObjectEntries } from '@src/shared';
 
 import { PROFILE } from '../constants';
@@ -16,7 +15,6 @@ const { imageSrc, name, social } = PROFILE;
 const SOCIAL_ICONS: Record<keyof Social, RenderSVGComponent> = {
   github: GithubIcon,
   linkedIn: LinkedInIcon,
-  notion: NotionIcon,
 } as const;
 
 const ProfileCard = () => {
