@@ -27,4 +27,5 @@ Sentry.init({
       blockAllMedia: true,
     }),
   ],
+  enableLogs: true,
 });
