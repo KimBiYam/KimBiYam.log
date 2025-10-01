@@ -4,9 +4,9 @@ import { useEffect, useRef } from 'react';
 
 import { useSetAtom } from 'jotai';
 
+import useThrottle from './useThrottle';
 import scrollAtom from '../atoms/scrollAtom';
 import { ScrollDirection } from '../constants';
-import useThrottle from './useThrottle';
 
 const THROTTLE_TIME_MS = 100;
 
