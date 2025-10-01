@@ -6,8 +6,8 @@ import GithubIcon from '@src/assets/svgs/github.svg';
 import LinkedInIcon from '@src/assets/svgs/linked_in.svg';
 import { ObjectEntries } from '@src/shared';
 
-import { PROFILE } from '../constants';
 import ProfileLink from './ProfileLink';
+import { PROFILE } from '../constants';
 
 type Social = (typeof PROFILE)['social'];
 
