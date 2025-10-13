@@ -8,6 +8,7 @@ export const getPostImageSizes = (postContentHtml: string) => {
   const imageSizes: Record<string, PostImageSize> = {};
 
   // A regular expression to iterate on all images in the post
+  // eslint-disable-next-line no-useless-escape
   const matches = postContentHtml.matchAll(/\!\[.*]\((.*)\)/g);
 
   for (const match of matches) {
