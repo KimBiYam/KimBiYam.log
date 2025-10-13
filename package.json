@@ -59,7 +59,7 @@
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
     "autoprefixer": "^10.4.19",
-    "babel-plugin-react-compiler": "19.0.0-beta-e552027-20250112",
+    "babel-plugin-react-compiler": "1.0.0",
     "code-inspector-plugin": "^0.20.12",
     "eslint": "^8.9.0",
     "eslint-config-airbnb": "^19.0.4",
