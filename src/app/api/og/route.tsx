@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
@@ -18,6 +17,7 @@ export async function GET(request: Request) {
     }
 
     return await generateTitleImageResponse(title, logoImageData);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e: unknown) {
     return new Response('Failed to generate OG image', { status: 500 });
   }

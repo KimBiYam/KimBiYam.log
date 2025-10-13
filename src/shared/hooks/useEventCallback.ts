@@ -11,8 +11,7 @@ const useEventCallback = <T extends (...args: any[]) => any>(
 
   useEffect(() => {
     fnRef.current = fn;
-    // eslint-disable-next-line react-compiler/react-compiler
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fn, ...deps]);
 
   return useCallback((...args: any[]) => fnRef.current(...args), [fnRef]) as T;

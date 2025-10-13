@@ -31,6 +31,7 @@ const DragScrollContainer = ({ children }: DragScrollContainerProps) => {
     if (!ref.current) return;
 
     ref.current.removeEventListener('mousemove', handleMouseMove);
+    // eslint-disable-next-line react-hooks/immutability
     ref.current.removeEventListener('mouseup', handleMouseUp);
 
     ref.current.style.removeProperty('user-select');
@@ -71,7 +72,6 @@ const DragScrollContainer = ({ children }: DragScrollContainerProps) => {
     };
   }, [handleMouseDown, handleMouseMove, handleMouseUp]);
 
-  // eslint-disable-next-line react-compiler/react-compiler
   return React.cloneElement(children, { ref });
 };
 
