@@ -46,12 +46,14 @@ export default defineConfig(
     },
   },
   {
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      {
-        varsIgnorePattern: '^_',
-        argsIgnorePattern: '^_',
-      },
-    ],
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          varsIgnorePattern: '^_',
+          argsIgnorePattern: '^_',
+        },
+      ],
+    },
   },
 );
