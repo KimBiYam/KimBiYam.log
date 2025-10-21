@@ -23,7 +23,6 @@ export default defineConfig(
     plugins: {
       '@typescript-eslint': tseslint.plugin,
     },
-
     settings: {
       'import/resolver': {
         typescript: true,
@@ -45,5 +44,14 @@ export default defineConfig(
       ...nextPlugin.configs.recommended.rules,
       ...nextPlugin.configs['core-web-vitals'].rules,
     },
+  },
+  {
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        varsIgnorePattern: '^_',
+        argsIgnorePattern: '^_',
+      },
+    ],
   },
 );
