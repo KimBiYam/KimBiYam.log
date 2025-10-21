@@ -1,9 +1,9 @@
-/* eslint-disable import/order */
+/* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-require-imports */
 
 const { codeInspectorPlugin } = require('code-inspector-plugin');
+const withBundleAnalyzer = require('@next/bundle-analyzer');
 
-/* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
 const defaultConfig = {
   reactStrictMode: true,
@@ -26,9 +26,6 @@ const defaultConfig = {
   },
 };
 
-// eslint-disable-next-line import/order, @typescript-eslint/no-require-imports
-const withBundleAnalyzer = require('@next/bundle-analyzer');
-
 const nextConfig = (() => {
   try {
     if (process.env.ANALYZE && JSON.parse(process.env.ANALYZE) === true) {
@@ -36,14 +33,14 @@ const nextConfig = (() => {
     }
 
     return defaultConfig;
-  } catch (e) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_) {
     return defaultConfig;
   }
 })();
 
 // Injected content via Sentry wizard below
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 const { withSentryConfig } = require('@sentry/nextjs');
 
 module.exports = withSentryConfig(nextConfig, {
@@ -66,7 +63,7 @@ module.exports = withSentryConfig(nextConfig, {
   // This can increase your server load as well as your hosting bill.
   // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
   // side errors will fail.
-  tunnelRoute: '/monitoring',
+  tunnelRoute: true,
 
   // Hides source maps from generated client bundles
   hideSourceMaps: true,
@@ -79,4 +76,7 @@ module.exports = withSentryConfig(nextConfig, {
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
   automaticVercelMonitors: true,
+  reactComponentAnnotation: {
+    enabled: true,
+  },
 });
