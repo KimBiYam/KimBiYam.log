@@ -33,6 +33,7 @@ const nextConfig = (() => {
     }
 
     return defaultConfig;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (_) {
     return defaultConfig;
   }

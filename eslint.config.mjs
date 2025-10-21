@@ -33,6 +33,7 @@ export default defineConfig(
   {
     rules: {
       'import/no-named-as-default': 'off',
+      'import/namespace': 'off',
       'no-extra-boolean-cast': 'off',
     },
   },
@@ -43,17 +44,6 @@ export default defineConfig(
     rules: {
       ...nextPlugin.configs.recommended.rules,
       ...nextPlugin.configs['core-web-vitals'].rules,
-    },
-  },
-  {
-    rules: {
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          varsIgnorePattern: '^_',
-          argsIgnorePattern: '^_',
-        },
-      ],
     },
   },
 );
