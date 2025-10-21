@@ -23,7 +23,6 @@ export default defineConfig(
     plugins: {
       '@typescript-eslint': tseslint.plugin,
     },
-
     settings: {
       'import/resolver': {
         typescript: true,
@@ -34,6 +33,7 @@ export default defineConfig(
   {
     rules: {
       'import/no-named-as-default': 'off',
+      'import/namespace': 'off',
       'no-extra-boolean-cast': 'off',
     },
   },
