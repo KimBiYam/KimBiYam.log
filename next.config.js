@@ -7,6 +7,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer');
 /** @type {import('next').NextConfig} */
 const defaultConfig = {
   reactStrictMode: true,
+  reactCompiler: true,
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [480, 768, 1024, 1280],
