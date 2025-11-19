@@ -14,7 +14,7 @@
     "build": "next build --webpack",
     "build:analyze": "ANALYZE=true next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint src"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.9.0",
