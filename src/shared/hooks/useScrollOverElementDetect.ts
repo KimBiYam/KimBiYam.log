@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useEffectEvent, useState } from 'react';
 
-import useEventCallback from './useEventCallback';
 import useThrottle from './useThrottle';
 
 const THROTTLE_TIME_MS = 100;
@@ -16,7 +15,7 @@ export default function useScrollOverElementDetect({
   const [isOverElement, setIsOverElement] = useState(false);
   const [el, setEl] = useState<HTMLElement | null>(null);
 
-  const checkIsOverElement = useEventCallback(() => {
+  const checkIsOverElement = useCallback(() => {
     if (!el) return;
     const { bottom } = el.getBoundingClientRect();
 
@@ -38,11 +37,12 @@ export default function useScrollOverElementDetect({
     };
   }, [el, handleScroll]);
 
+  const checkIsOverElementEffectEvent = useEffectEvent(checkIsOverElement);
   useEffect(() => {
     if (el) {
-      checkIsOverElement();
+      checkIsOverElementEffectEvent();
     }
-  }, [el, checkIsOverElement]);
+  }, [el]);
 
   return { isOverElement, setEl };
 }

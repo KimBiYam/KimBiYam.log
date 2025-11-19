@@ -1,8 +1,6 @@
 'use client';
 
-import { RefObject, useEffect } from 'react';
-
-import useEventCallback from './useEventCallback';
+import { RefObject, useEffect, useEffectEvent } from 'react';
 
 const useScrollObserver = ({
   targetRef,
@@ -19,7 +17,7 @@ const useScrollObserver = ({
   threshold?: number | number[] | undefined;
   rootMargin?: string;
 }) => {
-  const _onIntersect = useEventCallback(onIntersect, []);
+  const _onIntersect = useEffectEvent(onIntersect);
 
   useEffect(() => {
     if (!enabled) return;
@@ -39,7 +37,7 @@ const useScrollObserver = ({
     return () => {
       if (observer) observer.unobserve(element);
     };
-  }, [enabled, root, threshold, rootMargin, targetRef, _onIntersect]);
+  }, [enabled, root, threshold, rootMargin, targetRef]);
 };
 
 export default useScrollObserver;
