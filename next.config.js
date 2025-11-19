@@ -21,9 +21,6 @@ const defaultConfig = {
 
     return config;
   },
-  experimental: {
-    reactCompiler: true,
-  },
 };
 
 const nextConfig = (() => {
