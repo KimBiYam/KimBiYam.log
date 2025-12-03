@@ -28,7 +28,7 @@
     "jotai": "^2.10.3",
     "medium-zoom": "^1.1.0",
     "motion": "^11.14.4",
-    "next": "16.0.3",
+    "next": "16.0.7",
     "next-themes": "^0.2.1",
     "postcss-viewport-height-correction": "^1.1.1",
     "react": "19.2.0",
