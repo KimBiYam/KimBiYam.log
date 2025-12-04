@@ -17,16 +17,16 @@ importers:
         version: 0.9.0
       '@next/third-parties':
         specifier: 16.0.3
-        version: 16.0.3(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+        version: 16.0.3(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)
       '@sentry/nextjs':
         specifier: ^10.26.0
-        version: 10.26.0(@opentelemetry/context-async-hooks@2.1.0(@opentelemetry/api@1.9.0))(@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.1.0(@opentelemetry/api@1.9.0))(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)(supports-color@8.1.1)(webpack@5.91.0)
+        version: 10.26.0(@opentelemetry/context-async-hooks@2.1.0(@opentelemetry/api@1.9.0))(@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.1.0(@opentelemetry/api@1.9.0))(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)(supports-color@8.1.1)(webpack@5.91.0)
       '@vercel/analytics':
         specifier: ^1.5.0
-        version: 1.5.0(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+        version: 1.5.0(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)
       '@vercel/speed-insights':
         specifier: ^1.2.0
-        version: 1.2.0(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+        version: 1.2.0(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -38,34 +38,34 @@ importers:
         version: 1.2.1
       jotai:
         specifier: ^2.10.3
-        version: 2.10.3(@types/react@19.2.6)(react@19.2.0)
+        version: 2.10.3(@types/react@19.2.6)(react@19.2.1)
       medium-zoom:
         specifier: ^1.1.0
         version: 1.1.0
       motion:
         specifier: ^11.14.4
-        version: 11.14.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 11.14.4(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       next:
         specifier: 16.0.7
-        version: 16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       next-themes:
         specifier: ^0.2.1
-        version: 0.2.1(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 0.2.1(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       postcss-viewport-height-correction:
         specifier: ^1.1.1
         version: 1.1.1
       react:
-        specifier: 19.2.0
-        version: 19.2.0
+        specifier: 19.2.1
+        version: 19.2.1
       react-dom:
-        specifier: 19.2.0
-        version: 19.2.0(react@19.2.0)
+        specifier: 19.2.1
+        version: 19.2.1(react@19.2.1)
       react-markdown:
         specifier: ^9.0.1
-        version: 9.0.1(@types/react@19.2.6)(react@19.2.0)(supports-color@8.1.1)
+        version: 9.0.1(@types/react@19.2.6)(react@19.2.1)(supports-color@8.1.1)
       react-responsive:
         specifier: ^9.0.2
-        version: 9.0.2(react@19.2.0)
+        version: 9.0.2(react@19.2.1)
       rehype-slug:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4208,10 +4208,10 @@ packages:
   randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
 
-  react-dom@19.2.0:
-    resolution: {integrity: sha512-UlbRu4cAiGaIewkPyiRGJk0imDN2T3JjieT6spoL2UeSf5od4n5LB/mQ4ejmxhCFT1tYe8IvaFulzynWovsEFQ==}
+  react-dom@19.2.1:
+    resolution: {integrity: sha512-ibrK8llX2a4eOskq1mXKu/TGZj9qzomO+sNfO98M6d9zIPOEhlBkMkBUBLd1vgS0gQsLDBzA+8jJBVXDnfHmJg==}
     peerDependencies:
-      react: ^19.2.0
+      react: ^19.2.1
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -4228,8 +4228,8 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
 
-  react@19.2.0:
-    resolution: {integrity: sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==}
+  react@19.2.1:
+    resolution: {integrity: sha512-DGrYcCWK7tvYMnWh79yrPHt+vdx9tY+1gPZa7nJQtO/p8bLTDaHp4dzwEhQB7pZ4Xe3ok4XKuEPrVuc+wlpkmw==}
     engines: {node: '>=0.10.0'}
 
   read-cache@1.0.0:
@@ -6084,10 +6084,10 @@ snapshots:
   '@next/swc-win32-x64-msvc@16.0.7':
     optional: true
 
-  '@next/third-parties@16.0.3(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)':
+  '@next/third-parties@16.0.3(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)':
     dependencies:
-      next: 16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      react: 19.2.0
+      next: 16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      react: 19.2.1
       third-party-capital: 1.0.20
 
   '@nodelib/fs.scandir@2.1.5':
@@ -6543,7 +6543,7 @@ snapshots:
 
   '@sentry/core@10.26.0': {}
 
-  '@sentry/nextjs@10.26.0(@opentelemetry/context-async-hooks@2.1.0(@opentelemetry/api@1.9.0))(@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.1.0(@opentelemetry/api@1.9.0))(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)(supports-color@8.1.1)(webpack@5.91.0)':
+  '@sentry/nextjs@10.26.0(@opentelemetry/context-async-hooks@2.1.0(@opentelemetry/api@1.9.0))(@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.1.0(@opentelemetry/api@1.9.0))(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)(supports-color@8.1.1)(webpack@5.91.0)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/semantic-conventions': 1.37.0
@@ -6553,10 +6553,10 @@ snapshots:
       '@sentry/core': 10.26.0
       '@sentry/node': 10.26.0(supports-color@8.1.1)
       '@sentry/opentelemetry': 10.26.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@2.1.0(@opentelemetry/api@1.9.0))(@opentelemetry/core@2.1.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.1.0(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.37.0)
-      '@sentry/react': 10.26.0(react@19.2.0)
+      '@sentry/react': 10.26.0(react@19.2.1)
       '@sentry/vercel-edge': 10.26.0
       '@sentry/webpack-plugin': 4.3.0(supports-color@8.1.1)(webpack@5.91.0)
-      next: 16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      next: 16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       resolve: 1.22.8
       rollup: 4.52.3
       stacktrace-parser: 0.1.10
@@ -6634,12 +6634,12 @@ snapshots:
       '@opentelemetry/semantic-conventions': 1.37.0
       '@sentry/core': 10.26.0
 
-  '@sentry/react@10.26.0(react@19.2.0)':
+  '@sentry/react@10.26.0(react@19.2.1)':
     dependencies:
       '@sentry/browser': 10.26.0
       '@sentry/core': 10.26.0
       hoist-non-react-statics: 3.3.2
-      react: 19.2.0
+      react: 19.2.1
 
   '@sentry/vercel-edge@10.26.0':
     dependencies:
@@ -7016,15 +7016,15 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
-  '@vercel/analytics@1.5.0(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)':
+  '@vercel/analytics@1.5.0(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)':
     optionalDependencies:
-      next: 16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      react: 19.2.0
+      next: 16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      react: 19.2.1
 
-  '@vercel/speed-insights@1.2.0(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)':
+  '@vercel/speed-insights@1.2.0(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)':
     optionalDependencies:
-      next: 16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      react: 19.2.0
+      next: 16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      react: 19.2.1
 
   '@vue/compiler-core@3.5.16':
     dependencies:
@@ -8295,14 +8295,14 @@ snapshots:
 
   fraction.js@4.3.7: {}
 
-  framer-motion@11.14.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  framer-motion@11.14.4(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
     dependencies:
       motion-dom: 11.14.3
       motion-utils: 11.14.3
       tslib: 2.8.1
     optionalDependencies:
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
+      react: 19.2.1
+      react-dom: 19.2.1(react@19.2.1)
 
   fs.realpath@1.0.0: {}
 
@@ -8790,10 +8790,10 @@ snapshots:
 
   jiti@1.21.0: {}
 
-  jotai@2.10.3(@types/react@19.2.6)(react@19.2.0):
+  jotai@2.10.3(@types/react@19.2.6)(react@19.2.1):
     optionalDependencies:
       '@types/react': 19.2.6
-      react: 19.2.0
+      react: 19.2.1
 
   js-tokens@4.0.0: {}
 
@@ -9298,13 +9298,13 @@ snapshots:
 
   motion-utils@11.14.3: {}
 
-  motion@11.14.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  motion@11.14.4(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
     dependencies:
-      framer-motion: 11.14.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      framer-motion: 11.14.4(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       tslib: 2.8.1
     optionalDependencies:
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
+      react: 19.2.1
+      react-dom: 19.2.1(react@19.2.1)
 
   mrmime@2.0.0: {}
 
@@ -9326,21 +9326,21 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-themes@0.2.1(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  next-themes@0.2.1(next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
     dependencies:
-      next: 16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
+      next: 16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      react: 19.2.1
+      react-dom: 19.2.1(react@19.2.1)
 
-  next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  next@16.0.7(@babel/core@7.26.9(supports-color@8.1.1))(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
     dependencies:
       '@next/env': 16.0.7
       '@swc/helpers': 0.5.15
       caniuse-lite: 1.0.30001759
       postcss: 8.4.31
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
-      styled-jsx: 5.1.6(@babel/core@7.26.9(supports-color@8.1.1))(react@19.2.0)
+      react: 19.2.1
+      react-dom: 19.2.1(react@19.2.1)
+      styled-jsx: 5.1.6(@babel/core@7.26.9(supports-color@8.1.1))(react@19.2.1)
     optionalDependencies:
       '@next/swc-darwin-arm64': 16.0.7
       '@next/swc-darwin-x64': 16.0.7
@@ -9649,14 +9649,14 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
-  react-dom@19.2.0(react@19.2.0):
+  react-dom@19.2.1(react@19.2.1):
     dependencies:
-      react: 19.2.0
+      react: 19.2.1
       scheduler: 0.27.0
 
   react-is@16.13.1: {}
 
-  react-markdown@9.0.1(@types/react@19.2.6)(react@19.2.0)(supports-color@8.1.1):
+  react-markdown@9.0.1(@types/react@19.2.6)(react@19.2.1)(supports-color@8.1.1):
     dependencies:
       '@types/hast': 3.0.4
       '@types/react': 19.2.6
@@ -9664,7 +9664,7 @@ snapshots:
       hast-util-to-jsx-runtime: 2.3.2(supports-color@8.1.1)
       html-url-attributes: 3.0.1
       mdast-util-to-hast: 13.2.0
-      react: 19.2.0
+      react: 19.2.1
       remark-parse: 11.0.0(supports-color@8.1.1)
       remark-rehype: 11.1.1
       unified: 11.0.5
@@ -9673,15 +9673,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  react-responsive@9.0.2(react@19.2.0):
+  react-responsive@9.0.2(react@19.2.1):
     dependencies:
       hyphenate-style-name: 1.0.4
       matchmediaquery: 0.3.1
       prop-types: 15.8.1
-      react: 19.2.0
+      react: 19.2.1
       shallow-equal: 1.2.1
 
-  react@19.2.0: {}
+  react@19.2.1: {}
 
   read-cache@1.0.0:
     dependencies:
@@ -10178,10 +10178,10 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.4
 
-  styled-jsx@5.1.6(@babel/core@7.26.9(supports-color@8.1.1))(react@19.2.0):
+  styled-jsx@5.1.6(@babel/core@7.26.9(supports-color@8.1.1))(react@19.2.1):
     dependencies:
       client-only: 0.0.1
-      react: 19.2.0
+      react: 19.2.1
     optionalDependencies:
       '@babel/core': 7.26.9(supports-color@8.1.1)
 
