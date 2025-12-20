@@ -35,7 +35,7 @@ const ScrollToTopButton = () => {
           className="flex items-center justify-center w-10 h-10 transition-opacity duration-300 rounded-full primary-button drop-shadow-md justify-items-center hover:opacity-70"
         >
           <div className="w-4 h-4 main-font-color">
-            <ArrowUpIcon />
+            <img src={ArrowUpIcon.src ?? ArrowUpIcon} alt="scroll up" className="w-full h-full" />
           </div>
         </button>
       </m.div>

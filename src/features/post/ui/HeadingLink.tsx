@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React, { type PropsWithChildren } from 'react';
 
 import LinkIcon from '@src/assets/svgs/link_icon.svg';
 

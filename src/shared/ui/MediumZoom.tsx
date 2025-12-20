@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 
-import mediumZoom, { ZoomOptions } from 'medium-zoom';
+import mediumZoom, { type ZoomOptions } from 'medium-zoom';
 
 import { isServer, mergeRefs } from '@src/shared';
 

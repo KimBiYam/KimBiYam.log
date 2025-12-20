@@ -1,0 +1,30 @@
+--- 
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { ProfileCard } from '@src/shared';
+import { BlogIndex } from '@src/widgets/post/ui/BlogIndex';
+import { getPostPreviewDescription } from '@src/features/post/utils';
+
+const allPosts = await getCollection('posts');
+
+const postPreviews = allPosts
+  .map((post) => ({
+    id: post.slug,
+    date: post.data.date,
+    title: post.data.title,
+    tag: post.data.tag,
+    content: post.data.description || getPostPreviewDescription(post.body || ''),
+  }))
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+
+const tags = ['all', ...Array.from(new Set(postPreviews.map(p => p.tag))).sort()];
+---
+
+<Layout>
+  <div class="pb-12">
+    <div class="my-2">
+      <ProfileCard />
+    </div>
+    <BlogIndex client:load postPreviews={postPreviews} tags={tags} />
+  </div>
+</Layout>

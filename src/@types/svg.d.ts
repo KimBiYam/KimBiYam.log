@@ -1,9 +1,9 @@
-type RenderSVGComponent = (
+type RenderSVGComponent = ((
   props?: React.SVGAttributes<SVGElement>,
-) => SVGComponent;
+) => SVGComponent) & { src: string };
 
 declare module '*.svg' {
-  const RenderSVGComponent: RenderSVGComponent = () => SVGComponent;
+  const RenderSVGComponent: RenderSVGComponent;
 
   export default RenderSVGComponent;
 }

@@ -12,7 +12,7 @@ delete colors.coolGray;
 delete colors.blueGray;
 
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx,astro,md}'],
   darkMode: 'class',
   future: {
     hoverOnlyWhenSupported: true,

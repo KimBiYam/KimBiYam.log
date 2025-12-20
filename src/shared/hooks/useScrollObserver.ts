@@ -1,6 +1,6 @@
 'use client';
 
-import { RefObject, useEffect, useEffectEvent } from 'react';
+import { type RefObject, useEffect, useEffectEvent } from 'react';
 
 const useScrollObserver = ({
   targetRef,

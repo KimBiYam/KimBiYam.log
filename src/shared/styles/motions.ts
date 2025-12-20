@@ -1,4 +1,4 @@
-import { MotionProps } from 'motion/react';
+import type { MotionProps } from 'motion/react';
 
 export const viewportOpacityMotion = {
   initial: { opacity: 0 },

@@ -1,6 +1,6 @@
 'use client';
 
-import { PostDetail } from '@src/features/post/types/post.types';
+import type { PostDetail } from '@src/features/post/types/post.types';
 import { DOMAIN_URL } from '@src/shared/constants';
 
 import PostShareButton from './PostShareButton';

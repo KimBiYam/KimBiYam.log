@@ -1,4 +1,4 @@
-import { memo, useCallback, useRef } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 
 import { useDetectPageScrolling } from '@src/shared';
 
@@ -8,9 +8,17 @@ import useActiveHeadingDetector from '../hooks/useActiveHeadingDetector';
 import useTableOfContents from '../hooks/useTableOfContents';
 
 interface TableOfContentsProps {
-  targetElement: HTMLElement | null;
+  contentId?: string;
 }
-const TableOfContents = ({ targetElement }: TableOfContentsProps) => {
+const TableOfContents = ({ contentId }: TableOfContentsProps) => {
+  const [targetElement, setTargetElement] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (contentId) {
+      setTargetElement(document.getElementById(contentId));
+    }
+  }, [contentId]);
+
   const headings = useTableOfContents(targetElement);
   const activeId = useActiveHeadingDetector(targetElement);
   const pageScrolling = useDetectPageScrolling();

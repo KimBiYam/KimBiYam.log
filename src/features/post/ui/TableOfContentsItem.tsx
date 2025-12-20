@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { domAnimation, LazyMotion } from 'motion/react';
 import * as m from 'motion/react-m';
 
-import { TableOfContentHeading } from '../hooks/useTableOfContents';
+import type { TableOfContentHeading } from '../hooks/useTableOfContents';
 
 interface TableOfContentsItemProps {
   heading: TableOfContentHeading;

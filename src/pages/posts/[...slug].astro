@@ -1,0 +1,85 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { TagBadge } from '@src/features/tag/ui';
+import { PostDateText, PostShareButtons } from '@src/features/post/client';
+import TableOfContents from '@src/features/post/ui/TableOfContents';
+import { ProfileCard, Utterances } from '@src/shared';
+import { getPostPreviewDescription } from '@src/features/post/utils';
+import '@fontsource/fira-code';
+import '@src/shared/styles/code.css';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, date, tag, description } = post.data;
+
+// Map post data to PostDetail shape expected by PostShareButtons
+const postDetail = {
+  id: post.slug,
+  title,
+  date,
+  tag,
+  description: description || getPostPreviewDescription(post.body || ''),
+  contentHtml: '', // Not needed for buttons
+};
+---
+
+<Layout title={title} description={description || title}>
+  <article class="relative mt-8">
+    <h1 id="post-title" class="text-3xl font-bold md:text-4xl">
+      {title}
+    </h1>
+    <div class="flex items-center justify-between my-4">
+      <PostDateText client:load>{date}</PostDateText>
+      <TagBadge tag={tag.toUpperCase()} />
+    </div>
+
+    <div
+      id="markdown-content"
+      class="w-full max-w-full prose dark:prose-dark font-[Fira_Code]"
+    >
+      <Content />
+    </div>
+
+    <div class="hidden xl:block">
+      <TableOfContents client:load contentId="markdown-content" />
+    </div>
+
+    <div class="mt-8">
+      <PostShareButtons client:load postDetail={postDetail} />
+    </div>
+
+    <div class="py-4 my-10 border-t border-b">
+      <ProfileCard />
+    </div>
+    <Utterances client:visible />
+  </article>
+
+  <script>
+    import mediumZoom from 'medium-zoom';
+
+    const runZoom = () => {
+      const images = document.querySelectorAll('#markdown-content img');
+      if (images.length > 0) {
+        mediumZoom(images, {
+          margin: 24,
+          background: document.documentElement.classList.contains('dark')
+            ? '#171717'
+            : '#ffffff',
+        });
+      }
+    };
+
+    runZoom();
+    // Re-run on theme change if needed? medium-zoom handles background?
+    // Usually need to update options.
+  </script>
+</Layout>

@@ -30,6 +30,10 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# astro
+.astro/
+dist/
+
 # vercel
 .vercel
 

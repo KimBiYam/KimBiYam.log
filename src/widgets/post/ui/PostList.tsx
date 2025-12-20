@@ -4,7 +4,7 @@ import { useCallback, useMemo, useRef } from 'react';
 
 import { useAtom } from 'jotai';
 
-import { postPageAtom, PostPreview } from '@src/features/post/client';
+import { postPageAtom, type PostPreview } from '@src/features/post/client';
 import { Tag, useSelectedTag } from '@src/features/tag';
 import { useScrollObserver } from '@src/shared';
 

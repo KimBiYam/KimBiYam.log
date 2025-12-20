@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 
 import FacebookIcon from '@src/assets/svgs/facebook.svg';
@@ -14,10 +12,10 @@ interface PostShareButtonProps {
 
 const shareIconMap: Record<
   PostShareButtonType,
-  { icon: React.ReactNode; color: string }
+  { icon: string; color: string }
 > = {
-  facebook: { icon: <FacebookIcon />, color: '#4267B2' },
-  twitter: { icon: <TwitterIcon />, color: '#000000' },
+  facebook: { icon: FacebookIcon.src ?? FacebookIcon, color: '#4267B2' },
+  twitter: { icon: TwitterIcon.src ?? TwitterIcon, color: '#000000' },
 };
 
 const PostShareButton = ({ type, onClick }: PostShareButtonProps) => {
@@ -30,7 +28,7 @@ const PostShareButton = ({ type, onClick }: PostShareButtonProps) => {
       style={{ backgroundColor: color }}
       onClick={onClick}
     >
-      <span className="w-5 h-5 mr-2 fill-current">{icon}</span>
+      <img src={icon} alt={`${type}-share-icon`} className="w-5 h-5 mr-2" />
       <span className="text-sm">공유하기</span>
     </button>
   );

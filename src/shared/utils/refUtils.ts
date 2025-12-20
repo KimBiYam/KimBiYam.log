@@ -8,7 +8,7 @@ export function mergeRefs<T>(...inputRefs: Array<React.Ref<T> | undefined>) {
       if (typeof inputRef === 'function') {
         inputRef(ref);
       } else if (inputRef) {
-        (inputRef as React.MutableRefObject<T | null>).current = ref;
+        (inputRef as { current: T | null }).current = ref;
       }
     }
   };

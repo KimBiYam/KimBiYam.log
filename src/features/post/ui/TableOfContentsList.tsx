@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
 import TableOfContentsItem from './TableOfContentsItem';
-import { TableOfContentHeading } from '../hooks/useTableOfContents';
+import type { TableOfContentHeading } from '../hooks/useTableOfContents';
 
 interface TableOfContentsListProps {
   headings: TableOfContentHeading[];

@@ -1,0 +1,73 @@
+---
+import { Header } from '@src/widgets/base';
+import { Footer, ScrollToTopButton } from '@src/shared';
+import '@src/shared/styles/global.css';
+import '@src/shared/styles/tailwind.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'KimBiYam.log',
+  description = 'KimBiYam의 개발 블로그 입니다.',
+  image,
+} = Astro.props;
+---
+
+<html lang="ko" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {image && <meta property="og:image" content={image} />}
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css"
+    />
+
+    <script is:inline>
+      // Initialize theme to prevent FOUC
+      const theme = (() => {
+        if (
+          typeof localStorage !== 'undefined' &&
+          localStorage.getItem('theme')
+        ) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+  <body
+    class="transition-colors duration-300 bg-white main-container main-font-color dark:bg-neutral-900"
+  >
+    <Header client:load />
+    <main class="w-full min-h-[calc(100vh-theme(spacing.8))]">
+      <div class="container h-full max-w-screen-md px-6 pt-16 md:px-8">
+        <slot />
+      </div>
+    </main>
+    <Footer />
+    <ScrollToTopButton client:load />
+
+    <script src="/prettyConsole.js" is:inline></script>
+    <script src="/setViewportProperty.js" is:inline></script>
+  </body>
+</html>

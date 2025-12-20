@@ -1,12 +1,10 @@
 import { memo } from 'react';
 
-import Link from 'next/link';
-
 import { domAnimation, LazyMotion } from 'motion/react';
 import * as m from 'motion/react-m';
 
 import { PostDateText } from '@src/features/post/client';
-import { PostPreview } from '@src/features/post/types';
+import type { PostPreview } from '@src/features/post/types';
 import TagBadge from '@src/features/tag/ui/TagBadge';
 import { viewportOpacityMotion } from '@src/shared';
 
@@ -19,7 +17,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
 
   return (
     <li>
-      <Link href={`/posts/${id}`}>
+      <a href={`/posts/${id}`}>
         <LazyMotion features={domAnimation} strict>
           <m.div
             className="py-4 duration-300 cursor-pointer transition-textShadow hover:text-shadow dark:hover:text-shadow-dark"
@@ -37,7 +35,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
             </p>
           </m.div>
         </LazyMotion>
-      </Link>
+      </a>
     </li>
   );
 };
