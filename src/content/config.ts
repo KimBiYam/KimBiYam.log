@@ -1,5 +1,4 @@
 import { defineCollection, z } from 'astro:content';
-import { getPostPreviewDescription } from '../features/post/utils';
 
 const posts = defineCollection({
   type: 'content',

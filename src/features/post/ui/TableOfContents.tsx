@@ -8,7 +8,7 @@ import useActiveHeadingDetector from '../hooks/useActiveHeadingDetector';
 import useTableOfContents from '../hooks/useTableOfContents';
 
 interface TableOfContentsProps {
-  contentId?: string;
+  contentId: string;
 }
 const TableOfContents = ({ contentId }: TableOfContentsProps) => {
   const [targetElement, setTargetElement] = useState<HTMLElement | null>(null);
