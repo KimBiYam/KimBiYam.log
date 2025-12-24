@@ -23,7 +23,7 @@ const tags = ['all', ...Array.from(new Set(postPreviews.map(p => p.tag))).sort()
 <Layout>
   <div class="pb-12">
     <div class="my-2">
-      <ProfileCard />
+      <ProfileCard client:load />
     </div>
     <BlogIndex client:load postPreviews={postPreviews} tags={tags} />
   </div>
