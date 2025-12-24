@@ -1,6 +1,6 @@
 import React, { type PropsWithChildren } from 'react';
 
-import LinkIcon from '@src/assets/svgs/link_icon.svg';
+import LinkIcon from '@src/assets/svgs/link_icon.svg?react';
 
 import { POST_HEADING_TARGET_TAGS } from '../constants';
 

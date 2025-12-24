@@ -1,10 +1,14 @@
-'use client';
 
-import { domAnimation, LazyMotion, type Transition, type Variants } from 'motion/react';
+import {
+  domAnimation,
+  LazyMotion,
+  type Transition,
+  type Variants,
+} from 'motion/react';
 import * as m from 'motion/react-m';
 
-import MoonIcon from '@src/assets/svgs/moon.svg';
-import SunIcon from '@src/assets/svgs/sun.svg';
+import MoonIcon from '@src/assets/svgs/moon.svg?react';
+import SunIcon from '@src/assets/svgs/sun.svg?react';
 import useMounted from '@src/shared/hooks/useMounted';
 
 import { Theme } from '../constants';
@@ -33,11 +37,11 @@ const variants: Variants = {
 const themeButtons = [
   {
     buttonTheme: Theme.dark,
-    icon: MoonIcon,
+    Icon: MoonIcon,
   },
   {
     buttonTheme: Theme.light,
-    icon: SunIcon,
+    Icon: SunIcon,
   },
 ];
 
@@ -62,7 +66,7 @@ const DarkModeButton = () => {
     >
       <div className="relative w-6 h-6">
         <LazyMotion features={domAnimation} strict>
-          {themeButtons.map(({ icon, buttonTheme }) => (
+          {themeButtons.map(({ Icon, buttonTheme }) => (
             <m.div
               key={buttonTheme}
               initial={false}
@@ -70,7 +74,7 @@ const DarkModeButton = () => {
               animate={theme === buttonTheme ? 'initial' : 'exit'}
               variants={variants}
             >
-              <img src={icon.src ?? icon} alt="theme icon" className="w-full h-full" />
+              <Icon className="w-full h-full fill-current" />
             </m.div>
           ))}
         </LazyMotion>

@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
-import GithubIcon from '@src/assets/svgs/github.svg';
-import LinkedInIcon from '@src/assets/svgs/linked_in.svg';
+import GithubIcon from '@src/assets/svgs/github.svg?react';
+import LinkedInIcon from '@src/assets/svgs/linked_in.svg?react';
 import type { ObjectEntries } from '@src/shared';
 
 import ProfileLink from './ProfileLink';
@@ -11,9 +11,12 @@ type Social = (typeof PROFILE)['social'];
 
 const { imageSrc, name, social } = PROFILE;
 
-const SOCIAL_ICONS: Record<keyof Social, string> = {
-  github: GithubIcon.src ?? GithubIcon,
-  linkedIn: LinkedInIcon.src ?? LinkedInIcon,
+const SOCIAL_ICONS: Record<
+  keyof Social,
+  React.FC<React.ComponentProps<'svg'>>
+> = {
+  github: GithubIcon,
+  linkedIn: LinkedInIcon,
 };
 
 const ProfileCard = () => {
@@ -31,10 +34,10 @@ const ProfileCard = () => {
         <div className="flex items-center mt-2">
           {(Object.entries(social) as ObjectEntries<Social>).map(
             ([name, href]) => {
-              const iconSrc = SOCIAL_ICONS[name];
+              const Icon = SOCIAL_ICONS[name];
               return (
                 <ProfileLink href={href} title={`${name}-link`} key={name}>
-                  <img src={iconSrc} className="w-6 h-6" alt={name} />
+                  <Icon className="w-6 h-6 fill-current" />
                 </ProfileLink>
               );
             },

@@ -1,9 +1,7 @@
-type RenderSVGComponent = ((
-  props?: React.SVGAttributes<SVGElement>,
-) => SVGComponent) & { src: string };
-
-declare module '*.svg' {
-  const RenderSVGComponent: RenderSVGComponent;
-
-  export default RenderSVGComponent;
+declare module '*.svg?react' {
+  import * as React from 'react';
+  const ReactComponent: React.FunctionComponent<
+    React.ComponentProps<'svg'> & { title?: string }
+  >;
+  export default ReactComponent;
 }

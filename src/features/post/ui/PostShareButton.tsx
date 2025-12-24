@@ -1,7 +1,5 @@
-import React from 'react';
-
-import FacebookIcon from '@src/assets/svgs/facebook.svg';
-import TwitterIcon from '@src/assets/svgs/twitter.svg';
+import FacebookIcon from '@src/assets/svgs/facebook.svg?react';
+import TwitterIcon from '@src/assets/svgs/twitter.svg?react';
 
 type PostShareButtonType = 'facebook' | 'twitter';
 
@@ -12,14 +10,19 @@ interface PostShareButtonProps {
 
 const shareIconMap: Record<
   PostShareButtonType,
-  { icon: string; color: string }
+  {
+    Icon: React.FunctionComponent<
+      React.ComponentProps<'svg'> & { title?: string }
+    >;
+    color: string;
+  }
 > = {
-  facebook: { icon: FacebookIcon.src ?? FacebookIcon, color: '#4267B2' },
-  twitter: { icon: TwitterIcon.src ?? TwitterIcon, color: '#000000' },
+  facebook: { Icon: FacebookIcon, color: '#4267B2' },
+  twitter: { Icon: TwitterIcon, color: '#000000' },
 };
 
 const PostShareButton = ({ type, onClick }: PostShareButtonProps) => {
-  const { icon, color } = shareIconMap[type];
+  const { Icon, color } = shareIconMap[type];
 
   return (
     <button
@@ -28,7 +31,7 @@ const PostShareButton = ({ type, onClick }: PostShareButtonProps) => {
       style={{ backgroundColor: color }}
       onClick={onClick}
     >
-      <img src={icon} alt={`${type}-share-icon`} className="w-5 h-5 mr-2" />
+      <Icon className="w-5 h-5 mr-2" />
       <span className="text-sm">공유하기</span>
     </button>
   );

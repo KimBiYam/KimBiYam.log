@@ -1,11 +1,10 @@
-'use client';
 
 import { useAtomValue } from 'jotai';
 import { domAnimation, LazyMotion } from 'motion/react';
 import * as m from 'motion/react-m';
 
 import { createDynamicallyOpacityMotion } from '@src/shared/styles/motions';
-import ArrowUpIcon from '@src/assets/svgs/arrow_up.svg';
+import ArrowUpIcon from '@src/assets/svgs/arrow_up.svg?react';
 
 import scrollAtom from '../atoms/scrollAtom';
 
@@ -35,7 +34,7 @@ const ScrollToTopButton = () => {
           className="flex items-center justify-center w-10 h-10 transition-opacity duration-300 rounded-full primary-button drop-shadow-md justify-items-center hover:opacity-70"
         >
           <div className="w-4 h-4 main-font-color">
-            <img src={ArrowUpIcon.src ?? ArrowUpIcon} alt="scroll up" className="w-full h-full" />
+            <ArrowUpIcon className="w-full h-full fill-current" />
           </div>
         </button>
       </m.div>
