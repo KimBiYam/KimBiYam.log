@@ -1,5 +1,3 @@
-'use client';
-
 import { useAtomValue } from 'jotai';
 import { domAnimation, LazyMotion } from 'motion/react';
 import * as m from 'motion/react-m';

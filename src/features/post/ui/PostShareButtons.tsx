@@ -1,5 +1,3 @@
-'use client';
-
 import type { PostDetail } from '@src/features/post/types/post.types';
 import { DOMAIN_URL } from '@src/shared/constants';
 

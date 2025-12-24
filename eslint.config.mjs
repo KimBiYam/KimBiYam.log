@@ -4,7 +4,6 @@ import tseslint from 'typescript-eslint';
 import { defineConfig } from 'eslint/config';
 import reactHooks from 'eslint-plugin-react-hooks';
 import importPlugin from 'eslint-plugin-import';
-import nextPlugin from '@next/eslint-plugin-next';
 
 export default defineConfig(
   reactHooks.configs.flat.recommended,
@@ -35,15 +34,6 @@ export default defineConfig(
       'import/no-named-as-default': 'off',
       'import/namespace': 'off',
       'no-extra-boolean-cast': 'off',
-    },
-  },
-  {
-    plugins: {
-      '@next/next': nextPlugin,
-    },
-    rules: {
-      ...nextPlugin.configs.recommended.rules,
-      ...nextPlugin.configs['core-web-vitals'].rules,
     },
   },
 );
