@@ -3,7 +3,6 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import remarkGfm from 'remark-gfm';
-import rehypePrism from '@mapbox/rehype-prism';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import svgr from 'vite-plugin-svgr';
@@ -25,14 +24,11 @@ export default defineConfig({
   },
   site: 'https://kimbiyam.log',
   markdown: {
+    syntaxHighlight: 'prism',
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
-      rehypePrism,
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: 'wrap' }],
     ],
-    shikiConfig: {
-      theme: 'dracula',
-    },
   },
 });

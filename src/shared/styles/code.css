@@ -5,12 +5,11 @@
  */
 
 code[class*='language-'],
-pre[class*='language-'],
-.astro-code {
+pre[class*='language-'] {
   color: #ccc;
   background: none;
-  font-family: var(--font-fira-code), 'Consolas', 'Monaco', 'Andale Mono',
-    'Ubuntu Mono', monospace !important;
+  font-family: var(--font-fira-code), 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono',
+    monospace !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto;
   font-weight: 500 !important;
@@ -34,16 +33,14 @@ pre[class*='language-'],
 }
 
 /* Code blocks */
-pre[class*='language-'],
-.astro-code {
+pre[class*='language-'] {
   padding: 1em;
   margin: 0.5em 0;
   overflow: auto;
 }
 
 :not(pre) > code[class*='language-'],
-pre[class*='language-'],
-.astro-code {
+pre[class*='language-'] {
   background: #2d2d2d;
 }
 
