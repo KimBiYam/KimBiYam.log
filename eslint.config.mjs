@@ -11,7 +11,7 @@ export default defineConfig(
   ...tseslint.configs.recommended,
   prettierConfig,
   {
-    ignores: ['.next/', 'node_modules/', '/build/'],
+    ignores: ['node_modules/', '/build/'],
   },
   {
     files: ['**/*.{ts,tsx}'],

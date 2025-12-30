@@ -4,6 +4,10 @@ import { Footer, ScrollToTopButton } from '@src/shared';
 import '@src/shared/styles/global.css';
 import '@src/shared/styles/tailwind.css';
 import { ClientRouter } from 'astro:transitions';
+import {
+  GOOGLE_SITE_VERIFICATION_KEY,
+  NAVER_SITE_VERIFICATION_KEY,
+} from 'astro:env/client';
 
 interface Props {
   title?: string;
@@ -28,6 +32,14 @@ const {
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta
+      property="google-site-verification"
+      content={GOOGLE_SITE_VERIFICATION_KEY}
+    />
+    <meta
+      property="naver-site-verification"
+      content={NAVER_SITE_VERIFICATION_KEY}
+    />
     {image && <meta property="og:image" content={image} />}
 
     <link

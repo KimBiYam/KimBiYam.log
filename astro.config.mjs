@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
@@ -9,6 +9,18 @@ import svgr from 'vite-plugin-svgr';
 
 // https://astro.build/config
 export default defineConfig({
+  env: {
+    schema: {
+      GOOGLE_SITE_VERIFICATION_KEY: envField.string({
+        context: 'client',
+        access: 'public',
+      }),
+      NAVER_SITE_VERIFICATION_KEY: envField.string({
+        context: 'client',
+        access: 'public',
+      }),
+    },
+  },
   integrations: [react(), tailwind(), sitemap()],
   vite: {
     plugins: [
@@ -26,9 +38,6 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: 'prism',
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [
-      rehypeSlug,
-      [rehypeAutolinkHeadings, { behavior: 'wrap' }],
-    ],
+    rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }]],
   },
 });

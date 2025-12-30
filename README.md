@@ -2,10 +2,10 @@
 My dev log!
 
 ### Project Stack
-- Next.js
+- Astro
+  - React
 - Tailwind CSS
 - Framer Motion
 - gray-matter
 - remark
 - utterances
-- jotai
