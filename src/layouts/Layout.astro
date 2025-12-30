@@ -3,6 +3,7 @@ import { Header } from '@src/widgets/base';
 import { Footer, ScrollToTopButton } from '@src/shared';
 import '@src/shared/styles/global.css';
 import '@src/shared/styles/tailwind.css';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title?: string;
@@ -52,3 +53,5 @@ const {
     <script src="/setViewportProperty.js" is:inline></script>
   </body>
 </html>
+
+<ClientRouter />
