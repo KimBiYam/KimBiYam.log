@@ -8,9 +8,14 @@ interface UseMediumZoomOptions {
   options?: Partial<ZoomOptions>;
 }
 const useMediumZoom = ({ selector, options }: UseMediumZoomOptions) => {
-  const zoomRef = useRef<Zoom>(mediumZoom(options));
+  const zoomRef = useRef<Zoom | null>(null);
 
   useLayoutEffect(() => {
+    // 처음 한 번만 생성
+    if (!zoomRef.current) {
+      zoomRef.current = mediumZoom(options);
+    }
+
     const zoom = zoomRef.current;
     const images = document.querySelectorAll(selector);
     if (images.length > 0) {
@@ -20,7 +25,7 @@ const useMediumZoom = ({ selector, options }: UseMediumZoomOptions) => {
     return () => {
       zoom.detach(images);
     };
-  }, [selector]);
+  }, [options, selector]);
 
   useLayoutEffect(() => {
     if (options) {
