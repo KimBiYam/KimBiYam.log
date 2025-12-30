@@ -61,7 +61,7 @@ const postDetail = {
     <div class="py-4 my-10 border-t border-b">
       <ProfileCard client:load />
     </div>
-    <Utterances client:visible />
+    <Utterances client:only="react" />
   </article>
 
   <PostImageZoom client:only="react" selector="#markdown-content img" />
