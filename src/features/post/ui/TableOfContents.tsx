@@ -15,6 +15,7 @@ const TableOfContents = ({ contentId }: TableOfContentsProps) => {
 
   useEffect(() => {
     if (contentId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTargetElement(document.getElementById(contentId));
     }
   }, [contentId]);
