@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import { ProfileCard } from '@src/shared';
 import { BlogIndex } from '@src/widgets/post/ui/BlogIndex';
 import { getPostPreviewDescription } from '@src/features/post/utils';
+import { Tag } from '@src/features/tag';
 
 const allPosts = await getCollection('posts');
 
@@ -19,7 +20,7 @@ const postPreviews = allPosts
   .sort((a, b) => (a.date < b.date ? 1 : -1));
 
 const tags = [
-  'all',
+  Tag.all,
   ...Array.from(new Set(postPreviews.map((p) => p.tag))).sort(),
 ];
 ---
