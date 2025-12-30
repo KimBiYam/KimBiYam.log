@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { useAtom } from 'jotai';
 
@@ -30,6 +30,11 @@ const PostList = ({ postPreviews }: PostListProps) => {
     targetRef: scrollRef,
   });
 
+  // Reset postPage when unmounting to prevent hydration mismatch on back navigation
+  useEffect(() => {
+    return () => setPostPage(1);
+  }, [setPostPage]);
+
   const filteredPostPreviews = useMemo(
     () =>
       postPreviews
@@ -42,15 +47,17 @@ const PostList = ({ postPreviews }: PostListProps) => {
   );
 
   return (
-    <ul>
-      {filteredPostPreviews.map((postPreview) => (
-        <PostListItem
-          key={postPreview.id + postPreview.title}
-          postPreview={postPreview}
-        />
-      ))}
+    <>
+      <ul>
+        {filteredPostPreviews.map((postPreview) => (
+          <PostListItem
+            key={postPreview.id + postPreview.title}
+            postPreview={postPreview}
+          />
+        ))}
+      </ul>
       <div ref={scrollRef} />
-    </ul>
+    </>
   );
 };
 
