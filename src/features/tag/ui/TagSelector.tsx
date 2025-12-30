@@ -1,4 +1,3 @@
-
 import useActiveChildScroll from '@src/features/post/hooks/useActiveChildScroll';
 
 import TagButton from './TagButton';
@@ -19,9 +18,9 @@ export default function TagSelector({ tags, ref }: TagSelectorProps) {
   });
 
   return (
-    <div className="sticky z-40 top-14">
+    <div className="sticky z-40 top-14 main-container">
       <div
-        className="flex pt-4 -mx-6 overflow-auto md:mx-0 scrollbar-hide main-container"
+        className="flex pt-4 -mx-6 overflow-auto md:mx-0 scrollbar-hide"
         ref={ref}
       >
         {tags.map((tag) => (
