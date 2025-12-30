@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import { TagBadge } from '@src/features/tag/ui';
 import { PostDateText, PostShareButtons } from '@src/features/post/client';
 import TableOfContents from '@src/features/post/ui/TableOfContents';
+import PostImageZoom from '@src/features/post/ui/PostImageZoom';
 import { ProfileCard, Utterances } from '@src/shared';
 import { getPostPreviewDescription } from '@src/features/post/utils';
 import '@fontsource/fira-code';
@@ -63,23 +64,5 @@ const postDetail = {
     <Utterances client:visible />
   </article>
 
-  <script>
-    import mediumZoom from 'medium-zoom';
-
-    const runZoom = () => {
-      const images = document.querySelectorAll('#markdown-content img');
-      if (images.length > 0) {
-        mediumZoom(images, {
-          margin: 24,
-          background: document.documentElement.classList.contains('dark')
-            ? '#171717'
-            : '#ffffff',
-        });
-      }
-    };
-
-    runZoom();
-    // Re-run on theme change if needed? medium-zoom handles background?
-    // Usually need to update options.
-  </script>
+  <PostImageZoom client:only="react" selector="#markdown-content img" />
 </Layout>

@@ -5,3 +5,4 @@ export { default as useScrollObserver } from './useScrollObserver';
 export { default as useScrollOverElementDetect } from './useScrollOverElementDetect';
 export { default as useThrottle } from './useThrottle';
 export { default as useTheme } from './useTheme';
+export { default as useMediumZoom } from './useMediumZoom';
