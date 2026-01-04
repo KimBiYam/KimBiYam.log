@@ -3,8 +3,8 @@
 import { domAnimation, LazyMotion, Transition, Variants } from 'motion/react';
 import * as m from 'motion/react-m';
 
-import MoonIcon from '@src/assets/svgs/moon.svg';
-import SunIcon from '@src/assets/svgs/sun.svg';
+import MoonIcon from '@src/shared/assets/svgs/moon.svg';
+import SunIcon from '@src/shared/assets/svgs/sun.svg';
 import useMounted from '@src/shared/hooks/useMounted';
 
 import { Theme } from '../constants';
