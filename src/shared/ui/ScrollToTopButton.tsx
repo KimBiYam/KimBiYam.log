@@ -5,7 +5,7 @@ import { domAnimation, LazyMotion } from 'motion/react';
 import * as m from 'motion/react-m';
 
 import { createDynamicallyOpacityMotion } from '@src/shared/styles/motions';
-import ArrowUpIcon from '@src/assets/svgs/arrow_up.svg';
+import ArrowUpIcon from '@src/shared/assets/svgs/arrow_up.svg';
 
 import scrollAtom from '../atoms/scrollAtom';
 

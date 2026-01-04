@@ -8,7 +8,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
 
     const logoImageData = await fetch(
-      new URL('../../../assets/images/logo_image.png', import.meta.url),
+      new URL('../../../shared/assets/images/logo_image.png', import.meta.url),
     ).then((res) => res.arrayBuffer());
 
     const title = searchParams.get('title');

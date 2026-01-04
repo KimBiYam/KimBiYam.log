@@ -2,8 +2,8 @@ import React, { memo } from 'react';
 
 import Image from 'next/image';
 
-import GithubIcon from '@src/assets/svgs/github.svg';
-import LinkedInIcon from '@src/assets/svgs/linked_in.svg';
+import GithubIcon from '@src/shared/assets/svgs/github.svg';
+import LinkedInIcon from '@src/shared/assets/svgs/linked_in.svg';
 import { ObjectEntries } from '@src/shared';
 
 import ProfileLink from './ProfileLink';
