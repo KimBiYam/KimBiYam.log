@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import React from 'react';
@@ -6,25 +5,20 @@ import ReactMarkdown from 'react-markdown';
 import { PluggableList } from 'react-markdown/lib';
 
 import { Fira_Code } from 'next/font/google';
-import Image from 'next/image';
 
 import rehypePrism from '@mapbox/rehype-prism';
 import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 
-import { MediumZoom, Theme, useTheme } from '@src/shared';
+import { Theme, useTheme } from '@src/shared';
 import '@src/shared/styles/code.css';
 
-import HeadingLink from './HeadingLink';
+import MarkdownHeading from './MarkdownHeading';
+import MarkdownImage from './MarkdownImage';
 import { theme as tailwindTheme } from '../../../../tailwind.config';
 import { POST_HEADING_TARGET_TAGS } from '../constants';
 import { PostImageSize } from '../types';
-
-type HeadingComponent = (props: {
-  id: string;
-  children: React.ReactNode;
-}) => React.ReactNode;
 
 const firaCode = Fira_Code({
   weight: '500',
@@ -59,41 +53,25 @@ export default React.forwardRef<HTMLDivElement, MarkdownViewProps>(
           ]}
           components={{
             ...POST_HEADING_TARGET_TAGS.reduce<
-              Record<string, HeadingComponent>
+              Record<
+                string,
+                React.FC<{ id: string; children: React.ReactNode }>
+              >
             >((acc, tag) => {
-              const HeadingComponent: HeadingComponent = ({ children, id }) => (
-                <HeadingLink id={id} tag={tag}>
+              acc[tag] = ({ id, children }) => (
+                <MarkdownHeading id={id} tag={tag}>
                   {children}
-                </HeadingLink>
+                </MarkdownHeading>
               );
-
-              acc[tag] = HeadingComponent;
               return acc;
             }, {}),
-            img: (props) => {
-              if (!props.src) return null;
-              const imageSize = imageSizes?.[props.src];
-
-              return imageSize ? (
-                <MediumZoom margin={24} background={mediumZoomBackground}>
-                  <Image
-                    src={props.src}
-                    alt={props.alt ?? ''}
-                    width={imageSize?.width ?? 700}
-                    height={imageSize?.height ?? 400}
-                    /**
-                     * set loading strategy to "eager" to temporally fix safari flickering issue
-                     * https://github.com/vercel/next.js/discussions/20991
-                     */
-                    loading="eager"
-                  />
-                </MediumZoom>
-              ) : (
-                <MediumZoom margin={24} background={mediumZoomBackground}>
-                  <img src={props.src} alt={props.alt} />
-                </MediumZoom>
-              );
-            },
+            img: (props) => (
+              <MarkdownImage
+                {...props}
+                imageSizes={imageSizes}
+                mediumZoomBackground={mediumZoomBackground}
+              />
+            ),
           }}
         >
           {contentHtml}
