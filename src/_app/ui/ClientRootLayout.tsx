@@ -1,6 +1,7 @@
 'use client';
 
 import { PropsWithChildren } from 'react';
+import { LazyMotion, domAnimation } from 'motion/react';
 
 import { useDetectScroll } from '@src/shared';
 
@@ -12,7 +13,9 @@ export default function ClientRootLayout({ children }: PropsWithChildren) {
 
   return (
     <ThemeProvider>
-      <MainLayout>{children}</MainLayout>
+      <LazyMotion features={domAnimation} strict>
+        <MainLayout>{children}</MainLayout>
+      </LazyMotion>
     </ThemeProvider>
   );
 }
