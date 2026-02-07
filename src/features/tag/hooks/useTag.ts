@@ -9,7 +9,7 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { tagAtom } from '../atoms';
 import { Tag } from '../constants';
 
-export const useSetTag = (onTagClick?: (tag: string) => void) => {
+export const useSetTag = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const setSelectedTag = useSetAtom(tagAtom);
@@ -24,9 +24,8 @@ export const useSetTag = (onTagClick?: (tag: string) => void) => {
     (tag: string) => {
       const path = tag === Tag.all ? '/' : `/?tag=${tag}`;
       router.push(path, { scroll: true });
-      onTagClick?.(tag);
     },
-    [router, onTagClick],
+    [router],
   );
 
   return handleTagClick;

@@ -20,10 +20,17 @@ const PostList = ({ postPreviews }: PostListProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [postPage, setPostPage] = useAtom(postPageAtom);
   const selectedTag = useSelectedTag();
+  const prevTagRef = useRef(selectedTag);
 
-  useEffect(() => {
-    setPostPage(1);
-  }, [selectedTag, setPostPage]);
+  useEffect(
+    function resetPageWhenTagChanged() {
+      if (prevTagRef.current !== selectedTag) {
+        setPostPage(1);
+        prevTagRef.current = selectedTag;
+      }
+    },
+    [selectedTag, setPostPage],
+  );
 
   const handleIntersect = useCallback(
     () => setPostPage((prev) => prev + 1),
