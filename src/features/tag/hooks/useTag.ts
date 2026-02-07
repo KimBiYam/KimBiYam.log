@@ -6,13 +6,10 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 import { useAtomValue, useSetAtom } from 'jotai';
 
-import { postPageAtom } from '@src/features/post/atoms';
-
 import { tagAtom } from '../atoms';
 import { Tag } from '../constants';
 
-export const useSetTag = () => {
-  const setPostPage = useSetAtom(postPageAtom);
+export const useSetTag = (onTagClick?: (tag: string) => void) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const setSelectedTag = useSetAtom(tagAtom);
@@ -27,9 +24,9 @@ export const useSetTag = () => {
     (tag: string) => {
       const path = tag === Tag.all ? '/' : `/?tag=${tag}`;
       router.push(path, { scroll: true });
-      setPostPage(1);
+      onTagClick?.(tag);
     },
-    [router, setPostPage],
+    [router, onTagClick],
   );
 
   return handleTagClick;

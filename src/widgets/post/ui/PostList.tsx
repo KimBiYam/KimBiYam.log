@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { useAtom } from 'jotai';
 
@@ -20,6 +20,10 @@ const PostList = ({ postPreviews }: PostListProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [postPage, setPostPage] = useAtom(postPageAtom);
   const selectedTag = useSelectedTag();
+
+  useEffect(() => {
+    setPostPage(1);
+  }, [selectedTag, setPostPage]);
 
   const handleIntersect = useCallback(
     () => setPostPage((prev) => prev + 1),
