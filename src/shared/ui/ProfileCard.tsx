@@ -11,13 +11,14 @@ import { PROFILE } from '../constants';
 
 type Social = (typeof PROFILE)['social'];
 
-const { imageSrc, name, social } = PROFILE;
 const SOCIAL_ICONS: Record<keyof Social, RenderSVGComponent> = {
   github: GithubIcon,
   linkedIn: LinkedInIcon,
 } as const;
 
 const ProfileCard = () => {
+  const { name, imageSrc, social } = PROFILE;
+
   return (
     <div className="flex items-center">
       <Image
