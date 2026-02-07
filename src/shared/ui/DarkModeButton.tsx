@@ -1,6 +1,6 @@
 'use client';
 
-import { domAnimation, LazyMotion, Transition, Variants } from 'motion/react';
+import { Transition, Variants } from 'motion/react';
 import * as m from 'motion/react-m';
 
 import MoonIcon from '@src/shared/assets/svgs/moon.svg';
@@ -61,19 +61,17 @@ const DarkModeButton = () => {
       title="dark-mode-button"
     >
       <div className="relative w-6 h-6">
-        <LazyMotion features={domAnimation} strict>
-          {themeButtons.map(({ icon, buttonTheme }) => (
-            <m.div
-              key={buttonTheme}
-              initial={false}
-              className="absolute w-full"
-              animate={theme === buttonTheme ? 'initial' : 'exit'}
-              variants={variants}
-            >
-              {icon}
-            </m.div>
-          ))}
-        </LazyMotion>
+        {themeButtons.map(({ icon, buttonTheme }) => (
+          <m.div
+            key={buttonTheme}
+            initial={false}
+            className="absolute w-full"
+            animate={theme === buttonTheme ? 'initial' : 'exit'}
+            variants={variants}
+          >
+            {icon}
+          </m.div>
+        ))}
       </div>
     </button>
   );
