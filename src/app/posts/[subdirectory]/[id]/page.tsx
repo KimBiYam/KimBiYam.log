@@ -2,18 +2,14 @@ import { captureException } from '@sentry/nextjs';
 import { Metadata } from 'next';
 
 import { generateOpenGraphMetaData } from '@src/app/metadataBase';
-import {
-  PostPath,
-  PostShareButtons,
-  PostView,
-} from '@src/features/post/client';
+import { PostPath } from '@src/features/post/client';
+import PostPage from '@src/(pages)/post/PostPage/ui/PostPage';
 import { POST_DIRECTORY } from '@src/features/post/constants/directories';
 import {
   getPostDetail,
   getPostImageSizes,
   getAllPostPaths,
 } from '@src/features/post/server';
-import { ProfileCard, Utterances } from '@src/shared';
 
 export async function generateStaticParams() {
   const paths = await getAllPostPaths();
@@ -66,14 +62,5 @@ export default async function PostDetailPage(props: {
 
   const imageSizes = getPostImageSizes(postDetail.contentHtml);
 
-  return (
-    <div>
-      <PostView postDetail={postDetail} imageSizes={imageSizes} />
-      <PostShareButtons postDetail={postDetail} />
-      <div className="py-4 my-10 border-t border-b">
-        <ProfileCard />
-      </div>
-      <Utterances />
-    </div>
-  );
+  return <PostPage postDetail={postDetail} imageSizes={imageSizes} />;
 }
