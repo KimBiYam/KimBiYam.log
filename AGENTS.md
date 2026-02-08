@@ -30,17 +30,21 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
 
 1.  **`src/app`**: **App Router** (Routing Layer).
     - Contains `page.tsx`, `layout.tsx`, `loading.tsx`, `error.tsx`, `not-found.tsx`.
-    - minimal logic; delegates to `widgets` or `features` immediately.
-2.  **`src/_app`**: **App Initialization**.
+    - minimal logic; delegates to `(pages)` immediately.
+2.  **`src/(pages)`**: **Page Layer**.
+    - Composition of widgets and features for specific pages (e.g., `HomePage`, `PostPage`).
+    - Can import from `widgets`, `features`, and `shared`.
+    - **Note:** `src/(pages)` is used instead of `src/pages` to avoid confusion with Next.js Pages Router. Use parentheses to distinguish from standard `pages` directory.
+3.  **`src/_app`**: **App Initialization**.
     - Global providers (`ThemeProvider`), root layouts, and app-wide constants.
-3.  **`src/widgets`**: **Composition Layer**.
+4.  **`src/widgets`**: **Composition Layer**.
     - Complex UI blocks that combine multiple features (e.g., `PostView`, `Header`).
     - Can import from `features` and `shared`.
-4.  **`src/features`**: **Business Logic Layer**.
+5.  **`src/features`**: **Business Logic Layer**.
     - User scenarios (e.g., `post`, `tag`).
     - Contains `ui`, `atoms`, `hooks`, `lib`, `types`.
     - **Rule:** Features should NOT import from other features directly (use `widgets` to compose).
-5.  **`src/shared`**: **Foundation Layer**.
+6.  **`src/shared`**: **Foundation Layer**.
     - Reusable UI kit (`ui`), generic hooks (`hooks`), global state atoms (`atoms`), utils (`utils`), styles (`styles`).
     - Must NOT import from upper layers.
     - **Rule:** Shared UI must be business-agnostic (no importing app constants/types).
@@ -51,6 +55,7 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
   - If generic/reusable -> `src/shared/ui`.
   - If domain-specific -> `src/features/[feature]/ui`.
   - If compositional -> `src/widgets/[widget]/ui`.
+  - If page-specific composition -> `src/(pages)/[slice]/[PageName]/ui/[PageName].tsx`.
 - **Imports:**
   - **ALWAYS** use absolute imports with `@src` alias.
   - ✅ `import { Button } from '@src/shared/ui';`
@@ -82,7 +87,7 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
 ### **Import Order (Enforced by ESLint)**
 
 1.  **External Libraries:** React, Next.js, Jotai, Motion, etc.
-2.  **Internal Absolute Imports:** `@src/app`, `@src/widgets`, `@src/features`, `@src/shared`.
+2.  **Internal Absolute Imports:** `@src/app`, `@src/(pages)`, `@src/widgets`, `@src/features`, `@src/shared`, `@src/_app`.
 3.  **Relative Imports:** `../`, `./` (Use sparingly, prefer absolute).
 4.  **Styles:** CSS/SCSS imports (if any).
 
@@ -113,6 +118,7 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
 - **Performance:** Always use `LazyMotion` with `domAnimation` to reduce bundle size.
 - **Global Provider:** Prefer a single global `LazyMotion` provider (in layout) over multiple nested providers.
 - **Pattern:**
+
   ```tsx
   // In Layout
   <LazyMotion features={domAnimation} strict>
