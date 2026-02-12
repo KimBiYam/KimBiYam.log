@@ -45,7 +45,7 @@ const PostList = ({ postPreviews }: PostListProps) => {
       (postPreview) =>
         selectedTag === Tag.all || postPreview.tag === selectedTag,
     )
-    .splice(0, postPage * POST_COUNT_BY_PAGE);
+    .slice(0, postPage * POST_COUNT_BY_PAGE);
 
   return (
     <ul>
