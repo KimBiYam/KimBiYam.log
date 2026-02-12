@@ -1,7 +1,5 @@
 'use client';
 
-import { memo } from 'react';
-
 import * as m from 'motion/react-m';
 
 import { Logo, DarkModeButton } from '@src/shared';
@@ -20,4 +18,4 @@ const Header = () => {
   );
 };
 
-export default memo(Header);
+export default Header;

@@ -1,5 +1,3 @@
-import { useCallback } from 'react';
-
 import clsx from 'clsx';
 import * as m from 'motion/react-m';
 
@@ -24,10 +22,8 @@ const TableOfContentsItem = ({
 }: TableOfContentsItemProps) => {
   const { id, title } = heading;
 
-  const attachRef = useCallback(
-    (element: HTMLButtonElement | null) => registerChildRef(element, id),
-    [id, registerChildRef],
-  );
+  const attachRef = (element: HTMLButtonElement | null) =>
+    registerChildRef(element, id);
 
   return (
     <m.li

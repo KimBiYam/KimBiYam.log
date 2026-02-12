@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import TableOfContentsItem from './TableOfContentsItem';
 import { TableOfContentHeading } from '../hooks/useTableOfContents';
 
@@ -11,7 +9,7 @@ interface TableOfContentsListProps {
   level?: number;
 }
 
-export default memo(function TableOfContentsList({
+export default function TableOfContentsList({
   activeId,
   headings,
   onItemClick,
@@ -42,4 +40,4 @@ export default memo(function TableOfContentsList({
       ))}
     </ul>
   );
-});
+}

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import Image from 'next/image';
 
@@ -46,4 +46,4 @@ const ProfileCard = () => {
   );
 };
 
-export default memo(ProfileCard);
+export default ProfileCard;
