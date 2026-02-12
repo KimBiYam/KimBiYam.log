@@ -1,5 +1,3 @@
-import React, { memo } from 'react';
-
 import Image from 'next/image';
 
 import GithubIcon from '@src/shared/assets/svgs/github.svg';
@@ -46,4 +44,4 @@ const ProfileCard = () => {
   );
 };
 
-export default memo(ProfileCard);
+export default ProfileCard;

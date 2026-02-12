@@ -1,5 +1,3 @@
-import { memo, useCallback } from 'react';
-
 import clsx from 'clsx';
 
 interface TagButtonProps {
@@ -15,10 +13,8 @@ const TagButton = ({
   registerChildRef,
   tag,
 }: TagButtonProps) => {
-  const attachRef = useCallback(
-    (element: HTMLButtonElement | null) => registerChildRef(element, tag),
-    [registerChildRef, tag],
-  );
+  const attachRef = (element: HTMLButtonElement | null) =>
+    registerChildRef(element, tag);
 
   return (
     <button
@@ -39,4 +35,4 @@ const TagButton = ({
   );
 };
 
-export default memo(TagButton);
+export default TagButton;

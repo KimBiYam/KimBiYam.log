@@ -1,4 +1,4 @@
-import { memo, useCallback, useRef } from 'react';
+import { useRef } from 'react';
 
 import { useDetectPageScrolling } from '@src/shared';
 
@@ -22,10 +22,10 @@ const TableOfContents = ({ targetElement }: TableOfContentsProps) => {
     pageScrolling,
   });
 
-  const handleItemClick = useCallback((id: string) => {
+  const handleItemClick = (id: string) => {
     const heading = document.getElementById(id);
     heading?.scrollIntoView({ behavior: 'smooth' });
-  }, []);
+  };
 
   return (
     <aside className="absolute left-full">
@@ -44,4 +44,4 @@ const TableOfContents = ({ targetElement }: TableOfContentsProps) => {
   );
 };
 
-export default memo(TableOfContents);
+export default TableOfContents;
