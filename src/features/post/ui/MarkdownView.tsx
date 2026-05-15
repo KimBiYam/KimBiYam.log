@@ -2,7 +2,6 @@
 
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { PluggableList } from 'react-markdown/lib';
 
 import { Fira_Code } from 'next/font/google';
 
@@ -46,11 +45,8 @@ export default React.forwardRef<HTMLDivElement, MarkdownViewProps>(
         <ReactMarkdown
           className={firaCode.variable}
           remarkPlugins={[remarkGfm]}
-          rehypePlugins={[
-            rehypePrism as PluggableList[number],
-            rehypeSlug,
-            rehypeStringify,
-          ]}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          rehypePlugins={[rehypePrism as any, rehypeSlug, rehypeStringify]}
           components={{
             ...POST_HEADING_TARGET_TAGS.reduce<
               Record<
@@ -68,6 +64,7 @@ export default React.forwardRef<HTMLDivElement, MarkdownViewProps>(
             img: (props) => (
               <MarkdownImage
                 {...props}
+                src={typeof props.src === 'string' ? props.src : undefined}
                 imageSizes={imageSizes}
                 mediumZoomBackground={mediumZoomBackground}
               />
