@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from 'next/og';
+import { ImageResponseOptions } from 'next/server';
 
 export const runtime = 'edge';
 
@@ -13,11 +14,27 @@ export async function GET(request: Request) {
 
     const title = searchParams.get('title');
 
+    const fontData = await fetch(
+      new URL('https://gstatic.com', request.url),
+    ).then((res) => res.arrayBuffer());
+
+    const options = {
+      width: 1200,
+      height: 630,
+      fonts: [
+        {
+          name: 'Noto Sans KR',
+          data: fontData,
+          style: 'normal' as const,
+        },
+      ],
+    };
+
     if (!title) {
-      return generateDefaultImageResponse(logoImageData);
+      return generateDefaultImageResponse(logoImageData, options);
     }
 
-    return await generateTitleImageResponse(title, logoImageData);
+    return await generateTitleImageResponse(title, logoImageData, options);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e: unknown) {
     return new Response('Failed to generate OG image', { status: 500 });
@@ -26,6 +43,7 @@ export async function GET(request: Request) {
 
 const generateDefaultImageResponse = (
   logoImageData: ArrayBuffer,
+  options?: ImageResponseOptions,
 ): ImageResponse => {
   return new ImageResponse(
     (
@@ -38,16 +56,21 @@ const generateDefaultImageResponse = (
         />
       </div>
     ),
+    options,
   );
 };
 
 const generateTitleImageResponse = async (
   title: string,
   logoImageData: ArrayBuffer,
+  options?: ImageResponseOptions,
 ) => {
   return new ImageResponse(
     (
-      <div tw="flex flex-col w-full h-full items-center bg-black justify-center">
+      <div
+        tw="flex flex-col w-full h-full items-center bg-black justify-center"
+        style={{ fontFamily: 'Noto Sans KR' }}
+      >
         <img
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           src={logoImageData as any}
@@ -60,5 +83,6 @@ const generateTitleImageResponse = async (
         </div>
       </div>
     ),
+    options,
   );
 };
