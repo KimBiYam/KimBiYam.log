@@ -1,9 +1,11 @@
 import { Suspense } from 'react';
 
 import { PostPreview } from '@src/features/post/types';
-import { TagSelector, TagSelectorSkeleton } from '@src/features/tag';
-import { DragScrollContainer, ProfileCard } from '@src/shared/ui';
+import { TagSelectorSkeleton } from '@src/features/tag';
+import { ProfileCard } from '@src/shared/ui';
 import { PostList } from '@src/widgets/post';
+
+import HomeTagSelector from './HomeTagSelector';
 
 interface HomePageProps {
   postPreviews: PostPreview[];
@@ -17,9 +19,7 @@ const HomePage = ({ postPreviews, tags }: HomePageProps) => {
         <ProfileCard />
       </div>
       <Suspense fallback={<TagSelectorSkeleton />}>
-        <DragScrollContainer>
-          <TagSelector tags={tags} />
-        </DragScrollContainer>
+        <HomeTagSelector tags={tags} />
       </Suspense>
       <PostList postPreviews={postPreviews} />
     </div>
