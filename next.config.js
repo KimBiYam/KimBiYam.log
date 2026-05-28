@@ -11,6 +11,7 @@ const defaultConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [480, 768, 1024, 1280],
+    qualities: [100, 75],
   },
   webpack(config) {
     config.module.rules.push({
