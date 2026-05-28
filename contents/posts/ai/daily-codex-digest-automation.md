@@ -29,9 +29,6 @@ Codex 자동화 기능을 이용해서 작업했고, Claude Cowork로도 동일�
 -> 전달 스크립트로 Notion / Slack 전송
 ```
 
-
-여기서 실제 전달을 담당하는 파일은 `scripts/deliver_digest.py` 입니다.
-
 ## 확인하는 소스
 
 처음에는 GeekNews 위주로만 생각했는데, 실제로 매일 보고 싶은 내용은 조금 더 넓었습니다.
