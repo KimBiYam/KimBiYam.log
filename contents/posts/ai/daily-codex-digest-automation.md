@@ -145,7 +145,7 @@ Notion 쪽에서는 integration을 만들고, digest를 쌓을 database에 해�
 
 Slack은 incoming webhook을 만들어서 알림을 받을 채널에 연결해두면 됩니다.
 
-실제 토큰과 로컬 env 파일로만 관리합니다.
+실제 환경변수들은 로컬 env 파일로만 관리합니다.
 
 ## Codex 실행 허용 설정
 
