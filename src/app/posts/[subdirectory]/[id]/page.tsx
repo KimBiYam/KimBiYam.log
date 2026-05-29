@@ -39,7 +39,6 @@ export async function generateMetadata(props: {
         title,
         description,
         path: `/posts/${subdirectory}/${id}`,
-        ogImageTitle: title,
       }),
     };
   } catch (e) {
