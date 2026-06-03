@@ -1,9 +1,7 @@
 'use client';
 
 import { HTMLAttributes } from 'react';
-
 import Link, { LinkProps } from 'next/link';
-
 import * as m from 'motion/react-m';
 
 import { hoverRotateMotion } from '@src/shared/styles/motions';

@@ -1,7 +1,6 @@
 'use client';
 
 import { PropsWithChildren } from 'react';
-
 import { ThemeProvider as NextThemeProvider } from 'next-themes';
 
 import { Theme } from '@src/shared';

@@ -1,6 +1,6 @@
 import React from 'react';
-import HeadingLink from './HeadingLink';
 
+import HeadingLink from './HeadingLink';
 import { POST_HEADING_TARGET_TAGS } from '../constants';
 
 interface MarkdownHeadingProps {

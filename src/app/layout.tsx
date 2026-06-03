@@ -1,7 +1,5 @@
 import { PropsWithChildren } from 'react';
-
 import Script from 'next/script';
-
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';

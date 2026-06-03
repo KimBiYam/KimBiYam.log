@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-
 import { useSetAtom } from 'jotai';
 
 import useThrottle from './useThrottle';

@@ -2,7 +2,7 @@
 
 import { forwardRef } from 'react';
 
-import useActiveChildScroll from '@src/features/post/hooks/useActiveChildScroll';
+import { useActiveChildScroll } from '@src/shared/hooks';
 
 import TagButton from './TagButton';
 import { useSelectedTag } from '../hooks';
