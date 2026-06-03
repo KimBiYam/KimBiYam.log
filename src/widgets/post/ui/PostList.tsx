@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-
 import { useAtom } from 'jotai';
 
 import { postPageAtom, PostPreview } from '@src/features/post/client';

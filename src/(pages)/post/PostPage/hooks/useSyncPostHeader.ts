@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-
 import { useSetAtom } from 'jotai';
 
 import { headerTitleAtom } from '@src/features/post/client';

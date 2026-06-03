@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-
 import { useSetAtom } from 'jotai';
 import dynamic from 'next/dynamic';
 
@@ -22,7 +21,6 @@ import {
   useScrollOverElementDetect,
 } from '@src/shared';
 import breakPoints from '@src/shared/styles/breakPoints.json';
-
 import useSyncPostHeader from '@src/(pages)/post/PostPage/hooks/useSyncPostHeader';
 
 const DynamicTableOfContents = dynamic(

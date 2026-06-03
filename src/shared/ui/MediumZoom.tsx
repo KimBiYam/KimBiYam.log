@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-
 import mediumZoom, { ZoomOptions } from 'medium-zoom';
 
 import { isServer, mergeRefs } from '@src/shared';

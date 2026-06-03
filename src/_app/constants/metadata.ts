@@ -1,1 +1,1 @@
-export const PAGE_TITLE_SUFFIX = ' | KimBiYam.log';
+export { PAGE_TITLE_SUFFIX } from '@src/shared/constants/metadata';

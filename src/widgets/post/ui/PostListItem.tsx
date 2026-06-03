@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import * as m from 'motion/react-m';
 
 import { PostDateText } from '@src/features/post/client';

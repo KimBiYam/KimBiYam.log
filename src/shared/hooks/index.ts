@@ -1,3 +1,4 @@
+export { default as useActiveChildScroll } from './useActiveChildScroll';
 export { default as useDetectPageScrolling } from './useDetectPageScrolling';
 export { default as useDetectScroll } from './useDetectScroll';
 export { default as useMounted } from './useMounted';

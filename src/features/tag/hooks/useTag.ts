@@ -1,9 +1,7 @@
 'use client';
 
 import { useCallback, useEffect } from 'react';
-
 import { useRouter, useSearchParams } from 'next/navigation';
-
 import { useAtomValue, useSetAtom } from 'jotai';
 
 import { tagAtom } from '../atoms';

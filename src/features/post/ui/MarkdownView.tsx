@@ -2,9 +2,7 @@
 
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-
 import { Fira_Code } from 'next/font/google';
-
 import rehypePrism from '@mapbox/rehype-prism';
 import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify';

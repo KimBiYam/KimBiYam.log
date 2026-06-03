@@ -1,9 +1,11 @@
 import { useRef } from 'react';
 
-import { useDetectPageScrolling } from '@src/shared';
+import {
+  useActiveChildScroll,
+  useDetectPageScrolling,
+} from '@src/shared/hooks';
 
 import TableOfContentsList from './TableOfContentsList';
-import useActiveChildScroll from '../hooks/useActiveChildScroll';
 import useActiveHeadingDetector from '../hooks/useActiveHeadingDetector';
 import useTableOfContents from '../hooks/useTableOfContents';
 
