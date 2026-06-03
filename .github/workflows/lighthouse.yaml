@@ -1,0 +1,42 @@
+name: Lighthouse
+
+on:
+  pull_request:
+    branches: ['main']
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Read .nvmrc
+        id: nvm
+        run: echo "node_version=$(cat .nvmrc)" >> "$GITHUB_OUTPUT"
+
+      - uses: pnpm/action-setup@v4
+
+      - name: Use Node.js ${{ steps.nvm.outputs.node_version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.nvm.outputs.node_version }}
+          cache: 'pnpm'
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm build
+
+      - name: Run Lighthouse CI mobile
+        run: pnpm exec lhci autorun --config=./lighthouserc.mobile.js
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Run Lighthouse CI desktop
+        run: pnpm exec lhci autorun --config=./lighthouserc.desktop.js
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
