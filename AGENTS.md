@@ -157,8 +157,6 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
 
 ## 9. Git & PR Workflow
 
-- When the user asks for `커밋 푸시`, prefer the full workflow:
-  branch creation -> commit -> push -> PR creation against `main`.
 - Use slash-separated branch names with a clear type prefix, such as `docs/...`, `fix/...`, or `feat/...`.
 - Before committing, run:
   - `git diff --check`
