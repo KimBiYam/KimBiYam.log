@@ -44,6 +44,7 @@
     "supports-color": "^8.1.1"
   },
   "devDependencies": {
+    "@lhci/cli": "0.15.1",
     "@next/bundle-analyzer": "16.0.3",
     "@next/env": "16.0.3",
     "@next/eslint-plugin-next": "16.0.3",
