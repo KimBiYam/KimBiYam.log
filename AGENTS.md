@@ -10,7 +10,8 @@ This document outlines the development standards and operational procedures for 
 - **Install Dependencies:** `pnpm install`
 - **Development Server:** `pnpm dev`
 - **Production Build:** `pnpm build`
-  - Note: This runs type checking (`tsc`) and linting as part of the Next.js build process.
+  - Note: This runs the Next.js production build and type checking.
+  - Next.js 16 no longer runs linting during `next build`; run `pnpm lint` separately.
 - **Linting:** `pnpm lint`
   - Runs ESLint on `src/` directory.
   - Fix all warnings before committing.
@@ -133,7 +134,7 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
 
 - **Heavy Libraries:** Avoid importing heavy libraries (e.g., `react-markdown`) in Client Components if possible. Prefer Server Components or dynamic imports.
 - **Fonts:** Use `next/font` for optimal loading. Avoid external CDNs in `layout.tsx`.
-- **Hooks:** Use `useMemo` and `useCallback` appropriately, but rely on `reactCompiler: true` (Next.js 16) for automatic memoization where applicable.
+- **Hooks:** Avoid routine `useMemo` / `useCallback` for render optimization. Use them only when referential stability is required by an external API, dependency array, or measurable performance issue. Rely on `reactCompiler: true` where applicable.
 - **Image Optimization:** Use `next/image` with `priority` for above-the-fold content.
 
 ## 7. Error Handling & Linting
@@ -153,3 +154,14 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
 3.  **Verify**: Check `package.json` before importing new packages.
 4.  **Atomic Changes**: Focus on the requested task. Do not refactor unrelated code.
 5.  **Commit Message**: Use descriptive messages if asked to commit (e.g., `feat(post): add table of contents`).
+
+## 9. Git & PR Workflow
+
+- When the user asks for `커밋 푸시`, prefer the full workflow:
+  branch creation -> commit -> push -> PR creation against `main`.
+- Use slash-separated branch names with a clear type prefix, such as `docs/...`, `fix/...`, or `feat/...`.
+- Before committing, run:
+  - `git diff --check`
+  - `pnpm lint`
+- If branch creation fails with names like `docs/...` or `fix/...`, inspect existing refs and git state before assuming the branch name itself is invalid.
+- If `git push` or `gh pr create` fails because of GitHub/network resolution, report it as a remote/network failure after confirming the local commit and branch state.
