@@ -6,7 +6,7 @@ This document outlines the development standards and operational procedures for 
 
 ### **Commands**
 
-- **Package Manager:** `pnpm` (Core requirement. Version 10.x).
+- **Package Manager:** `pnpm` (Core requirement. Version 11.5.1).
 - **Install Dependencies:** `pnpm install`
 - **Development Server:** `pnpm dev`
 - **Production Build:** `pnpm build`

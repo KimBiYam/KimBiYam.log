@@ -1,0 +1,8 @@
+allowBuilds:
+  '@sentry/cli': true
+  '@vercel/speed-insights': true
+  sharp: true
+  unrs-resolver: true
+overrides:
+  '@types/react': 19.2.6
+  '@types/react-dom': 19.2.3

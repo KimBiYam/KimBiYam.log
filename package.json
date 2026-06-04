@@ -44,6 +44,7 @@
     "supports-color": "^8.1.1"
   },
   "devDependencies": {
+    "@eslint/js": "9.37.0",
     "@lhci/cli": "0.15.1",
     "@next/bundle-analyzer": "16.0.3",
     "@next/env": "16.0.3",
@@ -79,11 +80,5 @@
     "typescript": "5.7.2",
     "typescript-eslint": "^8.46.0"
   },
-  "packageManager": "pnpm@10.27.0",
-  "pnpm": {
-    "overrides": {
-      "@types/react": "19.2.6",
-      "@types/react-dom": "19.2.3"
-    }
-  }
+  "packageManager": "pnpm@11.5.1"
 }
