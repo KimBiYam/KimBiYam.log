@@ -112,6 +112,233 @@ Digest Markdown이 만들어진 뒤에는 아래 스크립트로 Notion과 Slack
 python3 scripts/deliver_digest.py daily-digest-YYYY-MM-DD.md
 ```
 
+```python
+#!/usr/bin/env python3
+import json
+import os
+import re
+import sys
+import urllib.error
+import urllib.request
+from datetime import date
+from pathlib import Path
+
+
+NOTION_VERSION = "2022-06-28"
+DEFAULT_ENV_FILE = Path.home() / ".codex" / "automations" / "daily-fe-ai-digest" / "delivery.env"
+
+
+def load_env_file(path):
+    if not path.exists():
+        return
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        name, value = line.split("=", 1)
+        name = name.strip()
+        value = value.strip().strip("'\"")
+        if name and name not in os.environ:
+            os.environ[name] = value
+
+
+def post_json(url, payload, headers=None, parse_json=True, method="POST"):
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
+        headers={"Content-Type": "application/json", **(headers or {})},
+        method=method,
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as response:
+            body = response.read()
+            if not parse_json:
+                return body.decode("utf-8", errors="replace")
+            return json.loads(body or b"{}")
+    except urllib.error.HTTPError as exc:
+        body = exc.read().decode("utf-8", errors="replace")
+        raise RuntimeError(f"HTTP {exc.code} from {url}: {body}") from exc
+
+
+def rich_text(content, url=None):
+    text = {"content": content[:2000]}
+    if url:
+        text["link"] = {"url": url}
+    return [{"type": "text", "text": text}]
+
+
+def paragraph(content):
+    return {
+        "object": "block",
+        "type": "paragraph",
+        "paragraph": {"rich_text": rich_text(content)},
+    }
+
+
+def heading(level, content):
+    block_type = f"heading_{level}"
+    return {
+        "object": "block",
+        "type": block_type,
+        block_type: {"rich_text": rich_text(content)},
+    }
+
+
+def bullet(content, url=None):
+    return {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {"rich_text": rich_text(content, url)},
+    }
+
+
+def markdown_to_blocks(markdown):
+    blocks = []
+    for raw_line in markdown.splitlines():
+        line = raw_line.rstrip()
+        if not line:
+            continue
+        if line.startswith("# "):
+            blocks.append(heading(1, line[2:]))
+            continue
+        if line.startswith("## "):
+            blocks.append(heading(2, line[3:]))
+            continue
+        if line.startswith("### "):
+            blocks.append(heading(3, line[4:]))
+            continue
+        if line.startswith("#### "):
+            blocks.append(heading(3, line[5:]))
+            continue
+
+        item = re.match(r"^\d+\. \[(.*?)\]\((.*?)\)$", line)
+        if item:
+            blocks.append(bullet(item.group(1), item.group(2)))
+            continue
+
+        source_link = re.match(r"^\s*- 원문: (https?://.*)$", line)
+        if source_link:
+            blocks.append(bullet("원문", source_link.group(1)))
+            continue
+
+        indented = re.match(r"^\s+- (.*)$", line)
+        if indented:
+            blocks.append(bullet(indented.group(1)))
+            continue
+
+        blocks.append(paragraph(line))
+    return blocks
+
+
+def chunks(values, size):
+    for index in range(0, len(values), size):
+        yield values[index : index + size]
+
+
+def create_notion_page(markdown):
+    token = os.environ["NOTION_TOKEN"]
+    database_id = os.environ["NOTION_DATABASE_ID"]
+    title_property = os.environ.get("NOTION_TITLE_PROPERTY", "Name")
+    date_property = os.environ.get("NOTION_DATE_PROPERTY", "날짜")
+    match = re.search(r"^# (.+)$", markdown, re.MULTILINE)
+    title = match.group(1) if match else "FE + AI Daily Digest"
+    date_match = re.search(r"(\d{4}-\d{2}-\d{2})", title)
+    digest_date = date_match.group(1) if date_match else date.today().isoformat()
+    properties = {
+        title_property: {"title": [{"text": {"content": title[:2000]}}]},
+    }
+    if date_property:
+        properties[date_property] = {"date": {"start": digest_date}}
+    blocks = markdown_to_blocks(markdown)
+    payload = {
+        "parent": {"database_id": database_id},
+        "properties": properties,
+        "children": blocks[:100],
+    }
+    page = post_json(
+        "https://api.notion.com/v1/pages",
+        payload,
+        {
+            "Authorization": f"Bearer {token}",
+            "Notion-Version": NOTION_VERSION,
+        },
+    )
+    page_id = page.get("id")
+    for block_chunk in chunks(blocks[100:], 100):
+        post_json(
+            f"https://api.notion.com/v1/blocks/{page_id}/children",
+            {"children": block_chunk},
+            {
+                "Authorization": f"Bearer {token}",
+                "Notion-Version": NOTION_VERSION,
+            },
+            method="PATCH",
+        )
+    return page
+
+
+def notify_slack(markdown, notion_url):
+    webhook = os.environ["SLACK_WEBHOOK_URL"]
+    title = re.search(r"^# (.+)$", markdown, re.MULTILINE).group(1)
+    items = re.findall(r"^\d+\. \[(.*?)\]\((.*?)\)$", markdown, re.MULTILINE)
+    if not items:
+        sections = []
+        current_section = ""
+        current_title = None
+        current_url = None
+        for line in markdown.splitlines():
+            section_match = re.match(r"^## (.+)$", line)
+            if section_match:
+                current_section = section_match.group(1)
+                continue
+            title_match = re.match(r"^### \d+\. (.+)$", line)
+            if title_match:
+                if current_title and current_url:
+                    sections.append((current_section, current_title, current_url))
+                current_title = title_match.group(1)
+                current_url = None
+                continue
+            url_match = re.match(r"^- 원문: (https?://.*)$", line)
+            if url_match:
+                current_url = url_match.group(1)
+        if current_title and current_url:
+            sections.append((current_section, current_title, current_url))
+        items = [(f"[{section}] {name}", url) for section, name, url in sections[:5]]
+    items = items[:5]
+    lines = [f"*{title}*"]
+    lines.extend(f"{index}. <{url}|{name}>" for index, (name, url) in enumerate(items, 1))
+    lines.append(f"\nNotion: {notion_url}")
+    return post_json(webhook, {"text": "\n".join(lines)}, parse_json=False)
+
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: deliver_digest.py <markdown-path>", file=sys.stderr)
+        return 2
+    env_file = Path(os.environ.get("DIGEST_DELIVERY_ENV", DEFAULT_ENV_FILE))
+    load_env_file(env_file)
+    markdown = open(sys.argv[1], encoding="utf-8").read()
+    missing = [
+        name
+        for name in ("NOTION_TOKEN", "NOTION_DATABASE_ID", "SLACK_WEBHOOK_URL")
+        if not os.environ.get(name)
+    ]
+    if missing:
+        print(f"Missing environment variables: {', '.join(missing)}", file=sys.stderr)
+        return 2
+
+    page = create_notion_page(markdown)
+    notion_url = page.get("url")
+    if os.environ.get("SKIP_SLACK") != "1":
+        notify_slack(markdown, notion_url)
+    print(notion_url or page.get("id", "created"))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+```
+
 스크립트는 대략 아래 작업을 수행합니다.
 
 - Markdown 파일을 읽음
