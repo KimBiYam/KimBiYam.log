@@ -400,14 +400,6 @@ prefix_rule(
 ```
 이 규칙은 Python 실행 전체를 허용하는 것이 아니라, scripts/deliver_digest.py 전달 스크립트 실행만 허용합니다.
 
-
-## 결과물
-
-![Untitled](/images/posts/ai/daily-codex-digest-automation_1.png)
-![Untitled](/images/posts/ai/daily-codex-digest-automation_2.png)
-![Untitled](/images/posts/ai/daily-codex-digest-automation_3.png)
-
-
 ## 실제 Codex 자동화 프롬프트
 
 ![Untitled](/images/posts/ai/daily-codex-digest-automation_4.png)
@@ -479,3 +471,10 @@ Use this command shape, replacing the Markdown filename with the current digest 
 
 python3 scripts/deliver_digest.py daily-digest-YYYY-MM-DD.md
 ```
+
+
+## 결과물
+
+![Untitled](/images/posts/ai/daily-codex-digest-automation_1.png)
+![Untitled](/images/posts/ai/daily-codex-digest-automation_2.png)
+![Untitled](/images/posts/ai/daily-codex-digest-automation_3.png)
