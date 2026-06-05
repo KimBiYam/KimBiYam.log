@@ -19,6 +19,17 @@ tag: 'ai'
 
 Codex 자동화 기능을 이용해서 작업했고, Claude Cowork로도 동일하게 작업할 수 있지 않을까 생각합니다.
 
+## 왜 Codex 자동화로 작업했나
+
+이런 자동화는 OpenAI나 Claude API를 직접 호출하는 방식으로도 만들 수 있습니다. 다만 그렇게 구성하면 별도의 실행 환경을 만들고, 스케줄러를 붙이고, API 사용량 비용도 따로 관리해야 합니다.
+
+해당 작업은 정해진 소스를 확인하고, 이전에 작성한 프롬프트와 메모를 참고해서 Markdown을 만들고, 로컬에 있는 스크립트로 Notion과 Slack에 보내는 흐름입니다. 기존에 GPT 구독을 하고있었다면 Codex 앱만으로 구현이 가능한 장점이 있습니다.
+
+즉, 별도의 API 기반 자동화 서비스를 새로 만드는 대신, 평소 Codex에게 맡기던 파일 기반 작업을 스케줄에 따라 반복 실행하도록 만든 형태에 가깝고 이런 활용 방식에는 Codex 자동화가 적절한 적용사례라고 생각됩니다.
+
+[자동화 공식 문서](https://developers.openai.com/codex/app/automations)를 보면 해당 기능으로 어디에 활용할 수 있을지 파악하는데 도움이 될 것 같습니다.
+
+
 ## 전체 구성
 
 자동화는 크게 세 단계로 구성했습니다.
@@ -389,14 +400,6 @@ prefix_rule(
 ```
 이 규칙은 Python 실행 전체를 허용하는 것이 아니라, scripts/deliver_digest.py 전달 스크립트 실행만 허용합니다.
 
-
-## 결과물
-
-![Untitled](/images/posts/ai/daily-codex-digest-automation_1.png)
-![Untitled](/images/posts/ai/daily-codex-digest-automation_2.png)
-![Untitled](/images/posts/ai/daily-codex-digest-automation_3.png)
-
-
 ## 실제 Codex 자동화 프롬프트
 
 ![Untitled](/images/posts/ai/daily-codex-digest-automation_4.png)
@@ -468,3 +471,10 @@ Use this command shape, replacing the Markdown filename with the current digest 
 
 python3 scripts/deliver_digest.py daily-digest-YYYY-MM-DD.md
 ```
+
+
+## 결과물
+
+![Untitled](/images/posts/ai/daily-codex-digest-automation_1.png)
+![Untitled](/images/posts/ai/daily-codex-digest-automation_2.png)
+![Untitled](/images/posts/ai/daily-codex-digest-automation_3.png)
