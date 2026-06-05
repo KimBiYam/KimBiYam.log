@@ -7,6 +7,14 @@ on:
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: mobile
+            config: ./lighthouserc.mobile.js
+          - target: desktop
+            config: ./lighthouserc.desktop.js
 
     steps:
       - uses: actions/checkout@v4
@@ -31,12 +39,7 @@ jobs:
       - run: pnpm install --no-frozen-lockfile
       - run: pnpm build
 
-      - name: Run Lighthouse CI mobile
-        run: pnpm exec lhci autorun --config=./lighthouserc.mobile.js
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-
-      - name: Run Lighthouse CI desktop
-        run: pnpm exec lhci autorun --config=./lighthouserc.desktop.js
+      - name: Run Lighthouse CI ${{ matrix.target }}
+        run: pnpm exec lhci autorun --config=${{ matrix.config }}
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
