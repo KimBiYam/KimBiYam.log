@@ -2,8 +2,8 @@ import { notFound } from 'next/navigation';
 
 import { PostDetail } from '@src/features/post/client';
 
+import { getPostMetaDescription } from './postDescription';
 import { getMarkdownData } from './markdown';
-import { getPostPreviewDescription } from './postList';
 
 export const getPostDetail = async (
   directory: string,
@@ -17,7 +17,7 @@ export const getPostDetail = async (
       contentHtml,
     } = await getMarkdownData(directory, id);
 
-    const description = getPostPreviewDescription(content).replace(
+    const description = getPostMetaDescription(content).replace(
       LINE_BREAK_REG_EXP,
       '',
     );
