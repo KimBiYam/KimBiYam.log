@@ -2,10 +2,11 @@ import fs from 'fs';
 import path from 'path';
 
 import matter from 'gray-matter';
-import RemoveMarkdown from 'remove-markdown';
 
 import { POST_DIRECTORY } from '@src/features/post/constants/directories';
 import { PostPath, PostPreview } from '@src/features/post/types/post.types';
+
+import { getPostPreviewDescription } from './postDescription';
 
 export const getAllPostPaths = async (): Promise<{ params: PostPath }[]> => {
   const MARKDOWN_FILE_EXTENSION_REG_EXP = RegExp(/\.md$/);
@@ -71,26 +72,4 @@ const getPostPreview = async (fileName: string): Promise<PostPreview> => {
     tag,
     content: getPostPreviewDescription(content),
   };
-};
-
-export const getPostPreviewDescription = (content: string) => {
-  const POST_PREVIEW_CONTENT_MAX_LENGTH = 200;
-  const MARKDOWN_CODE_BLOCK_REG_EXP_1 = RegExp(/```([\s\S]*?)```/g);
-  const MARKDOWN_CODE_BLOCK_REG_EXP_2 = RegExp(/~~~([\s\S]*?)~~~/g);
-  const MARKDOWN_HEADING_REG_EXP = RegExp(/#{1,6}.+(?=\n)/);
-
-  const preProcessedContent = content
-    .replace(MARKDOWN_HEADING_REG_EXP, '')
-    .replace(MARKDOWN_CODE_BLOCK_REG_EXP_1, '')
-    .replace(MARKDOWN_CODE_BLOCK_REG_EXP_2, '');
-
-  let description = RemoveMarkdown(preProcessedContent, {
-    useImgAltText: false,
-  }).slice(0, POST_PREVIEW_CONTENT_MAX_LENGTH);
-
-  if (content.length >= POST_PREVIEW_CONTENT_MAX_LENGTH) {
-    description += '...';
-  }
-
-  return description;
 };
