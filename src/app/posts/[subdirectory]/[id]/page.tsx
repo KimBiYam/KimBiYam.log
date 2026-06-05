@@ -10,6 +10,8 @@ import {
   getPostImageSizes,
   getAllPostPaths,
 } from '@src/features/post/server';
+import { PROFILE } from '@src/shared/constants/profile';
+import { DOMAIN_URL } from '@src/shared/constants/server';
 
 export async function generateStaticParams() {
   const paths = await getAllPostPaths();
@@ -29,16 +31,24 @@ export async function generateMetadata(props: {
       id,
     );
 
-    const { title, description } = postDetail;
+    const { date, description, ogImagePath, tag, title } = postDetail;
+    const path = `/posts/${subdirectory}/${id}`;
 
     return {
       title,
       description,
+      alternates: {
+        canonical: `${DOMAIN_URL}${path}`,
+      },
       openGraph: generateOpenGraphMetaData({
         type: 'article',
         title,
         description,
-        path: `/posts/${subdirectory}/${id}`,
+        path,
+        imagePath: ogImagePath,
+        publishedTime: date,
+        authors: [PROFILE.name],
+        tags: [tag],
       }),
     };
   } catch (e) {
