@@ -8,10 +8,12 @@ import { POST_DIRECTORY } from '@src/features/post/constants/directories';
 import {
   getPostDetail,
   getPostImageSizes,
+  getPostJsonLd,
   getAllPostPaths,
 } from '@src/features/post/server';
 import { PROFILE } from '@src/shared/constants/profile';
 import { DOMAIN_URL } from '@src/shared/constants/server';
+import { serializeJsonLd } from '@src/shared/utils';
 
 export async function generateStaticParams() {
   const paths = await getAllPostPaths();
@@ -68,8 +70,18 @@ export default async function PostDetailPage(props: {
     `${POST_DIRECTORY}/${subdirectory}`,
     id,
   );
+  const path = `/posts/${subdirectory}/${id}`;
+  const postJsonLd = getPostJsonLd({ path, postDetail });
 
   const imageSizes = getPostImageSizes(postDetail.contentHtml);
 
-  return <PostPage postDetail={postDetail} imageSizes={imageSizes} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(postJsonLd) }}
+      />
+      <PostPage postDetail={postDetail} imageSizes={imageSizes} />
+    </>
+  );
 }

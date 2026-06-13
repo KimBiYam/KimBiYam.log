@@ -1,9 +1,11 @@
 import { getSortedPostPreviews } from '@src/features/post/server';
 import { Tag } from '@src/features/tag';
+import { getSiteJsonLd, serializeJsonLd } from '@src/shared/utils';
 import HomePage from '@src/(pages)/home/HomePage/ui/HomePage';
 
 export default async function Page() {
   const postPreviews = await getSortedPostPreviews();
+  const siteJsonLd = getSiteJsonLd();
 
   const tags = [
     Tag.all,
@@ -12,5 +14,13 @@ export default async function Page() {
     ).sort(),
   ];
 
-  return <HomePage postPreviews={postPreviews} tags={tags} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(siteJsonLd) }}
+      />
+      <HomePage postPreviews={postPreviews} tags={tags} />
+    </>
+  );
 }
