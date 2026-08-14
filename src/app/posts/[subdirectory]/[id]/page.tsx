@@ -76,15 +76,12 @@ export default async function PostDetailPage(props: {
   const subdirectory = params?.subdirectory;
   const id = String(params?.id);
 
-  const postDetail = await getPostDetail(
-    `${POST_DIRECTORY}/${subdirectory}`,
-    id,
-  );
+  const [postDetail, { newerPost, olderPost }] = await Promise.all([
+    getPostDetail(`${POST_DIRECTORY}/${subdirectory}`, id),
+    getAdjacentPostPreviews(`${subdirectory}/${id}`),
+  ]);
   const path = `/posts/${subdirectory}/${id}`;
   const postJsonLd = getPostJsonLd({ path, postDetail });
-  const { newerPost, olderPost } = await getAdjacentPostPreviews(
-    `${subdirectory}/${id}`,
-  );
 
   const imageSizes = getPostImageSizes(postDetail.contentHtml);
 
