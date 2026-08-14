@@ -1,10 +1,10 @@
-import ogTagImage from '@src/shared/assets/images/og_tag_image.png';
 import { DOMAIN_URL, PROFILE } from '@src/shared/constants';
 
 import { PostDetail } from '../types';
 
 interface JsonLdPerson {
   '@type': 'Person';
+  '@id': string;
   name: string;
   url: string;
 }
@@ -20,10 +20,16 @@ interface PostJsonLd {
   headline: string;
   description: string;
   datePublished: string;
-  dateModified: string;
+  inLanguage: 'ko-KR';
   author: JsonLdPerson;
+  publisher: {
+    '@id': string;
+  };
   url: string;
   mainEntityOfPage: JsonLdWebPage;
+  isPartOf: {
+    '@id': string;
+  };
   image: string[];
   keywords: string[];
 }
@@ -47,7 +53,7 @@ export const getPostJsonLd = ({
 }): PostJsonLd => {
   const { date, description, ogImagePath, tag, title } = postDetail;
   const url = toAbsoluteUrl(path);
-  const imageUrl = toAbsoluteUrl(ogImagePath ?? ogTagImage.src);
+  const imageUrl = toAbsoluteUrl(ogImagePath ?? `${path}/opengraph-image`);
 
   return {
     '@context': 'https://schema.org',
@@ -55,16 +61,23 @@ export const getPostJsonLd = ({
     headline: title,
     description,
     datePublished: date,
-    dateModified: date,
+    inLanguage: 'ko-KR',
     author: {
       '@type': 'Person',
+      '@id': `${DOMAIN_URL}/#person`,
       name: PROFILE.name,
       url: PROFILE.social.github,
+    },
+    publisher: {
+      '@id': `${DOMAIN_URL}/#person`,
     },
     url,
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': url,
+    },
+    isPartOf: {
+      '@id': `${DOMAIN_URL}/#website`,
     },
     image: [imageUrl],
     keywords: [tag],

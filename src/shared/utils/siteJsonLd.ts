@@ -5,6 +5,7 @@ interface SiteJsonLdGraphItem {
   '@id': string;
   name: string;
   url: string;
+  inLanguage?: 'ko-KR';
   sameAs?: string[];
   publisher?: {
     '@id': string;
@@ -27,6 +28,7 @@ export const getSiteJsonLd = (): SiteJsonLd => {
         '@id': `${DOMAIN_URL}/#website`,
         name: 'KimBiYam.log',
         url: DOMAIN_URL,
+        inLanguage: 'ko-KR',
         publisher: {
           '@id': personId,
         },

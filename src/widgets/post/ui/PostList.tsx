@@ -1,10 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { useAtom } from 'jotai';
+import { useRef, useState } from 'react';
 
-import { postPageAtom, PostPreview } from '@src/features/post/client';
-import { Tag, useSelectedTag } from '@src/features/tag';
+import { PostPreview } from '@src/features/post/types';
 import { useScrollObserver } from '@src/shared';
 
 import PostListItem from './PostListItem';
@@ -17,19 +15,7 @@ interface PostListProps {
 
 const PostList = ({ postPreviews }: PostListProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [postPage, setPostPage] = useAtom(postPageAtom);
-  const selectedTag = useSelectedTag();
-  const prevTagRef = useRef(selectedTag);
-
-  useEffect(
-    function resetPageWhenTagChanged() {
-      if (prevTagRef.current !== selectedTag) {
-        setPostPage(1);
-        prevTagRef.current = selectedTag;
-      }
-    },
-    [selectedTag, setPostPage],
-  );
+  const [postPage, setPostPage] = useState(1);
 
   const handleIntersect = () => setPostPage((prev) => prev + 1);
 
@@ -39,16 +25,14 @@ const PostList = ({ postPreviews }: PostListProps) => {
     targetRef: scrollRef,
   });
 
-  const filteredPostPreviews = postPreviews
-    .filter(
-      (postPreview) =>
-        selectedTag === Tag.all || postPreview.tag === selectedTag,
-    )
-    .slice(0, postPage * POST_COUNT_BY_PAGE);
+  const visiblePostPreviews = postPreviews.slice(
+    0,
+    postPage * POST_COUNT_BY_PAGE,
+  );
 
   return (
     <ul>
-      {filteredPostPreviews.map((postPreview) => (
+      {visiblePostPreviews.map((postPreview) => (
         <PostListItem
           key={postPreview.id + postPreview.title}
           postPreview={postPreview}

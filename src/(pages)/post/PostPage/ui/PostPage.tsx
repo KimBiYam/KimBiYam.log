@@ -1,78 +1,53 @@
-'use client';
-
-import { useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
-import { useSetAtom } from 'jotai';
-import dynamic from 'next/dynamic';
-
 import {
-  PostDetail,
-  PostImageSize,
   PostDateText,
   MarkdownView,
   PostShareButtons,
-  headerTitleAtom,
-} from '@src/features/post/client';
+} from '@src/features/post/ui';
+import type {
+  PostDetail,
+  PostImageSize,
+  PostPreview,
+} from '@src/features/post/types';
 import { TagBadge } from '@src/features/tag';
-import {
-  useMounted,
-  ProfileCard,
-  Utterances,
-  useScrollOverElementDetect,
-} from '@src/shared';
-import breakPoints from '@src/shared/styles/breakPoints.json';
-import useSyncPostHeader from '@src/(pages)/post/PostPage/hooks/useSyncPostHeader';
+import { ProfileCard, Utterances } from '@src/shared';
+import { PostNavigation } from '@src/widgets/post';
 
-const DynamicTableOfContents = dynamic(
-  () => import('@src/features/post/ui/TableOfContents'),
-);
+import PostArticleEnhancements from './PostArticleEnhancements';
+import PostTitle from './PostTitle';
 
 interface PostPageProps {
+  canonicalPath: string;
   postDetail: PostDetail;
   imageSizes?: Record<string, PostImageSize>;
+  newerPost?: PostPreview;
+  olderPost?: PostPreview;
 }
 
-const PostPage = ({ postDetail, imageSizes }: PostPageProps) => {
+const PostPage = ({
+  canonicalPath,
+  postDetail,
+  imageSizes,
+  newerPost,
+  olderPost,
+}: PostPageProps) => {
   const { title, date, contentHtml, tag } = postDetail;
-  const [markdownViewEl, setMarkdownViewEl] = useState<HTMLDivElement | null>(
-    null,
-  );
-
-  const mounted = useMounted();
-  const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
-
-  const setHeaderTitleAtom = useSetAtom(headerTitleAtom);
-  const { setEl } = useScrollOverElementDetect({
-    onOverElementChanged(isOverElement) {
-      setHeaderTitleAtom((prev) => ({
-        ...prev,
-        isShowTitle: isOverElement,
-      }));
-    },
-  });
-
-  useSyncPostHeader(title);
 
   return (
     <>
       <article className="relative mt-8">
-        <h1 className="text-3xl font-bold md:text-4xl" ref={setEl}>
-          {title}
-        </h1>
+        <PostTitle title={title} />
         <div className="flex items-center justify-between my-4">
           <PostDateText>{date}</PostDateText>
-          <TagBadge tag={tag.toUpperCase()} />
+          <TagBadge href={`/tags/${tag}`} tag={tag} />
         </div>
         <MarkdownView
-          ref={setMarkdownViewEl}
           contentHtml={contentHtml}
           imageSizes={imageSizes}
         />
-        {mounted && isUpExtraLargeScreen && (
-          <DynamicTableOfContents targetElement={markdownViewEl} />
-        )}
+        <PostArticleEnhancements />
       </article>
-      <PostShareButtons postDetail={postDetail} />
+      <PostShareButtons canonicalPath={canonicalPath} postDetail={postDetail} />
+      <PostNavigation newerPost={newerPost} olderPost={olderPost} />
       <div className="py-4 my-10 border-t border-b">
         <ProfileCard />
       </div>

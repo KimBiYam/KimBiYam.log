@@ -6,6 +6,7 @@ import { DOMAIN_URL } from '@src/shared/constants';
 import PostShareButton from './PostShareButton';
 
 interface PostShareButtonProps {
+  canonicalPath: string;
   postDetail: PostDetail;
 }
 
@@ -18,10 +19,9 @@ const createTwitterShareUrl = (title: string, url: string) =>
 const POPUP_OPTIONS =
   'resizable=yes, status=no, menubar=no, width=600, height=400, top=0, left=0';
 
-const PostShareButtons = ({ postDetail }: PostShareButtonProps) => {
-  const { title, tag, id } = postDetail;
-
-  const shareUrl = `${DOMAIN_URL}/posts/${tag}/${id}`;
+const PostShareButtons = ({ canonicalPath, postDetail }: PostShareButtonProps) => {
+  const { title } = postDetail;
+  const shareUrl = `${DOMAIN_URL}${canonicalPath}`;
 
   const handleFacebookShareClick = () => {
     window.open(createFacebookShareUrl(shareUrl), '', POPUP_OPTIONS);

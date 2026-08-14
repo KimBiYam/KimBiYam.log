@@ -5,23 +5,28 @@ import { DOMAIN_URL } from '@src/shared';
 
 export const generateOpenGraphMetaData = ({
   imagePath,
+  imageAlt,
   path = '',
   ...rest
 }: {
   imagePath?: string;
+  imageAlt?: string;
   path?: string;
 } & OpenGraph): OpenGraph => {
   const images = imagePath
-    ? { url: `${DOMAIN_URL}${imagePath}` }
+    ? { url: `${DOMAIN_URL}${imagePath}`, alt: imageAlt }
     : {
         url: `${DOMAIN_URL}${ogTagImage.src}`,
         width: ogTagImage.width,
         height: ogTagImage.height,
+        alt: imageAlt ?? 'KimBiYam.log',
       };
 
   return {
     type: 'website',
     url: `${DOMAIN_URL}${path}`,
+    siteName: 'KimBiYam.log',
+    locale: 'ko_KR',
     images,
     ...rest,
   };

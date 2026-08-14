@@ -1,23 +1,41 @@
 import clsx from 'clsx';
+import Link from 'next/link';
+
+import type { MouseEvent } from 'react';
 
 interface TagButtonProps {
   tag: string;
-  onTagClick: (tag: string) => void;
+  onTagSelect: (tag: string) => void;
   registerChildRef: (instance: HTMLElement | null, tag: string) => void;
   isSelected: boolean;
 }
 
 const TagButton = ({
   isSelected,
-  onTagClick,
+  onTagSelect,
   registerChildRef,
   tag,
 }: TagButtonProps) => {
-  const attachRef = (element: HTMLButtonElement | null) =>
+  const attachRef = (element: HTMLAnchorElement | null) =>
     registerChildRef(element, tag);
+  const href = tag === 'all' ? '/' : `/tags/${encodeURIComponent(tag)}`;
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    onTagSelect(tag);
+  };
 
   return (
-    <button
+    <Link
       className={clsx(
         'px-4 py-1 mx-1 mb-2 text-xs whitespace-pre duration-300 rounded-xl md:text-sm transition-backgroundColor btn-hover',
         {
@@ -26,12 +44,13 @@ const TagButton = ({
             !isSelected,
         },
       )}
+      href={href}
+      onClick={handleClick}
       ref={attachRef}
-      type="button"
-      onClick={() => onTagClick(tag)}
+      aria-current={isSelected ? 'page' : undefined}
     >
       {tag.toUpperCase()}
-    </button>
+    </Link>
   );
 };
 
