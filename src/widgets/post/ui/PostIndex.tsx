@@ -31,6 +31,13 @@ const PostIndex = ({
   const pathname = usePathname();
   const selectedTag = getTagFromPathname(pathname, tags);
 
+  const handleTagSelect = (tag: string) => {
+    if (tag === selectedTag) return;
+
+    const href = tag === Tag.all ? '/' : `/tags/${encodeURIComponent(tag)}`;
+    window.history.pushState(null, '', href);
+  };
+
   const filteredPostPreviews =
     selectedTag === Tag.all
       ? postPreviews
@@ -41,6 +48,7 @@ const PostIndex = ({
       <div className="my-2">{profile}</div>
       <DragScrollContainer>
         <TagSelector
+          onTagSelect={handleTagSelect}
           selectedTag={selectedTag}
           tags={tags}
         />

@@ -33,7 +33,7 @@ export const generateMetadata = async ({
 
   if (!tags.includes(tag)) return {};
 
-  const title = `${tag.toUpperCase()} 개발 글`;
+  const title = 'KimBiYam.log';
   const description = `${tag.toUpperCase()} 주제로 작성한 개발 기록을 모았습니다.`;
   const path = `/tags/${tag}`;
 
