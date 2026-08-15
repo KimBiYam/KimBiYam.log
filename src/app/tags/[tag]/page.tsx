@@ -38,7 +38,6 @@ export const generateMetadata = async ({
   const path = `/tags/${tag}`;
 
   return {
-    title,
     description,
     alternates: { canonical: path },
     openGraph: generateOpenGraphMetaData({
