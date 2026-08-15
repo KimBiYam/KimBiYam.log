@@ -13,11 +13,11 @@ const PostNavigation = ({ newerPost, olderPost }: PostNavigationProps) => {
   return (
     <nav
       aria-label="게시글 이동"
-      className="grid grid-cols-1 gap-6 pt-6 mt-10 border-t sm:grid-cols-2"
+      className="flex flex-col gap-6 pt-6 mt-10 border-t sm:flex-row"
     >
-      {olderPost ? (
+      {olderPost && (
         <Link
-          className="min-w-0 group"
+          className="min-w-0 group sm:w-1/2"
           href={`/posts/${olderPost.id}`}
         >
           <span className="block text-xs text-zinc-400">← 이전 글</span>
@@ -25,12 +25,10 @@ const PostNavigation = ({ newerPost, olderPost }: PostNavigationProps) => {
             {olderPost.title}
           </span>
         </Link>
-      ) : (
-        <span className="hidden sm:block" />
       )}
       {newerPost && (
         <Link
-          className="min-w-0 text-right group"
+          className="min-w-0 text-right group sm:w-1/2 sm:ml-auto"
           href={`/posts/${newerPost.id}`}
         >
           <span className="block text-xs text-zinc-400">다음 글 →</span>
