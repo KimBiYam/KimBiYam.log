@@ -1,38 +1,20 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 
-import type { MouseEvent } from 'react';
-
 interface TagButtonProps {
   tag: string;
-  onTagSelect: (tag: string) => void;
   registerChildRef: (instance: HTMLElement | null, tag: string) => void;
   isSelected: boolean;
 }
 
 const TagButton = ({
   isSelected,
-  onTagSelect,
   registerChildRef,
   tag,
 }: TagButtonProps) => {
   const attachRef = (element: HTMLAnchorElement | null) =>
     registerChildRef(element, tag);
   const href = tag === 'all' ? '/' : `/tags/${encodeURIComponent(tag)}`;
-  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (
-      event.button !== 0 ||
-      event.metaKey ||
-      event.ctrlKey ||
-      event.shiftKey ||
-      event.altKey
-    ) {
-      return;
-    }
-
-    event.preventDefault();
-    onTagSelect(tag);
-  };
 
   return (
     <Link
@@ -45,7 +27,6 @@ const TagButton = ({
         },
       )}
       href={href}
-      onClick={handleClick}
       ref={attachRef}
       aria-current={isSelected ? 'page' : undefined}
     >

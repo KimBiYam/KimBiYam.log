@@ -6,13 +6,12 @@ import { useActiveChildScroll } from '@src/shared/hooks';
 
 import TagButton from './TagButton';
 interface TagSelectorProps {
-  onTagSelect: (tag: string) => void;
   selectedTag: string;
   tags: string[];
 }
 
 const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
-  ({ onTagSelect, selectedTag, tags }, ref) => {
+  ({ selectedTag, tags }, ref) => {
     const registerChildRef = useActiveChildScroll({
       activeId: selectedTag,
       parentRef: ref,
@@ -29,7 +28,6 @@ const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
               key={tag}
               tag={tag}
               isSelected={tag === selectedTag}
-              onTagSelect={onTagSelect}
               registerChildRef={registerChildRef}
             />
           ))}
