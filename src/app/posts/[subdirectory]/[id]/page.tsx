@@ -10,15 +10,17 @@ import {
   getPostImageSizes,
   getPostJsonLd,
   getAllPostPaths,
+  getAdjacentPostPreviews,
 } from '@src/features/post/server';
 import { PROFILE } from '@src/shared/constants/profile';
-import { DOMAIN_URL } from '@src/shared/constants/server';
+import { DEPLOYMENT_URL, DOMAIN_URL } from '@src/shared/constants/server';
 import { serializeJsonLd } from '@src/shared/utils';
 
 export async function generateStaticParams() {
-  const paths = await getAllPostPaths();
-  return paths;
+  return getAllPostPaths();
 }
+
+export const dynamicParams = false;
 
 export async function generateMetadata(props: {
   params: Promise<PostPath>;
@@ -35,6 +37,9 @@ export async function generateMetadata(props: {
 
     const { date, description, ogImagePath, tag, title } = postDetail;
     const path = `/posts/${subdirectory}/${id}`;
+    const socialImageUrl = ogImagePath
+      ? `${DOMAIN_URL}${ogImagePath}`
+      : `${DEPLOYMENT_URL}${path}/opengraph-image`;
 
     return {
       title,
@@ -47,11 +52,18 @@ export async function generateMetadata(props: {
         title,
         description,
         path,
-        imagePath: ogImagePath,
+        imagePath: socialImageUrl,
+        imageAlt: title,
         publishedTime: date,
         authors: [PROFILE.name],
         tags: [tag],
       }),
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        images: [{ url: socialImageUrl, alt: title }],
+      },
     };
   } catch (e) {
     captureException(e);
@@ -66,10 +78,10 @@ export default async function PostDetailPage(props: {
   const subdirectory = params?.subdirectory;
   const id = String(params?.id);
 
-  const postDetail = await getPostDetail(
-    `${POST_DIRECTORY}/${subdirectory}`,
-    id,
-  );
+  const [postDetail, { newerPost, olderPost }] = await Promise.all([
+    getPostDetail(`${POST_DIRECTORY}/${subdirectory}`, id),
+    getAdjacentPostPreviews(`${subdirectory}/${id}`),
+  ]);
   const path = `/posts/${subdirectory}/${id}`;
   const postJsonLd = getPostJsonLd({ path, postDetail });
 
@@ -81,7 +93,13 @@ export default async function PostDetailPage(props: {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(postJsonLd) }}
       />
-      <PostPage postDetail={postDetail} imageSizes={imageSizes} />
+      <PostPage
+        canonicalPath={path}
+        postDetail={postDetail}
+        imageSizes={imageSizes}
+        newerPost={newerPost}
+        olderPost={olderPost}
+      />
     </>
   );
 }

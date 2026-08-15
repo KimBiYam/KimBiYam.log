@@ -5,17 +5,14 @@ import { forwardRef } from 'react';
 import { useActiveChildScroll } from '@src/shared/hooks';
 
 import TagButton from './TagButton';
-import { useSelectedTag } from '../hooks';
-import { useSetTag } from '../hooks/useTag';
-
 interface TagSelectorProps {
+  onTagSelect: (tag: string) => void;
+  selectedTag: string;
   tags: string[];
 }
 
 const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
-  ({ tags }, ref) => {
-    const selectedTag = useSelectedTag();
-    const setTag = useSetTag();
+  ({ onTagSelect, selectedTag, tags }, ref) => {
     const registerChildRef = useActiveChildScroll({
       activeId: selectedTag,
       parentRef: ref,
@@ -31,8 +28,8 @@ const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
             <TagButton
               key={tag}
               tag={tag}
-              onTagClick={setTag}
               isSelected={tag === selectedTag}
+              onTagSelect={onTagSelect}
               registerChildRef={registerChildRef}
             />
           ))}

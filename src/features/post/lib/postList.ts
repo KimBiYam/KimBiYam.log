@@ -8,7 +8,7 @@ import { PostPath, PostPreview } from '@src/features/post/types/post.types';
 
 import { getPostPreviewDescription } from './postDescription';
 
-export const getAllPostPaths = async (): Promise<{ params: PostPath }[]> => {
+export const getAllPostPaths = async (): Promise<PostPath[]> => {
   const MARKDOWN_FILE_EXTENSION_REG_EXP = RegExp(/\.md$/);
   const markdownFilePaths = await getPostMarkdownFilePaths();
 
@@ -16,15 +16,30 @@ export const getAllPostPaths = async (): Promise<{ params: PostPath }[]> => {
     const [subdirectory, fileName] = markdownFilePath.split('/');
     const id = fileName.replace(MARKDOWN_FILE_EXTENSION_REG_EXP, '');
 
-    return {
-      params: {
-        id,
-        subdirectory,
-      },
-    };
+    return { id, subdirectory };
   });
 
   return paths;
+};
+
+export const getPostTags = async () => {
+  const postPreviews = await getSortedPostPreviews();
+
+  return Array.from(new Set(postPreviews.map(({ tag }) => tag))).sort();
+};
+
+export const getAdjacentPostPreviews = async (postId: string) => {
+  const postPreviews = await getSortedPostPreviews();
+  const currentIndex = postPreviews.findIndex(({ id }) => id === postId);
+
+  if (currentIndex === -1) {
+    return { newerPost: undefined, olderPost: undefined };
+  }
+
+  return {
+    newerPost: postPreviews[currentIndex - 1],
+    olderPost: postPreviews[currentIndex + 1],
+  };
 };
 
 export const getSortedPostPreviews = async () => {
