@@ -13,8 +13,12 @@ export const generateOpenGraphMetaData = ({
   imageAlt?: string;
   path?: string;
 } & OpenGraph): OpenGraph => {
+  const imageUrl =
+    imagePath?.startsWith('http://') || imagePath?.startsWith('https://')
+      ? imagePath
+      : `${DOMAIN_URL}${imagePath}`;
   const images = imagePath
-    ? { url: `${DOMAIN_URL}${imagePath}`, alt: imageAlt }
+    ? { url: imageUrl, alt: imageAlt }
     : {
         url: `${DOMAIN_URL}${ogTagImage.src}`,
         width: ogTagImage.width,

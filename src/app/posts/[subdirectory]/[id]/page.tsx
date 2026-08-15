@@ -13,7 +13,7 @@ import {
   getAdjacentPostPreviews,
 } from '@src/features/post/server';
 import { PROFILE } from '@src/shared/constants/profile';
-import { DOMAIN_URL } from '@src/shared/constants/server';
+import { DEPLOYMENT_URL, DOMAIN_URL } from '@src/shared/constants/server';
 import { serializeJsonLd } from '@src/shared/utils';
 
 export async function generateStaticParams() {
@@ -37,7 +37,9 @@ export async function generateMetadata(props: {
 
     const { date, description, ogImagePath, tag, title } = postDetail;
     const path = `/posts/${subdirectory}/${id}`;
-    const socialImagePath = ogImagePath ?? `${path}/opengraph-image`;
+    const socialImageUrl = ogImagePath
+      ? `${DOMAIN_URL}${ogImagePath}`
+      : `${DEPLOYMENT_URL}${path}/opengraph-image`;
 
     return {
       title,
@@ -50,7 +52,7 @@ export async function generateMetadata(props: {
         title,
         description,
         path,
-        imagePath: socialImagePath,
+        imagePath: socialImageUrl,
         imageAlt: title,
         publishedTime: date,
         authors: [PROFILE.name],
@@ -60,7 +62,7 @@ export async function generateMetadata(props: {
         card: 'summary_large_image',
         title,
         description,
-        images: [{ url: `${DOMAIN_URL}${socialImagePath}`, alt: title }],
+        images: [{ url: socialImageUrl, alt: title }],
       },
     };
   } catch (e) {

@@ -1,4 +1,4 @@
-import { DOMAIN_URL, PROFILE } from '@src/shared/constants';
+import { DEPLOYMENT_URL, DOMAIN_URL, PROFILE } from '@src/shared/constants';
 
 import { PostDetail } from '../types';
 
@@ -53,7 +53,9 @@ export const getPostJsonLd = ({
 }): PostJsonLd => {
   const { date, description, ogImagePath, tag, title } = postDetail;
   const url = toAbsoluteUrl(path);
-  const imageUrl = toAbsoluteUrl(ogImagePath ?? `${path}/opengraph-image`);
+  const imageUrl = ogImagePath
+    ? toAbsoluteUrl(ogImagePath)
+    : `${DEPLOYMENT_URL}${path}/opengraph-image`;
 
   return {
     '@context': 'https://schema.org',
