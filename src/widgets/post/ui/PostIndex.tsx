@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { PostPreview } from '@src/features/post/types';
 import { Tag, TagSelector } from '@src/features/tag';
@@ -29,13 +29,14 @@ const PostIndex = ({
   tags,
 }: PostIndexProps) => {
   const pathname = usePathname();
+  const router = useRouter();
   const selectedTag = getTagFromPathname(pathname, tags);
 
   const handleTagSelect = (tag: string) => {
     if (tag === selectedTag) return;
 
     const href = tag === Tag.all ? '/' : `/tags/${encodeURIComponent(tag)}`;
-    window.history.pushState(null, '', href);
+    router.push(href, { scroll: false });
   };
 
   const filteredPostPreviews =
