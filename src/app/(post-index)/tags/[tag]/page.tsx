@@ -1,14 +1,9 @@
 import { notFound } from 'next/navigation';
 
 import { generateOpenGraphMetaData } from '@src/app/metadataBase';
-import {
-  getPostTags,
-  getSortedPostPreviews,
-} from '@src/features/post/server';
-import { Tag } from '@src/features/tag';
+import { getPostTags } from '@src/features/post/server';
 import ogTagImage from '@src/shared/assets/images/og_tag_image.png';
 import { PAGE_TITLE_SUFFIX } from '@src/shared/constants/metadata';
-import TagPage from '@src/(pages)/tag/TagPage/ui/TagPage';
 
 import type { Metadata } from 'next';
 
@@ -64,14 +59,7 @@ const Page = async ({ params }: { params: Promise<TagPath> }) => {
 
   if (!tags.includes(tag)) notFound();
 
-  const postPreviews = await getSortedPostPreviews();
-
-  return (
-    <TagPage
-      postPreviews={postPreviews}
-      tags={[Tag.all, ...tags]}
-    />
-  );
+  return null;
 };
 
 export default Page;
