@@ -1,66 +1,103 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
+import { Theme } from '@src/shared/constants';
 import useTheme from '@src/shared/hooks/useTheme';
 
-import { Theme } from '../constants';
+const ORIGIN = 'https://utteranc.es';
+const getTheme = (theme: Theme) =>
+  theme === Theme.dark ? 'github-dark' : 'github-light';
 
-const SOURCE_URL = 'https://utteranc.es/client.js';
-const REPO = 'KimBiYam/KimBiYam.log';
-const BRANCH = 'master';
-const LABEL = 'comment';
-const DARK_THEME = 'github-dark';
-const LIGHT_THEME = 'github-light';
-const ISSUE_TERM = 'pathname';
+const CommentThread = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { theme } = useTheme();
+  const themeRef = useRef(theme);
 
-const MESSAGE_TARGET_ORIGIN = 'https://utteranc.es/';
+  useEffect(() => {
+    themeRef.current = theme;
+    ref.current
+      ?.querySelector<HTMLIFrameElement>('iframe.utterances-frame')
+      ?.contentWindow?.postMessage(
+        { type: 'set-theme', theme: getTheme(theme) },
+        ORIGIN,
+      );
+  }, [theme]);
 
-const getThemeByAppTheme = (theme: Theme) =>
-  theme === Theme.dark ? DARK_THEME : LIGHT_THEME;
+  useEffect(() => {
+    const container = ref.current;
+    if (!container) return;
+    let active = true;
+    let loaded = false;
+    let frame: HTMLIFrameElement | null = null;
+    const syncTheme = () => {
+      if (!active) return;
+      frame?.contentWindow?.postMessage(
+        { type: 'set-theme', theme: getTheme(themeRef.current) },
+        ORIGIN,
+      );
+    };
+    const mutations = new MutationObserver(() => {
+      const nextFrame = container.querySelector<HTMLIFrameElement>(
+        'iframe.utterances-frame',
+      );
+      if (nextFrame === frame) return;
+      frame?.removeEventListener('load', syncTheme);
+      frame = nextFrame;
+      frame?.addEventListener('load', syncTheme);
+      syncTheme();
+    });
+    mutations.observe(container, { childList: true, subtree: true });
+
+    const load = () => {
+      if (loaded || !active) return;
+      loaded = true;
+      const script = document.createElement('script');
+      const config = {
+        src: `${ORIGIN}/client.js`,
+        repo: 'KimBiYam/KimBiYam.log',
+        branch: 'master',
+        theme: getTheme(themeRef.current),
+        label: 'comment',
+        'issue-term': 'pathname',
+        crossorigin: 'anonymous',
+      };
+      for (const [key, value] of Object.entries(config))
+        script.setAttribute(key, value);
+      script.async = true;
+      container.appendChild(script);
+    };
+    const observer =
+      'IntersectionObserver' in window
+        ? new IntersectionObserver(
+            (entries) => {
+              if (entries.some((entry) => entry.isIntersecting)) {
+                observer?.disconnect();
+                load();
+              }
+            },
+            { rootMargin: '600px 0px' },
+          )
+        : null;
+    if (observer) observer.observe(container);
+    else load();
+
+    return () => {
+      active = false;
+      observer?.disconnect();
+      mutations.disconnect();
+      frame?.removeEventListener('load', syncTheme);
+      container.replaceChildren();
+    };
+  }, []);
+
+  return <div className="min-h-64" ref={ref} />;
+};
 
 const Utterances = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const initializedRef = useRef<boolean | null>(null);
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    if (initializedRef.current) return;
-
-    initializedRef.current = true;
-    const copiedRef = ref.current;
-    const utterances = document.createElement('script');
-    const config: Record<string, string> = {
-      src: SOURCE_URL,
-      repo: REPO,
-      branch: BRANCH,
-      theme: getThemeByAppTheme(theme),
-      label: LABEL,
-      async: 'true',
-      'issue-term': ISSUE_TERM,
-    };
-
-    Object.entries(config).forEach(([key, value]) => {
-      utterances.setAttribute(key, value);
-    });
-
-    copiedRef?.appendChild(utterances);
-  }, [theme]);
-
-  useEffect(() => {
-    const utterancesFrame = document.querySelector<HTMLIFrameElement>(
-      'iframe.utterances-frame',
-    );
-
-    if (!utterancesFrame) return;
-
-    utterancesFrame.contentWindow?.postMessage(
-      { type: 'set-theme', theme: getThemeByAppTheme(theme) },
-      MESSAGE_TARGET_ORIGIN,
-    );
-  }, [theme]);
-
-  return <div ref={ref} />;
+  const pathname = usePathname();
+  return <CommentThread key={pathname} />;
 };
 
 export default Utterances;

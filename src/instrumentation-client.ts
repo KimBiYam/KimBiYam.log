@@ -4,6 +4,8 @@
 
 import * as Sentry from '@sentry/nextjs';
 
+import { loadReplay, scheduleReplay } from '@src/_app/lib/deferredReplay';
+
 Sentry.init({
   dsn: 'https://51c548caea0de86c38768de5cd950a5e@o4507321481691136.ingest.us.sentry.io/4507321484115968',
 
@@ -19,15 +21,15 @@ Sentry.init({
   // in development and sample at a lower rate in production
   replaysSessionSampleRate: 0.1,
 
-  // You can remove this option if you're not planning to use the Sentry Session Replay feature:
-  integrations: [
-    Sentry.replayIntegration({
-      // Additional Replay configuration goes in here, for example:
-      maskAllText: true,
-      blockAllMedia: true,
-    }),
-  ],
+  beforeSend(event) {
+    // Keep error delivery independent of the optional Replay chunk/network.
+    // beforeSend also covers captureMessage, which Replay treats as an error.
+    void loadReplay(true);
+    return event;
+  },
   enableLogs: true,
 });
+
+scheduleReplay();
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
