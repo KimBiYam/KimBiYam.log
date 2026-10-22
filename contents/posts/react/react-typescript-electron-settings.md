@@ -3,6 +3,7 @@ title: 'React Typescript 기반 Electron 개발 환경 구축'
 date: '2022-05-02'
 tag: 'react'
 ogImagePath: '/images/posts/react/react-typescript-electron-settings_1.png'
+priorityImage: '/images/posts/react/react-typescript-electron-settings_1.png'
 ---
 
 ![Electron-logo](/images/posts/react/react-typescript-electron-settings_1.png)

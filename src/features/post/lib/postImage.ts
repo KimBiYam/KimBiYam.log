@@ -2,9 +2,12 @@ import { join } from 'path';
 
 import sizeOf from 'image-size';
 
-import { PostImageSize } from '../types';
+import { PostImageSize } from '@src/features/post/types';
 
-export const getPostImageSizes = (postContentHtml: string) => {
+export const getPostImageSizes = (
+  postContentHtml: string,
+  priorityImage?: string,
+) => {
   const imageSizes: Record<string, PostImageSize> = {};
 
   const matches = postContentHtml.matchAll(/!\[[^\]]*]\(([^)\s]+)/g);
@@ -18,7 +21,11 @@ export const getPostImageSizes = (postContentHtml: string) => {
     try {
       const { width, height } = sizeOf(filePath);
       if (width !== undefined && height !== undefined) {
-        imageSizes[src] = { width, height };
+        imageSizes[src] = {
+          width,
+          height,
+          ...(src === priorityImage ? { priority: true } : {}),
+        };
       }
     } catch (err) {
       console.error(`Can’t get dimensions for ${filePath}:`, err);

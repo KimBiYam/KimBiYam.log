@@ -85,7 +85,10 @@ export default async function PostDetailPage(props: {
   const path = `/posts/${subdirectory}/${id}`;
   const postJsonLd = getPostJsonLd({ path, postDetail });
 
-  const imageSizes = getPostImageSizes(postDetail.contentHtml);
+  const imageSizes = getPostImageSizes(
+    postDetail.contentHtml,
+    postDetail.priorityImage,
+  );
 
   return (
     <>

@@ -9,6 +9,7 @@ export interface PostDetail extends Post {
   contentHtml: string;
   description: string;
   ogImagePath?: string;
+  priorityImage?: string;
 }
 
 export interface PostPreview extends Post {
@@ -23,4 +24,5 @@ export interface PostPath {
 export interface PostImageSize {
   width: number;
   height: number;
+  priority?: boolean;
 }

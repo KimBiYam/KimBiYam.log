@@ -5,7 +5,15 @@ import favicon from '@src/app/icon.png';
 
 const Logo = () => (
   <Link href="/" passHref className="w-6 h-6">
-    <Image priority src={favicon} alt="logo" quality={100} />
+    <Image
+      priority
+      src={favicon}
+      alt="logo"
+      width={24}
+      height={24}
+      sizes="24px"
+      quality={75}
+    />
   </Link>
 );
 

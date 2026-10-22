@@ -13,6 +13,19 @@ const defaultConfig = {
     deviceSizes: [480, 768, 1024, 1280],
     qualities: [100, 75],
   },
+  async headers() {
+    return [
+      {
+        source: '/fonts/pretendard/1.3.9/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

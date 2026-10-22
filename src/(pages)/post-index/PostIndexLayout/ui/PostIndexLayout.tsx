@@ -21,7 +21,7 @@ const PostIndexLayout = async ({ children }: PostIndexLayoutProps) => {
       {children}
       <PostIndex
         postPreviews={postPreviews}
-        profile={<ProfileCard />}
+        profile={<ProfileCard priority />}
         tags={tags}
       />
     </>

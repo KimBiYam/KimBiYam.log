@@ -16,8 +16,9 @@ import ClientRootLayout from '../_app/ui/ClientRootLayout';
 
 import type { Metadata, Viewport } from 'next';
 
-import '../shared/styles/global.css';
-import '../shared/styles/tailwind.css';
+import '@src/shared/styles/pretendard.css';
+import '@src/shared/styles/global.css';
+import '@src/shared/styles/tailwind.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(DOMAIN_URL),
@@ -64,10 +65,11 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
     <html lang="ko" suppressHydrationWarning>
       <head>
         <link
-          rel="stylesheet preload"
-          as="style"
-          crossOrigin=""
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css"
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+          href="/fonts/pretendard/1.3.9/Pretendard-Regular.subset.91.woff2"
         />
       </head>
       <body className="main-container main-font-color">
