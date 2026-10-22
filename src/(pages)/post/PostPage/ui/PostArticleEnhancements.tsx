@@ -66,7 +66,25 @@ const PostArticleEnhancements = () => {
       content.removeEventListener('click', handleClick, true);
       if (idle !== undefined) window.cancelIdleCallback(idle);
       if (timer !== undefined) window.clearTimeout(timer);
-      zoom?.detach();
+      if (!zoom) return;
+      const instance = zoom;
+      if (!instance.getZoomedImage()) {
+        instance.detach();
+        return;
+      }
+      // close() is ignored during opening/HD loading. Retry once opened,
+      // then detach after the library has cleared its active image state.
+      const closeAfterOpen = () => void instance.close();
+      const detachAfterClose = () => {
+        queueMicrotask(() => {
+          instance.off('opened', closeAfterOpen);
+          instance.off('closed', detachAfterClose);
+          instance.detach();
+        });
+      };
+      instance.on('opened', closeAfterOpen, { once: true });
+      instance.on('closed', detachAfterClose, { once: true });
+      void instance.close();
     };
   }, []);
 
