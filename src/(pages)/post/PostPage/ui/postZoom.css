@@ -1,0 +1,8 @@
+/* Keep zoom independent of app-wide theme tokens and Tailwind build config. */
+.medium-zoom-overlay {
+  --post-zoom-background: #fff;
+}
+
+.dark .medium-zoom-overlay {
+  --post-zoom-background: #171717;
+}

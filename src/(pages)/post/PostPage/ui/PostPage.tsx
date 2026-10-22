@@ -1,8 +1,5 @@
-import {
-  PostDateText,
-  MarkdownView,
-  PostShareButtons,
-} from '@src/features/post/ui';
+import { PostDateText, PostShareButtons } from '@src/features/post/client';
+import { MarkdownView } from '@src/features/post/server';
 import type {
   PostDetail,
   PostImageSize,
@@ -40,13 +37,10 @@ const PostPage = ({
           <PostDateText>{date}</PostDateText>
           <TagBadge href={`/tags/${tag}`} tag={tag} />
         </div>
-        <MarkdownView
-          contentHtml={contentHtml}
-          imageSizes={imageSizes}
-        />
+        <MarkdownView contentHtml={contentHtml} imageSizes={imageSizes} />
         <PostArticleEnhancements />
       </article>
-      <PostShareButtons canonicalPath={canonicalPath} postDetail={postDetail} />
+      <PostShareButtons canonicalPath={canonicalPath} title={title} />
       <PostNavigation newerPost={newerPost} olderPost={olderPost} />
       <div className="py-4 my-10 border-t border-b">
         <ProfileCard />

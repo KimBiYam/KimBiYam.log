@@ -2,47 +2,75 @@
 
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import mediumZoom from 'medium-zoom';
-import { useMediaQuery } from 'react-responsive';
 
-import { Theme, useMounted, useTheme } from '@src/shared';
+import useMediaQuery from '@src/shared/hooks/useMediaQuery';
 import breakPoints from '@src/shared/styles/breakPoints.json';
 
-import { theme as tailwindTheme } from '../../../../../tailwind.config';
+import type { Zoom } from 'medium-zoom';
+
+import '@src/(pages)/post/PostPage/ui/postZoom.css';
 
 const DynamicTableOfContents = dynamic(
   () => import('@src/features/post/ui/TableOfContents'),
 );
 
 const PostArticleEnhancements = () => {
-  const [contentElement, setContentElement] = useState<HTMLElement | null>(null);
-  const mounted = useMounted();
-  const { theme } = useTheme();
-  const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
-  const zoomBackground =
-    theme === Theme.dark
-      ? tailwindTheme.colors.neutral[900]
-      : tailwindTheme.colors.white;
+  const [contentElement, setContentElement] = useState<HTMLElement | null>(
+    null,
+  );
+  const isUpExtraLargeScreen = useMediaQuery(`(min-width: ${breakPoints.xl})`);
 
   useEffect(() => {
     const content = document.getElementById('post-content');
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setContentElement(content);
 
+    setContentElement(content);
     if (!content) return;
 
-    const zoom = mediumZoom(content.querySelectorAll('img'), {
-      background: zoomBackground,
-      margin: 24,
+    let disposed = false;
+    let zoom: Zoom | undefined;
+    let loading: Promise<Zoom | undefined> | undefined;
+    const loadZoom = () => {
+      loading ??= import('medium-zoom')
+        .then(({ default: mediumZoom }) => {
+          if (disposed) return;
+          zoom = mediumZoom(content.querySelectorAll('img'), {
+            background: 'var(--post-zoom-background)',
+            margin: 24,
+          });
+          return zoom;
+        })
+        .catch(() => {
+          // Keep the original image usable; a later click can retry the chunk.
+          loading = undefined;
+          return undefined;
+        });
+      return loading;
+    };
+
+    const handleClick = (event: MouseEvent) => {
+      if (!(event.target instanceof HTMLImageElement) || zoom) return;
+      const target = event.target;
+      void loadZoom().then((loadedZoom) => {
+        if (!disposed && target.isConnected) void loadedZoom?.open({ target });
+      });
+    };
+    content.addEventListener('click', handleClick, true);
+    const idle = window.requestIdleCallback?.(() => void loadZoom(), {
+      timeout: 1500,
     });
+    const timer =
+      idle === undefined ? window.setTimeout(loadZoom, 0) : undefined;
 
     return () => {
-      zoom.detach();
+      disposed = true;
+      content.removeEventListener('click', handleClick, true);
+      if (idle !== undefined) window.cancelIdleCallback(idle);
+      if (timer !== undefined) window.clearTimeout(timer);
+      zoom?.detach();
     };
-  }, [zoomBackground]);
+  }, []);
 
-  if (!mounted || !isUpExtraLargeScreen) return null;
-
+  if (!isUpExtraLargeScreen) return null;
   return <DynamicTableOfContents targetElement={contentElement} />;
 };
 
