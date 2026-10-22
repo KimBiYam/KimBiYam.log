@@ -76,6 +76,6 @@ module.exports = withSentryConfig(nextConfig, {
   // https://vercel.com/docs/cron-jobs
   automaticVercelMonitors: true,
   reactComponentAnnotation: {
-    enabled: true,
+    enabled: false,
   },
 });
