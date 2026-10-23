@@ -1,9 +1,17 @@
 import { notFound } from 'next/navigation';
 
 import { generateOpenGraphMetaData } from '@src/app/metadataBase';
-import { getPostTags } from '@src/features/post/server';
+import {
+  getPostTags,
+  getSortedPostPreviews,
+  getTagJsonLd,
+} from '@src/features/post/server';
 import ogTagImage from '@src/shared/assets/images/og_tag_image.png';
-import { PAGE_TITLE_SUFFIX } from '@src/shared/constants/metadata';
+import {
+  FEED_ALTERNATE_TYPES,
+  PAGE_TITLE_SUFFIX,
+} from '@src/shared/constants/metadata';
+import { serializeJsonLd } from '@src/shared/utils';
 
 import type { Metadata } from 'next';
 
@@ -19,6 +27,11 @@ export const generateStaticParams = async (): Promise<TagPath[]> => {
   return tags.map((tag) => ({ tag }));
 };
 
+const getTagPageText = (tag: string) => ({
+  title: `${tag.toUpperCase()} 태그 글 목록`,
+  description: `${tag.toUpperCase()} 주제로 작성한 개발 기록을 모았습니다.`,
+});
+
 export const generateMetadata = async ({
   params,
 }: {
@@ -29,15 +42,14 @@ export const generateMetadata = async ({
 
   if (!tags.includes(tag)) return {};
 
-  const title = `${tag.toUpperCase()} 태그 글 목록`;
+  const { title, description } = getTagPageText(tag);
   const socialTitle = `${title}${PAGE_TITLE_SUFFIX}`;
-  const description = `${tag.toUpperCase()} 주제로 작성한 개발 기록을 모았습니다.`;
   const path = `/tags/${encodeURIComponent(tag)}`;
 
   return {
     title,
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: path, types: FEED_ALTERNATE_TYPES },
     openGraph: generateOpenGraphMetaData({
       path,
       title,
@@ -59,7 +71,21 @@ const Page = async ({ params }: { params: Promise<TagPath> }) => {
 
   if (!tags.includes(tag)) notFound();
 
-  return null;
+  const { title, description } = getTagPageText(tag);
+  const postPreviews = (await getSortedPostPreviews()).filter(
+    (postPreview) => postPreview.tag === tag,
+  );
+  const tagJsonLd = getTagJsonLd({ tag, title, description, postPreviews });
+
+  return (
+    <>
+      <h1 className="sr-only">{title}</h1>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(tagJsonLd) }}
+      />
+    </>
+  );
 };
 
 export default Page;

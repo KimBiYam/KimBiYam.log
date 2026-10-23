@@ -78,13 +78,14 @@ const getPostPreview = async (fileName: string): Promise<PostPreview> => {
   const matterResult = matter(fileContents);
 
   const {
-    data: { date, title, tag },
+    data: { date, updated, title, tag },
     content,
   } = matterResult;
 
   return {
     id,
     date,
+    updated,
     title,
     tag,
     content: getPostPreviewDescription(content),

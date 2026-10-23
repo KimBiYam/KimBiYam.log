@@ -34,7 +34,7 @@ const PostPage = ({
       <article className="relative mt-8">
         <PostTitle title={title} />
         <div className="flex items-center justify-between my-4">
-          <PostDateText>{date}</PostDateText>
+          <PostDateText dateTime={date}>{date}</PostDateText>
           <TagBadge href={`/tags/${tag}`} tag={tag} />
         </div>
         <MarkdownView
