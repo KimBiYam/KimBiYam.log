@@ -2,7 +2,9 @@
 
 import { ReactNode, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import { useSetAtom } from 'jotai';
 
+import { postListPageAtom } from '@src/features/post/client';
 import { PostPreview } from '@src/features/post/types';
 import { Tag, TagSelector } from '@src/features/tag';
 import { DragScrollContainer } from '@src/shared/ui';
@@ -26,6 +28,7 @@ const getTagFromPathname = (pathname: string, tags: string[]) => {
 const PostIndex = ({ postPreviews, profile, tags }: PostIndexProps) => {
   const pathname = usePathname();
   const router = useRouter();
+  const setPostPages = useSetAtom(postListPageAtom);
   const selectedTag = getTagFromPathname(pathname, tags);
   const [prevTag, setPrevTag] = useState(selectedTag);
   const [hasTagChanged, setHasTagChanged] = useState(false);
@@ -39,6 +42,8 @@ const PostIndex = ({ postPreviews, profile, tags }: PostIndexProps) => {
 
   const handleTagSelect = (tag: string) => {
     if (tag === selectedTag) return;
+
+    setPostPages((prev) => ({ ...prev, [tag]: 1 }));
 
     const href = tag === Tag.all ? '/' : `/tags/${encodeURIComponent(tag)}`;
     router.push(href, { scroll: false });
@@ -63,6 +68,7 @@ const PostIndex = ({ postPreviews, profile, tags }: PostIndexProps) => {
         key={selectedTag}
         fadeInFirstPage={hasTagChanged}
         postPreviews={filteredPostPreviews}
+        tag={selectedTag}
       />
     </div>
   );

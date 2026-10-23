@@ -1,7 +1,9 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { useAtom } from 'jotai';
 
+import { postListPageAtom } from '@src/features/post/client';
 import { PostPreview } from '@src/features/post/types';
 import { useScrollObserver } from '@src/shared';
 
@@ -12,13 +14,19 @@ const POST_COUNT_BY_PAGE = 10;
 interface PostListProps {
   fadeInFirstPage: boolean;
   postPreviews: PostPreview[];
+  tag: string;
 }
 
-const PostList = ({ fadeInFirstPage, postPreviews }: PostListProps) => {
+const PostList = ({ fadeInFirstPage, postPreviews, tag }: PostListProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [postPage, setPostPage] = useState(1);
+  const [postPages, setPostPages] = useAtom(postListPageAtom);
+  const postPage = postPages[tag] ?? 1;
+  // Items already shown when this list mounted (restored on back navigation)
+  // render immediately; only pages loaded afterwards fade in.
+  const [restoredCount] = useState(POST_COUNT_BY_PAGE * postPage);
 
-  const handleIntersect = () => setPostPage((prev) => prev + 1);
+  const handleIntersect = () =>
+    setPostPages((prev) => ({ ...prev, [tag]: (prev[tag] ?? 1) + 1 }));
 
   useScrollObserver({
     enabled: postPreviews.length > POST_COUNT_BY_PAGE * postPage,
@@ -37,7 +45,7 @@ const PostList = ({ fadeInFirstPage, postPreviews }: PostListProps) => {
         <PostListItem
           key={postPreview.id + postPreview.title}
           postPreview={postPreview}
-          fadeIn={fadeInFirstPage || index >= POST_COUNT_BY_PAGE}
+          fadeIn={fadeInFirstPage || index >= restoredCount}
         />
       ))}
       <div ref={scrollRef} />
