@@ -5,11 +5,12 @@ import { useAtom } from 'jotai';
 
 import { postListPageAtom } from '@src/features/post/client';
 import { PostPreview } from '@src/features/post/types';
-import { useScrollObserver } from '@src/shared';
+import { usePointerSpotlight, useScrollObserver } from '@src/shared';
 
+import PostFeaturedItem from './PostFeaturedItem';
 import PostListItem from './PostListItem';
 
-const POST_COUNT_BY_PAGE = 10;
+const POST_COUNT_BY_PAGE = 16;
 
 interface PostListProps {
   fadeInFirstPage: boolean;
@@ -19,6 +20,7 @@ interface PostListProps {
 
 const PostList = ({ fadeInFirstPage, postPreviews, tag }: PostListProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const spotlightRef = usePointerSpotlight<HTMLDivElement>();
   const [postPages, setPostPages] = useAtom(postListPageAtom);
   const postPage = postPages[tag] ?? 1;
   // Items already shown when this list mounted (restored on back navigation)
@@ -39,17 +41,30 @@ const PostList = ({ fadeInFirstPage, postPreviews, tag }: PostListProps) => {
     postPage * POST_COUNT_BY_PAGE,
   );
 
+  const [featuredPostPreview, ...gridPostPreviews] = visiblePostPreviews;
+
   return (
-    <ul>
-      {visiblePostPreviews.map((postPreview, index) => (
-        <PostListItem
-          key={postPreview.id + postPreview.title}
-          postPreview={postPreview}
-          fadeIn={fadeInFirstPage || index >= restoredCount}
+    <div ref={spotlightRef}>
+      {featuredPostPreview && (
+        <PostFeaturedItem
+          postPreview={featuredPostPreview}
+          fadeIn={fadeInFirstPage}
         />
-      ))}
+      )}
+      <ul
+        aria-label="최근 글"
+        className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
+      >
+        {gridPostPreviews.map((postPreview, index) => (
+          <PostListItem
+            key={postPreview.id + postPreview.title}
+            postPreview={postPreview}
+            fadeIn={fadeInFirstPage || index + 1 >= restoredCount}
+          />
+        ))}
+      </ul>
       <div ref={scrollRef} />
-    </ul>
+    </div>
   );
 };
 

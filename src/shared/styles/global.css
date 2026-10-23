@@ -1,6 +1,65 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*
+ * Design tokens. Solid colors are stored as RGB channels so Tailwind opacity
+ * modifiers work (e.g. bg-accent-violet/15); translucent tokens keep their alpha.
+ * Keep THEME_COLOR in src/shared/constants/theme.ts in sync with --color-background.
+ */
+:root {
+  --color-background: 247 247 251;
+  --color-foreground: 17 17 28;
+  --color-prose-body: 42 42 64;
+  --color-muted: 84 86 112;
+  --color-surface: 255 255 255;
+  --color-accent-violet: 109 40 217;
+  --color-accent-cyan: 15 118 110;
+  --color-line: rgba(17, 17, 40, 0.1);
+  --color-glass: rgba(255, 255, 255, 0.72);
+
+  --glow-violet: rgba(139, 92, 246, 0.12);
+  --glow-cyan: rgba(34, 211, 238, 0.1);
+  --glow-pink: rgba(236, 72, 153, 0.06);
+  --featured-border: linear-gradient(
+    135deg,
+    rgba(109, 40, 217, 0.45),
+    rgba(15, 118, 110, 0.2) 45%,
+    rgba(17, 17, 40, 0.08)
+  );
+  --featured-spotlight: rgba(109, 40, 217, 0.08);
+  --card-spotlight: rgba(109, 40, 217, 0.04);
+
+  /* Motion tokens. Keep in sync with src/shared/styles/motions.ts. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+
+  color-scheme: light;
+}
+
+.dark {
+  --color-background: 7 7 17;
+  --color-foreground: 241 241 248;
+  --color-prose-body: 220 220 234;
+  --color-muted: 165 166 188;
+  --color-surface: 13 13 26;
+  --color-accent-violet: 167 139 250;
+  --color-accent-cyan: 94 234 212;
+  --color-line: rgba(255, 255, 255, 0.09);
+  --color-glass: rgba(255, 255, 255, 0.045);
+
+  --glow-violet: rgba(139, 92, 246, 0.35);
+  --glow-cyan: rgba(34, 211, 238, 0.22);
+  --glow-pink: rgba(236, 72, 153, 0.14);
+  --featured-border: linear-gradient(
+    135deg,
+    rgba(167, 139, 250, 0.7),
+    rgba(94, 234, 212, 0.25) 45%,
+    rgba(255, 255, 255, 0.06)
+  );
+  --featured-spotlight: rgba(167, 139, 250, 0.22);
+  --card-spotlight: rgba(167, 139, 250, 0.16);
+
+  color-scheme: dark;
+}
 
 body {
   padding: 0;
@@ -28,7 +87,8 @@ code,
 kbd,
 samp,
 pre {
-  font-family: inherit !important;
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
 }
 
 #__next {
@@ -48,4 +108,90 @@ h1,
 h2,
 h3 {
   letter-spacing: -1px;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--color-accent-violet));
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Reading progress bar: scaleX is driven by the root scroll timeline where
+   supported; otherwise ReadingProgress sets the transform from script. */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  width: 100%;
+  height: 3px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgb(var(--color-accent-violet)),
+    rgb(var(--color-accent-cyan))
+  );
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+@supports (animation-timeline: scroll()) {
+  .reading-progress {
+    animation: reading-progress linear both;
+    animation-timeline: scroll(root block);
+  }
+
+  @keyframes reading-progress {
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reading-progress {
+    display: none;
+  }
+}
+
+/* Theme toggle: the new theme is revealed by a circle (see
+   src/shared/utils/themeTransition.ts); the default cross-fade is disabled. */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+html[data-view-transition] *,
+html[data-view-transition] *::before,
+html[data-view-transition] *::after {
+  transition: none !important;
 }

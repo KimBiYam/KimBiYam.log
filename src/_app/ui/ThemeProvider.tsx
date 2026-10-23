@@ -3,7 +3,6 @@
 import { PropsWithChildren } from 'react';
 import { ThemeProvider as NextThemeProvider } from 'next-themes';
 
-import { Theme } from '@src/shared';
 import { StorageKeys } from '@src/shared/utils/storage';
 
 export default function ThemeProvider({
@@ -11,7 +10,8 @@ export default function ThemeProvider({
 }: PropsWithChildren<unknown>) {
   return (
     <NextThemeProvider
-      defaultTheme={Theme.light}
+      defaultTheme="system"
+      enableSystem
       storageKey={StorageKeys.theme}
       attribute="class"
     >

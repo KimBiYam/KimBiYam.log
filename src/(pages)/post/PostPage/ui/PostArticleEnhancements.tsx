@@ -1,34 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
+import { useEffect } from 'react';
 import mediumZoom from 'medium-zoom';
-import { useMediaQuery } from 'react-responsive';
 
-import { Theme, useMounted, useTheme } from '@src/shared';
-import breakPoints from '@src/shared/styles/breakPoints.json';
-
-import { theme as tailwindTheme } from '../../../../../tailwind.config';
-
-const DynamicTableOfContents = dynamic(
-  () => import('@src/features/post/ui/TableOfContents'),
-);
+import { POST_CONTENT_ID } from '@src/features/post/client';
+import { Theme, THEME_COLOR, useTheme } from '@src/shared';
 
 const PostArticleEnhancements = () => {
-  const [contentElement, setContentElement] = useState<HTMLElement | null>(null);
-  const mounted = useMounted();
   const { theme } = useTheme();
-  const isUpExtraLargeScreen = useMediaQuery({ minWidth: breakPoints.xl });
   const zoomBackground =
-    theme === Theme.dark
-      ? tailwindTheme.colors.neutral[900]
-      : tailwindTheme.colors.white;
+    theme === Theme.dark ? THEME_COLOR.dark : THEME_COLOR.light;
 
   useEffect(() => {
-    const content = document.getElementById('post-content');
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setContentElement(content);
-
+    const content = document.getElementById(POST_CONTENT_ID);
     if (!content) return;
 
     const zoom = mediumZoom(content.querySelectorAll('img'), {
@@ -41,9 +25,7 @@ const PostArticleEnhancements = () => {
     };
   }, [zoomBackground]);
 
-  if (!mounted || !isUpExtraLargeScreen) return null;
-
-  return <DynamicTableOfContents targetElement={contentElement} />;
+  return null;
 };
 
 export default PostArticleEnhancements;

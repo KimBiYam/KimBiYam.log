@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import { JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/react';
@@ -10,9 +11,9 @@ import { GOOGLE_ANALYTICS_TRACKING_ID } from '@src/shared/constants/foundation';
 import { FEED_ALTERNATE_TYPES } from '@src/shared/constants/metadata';
 import { DOMAIN_URL } from '@src/shared/constants/server';
 import { PROFILE } from '@src/shared/constants/profile';
+import { THEME_COLOR } from '@src/shared/constants/theme';
 
 import { generateOpenGraphMetaData } from './metadataBase';
-import { theme as tailwindTheme } from '../../tailwind.config';
 import ClientRootLayout from '../_app/ui/ClientRootLayout';
 
 import type { Metadata, Viewport } from 'next';
@@ -22,6 +23,12 @@ import type { Metadata, Viewport } from 'next';
 import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
 import '../shared/styles/global.css';
 import '../shared/styles/tailwind.css';
+
+const monoFont = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(DOMAIN_URL),
@@ -61,12 +68,15 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: tailwindTheme.colors.neutral[900],
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: THEME_COLOR.light },
+    { media: '(prefers-color-scheme: dark)', color: THEME_COLOR.dark },
+  ],
 };
 
 export default function RootLayout({ children }: PropsWithChildren<unknown>) {
   return (
-    <html lang="ko" suppressHydrationWarning>
+    <html lang="ko" className={monoFont.variable} suppressHydrationWarning>
       <body className="main-container main-font-color">
         <ClientRootLayout>{children}</ClientRootLayout>
         <Script src="/setViewportProperty.js" strategy="lazyOnload" />

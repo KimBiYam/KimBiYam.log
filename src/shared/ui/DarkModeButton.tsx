@@ -1,6 +1,6 @@
 'use client';
 
-import { Transition, Variants } from 'motion/react';
+import { Variants } from 'motion/react';
 import * as m from 'motion/react-m';
 
 import MoonIcon from '@src/shared/assets/svgs/moon.svg';
@@ -9,24 +9,16 @@ import useMounted from '@src/shared/hooks/useMounted';
 
 import { Theme } from '../constants';
 import useTheme from '../hooks/useTheme';
-
-const rotateScaleSpring: Transition = {
-  type: 'spring',
-  stiffness: 200,
-  damping: 15,
-};
+import { DURATION, EASE_OUT } from '../styles/motions';
 
 const variants: Variants = {
   initial: {
     scale: 1,
     opacity: 1,
-    rotate: 0,
   },
   exit: {
-    scale: 0,
+    scale: 0.6,
     opacity: 0,
-    rotate: 360,
-    transition: rotateScaleSpring,
   },
 };
 
@@ -41,38 +33,48 @@ const themeButtons = [
   },
 ];
 
+const buttonClassName =
+  'flex items-center justify-center shrink-0 w-11 h-11 border rounded-xl border-line bg-glass';
+
 const DarkModeButton = () => {
   const { theme, toggleTheme } = useTheme();
   const mounted = useMounted();
 
-  const handleClick = () => {
-    toggleTheme();
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const { left, top, width, height } =
+      event.currentTarget.getBoundingClientRect();
+
+    toggleTheme({ x: left + width / 2, y: top + height / 2 });
   };
 
+  // Keep the same footprint before mount so the header does not shift.
   if (!mounted) {
-    return null;
+    return <span aria-hidden="true" className={buttonClassName} />;
   }
 
   return (
     <button
       type="button"
-      className="p-2 rounded-full cursor-pointer primary-button-hover"
+      className={`${buttonClassName} cursor-pointer primary-button-hover focus-ring`}
       onClick={handleClick}
-      title="dark-mode-button"
+      aria-label={
+        theme === Theme.dark ? '라이트 모드로 전환' : '다크 모드로 전환'
+      }
     >
-      <div className="relative w-6 h-6">
+      <span className="relative w-[18px] h-[18px]">
         {themeButtons.map(({ icon, buttonTheme }) => (
-          <m.div
+          <m.span
             key={buttonTheme}
             initial={false}
-            className="absolute w-full"
+            className="absolute inset-0 [&>svg]:size-full"
             animate={theme === buttonTheme ? 'initial' : 'exit'}
             variants={variants}
+            transition={{ duration: DURATION.base, ease: EASE_OUT }}
           >
             {icon}
-          </m.div>
+          </m.span>
         ))}
-      </div>
+      </span>
     </button>
   );
 };

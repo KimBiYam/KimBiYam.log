@@ -37,10 +37,11 @@ const TagButton = ({
   return (
     <Link
       className={clsx(
-        'px-4 py-1 mx-1 mb-2 text-xs whitespace-pre duration-300 rounded-xl md:text-sm transition-backgroundColor btn-hover',
+        'px-3.5 py-2.5 text-[13px] leading-none whitespace-pre border rounded-full transition-colors duration-300 focus-ring',
         {
-          'font-bold bg-slate-300 dark:bg-neutral-500': isSelected,
-          'font-semibold text-neutral-400 bg-slate-200 dark:bg-neutral-700 dark:text-neutral-400':
+          'font-medium text-foreground border-accent-violet/60 bg-accent-violet/15':
+            isSelected,
+          'text-muted border-line bg-glass hover:text-foreground hover:border-accent-violet/40':
             !isSelected,
         },
       )}

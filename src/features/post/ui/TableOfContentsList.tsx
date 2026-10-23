@@ -5,7 +5,7 @@ interface TableOfContentsListProps {
   headings: TableOfContentHeading[];
   onItemClick: (id: string) => void;
   activeId: string | null;
-  registerChildRef: (instance: HTMLElement | null, id: string) => void;
+  registerChildRef?: (instance: HTMLElement | null, id: string) => void;
   level?: number;
 }
 
@@ -25,7 +25,6 @@ const TableOfContentsList = ({
           onClick={onItemClick}
           registerChildRef={registerChildRef}
           isActive={activeId === heading.id}
-          level={level}
         >
           {Array.isArray(heading.children) && heading.children.length > 0 && (
             <TableOfContentsList

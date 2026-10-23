@@ -21,7 +21,10 @@ const PostTitle = ({ title }: PostTitleProps) => {
   useSyncPostHeader(title);
 
   return (
-    <h1 className="text-3xl font-bold md:text-4xl" ref={setEl}>
+    <h1
+      className="text-[32px] md:text-[46px] font-extrabold leading-[1.25] tracking-[-0.035em] break-keep"
+      ref={setEl}
+    >
       {title}
     </h1>
   );

@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import * as m from 'motion/react-m';
 
-import { PostDateText } from '@src/features/post/client';
+import { PostDateText, PostReadingTime } from '@src/features/post/client';
 import { PostPreview } from '@src/features/post/types';
-import TagBadge from '@src/features/tag/ui/TagBadge';
 import { viewportOpacityMotion } from '@src/shared';
 
 interface PostListItemProps {
@@ -12,28 +11,32 @@ interface PostListItemProps {
 }
 
 const PostListItem = ({ postPreview, fadeIn = false }: PostListItemProps) => {
-  const { id, title, date, content, tag } = postPreview;
+  const { id, title, date, tag, readingTimeMinutes } = postPreview;
 
-  return (
-    <li>
-      <Link href={`/posts/${id}`}>
-        <m.div
-          className="py-4 duration-300 cursor-pointer transition-textShadow hover:text-shadow dark:hover:text-shadow-dark"
-          {...(fadeIn ? viewportOpacityMotion : {})}
-        >
-          <h2 className="w-full overflow-hidden text-2xl font-bold truncate whitespace-nowrap">
-            {title}
-          </h2>
-          <div className="flex items-center justify-between my-1">
-            <PostDateText dateTime={date}>{date}</PostDateText>
-            <TagBadge tag={tag.toUpperCase()} />
-          </div>
-          <p className="overflow-hidden text-sm dark:text-zinc-400 text-zinc-700 md:text-base">
-            {content}
-          </p>
-        </m.div>
-      </Link>
-    </li>
+  const link = (
+    <Link
+      href={`/posts/${id}`}
+      className="pointer-spotlight flex flex-col h-full gap-3 p-6 md:p-[26px] min-h-[210px] border rounded-[20px] border-line bg-glass transition-[color,background-color,border-color,transform] duration-200 ease-out hover:-translate-y-0.5 motion-reduce:hover:translate-y-0 hover:border-accent-violet/40 hover:bg-accent-violet/5 focus-ring"
+    >
+      <span className="font-mono text-xs text-accent-violet">{tag}</span>
+      <h2 className="text-[19px] font-bold leading-[1.45] tracking-[-0.02em] break-keep line-clamp-3">
+        {title}
+      </h2>
+      <span className="flex items-center gap-2 mt-auto">
+        <PostDateText dateTime={date}>{date}</PostDateText>
+        <span aria-hidden="true" className="font-mono text-xs text-muted">
+          ·
+        </span>
+        <PostReadingTime minutes={readingTimeMinutes} />
+      </span>
+    </Link>
+  );
+
+  // Plain <li> unless the item fades in: skips motion setup for initial cards.
+  return fadeIn ? (
+    <m.li {...viewportOpacityMotion}>{link}</m.li>
+  ) : (
+    <li>{link}</li>
   );
 };
 

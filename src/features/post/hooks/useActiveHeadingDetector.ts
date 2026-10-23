@@ -11,7 +11,8 @@ interface HeadingScrollPosition {
 
 const THROTTLE_TIME_MS = 100;
 const CHECK_SCROLL_HEIGHT_INTERVAL_MS = 250;
-const SCROLL_MARGIN_PX = 10;
+// Fixed header (~76px) + scroll-margin-top of the headings (6rem).
+const SCROLL_MARGIN_PX = 120;
 
 const getHeadingsScrollPosition = (targetElement: HTMLElement) => {
   const headingElements = findElementsByTags(
@@ -21,7 +22,7 @@ const getHeadingsScrollPosition = (targetElement: HTMLElement) => {
 
   return Array.from(headingElements).map((el) => ({
     id: el.id,
-    top: el.offsetTop,
+    top: el.getBoundingClientRect().top + window.scrollY,
   }));
 };
 

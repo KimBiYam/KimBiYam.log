@@ -7,3 +7,4 @@ export { default as Logo } from './Logo';
 export { default as ProfileCard } from './ProfileCard';
 export { default as ProfileLink } from './ProfileLink';
 export { default as MediumZoom } from './MediumZoom';
+export { default as BackgroundGlow } from './BackgroundGlow';
