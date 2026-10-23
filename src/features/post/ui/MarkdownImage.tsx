@@ -3,6 +3,8 @@ import Image from 'next/image';
 
 import { PostImageSize } from '../types';
 
+const IMAGE_SIZES = '(min-width: 768px) 704px, calc(100vw - 48px)';
+
 interface MarkdownImageProps {
   src?: string;
   alt?: string;
@@ -23,6 +25,7 @@ const MarkdownImage = ({
       alt={alt ?? ''}
       width={imageSize?.width ?? 700}
       height={imageSize?.height ?? 400}
+      sizes={IMAGE_SIZES}
       decoding="async"
     />
   ) : (

@@ -8,9 +8,10 @@ import { viewportOpacityMotion } from '@src/shared';
 
 interface PostListItemProps {
   postPreview: PostPreview;
+  fadeIn?: boolean;
 }
 
-const PostListItem = ({ postPreview }: PostListItemProps) => {
+const PostListItem = ({ postPreview, fadeIn = false }: PostListItemProps) => {
   const { id, title, date, content, tag } = postPreview;
 
   return (
@@ -18,7 +19,7 @@ const PostListItem = ({ postPreview }: PostListItemProps) => {
       <Link href={`/posts/${id}`}>
         <m.div
           className="py-4 duration-300 cursor-pointer transition-textShadow hover:text-shadow dark:hover:text-shadow-dark"
-          {...viewportOpacityMotion}
+          {...(fadeIn ? viewportOpacityMotion : {})}
         >
           <h3 className="w-full overflow-hidden text-2xl font-bold truncate whitespace-nowrap">
             {title}

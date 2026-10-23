@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { PostPreview } from '@src/features/post/types';
@@ -23,14 +23,19 @@ const getTagFromPathname = (pathname: string, tags: string[]) => {
   return tags.includes(tag) ? tag : Tag.all;
 };
 
-const PostIndex = ({
-  postPreviews,
-  profile,
-  tags,
-}: PostIndexProps) => {
+const PostIndex = ({ postPreviews, profile, tags }: PostIndexProps) => {
   const pathname = usePathname();
   const router = useRouter();
   const selectedTag = getTagFromPathname(pathname, tags);
+  const [prevTag, setPrevTag] = useState(selectedTag);
+  const [hasTagChanged, setHasTagChanged] = useState(false);
+
+  // Only the server-rendered initial list skips the first-page fade-in (LCP);
+  // lists remounted after a tag change fade in every item.
+  if (prevTag !== selectedTag) {
+    setPrevTag(selectedTag);
+    setHasTagChanged(true);
+  }
 
   const handleTagSelect = (tag: string) => {
     if (tag === selectedTag) return;
@@ -54,7 +59,11 @@ const PostIndex = ({
           tags={tags}
         />
       </DragScrollContainer>
-      <PostList key={selectedTag} postPreviews={filteredPostPreviews} />
+      <PostList
+        key={selectedTag}
+        fadeInFirstPage={hasTagChanged}
+        postPreviews={filteredPostPreviews}
+      />
     </div>
   );
 };

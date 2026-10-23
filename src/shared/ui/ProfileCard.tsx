@@ -14,7 +14,11 @@ const SOCIAL_ICONS: Record<keyof Social, RenderSVGComponent> = {
   linkedIn: LinkedInIcon,
 } as const;
 
-const ProfileCard = () => {
+interface ProfileCardProps {
+  priority?: boolean;
+}
+
+const ProfileCard = ({ priority = false }: ProfileCardProps) => {
   const { name, imageSrc, social } = PROFILE;
 
   return (
@@ -26,7 +30,7 @@ const ProfileCard = () => {
         width={64}
         height={64}
         className="rounded-full"
-        priority
+        priority={priority}
       />
       <div className="ml-4 w-fit">
         <p className="font-bold">{name}</p>

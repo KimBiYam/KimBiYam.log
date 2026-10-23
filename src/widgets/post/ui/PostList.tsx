@@ -10,10 +10,11 @@ import PostListItem from './PostListItem';
 const POST_COUNT_BY_PAGE = 10;
 
 interface PostListProps {
+  fadeInFirstPage: boolean;
   postPreviews: PostPreview[];
 }
 
-const PostList = ({ postPreviews }: PostListProps) => {
+const PostList = ({ fadeInFirstPage, postPreviews }: PostListProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [postPage, setPostPage] = useState(1);
 
@@ -32,10 +33,11 @@ const PostList = ({ postPreviews }: PostListProps) => {
 
   return (
     <ul>
-      {visiblePostPreviews.map((postPreview) => (
+      {visiblePostPreviews.map((postPreview, index) => (
         <PostListItem
           key={postPreview.id + postPreview.title}
           postPreview={postPreview}
+          fadeIn={fadeInFirstPage || index >= POST_COUNT_BY_PAGE}
         />
       ))}
       <div ref={scrollRef} />
