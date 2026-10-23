@@ -21,12 +21,13 @@ export const getPostDetail = async (
       LINE_BREAK_REG_EXP,
       '',
     );
-    const { title, date, tag, ...rest } = data;
+    const { title, date, updated, tag, ...rest } = data;
 
     return {
       id,
       title,
       date,
+      updated,
       tag,
       contentHtml,
       description,

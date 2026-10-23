@@ -12,6 +12,7 @@ import {
   getAllPostPaths,
   getAdjacentPostPreviews,
 } from '@src/features/post/server';
+import { FEED_ALTERNATE_TYPES } from '@src/shared/constants/metadata';
 import { PROFILE } from '@src/shared/constants/profile';
 import { DEPLOYMENT_URL, DOMAIN_URL } from '@src/shared/constants/server';
 import { serializeJsonLd } from '@src/shared/utils';
@@ -35,7 +36,7 @@ export async function generateMetadata(props: {
       id,
     );
 
-    const { date, description, ogImagePath, tag, title } = postDetail;
+    const { date, updated, description, ogImagePath, tag, title } = postDetail;
     const path = `/posts/${subdirectory}/${id}`;
     const socialImageUrl = ogImagePath
       ? `${DOMAIN_URL}${ogImagePath}`
@@ -46,6 +47,7 @@ export async function generateMetadata(props: {
       description,
       alternates: {
         canonical: `${DOMAIN_URL}${path}`,
+        types: FEED_ALTERNATE_TYPES,
       },
       openGraph: generateOpenGraphMetaData({
         type: 'article',
@@ -55,6 +57,7 @@ export async function generateMetadata(props: {
         imagePath: socialImageUrl,
         imageAlt: title,
         publishedTime: date,
+        modifiedTime: updated ?? date,
         authors: [PROFILE.name],
         tags: [tag],
       }),

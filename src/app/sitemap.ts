@@ -1,25 +1,32 @@
 import { MetadataRoute } from 'next';
 
+import { PostPreview } from '@src/features/post/client';
 import { getPostTags, getSortedPostPreviews } from '@src/features/post/server';
 import { DOMAIN_URL } from '@src/shared';
+
+const getLastModified = ({ date, updated }: PostPreview) => updated ?? date;
+
+const getLatestModified = (postPreviews: PostPreview[]) =>
+  postPreviews.map(getLastModified).sort().at(-1);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const postPreviews = await getSortedPostPreviews();
   const tags = await getPostTags();
-  const latestPostDate = postPreviews[0]?.date;
 
   return [
     {
       url: DOMAIN_URL,
-      lastModified: latestPostDate,
+      lastModified: getLatestModified(postPreviews),
     },
     ...tags.map((tag) => ({
-      url: `${DOMAIN_URL}/tags/${tag}`,
-      lastModified: postPreviews.find((post) => post.tag === tag)?.date,
+      url: `${DOMAIN_URL}/tags/${encodeURIComponent(tag)}`,
+      lastModified: getLatestModified(
+        postPreviews.filter((post) => post.tag === tag),
+      ),
     })),
-    ...postPreviews.map(({ date, id }) => ({
-      url: `${DOMAIN_URL}/posts/${id}`,
-      lastModified: date,
+    ...postPreviews.map((postPreview) => ({
+      url: `${DOMAIN_URL}/posts/${postPreview.id}`,
+      lastModified: getLastModified(postPreview),
     })),
   ];
 }

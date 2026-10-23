@@ -21,11 +21,11 @@ const PostListItem = ({ postPreview, fadeIn = false }: PostListItemProps) => {
           className="py-4 duration-300 cursor-pointer transition-textShadow hover:text-shadow dark:hover:text-shadow-dark"
           {...(fadeIn ? viewportOpacityMotion : {})}
         >
-          <h3 className="w-full overflow-hidden text-2xl font-bold truncate whitespace-nowrap">
+          <h2 className="w-full overflow-hidden text-2xl font-bold truncate whitespace-nowrap">
             {title}
-          </h3>
+          </h2>
           <div className="flex items-center justify-between my-1">
-            <PostDateText>{date}</PostDateText>
+            <PostDateText dateTime={date}>{date}</PostDateText>
             <TagBadge tag={tag.toUpperCase()} />
           </div>
           <p className="overflow-hidden text-sm dark:text-zinc-400 text-zinc-700 md:text-base">

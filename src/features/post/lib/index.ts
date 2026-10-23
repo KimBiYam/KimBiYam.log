@@ -4,7 +4,8 @@ export {
 } from './postDescription';
 export { getPostDetail } from './postDetail';
 export { getPostImageSizes } from './postImage';
-export { getPostJsonLd } from './postJsonLd';
+export { getPostFeedXml } from './postFeed';
+export { getPostJsonLd, getTagJsonLd } from './postJsonLd';
 export {
   getAdjacentPostPreviews,
   getAllPostPaths,
