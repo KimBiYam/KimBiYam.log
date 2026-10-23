@@ -47,8 +47,9 @@ const DarkModeButton = () => {
     toggleTheme({ x: left + width / 2, y: top + height / 2 });
   };
 
-  // Keep the same footprint before mount so the header does not shift.
-  if (!mounted) {
+  // Keep the same footprint until mounted and the theme is resolved so the
+  // header does not shift and no wrong icon is drawn.
+  if (!mounted || !theme) {
     return <span aria-hidden="true" className={buttonClassName} />;
   }
 

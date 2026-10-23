@@ -1,3 +1,4 @@
+import { hasPostHeadings } from '@src/features/post/lib/postHeadings';
 import MarkdownView from '@src/features/post/ui/MarkdownView';
 import MobileTableOfContents from '@src/features/post/ui/MobileTableOfContents';
 import ReadingProgress from '@src/features/post/ui/ReadingProgress';
@@ -13,7 +14,7 @@ import type {
   PostPreview,
 } from '@src/features/post/types';
 import { TagBadge } from '@src/features/tag';
-import { BackgroundGlow, ProfileCard, Utterances } from '@src/shared';
+import { BackgroundGlow, ProfileCard } from '@src/shared';
 import { PostNavigation } from '@src/widgets/post';
 
 import PostArticleEnhancements from './PostArticleEnhancements';
@@ -60,7 +61,7 @@ const PostPage = ({
               <PostReadingTime minutes={readingTimeMinutes} />
             </div>
           </header>
-          <MobileTableOfContents />
+          {hasPostHeadings(contentHtml) && <MobileTableOfContents />}
           <MarkdownView contentHtml={contentHtml} imageSizes={imageSizes} />
           <PostArticleEnhancements />
         </article>
@@ -72,7 +73,6 @@ const PostPage = ({
         <div className="py-4 my-10 border-t border-b">
           <ProfileCard />
         </div>
-        <Utterances />
       </div>
       <TableOfContents />
     </div>

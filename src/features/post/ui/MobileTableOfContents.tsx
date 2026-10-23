@@ -8,26 +8,15 @@ import useTableOfContents from '../hooks/useTableOfContents';
 import { scrollToHeading } from '../lib/scrollToHeading';
 
 // Collapsible table of contents shown above the body below the xl breakpoint.
-// The list is only mounted while open, so a closed (or xl-hidden) panel adds
-// no nodes to the page.
+// The parent renders it only for posts that have headings, so the closed
+// summary is part of the server markup and the body never shifts. The list is
+// only mounted while open (headings are read from the rendered DOM), so a
+// closed (or xl-hidden) panel adds no nodes to the page.
 const MobileTableOfContents = () => {
   const contentElement = usePostContentElement();
   const headings = useTableOfContents(contentElement);
   const detailsRef = useRef<HTMLDetailsElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-
-  // Headings are read from the rendered DOM, so keep the summary's height
-  // reserved until they are known to avoid shifting the article body.
-  if (headings === null) {
-    return (
-      <div
-        aria-hidden="true"
-        className="h-[52px] mb-8 border rounded-2xl border-line bg-glass xl:hidden"
-      />
-    );
-  }
-
-  if (headings.length === 0) return null;
 
   const handleItemClick = (id: string) => {
     if (detailsRef.current) detailsRef.current.open = false;
@@ -49,7 +38,7 @@ const MobileTableOfContents = () => {
           ▾
         </span>
       </summary>
-      {isOpen && (
+      {isOpen && headings && (
         <nav aria-label="목차" className="px-3 pb-3">
           <TableOfContentsList
             activeId={null}

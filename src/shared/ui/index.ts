@@ -1,4 +1,3 @@
-export { default as Utterances } from './Utterances';
 export { default as ScrollToTopButton } from './ScrollToTopButton';
 export { default as DarkModeButton } from './DarkModeButton';
 export { default as DragScrollContainer } from './DragScrollContainer';

@@ -7,7 +7,9 @@ const Footer = () => (
   <footer className="border-t border-line">
     <div className="flex items-center justify-between max-w-[1040px] gap-4 px-6 py-7 mx-auto text-[13px] text-muted">
       {/* The year is rendered at build time, so tolerate a client mismatch. */}
-      <p suppressHydrationWarning>© 2021–{new Date().getFullYear()} KimBiYam</p>
+      <p suppressHydrationWarning>
+        © 2021–{new Date().getFullYear()} KimBiYam
+      </p>
       <div className="flex gap-5">
         <a href={PROFILE.social.github} className={footerLinkClassName}>
           GitHub

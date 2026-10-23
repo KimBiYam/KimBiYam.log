@@ -9,9 +9,12 @@ import { Theme, THEME_COLOR, useTheme } from '@src/shared';
 const PostArticleEnhancements = () => {
   const { theme } = useTheme();
   const zoomBackground =
-    theme === Theme.dark ? THEME_COLOR.dark : THEME_COLOR.light;
+    theme && (theme === Theme.dark ? THEME_COLOR.dark : THEME_COLOR.light);
 
   useEffect(() => {
+    // Wait for the resolved theme so zoom is not attached with the wrong background.
+    if (!zoomBackground) return;
+
     const content = document.getElementById(POST_CONTENT_ID);
     if (!content) return;
 

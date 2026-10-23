@@ -52,7 +52,9 @@ const getTableOfContentHeadings = (headingElements: HTMLElement[]) =>
   );
 
 const useTableOfContents = (targetElement: HTMLElement | null) => {
-  const [headings, setHeadings] = useState<TableOfContentHeading[] | null>(null);
+  const [headings, setHeadings] = useState<TableOfContentHeading[] | null>(
+    null,
+  );
 
   useEffect(() => {
     if (!targetElement) return;

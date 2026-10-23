@@ -61,7 +61,7 @@ importers:
         specifier: 19.2.1
         version: 19.2.1(react@19.2.1)
       react-markdown:
-        specifier: ^9.0.1
+        specifier: ^9.1.0
         version: 9.1.0(@types/react@19.2.6)(react@19.2.1)(supports-color@8.1.1)
       react-responsive:
         specifier: ^9.0.2
