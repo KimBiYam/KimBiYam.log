@@ -3,9 +3,10 @@ title: 'Webpack'
 date: '2021-10-25'
 tag: 'front-end'
 ogImagePath: '/images/posts/front-end/webpack_1.png'
+description: '모듈 번들러 Webpack을 쓰는 이유와 핵심 개념을 정리했습니다. 네트워크 병목 해결, 모듈 단위 개발 같은 장점과 Entry, Output, Loader, Plugins, Mode를 설명합니다.'
 ---
 
-![](/images/posts/front-end/webpack_1.png)
+![의존성이 있는 여러 모듈을 정적 에셋으로 번들링하는 Webpack 개념도](/images/posts/front-end/webpack_1.png)
 
 ## Webpack
 

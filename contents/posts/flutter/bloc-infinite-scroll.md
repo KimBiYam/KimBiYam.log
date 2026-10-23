@@ -2,6 +2,7 @@
 title: 'Flutter BLoC 패키지를 이용한 무한 스크롤 리스트 예시'
 date: '2021-03-05'
 tag: 'flutter'
+description: 'flutter_bloc과 JSONPlaceholder API로 무한 스크롤 리스트를 만든 예시입니다. Event·State·Bloc 정의, rxdart debounce, 스크롤 끝 감지까지 단계별로 정리했습니다.'
 ---
 
 
@@ -365,9 +366,9 @@ onScroll 과 isBottom 함수를 이용해 리스트 뷰의 스크롤이 가장 �
 
 - 화면을 아래로 스크롤 시 새로운 데이터가 잘 받아 와집니다.
 
-![](/images/posts/flutter/bloc-infinite-scroll_1.gif)
+![아래로 스크롤하면 로딩 인디케이터와 함께 다음 Post 목록을 불러오는 무한 스크롤 화면](/images/posts/flutter/bloc-infinite-scroll_1.mp4)
 
 - 100개의 Post가 다 불러와지면 다시 첫번째 데이터부터 받아옵니다
 
-![](/images/posts/flutter/bloc-infinite-scroll_2.gif)
+![100번째 Post까지 불러온 뒤 다시 1번 Post부터 이어서 불러오는 화면](/images/posts/flutter/bloc-infinite-scroll_2.mp4)
 

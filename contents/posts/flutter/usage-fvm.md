@@ -2,6 +2,7 @@
 title: 'Flutter fvm(Flutter Version Management) 사용하기'
 date: '2021-05-06'
 tag: 'flutter'
+description: 'fvm(Flutter Version Management)으로 프로젝트마다 다른 Flutter SDK 버전을 쓰는 방법입니다. 설치와 주요 명령어, Android Studio SDK 경로 설정을 다룹니다.'
 ---
 
 ## 개요
@@ -124,11 +125,11 @@ $ pwd
 
 안드로이드 스튜디오 Preferences에서 Flutter SDK path를 해당 경로로 지정해주면 됩니다.
 
-![](/images/posts/flutter/usage-fvm_1.png)
+![Android Studio Preferences에서 Flutter SDK path를 fvm 경로로 지정한 화면](/images/posts/flutter/usage-fvm_1.png)
 
 그 후 상단의 Get dependencies를 실행하면 정상적으로 패키지가 가져와지는걸 확인할 수 있습니다.
 
-![](/images/posts/flutter/usage-fvm_2.png)
+![Pub get을 실행하라는 Android Studio 알림 바의 Get dependencies 버튼](/images/posts/flutter/usage-fvm_2.png)
 
 그리고 fvm의 폴더에 flutter_sdk symlink 폴더를 gitignore에 적용해 git에서 제외하도록 합니다.
 

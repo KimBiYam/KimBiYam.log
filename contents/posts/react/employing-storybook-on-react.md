@@ -3,9 +3,10 @@ title: 'React에 Storybook 도입하기'
 date: '2021-06-22'
 tag: 'react'
 ogImagePath: '/images/posts/react/employing-storybook-on-react_1.png'
+description: 'React 프로젝트에 Storybook을 도입하는 방법입니다. CRA와 Webpack5 환경별 설치, Controls로 Props를 바꿔 보는 기능, 스토리와 컴포넌트 문서 작성법을 정리했습니다.'
 ---
 
-![](/images/posts/react/employing-storybook-on-react_1.png)
+![Storybook 로고](/images/posts/react/employing-storybook-on-react_1.png)
 
 ## Storybook이란?
 
@@ -38,7 +39,7 @@ $ npm run start
 ```
 
 
-![](/images/posts/react/employing-storybook-on-react_2.png)
+![Create React App TypeScript 템플릿의 기본 실행 화면](/images/posts/react/employing-storybook-on-react_2.png)
 그 후 아래의 명령어로 스토리북을 설치합니다.
 
 ```bash
@@ -84,7 +85,7 @@ $ npm run storybook
 
 제대로 실행이 되면 아래와 같은 대시보드 형태의 웹 페이지가 나타나게 됩니다.
 
-![](/images/posts/react/employing-storybook-on-react_3.png)
+![Storybook 실행 후 나타나는 Welcome to Storybook 대시보드](/images/posts/react/employing-storybook-on-react_3.png)
 
 ## 스토리북 기능 둘러보기
 
@@ -94,7 +95,7 @@ $ npm run storybook
 
 샘플로생성된 Button 컴포넌트를 살펴보겠습니다.
 
-![](/images/posts/react/employing-storybook-on-react_4.png)
+![Storybook 샘플 Button 컴포넌트의 Primary 스토리](/images/posts/react/employing-storybook-on-react_4.png)
 
 **src/stories/Button.tsx** 파일은 아래와 같은 Props를 가진 버튼 컴포넌트입니다.
 
@@ -127,7 +128,7 @@ export interface ButtonProps {
 
 스토리의 Docs탭에서는 해당 컴포넌트 자체 혹은 Props 에 어떤 기능을 수행하는지 등의 설명을 확인할 수 있습니다.
 
-![](/images/posts/react/employing-storybook-on-react_5.png)
+![Button 컴포넌트의 Props 설명이 표시된 Storybook Docs 탭](/images/posts/react/employing-storybook-on-react_5.png)
 ### Props 변경해보기
 
 해당 파일을 기반으로 **Button.stories.tsx** 파일이 생성되어 있습니다.
@@ -136,7 +137,7 @@ export interface ButtonProps {
 
 Props가 바뀔때 UI의 변경과 동작을 확인할 수 있습니다.
 
-![](/images/posts/react/employing-storybook-on-react_6.gif)
+![Storybook Controls에서 label 값을 바꾸면 Button 텍스트가 바로 바뀌는 모습](/images/posts/react/employing-storybook-on-react_6.mp4)
 
 ## 스토리 작성해보기
 
@@ -194,11 +195,11 @@ Template 은 해당 컴포넌트의 템플릿을 세팅하는 부분입니다.
 
 스토리북에서 확인하면 새로운 컴포넌트 스토리가 생긴걸 확인할 수 있습니다.
 
-![](/images/posts/react/employing-storybook-on-react_7.png)
+![Storybook 사이드바에 새로 추가된 Title 컴포넌트의 Basic 스토리](/images/posts/react/employing-storybook-on-react_7.png)
 
 샘플 코드와 마찬가지로 text props를 변경하면 UI가 변경됩니다.
 
-![](/images/posts/react/employing-storybook-on-react_8.gif)
+![Controls에서 text props를 입력하면 Title 컴포넌트 UI가 바뀌는 모습](/images/posts/react/employing-storybook-on-react_8.mp4)
 
 템플릿의 Props 값을 지정할 수도 있습니다.
 
@@ -211,7 +212,7 @@ Basic.args = { text: "Title!" };
 
 다시 스토리북을 확인해보면 Props 기본값이 직접 지정한 값으로 변경되어 있습니다.
 
-![](/images/posts/react/employing-storybook-on-react_9.png)
+![args로 지정한 기본값 Title! 이 적용된 Title 스토리](/images/posts/react/employing-storybook-on-react_9.png)
 
 ### 문서 작성
 
@@ -245,7 +246,7 @@ export default Title;
 
 Docs 탭에서 작성했던 주석이 설명으로 나오는 것을 확인할 수 있습니다.
 
-![](/images/posts/react/employing-storybook-on-react_10.png)
+![JSDoc 주석이 컴포넌트와 Props 설명으로 표시된 Title Docs 탭](/images/posts/react/employing-storybook-on-react_10.png)
 
 이와 같이 컴포넌트의 문서화도 간편하게 작성이 가능합니다.
 

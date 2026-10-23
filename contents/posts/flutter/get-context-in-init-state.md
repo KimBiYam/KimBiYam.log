@@ -2,6 +2,7 @@
 title: 'initState에서 context 가져 오는 법'
 date: '2020-12-22'
 tag: 'flutter'
+description: 'Flutter StatefulWidget의 initState에서 context를 바로 쓸 수 없을 때, Future.delayed로 비동기 처리해 context를 사용하는 방법을 간단한 코드로 정리했습니다.'
 ---
 
 일반적으로 initState 라이프 사이클이 종료 되어야 context를 이용할 수 있는데

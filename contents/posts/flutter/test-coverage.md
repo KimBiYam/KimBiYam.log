@@ -2,6 +2,7 @@
 title: 'Flutter Test Coverage'
 date: '2021-05-16'
 tag: 'flutter'
+description: 'Flutter 프로젝트의 테스트 커버리지 확인 방법입니다. flutter test --coverage로 lcov.info를 만들고 genhtml로 파일별 커버리지를 HTML 리포트로 보는 과정을 정리했습니다.'
 ---
 
 ### Flutter Test Coverage
@@ -47,4 +48,4 @@ $ open coverage/index.html
 전체 coverage 정보뿐만 아니라 파일 별 coverage 와
 해당 파일의 어느 라인이 테스트가 되어있지 않은지 등등을 체크할 수 있습니다.
 
-![](/images/posts/flutter/test-coverage_1.png)
+![genhtml로 생성한 LCOV 코드 커버리지 리포트 화면](/images/posts/flutter/test-coverage_1.png)

@@ -2,6 +2,7 @@
 title: 'React 18 변경점'
 date: '2022-02-01'
 tag: 'react'
+description: 'React 18의 주요 변경점을 정리했습니다. createRoot, Automatic Batching, startTransition과 함께 HTML 스트리밍과 선택적 하이드레이션으로 달라진 SSR 구조를 설명합니다.'
 ---
 
 현재 날짜(2022년 2월 1일) 기준으로 React 18 버전이 [RC 단계](https://github.com/reactwg/react-18/discussions/9)이다.
@@ -161,7 +162,7 @@ const handleClick = () => {
 
 일반적으로 상태가 업데이트될 때 화면이 즉각적으로 렌더링 되는 게 일반적이지만, **화면의 변화를 지연시키고 싶은 경우도 있다.** 예를 들면 사용자가 인풋에 입력한 값에 따라 렌더링이 많이 일어나는 경우가 있다.
 
-![Untitled](/images/posts/react/react-18-changes_1.png)
+![입력할 때마다 추천 검색어 목록이 갱신되는 Google 검색창](/images/posts/react/react-18-changes_1.png)
 
 위와 같은 검색창에서 인풋은 사용자가 입력한 값에 따라서 즉각적으로 새로 렌더링 되어야 하는데 **지연이 발생하면 응답이 제대로 되지 않는 것**처럼 느낄 수 있다. 하지만 검색 결과 리스트의 렌더링은 비교적 렌더링 우선순위가 낮은 부분이라고 할 수 있다.
 
@@ -266,7 +267,7 @@ React 16.6부터 data fetching 을 위한 [Suspense](https://ko.reactjs.org/docs
 
 ## Server Side Rendering 이란?
 
-![Untitled](/images/posts/react/react-18-changes_2.png)
+![클라이언트 사이드 렌더링과 서버 사이드 렌더링의 콘텐츠 표시 과정 비교](/images/posts/react/react-18-changes_2.png)
 
 기본적으로 리액트는 **client-side rendering(이하 CSR)** 방식을 사용하는데 CSR에서의 여러 가지 단점을 해결하기 위해 SSR을 사용한다.
 
@@ -277,14 +278,14 @@ React 16.6부터 data fetching 을 위한 [Suspense](https://ko.reactjs.org/docs
 
 ## React에서의 SSR
 
-![Untitled](/images/posts/react/react-18-changes_3.png)
+![SSR로 HTML은 표시됐지만 아직 상호작용할 수 없는 회색 페이지 다이어그램](/images/posts/react/react-18-changes_3.png)
 
 React에서 SSR 을 적용하면 제일 처음 페이지를 열었을 때 위와 같은 상태가 된다.
 회색 배경은 무언가 요소를 불러는 왔지만 JavaScript가 모두 로드 되지 않아서 상호작용은 불가능한 부분이다.
 
 React와 애플리케이션 코드가 모두 불러와졌을 때가 되어서야 **컴포넌트를 렌더링하고 이벤트 핸들러를 붙여주는데** 이를 **`하이드레이션(hydration)`** 이라고 한다.
 
-![Untitled](/images/posts/react/react-18-changes_4.png)
+![하이드레이션이 끝나 모든 영역이 초록색으로 상호작용 가능해진 페이지 다이어그램](/images/posts/react/react-18-changes_4.png)
 
 하이드레이션이 끝나면, 위처럼 모든 요소들이 상호작용이 가능하게 변경이 된다.
 
@@ -330,7 +331,7 @@ React 18에서는 `Suspense` 와 연계하여 사용할 수 있는 두 가지 SS
 해당 예시에서 `Comments` 컴포넌트는 data fetching이 필요한 컴포넌트이다.
 해당 컴포넌트를`Suspense` 로 감싸면 data fetching이 완료되지 않아도 즉시 HTML이 스트리밍 되면서 렌더링 된다.
 
-![Untitled](/images/posts/react/react-18-changes_5.png)
+![Comments 영역만 로딩 스피너로 표시된 채 나머지 HTML이 스트리밍된 페이지 다이어그램](/images/posts/react/react-18-changes_5.png)
 
 최초 접속 시에는 브라우저에서 아래와 같은 HTML을 받게 된다.
 
@@ -357,7 +358,7 @@ React 18에서는 `Suspense` 와 연계하여 사용할 수 있는 두 가지 SS
 
 data fetching이 완료되지 않을 때까지는 `Suspense` 의 props인 `fallback` 에 넣어둔 컴포넌트가 렌더링 되다가 data fetching이 완료되면 정상적으로 컴포넌트가 렌더링 된다.
 
-![Untitled](/images/posts/react/react-18-changes_6.png)
+![데이터 로딩이 끝나 Comments 영역까지 HTML이 채워진 페이지 다이어그램](/images/posts/react/react-18-changes_6.png)
 
 ### **선택적 하이드레이션**
 
@@ -384,19 +385,19 @@ const Comments = lazy(() => import('./Comments.js'));
 
 유저의 관점에서 보면 최초에 HTML로 스트리밍 된 상호작용이 불가능한 컨텐츠를 보게 된다.
 
-![Untitled](/images/posts/react/react-18-changes_7.png)
+![Comments 코드가 로딩되기 전 스피너가 표시된 초기 HTML 다이어그램](/images/posts/react/react-18-changes_7.png)
 
-![Untitled](/images/posts/react/react-18-changes_8.png)
+![HTML 스트리밍이 끝났지만 아직 하이드레이션되지 않은 페이지 다이어그램](/images/posts/react/react-18-changes_8.png)
 
 그리고 React에 하이드레이션을 지시한다. `Comments` 컴포넌트의 **코드가 전부 불러와지지 않았지만 수행 가능**하다.
 
-![Untitled](/images/posts/react/react-18-changes_9.png)
+![Comments 영역을 제외한 나머지 부분이 먼저 하이드레이션된 다이어그램](/images/posts/react/react-18-changes_9.png)
 
 이것이 `선택적 하이드레이션(Selective Hydration)`의 예제이다. `Comments` 컴포넌트를 `Suspense` 로 묶음으로써 React에게 페이지의 나머지 부분이 스트리밍 되는 것을 막으면 안 된다고 알린 것이다. 그래서 React가 하이드레이션을 시작하기 위해서 모든 코드가 불러와지는 것을 기다릴 필요가 없어진다.
 
 React는 `Commets` 컴포넌트 코드가 모두 불러와진 뒤에 그 부분만 하이드레이션을 시작한다.
 
-![Untitled](/images/posts/react/react-18-changes_10.png)
+![Comments 영역까지 하이드레이션이 완료된 페이지 다이어그램](/images/posts/react/react-18-changes_10.png)
 
 ### 모든 컴포넌트가 하이드레이션 되기 전의 상호작용
 
@@ -419,23 +420,23 @@ React는 `Commets` 컴포넌트 코드가 모두 불러와진 뒤에 그 부분�
 
 그럼 최초에는 두 컴포넌트를 제외한 HTML이 렌더링 된다.
 
-![Untitled](/images/posts/react/react-18-changes_11.png)
+![Sidebar와 Comments를 제외한 영역만 하이드레이션된 다이어그램](/images/posts/react/react-18-changes_11.png)
 
 그리고 React는 트리에서 가장 먼저 찾은 `Suspense` 영역부터 하이드레이션을 시작한다.
 해당 예시에서는 `Sidebar` 컴포넌트를 먼저 하이드레이션 한다.
 
-![Untitled](/images/posts/react/react-18-changes_12.png)
+![Sidebar 영역의 하이드레이션이 진행 중인 다이어그램](/images/posts/react/react-18-changes_12.png)
 
 이때 사용자가 `Commets` 영역을 클릭하면 하이드레이션 우선순위에 변화가 생긴다.
 
-![Untitled](/images/posts/react/react-18-changes_13.png)
+![Sidebar 하이드레이션 도중 사용자가 Comments 영역을 클릭하는 다이어그램](/images/posts/react/react-18-changes_13.png)
 
 React는 해당 클릭을 기록하고 클릭한 `Commets` 영역의 하이드레이션 우선순위를 높인다.
 사용자가 이 컴포넌트와 상호작용을 하고자 해서 하이드레이션이 더 긴급한 컴포넌트로 판단하기 때문이다.
 
 기존에 진행하던 `Sidebar` 컴포넌트의 하이드레이션을 중단하고 `Commmets` 컴포넌트의 하이드레이션을 먼저 진행하게 된다.
 
-![Untitled](/images/posts/react/react-18-changes_14.png)
+![클릭된 Comments 영역의 하이드레이션이 우선 진행되는 다이어그램](/images/posts/react/react-18-changes_14.png)
 
 이와 같이 하이드레이션이 진행 중일 때 다른 컴포넌트에 상호작용이 발생하면 그에 따라 하이드레이션 우선순위를 변경한다. 위의 경우 `Commets` 컴포넌트의 하이드레이션이 완료되면 하이드레이션 우선순위가 높은 컴포넌트가 없어지므로 나머지 부분인 `Sidebar` 컴포넌트의 하이드레이션을 진행한다.
 

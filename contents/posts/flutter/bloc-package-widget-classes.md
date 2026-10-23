@@ -2,6 +2,7 @@
 title: 'Flutter BLoC 패키지의 위젯 클래스들'
 date: '2021-03-05'
 tag: 'flutter'
+description: 'flutter_bloc 패키지의 BlocBuilder, BlocProvider, MultiBlocProvider, BlocListener 위젯의 역할과 사용법, buildWhen·listenWhen 옵션을 정리했습니다.'
 ---
 
 ### BlocBuilder

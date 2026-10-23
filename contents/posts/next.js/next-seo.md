@@ -2,6 +2,7 @@
 title: 'Next.js SEO 관련 정리'
 date: '2022-01-05'
 tag: 'next.js'
+description: '블로그를 직접 개발하며 적용한 Next.js SEO 설정을 정리했습니다. robots.txt와 sitemap.xml 작성법, sitemap 동적 생성과 next-sitemap 패키지 사용법을 다룹니다.'
 ---
 
 이번에 블로그를 직접 개발하면서 SEO 작업을 진행하였는데 해당 부분을 정리해 보려 한다.

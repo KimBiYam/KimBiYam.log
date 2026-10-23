@@ -2,6 +2,7 @@
 title: 'Flutter Github Action 사용해보기'
 date: '2021-05-16'
 tag: 'flutter'
+description: 'GitHub Actions로 Pull Request마다 우분투·윈도우·맥에서 Flutter 유닛 테스트를 실행하고, 브랜치 보호 규칙으로 테스트 통과 시에만 머지되도록 설정했습니다.'
 ---
 
 ## Github Action
@@ -72,11 +73,11 @@ master 브랜치에 Merge 할 수 없도록 설정이 가능합니다.
 
 - 브랜치 설정
 
-![](/images/posts/flutter/usage-github-action_1.png)
+![GitHub 저장소의 master 브랜치 보호 규칙 설정 화면](/images/posts/flutter/usage-github-action_1.png)
 
 - 해당 옵션으로 Workflow가 성공 했을때만 Merge 가능하게 설정합니다.
 
-![](/images/posts/flutter/usage-github-action_2.png)
+![머지 전 통과해야 하는 OS별 유닛 테스트 상태 체크 설정](/images/posts/flutter/usage-github-action_2.png)
 
 
 ## Pull Request 테스트
@@ -155,7 +156,7 @@ void main() {
 
 그 후 테스트를 실행합니다.
 
-![](/images/posts/flutter/usage-github-action_3.png)
+![로컬에서 counter_provider_test.dart 테스트 3개가 통과한 결과](/images/posts/flutter/usage-github-action_3.png)
 
 해당 브랜치를 master 브랜치에 Merge 하게끔 Pull Request를 요청합니다.
 
@@ -163,14 +164,14 @@ void main() {
 
 그리고 Merge버튼이 비활성화 되어 있는 것을 볼 수 있습니다.
 
-![](/images/posts/flutter/usage-github-action_4.png)
+![Pull Request에서 테스트가 진행 중이라 머지 버튼이 비활성화된 화면](/images/posts/flutter/usage-github-action_4.png)
 
 Deatils 버튼을 눌려 해당 테스트의 진행상황을 볼 수 있습니다.
 
-![](/images/posts/flutter/usage-github-action_5.png)
+![GitHub Actions에서 windows-2019 유닛 테스트가 진행되는 로그 화면](/images/posts/flutter/usage-github-action_5.png)
 
 그 후 모든 테스트가 성공적으로 완료되면 Merge 버튼이 활성화 되어 Merge가 가능합니다.
 
-![](/images/posts/flutter/usage-github-action_6.png)
+![모든 체크가 통과해 머지 버튼이 활성화된 Pull Request 화면](/images/posts/flutter/usage-github-action_6.png)
 
 단순히 테스트 뿐만 아니라 Github Action을 이용해서 배포 등의 기능도 수행이 가능합니다.

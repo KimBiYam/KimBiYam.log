@@ -2,6 +2,7 @@
 title: 'Equatable 패키지'
 date: '2021-03-05'
 tag: 'flutter'
+description: 'Dart 객체 비교를 쉽게 해 주는 Equatable 패키지 사용법입니다. == 연산자를 직접 재정의하는 방식과 비교하고, BLoC State에 적용해 불필요한 리빌드를 막는 방법을 설명합니다.'
 ---
 
 ## Equatable 패키지

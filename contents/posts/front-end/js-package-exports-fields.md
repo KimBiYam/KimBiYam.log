@@ -2,6 +2,7 @@
 title: 'JavaScript 라이브러리에서 exports 필드로 여러 환경 대응하기 '
 date: '2024-06-16'
 tag: 'front-end'
+description: 'Next.js 14.0.2 이후 App Router에서 브라우저용 번들을 잘못 불러오던 라이브러리 문제를 package.json exports 필드의 conditional exports로 해결한 과정입니다.'
 ---
 
 ## 문제인식

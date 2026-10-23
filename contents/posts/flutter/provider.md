@@ -2,6 +2,7 @@
 title: 'Flutter Provider'
 date: '2021-05-06'
 tag: 'flutter'
+description: 'Flutter Provider 패키지로 전역 상태를 관리하는 방법입니다. ChangeNotifier와 ChangeNotifierProvider, Consumer, Selector의 역할과 사용 예시를 정리했습니다.'
 ---
 
 ## Provider
