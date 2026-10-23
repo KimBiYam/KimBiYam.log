@@ -16,6 +16,9 @@ import ClientRootLayout from '../_app/ui/ClientRootLayout';
 
 import type { Metadata, Viewport } from 'next';
 
+// next/font/local cannot assign unicode-range per file, so import the official
+// dynamic subset CSS to self-host only the glyph subsets each page needs.
+import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
 import '../shared/styles/global.css';
 import '../shared/styles/tailwind.css';
 
@@ -62,14 +65,6 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: PropsWithChildren<unknown>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <head>
-        <link
-          rel="stylesheet preload"
-          as="style"
-          crossOrigin=""
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css"
-        />
-      </head>
       <body className="main-container main-font-color">
         <ClientRootLayout>{children}</ClientRootLayout>
         <Script src="/setViewportProperty.js" strategy="lazyOnload" />
