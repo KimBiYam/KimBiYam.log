@@ -32,10 +32,11 @@ const PostList = ({ postPreviews }: PostListProps) => {
 
   return (
     <ul>
-      {visiblePostPreviews.map((postPreview) => (
+      {visiblePostPreviews.map((postPreview, index) => (
         <PostListItem
           key={postPreview.id + postPreview.title}
           postPreview={postPreview}
+          fadeIn={index >= POST_COUNT_BY_PAGE}
         />
       ))}
       <div ref={scrollRef} />
