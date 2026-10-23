@@ -2,6 +2,7 @@
 title: 'Flutter 플랫폼 별 pull to refresh List 위젯 만들기'
 date: '2021-03-17'
 tag: 'flutter'
+description: 'iOS에서는 Cupertino, 안드로이드에서는 Material 인디케이터가 나오도록 ListView와 CustomScrollView로 플랫폼별 pull to refresh 리스트 위젯을 만든 예시입니다.'
 ---
 
 ### RefreshSwitcher

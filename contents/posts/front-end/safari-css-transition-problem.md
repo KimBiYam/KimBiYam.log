@@ -2,6 +2,7 @@
 title: 'Safari CSS transition 관련 문제'
 date: '2022-03-09'
 tag: 'front-end'
+description: 'Safari에서 transform scale transition 도중 border가 깨지는 문제와 해결 방법입니다. will-change, translate3d 등을 적용한 결과를 비교했습니다.'
 ---
 
 ### 발생
@@ -43,11 +44,11 @@ Safari에서(~~이 놈의 사파리...~~) `css transition` 사용 시 발생하�
 
 ### Chrome
 
-![animation_chrome.gif](/images/posts/front-end/safari-css-transition-problem_1.gif)
+![Chrome에서 Box에 마우스를 올리면 하단 border가 transition과 함께 자연스럽게 나타나는 모습](/images/posts/front-end/safari-css-transition-problem_1.gif)
 
 ### Safari
 
-![animation_chrome2.gif](/images/posts/front-end/safari-css-transition-problem_2.gif)
+![Safari에서 transition 도중 Box 하단 border가 깨져 보이는 모습](/images/posts/front-end/safari-css-transition-problem_2.gif)
 
 ---
 
@@ -60,7 +61,7 @@ Safari에서(~~이 놈의 사파리...~~) `css transition` 사용 시 발생하�
 - `-webkit-transform` 속성을 `translate3d(0, 0, 0)` 으로 설정하기(강제로 하드웨어 가속을 사용하게 변경한다고 한다)
 - `will-change` 속성을 지정해 주기
 
-![animation_solutions.gif](/images/posts/front-end/safari-css-transition-problem_3.gif)
+![will-change, backface-visibility, translate3d 속성을 각각 적용한 Box의 Safari 동작 비교](/images/posts/front-end/safari-css-transition-problem_3.gif)
 
 ### 예시 코드
 
@@ -83,4 +84,4 @@ Safari에서(~~이 놈의 사파리...~~) `css transition` 사용 시 발생하�
 
 해당 개발자 분이 남겨주신 솔루션으로 transform 속성에 `translateX(0)` 를 추가하는 것으로도 해당 문제가 해결이 되었다.
 
-![animation_solutions2.gif](/images/posts/front-end/safari-css-transition-problem_4.gif)
+![transform에 translateX(0)를 추가한 Box의 Safari 동작](/images/posts/front-end/safari-css-transition-problem_4.gif)

@@ -2,6 +2,7 @@
 title: 'Codex 자동화로 매일 개발관련 소식 정리 자동화해보기'
 date: '2026-05-29'
 tag: 'ai'
+description: 'Codex 자동화로 GeekNews, 프론트엔드 블로그, AI 개발 소식을 매일 모아 한국어 브리핑으로 정리하고 Notion과 Slack으로 받아보도록 구성한 과정을 정리했습니다.'
 ---
 
 ## 개요
@@ -402,7 +403,7 @@ prefix_rule(
 
 ## 실제 Codex 자동화 프롬프트
 
-![Untitled](/images/posts/ai/daily-codex-digest-automation_4.png)
+![Codex 앱에 등록한 Daily FE + AI Digest 자동화 프롬프트와 실행 설정](/images/posts/ai/daily-codex-digest-automation_4.png)
 
 
 ```bash
@@ -475,6 +476,6 @@ python3 scripts/deliver_digest.py daily-digest-YYYY-MM-DD.md
 
 ## 결과물
 
-![Untitled](/images/posts/ai/daily-codex-digest-automation_1.png)
-![Untitled](/images/posts/ai/daily-codex-digest-automation_2.png)
-![Untitled](/images/posts/ai/daily-codex-digest-automation_3.png)
+![Slack으로 전달된 FE + AI Daily Digest 메시지](/images/posts/ai/daily-codex-digest-automation_1.png)
+![Notion에 생성된 FE + AI Daily Digest 페이지의 AI 섹션](/images/posts/ai/daily-codex-digest-automation_2.png)
+![Notion 다이제스트 페이지의 FE / 웹 플랫폼 / 런타임 섹션](/images/posts/ai/daily-codex-digest-automation_3.png)

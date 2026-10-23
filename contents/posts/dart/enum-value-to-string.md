@@ -2,6 +2,7 @@
 title: 'Dart enum value String 으로 변환하기'
 date: '2021-06-04'
 tag: 'dart'
+description: 'Dart enum 값을 문자열로 매핑하는 방법입니다. extension method로 getter를 추가하는 방식과 Dart 2.17의 새 enum 문법으로 바꾼 예시를 함께 정리했습니다.'
 ---
 
 ### Typescript 에서의 enum
@@ -138,4 +139,4 @@ void main() {
 }
 ```
 
-![Untitled](/images/posts/flutter/enum-value-to-string_1.png)
+![DartPad에서 enum의 toString 오버라이드 결과를 실행한 화면](/images/posts/flutter/enum-value-to-string_1.png)

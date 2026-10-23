@@ -2,9 +2,10 @@
 title: 'Flutter BLoC Pattern 개요'
 date: '2021-03-05'
 tag: 'flutter'
+description: 'Flutter BLoC 패턴의 개념을 정리했습니다. Sink와 Stream으로 UI와 비즈니스 로직을 나누는 구조, Redux와의 차이, Dart Stream 기초를 설명합니다.'
 ---
 
-![](/images/posts/flutter/bloc-pattern-overview_1.png)
+![Widget이 Sinks로 이벤트를 넣고 BLoC이 Streams로 상태를 내보내는 구조 다이어그램](/images/posts/flutter/bloc-pattern-overview_1.png)
 
 ## BLoC Pattern 이란
 BLoC(Business Logic Component)는 Presetation Layer와 Busuiness Logic을 분리하여 코드를 작성할 수 있도록 해줍니다.

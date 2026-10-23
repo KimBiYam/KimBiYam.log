@@ -2,6 +2,7 @@
 title: '오픈소스 저작권과 컨트리뷰션'
 date: '2022-06-14'
 tag: 'etc'
+description: '오픈소스 라이선스 종류와 저작권 표기 같은 의무 사항을 정리하고, MUI에 이슈와 PR을 올려 본 경험으로 오픈소스 컨트리뷰션 과정을 소개합니다.'
 ---
 
 ## 오픈소스란?
@@ -25,7 +26,7 @@ tag: 'etc'
 
 - [OLIS 라이선스 비교표](https://olis.or.kr/license/compareGuide.do)
 
-![출처 : [NAVER 오픈소스 가이드](https://naver.github.io/OpenSourceGuide/book/UsingOss/the-legal-side-of-opensource.html#licensedef)](/images/posts/etc/open-source-license-and-contribution_1.png)
+![주요 오픈소스 라이선스별 이용 조건 비교표](/images/posts/etc/open-source-license-and-contribution_1.png)
 
 *출처 : [NAVER 오픈소스 가이드](https://naver.github.io/OpenSourceGuide/book/UsingOss/the-legal-side-of-opensource.html#licensedef)*
 
@@ -58,7 +59,7 @@ tag: 'etc'
 
 오픈소스를 사용한 프로젝트를 오픈소스로 다시 배포할 때는 새로운 프로젝트의 NOTICE 문서나 서드파티 관련 메뉴에서 저작권과 라이선스 정보를 표기할 수 있다.
 
-![[LINE의 오픈소스인 armeria의 NOTICE 파일](https://github.com/line/armeria/blob/master/NOTICE.txt)](/images/posts/etc/open-source-license-and-contribution_5.png)
+![LINE armeria 레포지토리의 NOTICE.txt 파일](/images/posts/etc/open-source-license-and-contribution_5.png)
 
 [LINE의 오픈소스인 armeria의 NOTICE 파일](https://github.com/line/armeria/blob/master/NOTICE.txt)
 
@@ -107,11 +108,11 @@ tag: 'etc'
 
 - React 레포지토리의 `good first issue` 라벨
 
-![Untitled](/images/posts/etc/open-source-license-and-contribution_6.png)
+![React 레포지토리 이슈를 good first issue 라벨로 필터링한 화면](/images/posts/etc/open-source-license-and-contribution_6.png)
 
 - Flutter 레포지토리의 `good first contribution` 라벨
 
-![Untitled](/images/posts/etc/open-source-license-and-contribution_7.png)
+![Flutter 레포지토리 이슈를 good first contribution 라벨로 필터링한 화면](/images/posts/etc/open-source-license-and-contribution_7.png)
 
 ## 오픈소스 컨트리뷰션 사례 공유
 
@@ -132,11 +133,11 @@ tag: 'etc'
 
 [https://github.com/mui/material-ui/issues/31766](https://github.com/mui/material-ui/issues/31766)
 
-![Untitled](/images/posts/etc/open-source-license-and-contribution_8.png)
+![MUI 레포지토리의 이슈 템플릿 선택 화면](/images/posts/etc/open-source-license-and-contribution_8.png)
 
-![Untitled](/images/posts/etc/open-source-license-and-contribution_9.png)
+![MUI Bug report 이슈 템플릿 작성 화면](/images/posts/etc/open-source-license-and-contribution_9.png)
 
-![Untitled](/images/posts/etc/open-source-license-and-contribution_10.png)
+![Safari TextField 테두리 버그를 제보한 MUI 이슈 #31766](/images/posts/etc/open-source-license-and-contribution_10.png)
 
 ### PR 제출
 
@@ -147,7 +148,7 @@ tag: 'etc'
 
 일반적으로 Github에 공개된 오픈소스 프로젝트는 해당 프로젝트를 fork 후에 자신의 레포지토리에서 작업 후에 기존 프로젝트 레포지토리로 PR을 보내는 형태로 진행한다.
 
-![Untitled](/images/posts/etc/open-source-license-and-contribution_11.png)
+![GitHub 레포지토리 상단의 Fork 버튼](/images/posts/etc/open-source-license-and-contribution_11.png)
 
 상단의 Fork 버튼으로 해당 프로젝트를 자신의 레포지토리에 Fork한다.
 
@@ -158,9 +159,9 @@ tag: 'etc'
 그 후 브랜치를 생성하여 코드 수정 등을 진행하고 PR을 보내면 된다.
 현재는 작업한 브랜치가 있지 않아서 보이지 않지만 아래와 같은 브랜치 선택 화면에 자신이 Fork 하여 작업한 브랜치를 선택할 수 있게 된다.
 
-![Untitled](/images/posts/etc/open-source-license-and-contribution_13.png)
+![PR 생성 시 비교할 브랜치를 선택하는 Compare changes 화면](/images/posts/etc/open-source-license-and-contribution_13.png)
 
-![Untitled](/images/posts/etc/open-source-license-and-contribution_14.png)
+![MUI에 제출한 Safari 입력 트랜지션 수정 PR #31912](/images/posts/etc/open-source-license-and-contribution_14.png)
 
 보이는 것처럼 아쉽지만 내가 제출한 PR이 merge 되지 않고 다른 해결법을 제시한 PR이 merge 되었다.
 

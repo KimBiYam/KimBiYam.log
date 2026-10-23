@@ -2,6 +2,7 @@
 title: 'Next.js 13 App Router 적용기'
 date: '2023-10-02'
 tag: 'next.js'
+description: '블로그를 Next.js 13 App Router로 옮기며 정리한 내용입니다. 서버·클라이언트 컴포넌트 차이, data fetching 변경, generateMetadata 등 SEO 설정과 겪은 문제를 다룹니다.'
 ---
 
 ## 개요
@@ -39,7 +40,7 @@ export default function SomeServerComponent() {
 }
 ```
 
-![Untitled](/images/posts/next.js/next-app-router_1.png)
+![서버 컴포넌트에서 onClick을 전달해 발생한 Unhandled Runtime Error](/images/posts/next.js/next-app-router_1.png)
 
 - 서버 컴포넌트에서 `onClick` 같은 이벤트 리스너를 사용한다면 아래처럼 에러가 발생합니다.
 

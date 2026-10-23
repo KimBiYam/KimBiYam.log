@@ -3,9 +3,10 @@ title: 'NestJS Heroku를 이용하여 무료로 배포하기'
 date: '2021-10-25'
 tag: 'nest-js'
 ogImagePath: '/images/posts/nest-js/deploy-heroku-nest-js_1.png'
+description: 'NestJS 앱을 GitHub 연동으로 Heroku에 무료 배포한 과정입니다. 앱 생성과 자동 배포 설정, 배포 후 생긴 Application error를 PORT와 Procfile 설정으로 해결했습니다.'
 ---
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_1.png)
+![Heroku 로고](/images/posts/nest-js/deploy-heroku-nest-js_1.png)
 
 ### Heroku를 사용하게 된 계기
 
@@ -72,29 +73,29 @@ export class AppService {
 $ npm run start
 ```
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_2.png)
+![브라우저에 Hello World! 가 출력된 NestJS 기본 앱 화면](/images/posts/nest-js/deploy-heroku-nest-js_2.png)
 
 ### Heroku 애플리케이션 생성
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_3.png)
+![Heroku 대시보드의 Create new app 메뉴](/images/posts/nest-js/deploy-heroku-nest-js_3.png)
 
 이제 해당 애플리케이션을 배포하기 위해 [Heroku](https://www.heroku.com/)로 접속합니다
 Heroku 사이트 가입 완료 후 로그인을 하면 위와 같은 메뉴가 나타나게 되는데
 
 여기서 Create new app 버튼으로 배포하고자하는 새로운 어플리케이션을 생성하면 됩니다.
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_4.png)
+![Heroku 앱 이름과 리전을 입력하는 앱 생성 화면](/images/posts/nest-js/deploy-heroku-nest-js_4.png)
 
 그러면 아래와 같은 화면이 나타나는데요, Heroku CLI를 이용하는 방식도 있지만
 저는 github를 이용해서 배포를 진행해보겠습니다
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_5.png)
+![Heroku 앱의 Deploy 탭에서 배포 방식을 선택하는 화면](/images/posts/nest-js/deploy-heroku-nest-js_5.png)
 
 ### 레포지토리 생성 및 푸시
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_6.png)
+![GitHub 새 레포지토리 생성 화면](/images/posts/nest-js/deploy-heroku-nest-js_6.png)
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_7.png)
+![GitHub 레포지토리 생성 후 표시되는 푸시 가이드](/images/posts/nest-js/deploy-heroku-nest-js_7.png)
 
 레포지토리 생성 후 나오는 가이드를 참고하여 코드를 푸시합니다
 
@@ -111,31 +112,31 @@ $ git push -u origin master
 
 그 후 heroku 프로젝트에서 해당 레포지토리를 연결합니다
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_8.png)
+![Heroku Deploy 탭에서 GitHub 레포지토리를 검색해 연결하는 화면](/images/posts/nest-js/deploy-heroku-nest-js_8.png)
 
 아래처럼 연결이 된 모습을 확인할 수 있습니다
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_9.png)
+![GitHub 연결 후 Automatic deploys와 Manual deploy 설정 화면](/images/posts/nest-js/deploy-heroku-nest-js_9.png)
 
 Automatic deploys를 이용해서 master 브랜치에 push되면 자동으로 배포하게끔 설정해보겠습니다
 
 Choose a branch to deploy 항목에서 원하는 브랜치를 설정 후
 Enable Automatic Deploys 버튼을 클릭하면 활성화가 됩니다
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_10.png)
+![master 브랜치 자동 배포가 활성화된 화면](/images/posts/nest-js/deploy-heroku-nest-js_10.png)
 
 해당 옵션은 master 브랜치에 새로운 커밋이 push되어야 배포를 진행하므로
 처음 코드 그대로 배포를 진행하기위해 우선 Manual deploy를 한번 실행합니다
 
 그 후 상단의 Activity 메뉴에서 배포 진행상황을 확인할 수 있습니다
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_11.png)
+![Manual deploy에서 Deploy Branch 버튼으로 수동 배포하는 화면](/images/posts/nest-js/deploy-heroku-nest-js_11.png)
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_12.png)
+![Heroku Activity 탭에서 빌드 성공과 배포 이력을 확인하는 화면](/images/posts/nest-js/deploy-heroku-nest-js_12.png)
 
 잘 배포 되었는지 확인하기 위해 build log를 확인해봅니다
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_13.png)
+![deployed to Heroku 문구가 표시된 Heroku 빌드 로그](/images/posts/nest-js/deploy-heroku-nest-js_13.png)
 
 제일 하단에 `https://nest-js-heroku-test.herokuapp.com/ deployed to Heroku` 라는 문구와 함께
 
@@ -145,7 +146,7 @@ Enable Automatic Deploys 버튼을 클릭하면 활성화가 됩니다
 
 하지만 해당 주소로 접속해보면 아래와 같이 오류가 나오네요
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_14.png)
+![배포된 주소 접속 시 나타나는 Heroku Application error 페이지](/images/posts/nest-js/deploy-heroku-nest-js_14.png)
 
 왜 그런지 로그를 확인해보기 위해 [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)를 이용해서 로그를 확인할 수 있습니다
 
@@ -163,7 +164,7 @@ $ heroku logs --tail -a <application_name>
 
 해당 명령어를 입력하면 웹으로 로그인 할 수 있는 페이지가 나타나게 됩니다
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_15.png)
+![Heroku CLI 웹 로그인 페이지](/images/posts/nest-js/deploy-heroku-nest-js_15.png)
 
 로그인을 완료하면 저희가 원하는 로그 확인이 가능합니다
 
@@ -263,7 +264,7 @@ master 브랜치에 푸시되면 자동으로 배포가 진행되게끔 세팅�
 아까와 마찬가지로 로그에서 나오는 배포 주소로 접속하면
 이전과는 다르게 제대로 배포가 된 것을 확인할 수 있습니다
 
-![](/images/posts/nest-js/deploy-heroku-nest-js_2.png)
+![브라우저에 Hello World! 가 출력된 NestJS 기본 앱 화면](/images/posts/nest-js/deploy-heroku-nest-js_2.png)
 
 ### 무료 배포 시 문제점 및 해결법
 

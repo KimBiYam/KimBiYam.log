@@ -3,9 +3,10 @@ title: 'React Query 사용해보기'
 date: '2021-05-04'
 tag: 'react'
 ogImagePath: '/images/posts/react/usage-react-query_1.png'
+description: 'React Query로 서버 데이터를 가져오고 캐싱하는 기본 사용법입니다. QueryClientProvider 설정과 useQuery의 queryKey, queryFn 사용법을 포스트 목록 예제로 정리했습니다.'
 ---
 
-![](/images/posts/react/usage-react-query_1.png)
+![React Query 로고](/images/posts/react/usage-react-query_1.png)
 
 ## 개요
 
@@ -298,7 +299,7 @@ export default Post;
 
 그 후 정상적으로 포스트 리스트가 받아와지는 걸 확인할 수 있습니다.
 
-![](/images/posts/react/usage-react-query_2.png)
+![JSONPlaceholder에서 받아온 포스트 제목 목록 화면](/images/posts/react/usage-react-query_2.png)
 
 해당 페이지에서 아무 포스트나 클릭하면 postId state가 바뀌면서 Post 컴포넌트를 렌더링 하게됩니다.
 
@@ -306,16 +307,16 @@ export default Post;
 
 데이터 패칭이 성공하면 정상적으로 렌더링 되는 것을 볼 수 있습니다.
 
-![](/images/posts/react/usage-react-query_3.gif)
+![포스트 클릭 시 로딩 후 상세 내용이 렌더링되는 모습](/images/posts/react/usage-react-query_3.mp4)
 
 그 후 상단의 back 버튼으로 원래 페이지로 돌아오게되면
 
 해당 postId는 캐싱된 데이터가 있으므로, 위에서 적용한 style이 입혀지게됩니다.
 
-![](/images/posts/react/usage-react-query_4.png)
+![캐싱된 포스트 링크가 굵은 초록색으로 표시된 목록](/images/posts/react/usage-react-query_4.png)
 
 그리고 다시 해당 페이지로 들어가면 이미 해당 postId에 해당하는 데이터가 캐싱되어있어
 
 로딩 페이지 없이 이미 캐싱된 데이터를 그대로 보여주게 됩니다.
 
-![](/images/posts/react/usage-react-query_5.gif)
+![캐싱된 포스트를 다시 열면 로딩 없이 바로 상세 내용이 표시되는 모습](/images/posts/react/usage-react-query_5.mp4)

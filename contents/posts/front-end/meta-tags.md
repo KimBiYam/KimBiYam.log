@@ -2,6 +2,7 @@
 title: 'meta tag 정리'
 date: '2022-01-16'
 tag: 'front-end'
+description: 'HTML 메타 태그의 역할과 charset, viewport, description 같은 대표 태그를 정리하고, SNS 공유 미리 보기를 위한 Open Graph 태그와 Twitter Cards 작성법을 소개합니다.'
 ---
 
 ### 메타태그(meta tag) 란?
@@ -36,7 +37,7 @@ HTML 문서의 `<head>` 태그 내부에 위치하면 된다.
 - `viewport` : 브라우저가 웹 페이지를 렌더링 할 때 동작하는 방법을 알려주고 뷰포트의 크기를 정의할 수 있다. 모바일 기기 화면에서의 최적화를 위해 사용
 - `description` : HTML 문서의 설명을 나타냄. `<head>` 태그 내부의 `<title>` 태그와 같이 검색 엔진에서 검색 시 해당 내용이 나타나게 된다.
 
-![](/images/posts/front-end/meta-tags_1.png)
+![title과 description 메타 태그가 반영된 구글 검색 결과](/images/posts/front-end/meta-tags_1.png)
 
 이외에도 다양한 메타태그들이 존재하며 필요에 따라 지정해 주면 된다.
 
@@ -83,7 +84,7 @@ HTML 문서의 `<head>` 태그 내부에 위치하면 된다.
 
 - [페이스북](https://developers.facebook.com/tools/debug/)
 
-![](/images/posts/front-end/meta-tags_2.png)
+![페이스북 공유 디버거에서 확인한 Open Graph 링크 미리 보기](/images/posts/front-end/meta-tags_2.png)
 
 - 트위터는 [Card validator 페이지](https://cards-dev.twitter.com/validator)에서 테스트를 해볼 수 있었지만, 최근에 삭제 되었다고 한다.
     
@@ -91,4 +92,4 @@ HTML 문서의 `<head>` 태그 내부에 위치하면 된다.
 
 - 카카오톡은 [OG 기반 스크랩 api](https://developers.kakao.com/docs/latest/ko/kakaostory/rest-api#scrape-page)를 제공하는데 JSON 형식으로 데이터만 주는 식이라 그냥 직접 톡을 보내보았다.
 
-![](/images/posts/front-end/meta-tags_3.png)
+![카카오톡으로 링크를 보냈을 때 표시되는 Open Graph 미리 보기](/images/posts/front-end/meta-tags_3.png)

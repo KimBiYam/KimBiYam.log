@@ -2,6 +2,7 @@
 title: 'Flutter Text Widget 기기의 font size 무시하기'
 date: '2021-03-17'
 tag: 'flutter'
+description: '기기 글꼴 크기 설정과 상관없이 Flutter Text 크기를 고정하는 방법입니다. textScaleFactor 옵션과 MediaQuery로 앱 전체에 적용하는 방법을 다룹니다.'
 ---
 
 

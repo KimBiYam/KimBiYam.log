@@ -2,6 +2,7 @@
 title: 'Flutter BLoC 패키지의 BLoC 관련 클래스들'
 date: '2021-03-05'
 tag: 'flutter'
+description: 'flutter_bloc 패키지의 Cubit과 Bloc 클래스를 카운터 예제로 비교합니다. emit과 이벤트 방식의 차이, BlocObserver로 상태 변화를 관찰하는 방법을 다룹니다.'
 ---
 
 
@@ -17,9 +18,9 @@ BLoC 의 이벤트 정의, 상태 변화를 관찰하는 클래스 등 BLoC Patt
 
 - [공식 문서](https://bloclibrary.dev/#/)
 
-![](/images/posts/flutter/bloc-package-classes_1.png)
+![UI가 Cubit에 함수를 호출하고 Cubit이 data와 상호작용하는 구조 다이어그램](/images/posts/flutter/bloc-package-classes_1.png)
 
-![](/images/posts/flutter/bloc-package-classes_2.png)
+![Cubit에서 함수 호출, emit, onChange를 거쳐 State가 방출되는 흐름도](/images/posts/flutter/bloc-package-classes_2.png)
 
 ## Cubit Class
 
@@ -198,7 +199,7 @@ class SecondPage extends StatelessWidget {
 }
 ```
 
-![](/images/posts/flutter/bloc-package-classes_3.png)
+![Cubit 카운터 예제의 First Page 화면](/images/posts/flutter/bloc-package-classes_3.png)
 
 버튼 클릭 시 상태가 변하는 것을 볼 수 있습니다.
 
@@ -213,12 +214,12 @@ flutter: onChange -- cubit: CounterCubit, change: Change { currentState: 1, next
 
 해당 Cubit을 구독중인 다른 위젯으로 이동해도 값이 제대로 출력되는 것을 볼 수 있습니다.
 
-![](/images/posts/flutter/bloc-package-classes_4.png)
+![같은 Cubit을 구독하는 Second Page에도 카운터 값이 표시된 화면](/images/posts/flutter/bloc-package-classes_4.png)
 
 ## Bloc Class
 
-![](/images/posts/flutter/bloc-package-classes_5.png)
-![](/images/posts/flutter/bloc-package-classes_6.png)
+![UI가 Bloc에 이벤트를 전달하고 Bloc이 data와 상호작용하는 구조 다이어그램](/images/posts/flutter/bloc-package-classes_5.png)
+![Bloc에서 Event가 onEvent, mapEventToState, onTransition을 거쳐 State로 방출되는 흐름도](/images/posts/flutter/bloc-package-classes_6.png)
 
 Bloc 클래스는 Cubit 클래스를 상속받고 있으며 기본적으로는 같은 역할이지만
 상태 변경을 함수를 정의해서 호출하는 방식이 아닌 이벤트를 직접 정의 해두고

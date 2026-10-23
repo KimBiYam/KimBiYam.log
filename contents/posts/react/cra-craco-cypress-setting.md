@@ -3,9 +3,10 @@ title: 'React CRA & Typescript & craco & Cypress & Jest 테스트 환경 세팅'
 date: '2022-04-16'
 tag: 'react'
 ogImagePath: '/images/posts/react/cra-craco-cypress-setting_1.png'
+description: 'CRA·TypeScript·craco 환경에서 Jest와 Cypress를 함께 쓰기 위한 테스트 설정입니다. tsconfig 충돌 해결, dev server 동시 실행, 코드 커버리지 병합까지 다룹니다.'
 ---
 
-![Untitled](/images/posts/react/cra-craco-cypress-setting_1.png)
+![Cypress 로고](/images/posts/react/cra-craco-cypress-setting_1.png)
 
 ## Cypress 란?
 
@@ -63,7 +64,7 @@ module.exports = {};
 $ npm run start
 ```
 
-![Untitled](/images/posts/react/cra-craco-cypress-setting_2.png)
+![Create React App TypeScript 템플릿의 기본 실행 화면](/images/posts/react/cra-craco-cypress-setting_2.png)
 
 CRA로 프로젝트 생성 시 Jest 기반으로 작성된 에제 테스트 코드가 같이 생성됩니다.
 
@@ -152,7 +153,7 @@ cypress 실행 스크립트로 실행이 잘 되는지 확인해 봅니다.
 $ npm run cypress:open
 ```
 
-![Untitled](/images/posts/react/cra-craco-cypress-setting_3.png)
+![처음 실행한 Cypress Test Runner와 생성된 샘플 테스트 목록](/images/posts/react/cra-craco-cypress-setting_3.png)
 
 처음 실행하면 cypress 디렉토리에 세팅 파일과 샘플 테스트 파일들이 생성되는데,
 `fixtures` 디렉토리와 `integration` 디렉토리의 모든 파일을 삭제합니다.
@@ -178,13 +179,13 @@ $ npm run start // cypress 실행 전 dev server를 실행해줘야 함
 $ npm run cypress:open
 ```
 
-![Untitled](/images/posts/react/cra-craco-cypress-setting_4.png)
+![Cypress로 App.spec.tsx 테스트를 실행해 통과한 화면](/images/posts/react/cra-craco-cypress-setting_4.png)
 
 하지만 IDE 상에서는 `타입 스크립트 컴파일 에러`와`isolatedModules` 에러가 발생합니다.
 
-![Untitled](/images/posts/react/cra-craco-cypress-setting_5.png)
+![IDE에서 cy 이름을 찾을 수 없다는 TypeScript 에러](/images/posts/react/cra-craco-cypress-setting_5.png)
 
-![Untitled](/images/posts/react/cra-craco-cypress-setting_6.png)
+![App.spec.tsx에서 발생한 isolatedModules 컴파일 에러](/images/posts/react/cra-craco-cypress-setting_6.png)
 
 이를 해결하기 위해서는 `tsconfig.json` 에 cypress 관련 설정을 추가해 줘야 합니다.
 
@@ -207,7 +208,7 @@ jest에서 충돌이 나는 경우가 발생하여서 저는 따로 cypress 설�
 
 발생하던 에러가 해결된 것을 볼 수 있습니다.
 
-![Untitled](/images/posts/react/cra-craco-cypress-setting_7.png)
+![tsconfig 설정 후 에러가 사라진 App.spec.tsx 테스트 코드](/images/posts/react/cra-craco-cypress-setting_7.png)
 
 ### dev-server & Cypress 동시 실행 설정
 
@@ -245,7 +246,7 @@ cypress를 실행해 보면 dev server가 실행된 후 cypress가 실행되는 
 $ npm run cypress:open
 ```
 
-![Untitled](/images/posts/react/cra-craco-cypress-setting_8.png)
+![dev server와 Cypress Test Runner가 함께 실행된 화면](/images/posts/react/cra-craco-cypress-setting_8.png)
 
 ---
 
@@ -336,11 +337,11 @@ export default App;
 
 **cypress 로그**
 
-![Untitled](/images/posts/react/cra-craco-cypress-setting_9.png)
+![Cypress 로그에 테스트용 환경 변수 값이 출력된 화면](/images/posts/react/cra-craco-cypress-setting_9.png)
 
 **크롬 개발자 도구 콘솔**
 
-![Untitled](/images/posts/react/cra-craco-cypress-setting_10.png)
+![크롬 개발자 도구 콘솔에 출력된 테스트용 API 주소](/images/posts/react/cra-craco-cypress-setting_10.png)
 
 위 스크린샷 처럼 테스트 용 dev server와 cypress의 환경 변수가
 .env.test 파일에서 정상적으로 읽어지는 것을 확인할 수 있습니다.

@@ -3,9 +3,10 @@ title: 'Babel'
 date: '2021-10-25'
 tag: 'front-end'
 ogImagePath: '/images/posts/front-end/babel_1.png'
+description: 'JavaScript 컴파일러 Babel이 필요한 이유와 기본 설정을 정리했습니다. preset-env 같은 프리셋과 babel.config.js의 targets, useBuiltIns, corejs 옵션을 설명합니다.'
 ---
 
-![Untitled](/images/posts/front-end/babel_1.png)
+![Babel 로고](/images/posts/front-end/babel_1.png)
 
 ## Babel이란?
 

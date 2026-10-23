@@ -2,6 +2,7 @@
 title: 'Next.js App Router 사용 시 robots meta 태그 noindex 관련 이슈 해결'
 date: '2024-01-08'
 tag: 'next.js'
+description: 'Next.js App Router에서 useSearchParams 때문에 production 빌드에 robots noindex 메타 태그가 들어간 문제의 원인과 Suspense로 해결한 과정을 정리했습니다.'
 ---
 
 ## 개요
@@ -11,7 +12,7 @@ tag: 'next.js'
 
 블로그 환경을 Next.js의 새로운 기능인 `App Router`로 전환한 뒤 얼마 지나지 않아서 구글 서치 콘솔에서 다음과 같은 이메일을 받게 되었습니다.
 
-![Untitled](/images/posts/next.js/next-robots-meta-noindex-issue_1.png)
+![NOINDEX 태그로 페이지 색인이 제외되었다는 Google Search Console 알림 메일](/images/posts/next.js/next-robots-meta-noindex-issue_1.png)
 
 페이지의 robots meta 태그에 `noindex` 값이 있어, 색인을 생성하지 않았다는 리포트가 오게 되었습니다.
 해당 프로젝트에서는 robots 관련 내용은 `robots.txt`로만 관리하고 meta 태그에는 따로 작성하지 않았는데, 해당 리포트가 발생하는 이유에 의문이 들어서 원인을 찾아보기로 했습니다.
@@ -97,13 +98,13 @@ export const metadata: Metadata = {
 
 Vercel에서는 `App Router`가 stable한 기능이라고 발표를 했었지만, 여전히 회사의 production에 사용한다면 조금 꺼려지는 부분이 많다는 생각이 들었습니다.
 
-![Untitled](/images/posts/next.js/next-robots-meta-noindex-issue_2.png)
+![Google Search Console URL 검사에서 페이지 색인이 생성된 결과](/images/posts/next.js/next-robots-meta-noindex-issue_2.png)
 
 ---
 
 ## 추가 내용 (2024-02-15)
 
-![Untitled](/images/posts/next.js/next-robots-meta-noindex-issue_3.png)
+![noindex 이슈 수정 PR이 포함된 Next.js v14.1.0 릴리즈 노트](/images/posts/next.js/next-robots-meta-noindex-issue_3.png)
 
 [Next.js v14.1.0이 릴리즈](https://github.com/vercel/next.js/releases/tag/v14.1.0) 되면서 noindex 관련 이슈도 같이 수정이 되었습니다.
 

@@ -2,6 +2,7 @@
 title: 'JavaScript의 Spread 연산자(spread operator)와 성능'
 date: '2024-06-22'
 tag: 'javascript'
+description: 'JavaScript spread 연산자의 배열·객체 구현 방식을 살펴보고 성능을 직접 측정했습니다. reduce 안에서 반복 사용하면 크게 느려지는 이유와 개선 방법을 다룹니다.'
 ---
 
 ## 개요

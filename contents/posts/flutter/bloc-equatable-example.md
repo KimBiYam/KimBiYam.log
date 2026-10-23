@@ -2,6 +2,7 @@
 title: 'Flutter BLoC 및 Equatable 패키지를 적용한 BLoC Pattern 예시'
 date: '2021-03-05'
 tag: 'flutter'
+description: 'flutter_bloc과 Equatable로 구현한 BLoC 패턴 예시입니다. State에 Equatable을 적용해 데이터가 바뀔 때만 BlocBuilder가 다시 그려지는지 로그로 확인합니다.'
 ---
 
 

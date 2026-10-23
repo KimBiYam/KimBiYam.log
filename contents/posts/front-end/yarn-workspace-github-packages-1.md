@@ -3,9 +3,10 @@ title: 'Yarn berry + Yarn workspaces 패키지 Github Packages에 배포해보�
 date: '2022-09-11'
 tag: 'front-end'
 ogImagePath: '/images/posts/front-end/yarn-workspace-github-packages-1_1.png'
+description: 'Yarn Berry Workspaces로 모노레포를 구성하고 GitHub Packages에 private 패키지로 배포하기 위한 준비 과정입니다. 프로젝트 설정과 zero install, Parcel 빌드를 다룹니다.'
 ---
 
-![Untitled](/images/posts/front-end/yarn-workspace-github-packages-1_1.png)
+![Yarn 로고](/images/posts/front-end/yarn-workspace-github-packages-1_1.png)
 
 ## 개요
 
@@ -262,7 +263,7 @@ $ yarn build
 
 빌드가 잘 됐다면 각 패키지 디렉토리 아래에 빌드 결과물이 나타납니다.
 
-![Untitled](/images/posts/front-end/yarn-workspace-github-packages-1_2.png)
+![빌드 후 각 패키지 아래에 생성된 dist 디렉토리 구조](/images/posts/front-end/yarn-workspace-github-packages-1_2.png)
 
 
 다음 포스트에서는 해당 빌드 결과물을 통해서 Github Packages에 배포하는 과정을 알아보도록 하겠습니다.

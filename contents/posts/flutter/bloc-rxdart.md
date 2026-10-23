@@ -2,6 +2,7 @@
 title: 'RxDart 패키지를 이용한 BLoC Pattern 예시'
 date: '2021-03-05'
 tag: 'flutter'
+description: 'RxDart의 BehaviorSubject와 StreamBuilder로 BLoC 패턴을 직접 구현한 카운터 예시입니다. 비즈니스 로직을 Bloc 클래스로 분리하는 방법을 보여 줍니다.'
 ---
 
 ## RxDart
@@ -103,4 +104,4 @@ class CounterScreen extends StatelessWidget {
 }
 ```
 
-![](/images/posts/flutter/bloc-rxdart_1.gif)
+![RxDart BLoC 카운터 앱에서 증가·감소·초기화 버튼으로 숫자가 바뀌는 화면](/images/posts/flutter/bloc-rxdart_1.mp4)

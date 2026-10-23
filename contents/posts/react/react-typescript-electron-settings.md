@@ -3,9 +3,10 @@ title: 'React Typescript 기반 Electron 개발 환경 구축'
 date: '2022-05-02'
 tag: 'react'
 ogImagePath: '/images/posts/react/react-typescript-electron-settings_1.png'
+description: 'CRA TypeScript 프로젝트에 Electron을 붙여 데스크톱 앱 개발 환경을 구성한 과정입니다. electron.ts 작성과 실행 스크립트, electron-builder로 OS별 빌드하는 방법을 정리했습니다.'
 ---
 
-![Electron-logo](/images/posts/react/react-typescript-electron-settings_1.png)
+![Electron 로고](/images/posts/react/react-typescript-electron-settings_1.png)
 
 ### 프로젝트 시작
 

@@ -3,9 +3,10 @@ title: 'Yarn berry + Yarn workspaces 패키지 Github Packages에 배포해보�
 date: '2022-09-12'
 tag: 'front-end'
 ogImagePath: '/images/posts/front-end/yarn-workspace-github-packages-2_1.png'
+description: 'Yarn Berry Workspaces 패키지를 GitHub Packages에 배포하는 과정입니다. Access Token 설정, version 플러그인, GitHub Actions 자동 배포를 정리했습니다.'
 ---
 
-![yarn-workspace-github-packages-2_1.png](/images/posts/front-end/yarn-workspace-github-packages-2_1.png)
+![GitHub Packages 대표 이미지](/images/posts/front-end/yarn-workspace-github-packages-2_1.png)
 
 [지난 포스트](https://kimbiyam.me/posts/front-end/yarn-workspace-github-packages-1)에 이어서 이번에는 `Github Packages`에 npm 패키지를 배포해 보도록 하겠습니다.
 
@@ -92,7 +93,7 @@ $ yarn workspaces foreach npm publish --tolerate-republish
 
 패키지 배포가 제대로 되었다면 Github 레포지토리에서 확인이 가능합니다.
 
-![Untitled](/images/posts/front-end/yarn-workspace-github-packages-2_2.png)
+![GitHub 레포지토리 사이드바의 Packages 항목에 배포된 sample-module과 sample-util](/images/posts/front-end/yarn-workspace-github-packages-2_2.png)
 
 ### Yarn Berry version plugin
 
@@ -174,7 +175,7 @@ $ yarn publish
 
 **Github Packages에 배포된 모습**
 
-![Untitled](/images/posts/front-end/yarn-workspace-github-packages-2_3.png)
+![GitHub Packages에 배포된 sample-module 0.0.1 패키지 페이지](/images/posts/front-end/yarn-workspace-github-packages-2_3.png)
 
 ### Github Actions를 이용한 CI/CD 설정
 
@@ -235,11 +236,11 @@ jobs:
 배포된 패키지 페이지로 가서 `Package settings` 버튼을 클릭합니다.
 그 후 `Manage Actions access` 항목에 레포지토리를 추가하여 `Write` 역할을 부여합니다.
 
-![Untitled](/images/posts/front-end/yarn-workspace-github-packages-2_4.png)
+![패키지 설정의 Manage Actions access에서 레포지토리에 Write 권한을 부여한 화면](/images/posts/front-end/yarn-workspace-github-packages-2_4.png)
 
 그 후 actions를 다시 실행하면 정상적으로 배포가 완료됩니다.
 
-![Untitled](/images/posts/front-end/yarn-workspace-github-packages-2_5.png)
+![GitHub Actions publish 작업이 성공적으로 완료된 화면](/images/posts/front-end/yarn-workspace-github-packages-2_5.png)
 
 ## 배포된 패키지 설치하기
 
@@ -269,7 +270,7 @@ $ yarn add @kimbiyam/sample-module@0.0.0
 
 그 후 테스트를 해보면 정상적으로 사용이 가능한 것을 확인할 수 있습니다.
 
-![Untitled](/images/posts/front-end/yarn-workspace-github-packages-2_6.png)
+![설치한 @kimbiyam/sample-module 패키지를 import 해서 사용하는 코드](/images/posts/front-end/yarn-workspace-github-packages-2_6.png)
 
 ## 참고사항
 

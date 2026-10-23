@@ -2,6 +2,7 @@
 title: 'Flutter 기존 프로젝트 2.0(null safety) 로 마이그레이션 하기'
 date: '2021-03-07'
 tag: 'flutter'
+description: 'Flutter 2.0(Dart 2.12) null safety로 기존 프로젝트를 마이그레이션한 과정입니다. SDK 업그레이드, 패키지 호환성 확인, dart migrate 도구 사용법을 다룹니다.'
 ---
 
 # Flutter migrate to null safety 
@@ -161,16 +162,16 @@ sources' action.
 View the migration suggestions by visiting 문구 아래의 주소로 들어가면
 코드 미리 보기가 가능합니다.
 
-![](/images/posts/flutter/flutter2.0-migration_1.png)
+![dart migrate 실행 후 열리는 null safety 마이그레이션 미리 보기 웹 도구](/images/posts/flutter/flutter2.0-migration_1.png)
 
 파일별로 마이그레이션 적용이 가능하고 미리 보기도 가능합니다.
 
-![](/images/posts/flutter/flutter2.0-migration_2.png)
+![마이그레이션 도구에서 first_screen.dart의 제안된 변경 사항을 미리 보는 화면](/images/posts/flutter/flutter2.0-migration_2.png)
 
 공식 영상에 따르면 마이그레이션이 완벽하진 않기 때문에 미리 보기를 보면서
 직접 코드를 수정하거나 마이그레이션 도구를 이용해서 수정할 수 있다고 합니다.
 
-![](/images/posts/flutter/flutter2.0-migration_3.png)
+![변경된 라인을 선택하면 오른쪽에 Edit Details가 표시되는 마이그레이션 도구 화면](/images/posts/flutter/flutter2.0-migration_3.png)
 
 마이그레이션 시 변경사항이 생기면 파일 옆에 변경사항의 개수가 나타나고
 파일 클릭 시 오른쪽에 디테일한 변경 내용 등이 나타나게 됩니다.
@@ -179,7 +180,7 @@ View the migration suggestions by visiting 문구 아래의 주소로 들어가�
 해당 부분이 nullable 타입으로 변환할 건지, 아닌지 힌트 주석을 달아
 마이그레이션시 그 형태로 변환되게 설정이 가능합니다.
 
-![](/images/posts/flutter/flutter2.0-migration_4.png)
+![nullable 변환 이유와 힌트 추가 버튼이 있는 Edit Details 패널](/images/posts/flutter/flutter2.0-migration_4.png)
 
 저는 따로 수정 없이 바로 migration을 진행했습니다.
 오른쪽 상단의 APPLY MIGRATION 버튼을 눌려 진행하면 됩니다.
@@ -208,4 +209,4 @@ Migrated 7 files:
 Migration 후 RaisedButton, FlatButton, OutlineButton 위젯의 경우
 deprecated 상태가 되며 그에 관한 내용은 [Material 버튼 migration 가이드](https://docs.google.com/document/d/1yohSuYrvyya5V1hB6j9pJskavCdVq9sVeTqSoEPsWH0/edit#)에 있습니다.
 
-![](/images/posts/flutter/flutter2.0-migration_5.png)
+![RaisedButton이 deprecated 되어 ElevatedButton 사용을 권장하는 IDE 경고](/images/posts/flutter/flutter2.0-migration_5.png)

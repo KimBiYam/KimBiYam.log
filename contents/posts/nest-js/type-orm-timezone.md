@@ -3,9 +3,10 @@ title: 'NestJS / TypeORM - Timezone 적용하기'
 date: '2021-07-04'
 tag: 'nest-js'
 ogImagePath: '/images/posts/nest-js/type-orm-timezone_1.png'
+description: 'NestJS와 TypeORM에 서울 시간대(Asia/Seoul)를 적용하는 방법입니다. 실행 스크립트나 .env로 TZ 환경 변수를 지정하고 TypeORM 설정에 timezone 옵션을 추가합니다.'
 ---
 
-![](/images/posts/nest-js/type-orm-timezone_1.png)
+![NestJS 로고](/images/posts/nest-js/type-orm-timezone_1.png)
 
 
 NestJS와 TypeORM 을 사용하여 사이드 프로젝트 진행 중

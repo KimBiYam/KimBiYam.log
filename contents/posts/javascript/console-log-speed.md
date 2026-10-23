@@ -2,6 +2,7 @@
 title: 'console.log() 속도 관련'
 date: '2021-11-25'
 tag: 'javascript'
+description: '백준 스택 문제에서 반복문 안의 console.log() 호출 때문에 시간 초과가 났던 경험입니다. 출력할 내용을 모아 한 번만 출력하도록 바꿔 통과한 코드와 함께 정리했습니다.'
 ---
 
 https://www.acmicpc.net/problem/10828

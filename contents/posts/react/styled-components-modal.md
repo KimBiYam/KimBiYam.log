@@ -2,9 +2,10 @@
 title: 'React Styled Components 에서 Fade in/out Modal 컴포넌트 만들기'
 date: '2021-07-04'
 tag: 'react'
+description: 'React와 styled-components로 Fade in/out 모달 컴포넌트를 만든 과정입니다. 배경 클릭 시 닫기와 Fade out 애니메이션이 끝난 뒤 닫히도록 수정한 방법을 다룹니다.'
 ---
 
-![](/images/posts/react/styled-components-modal_1.gif)
+![열기 버튼을 누르면 모달이 Fade in 되고 닫기 버튼으로 Fade out 되는 모습](/images/posts/react/styled-components-modal_1.gif)
 
 ### 개요
 
@@ -182,17 +183,17 @@ const ModalPage = () => {
 
 아래와 같이 페이지에 열기 버튼이 생성되어 있습니다.
 
-![](/images/posts/react/styled-components-modal_2.png)
+![화면 가운데에 있는 모달 열기 버튼](/images/posts/react/styled-components-modal_2.png)
 
 해당 버튼을 클릭하여 제대로 작동하는지 확인해보면 되겠죠
 아래처럼 스크린샷처럼 모달이 제대로 열립니다.
 
-![](/images/posts/react/styled-components-modal_3.gif)
+![열기 버튼 클릭 시 모달이 Fade in 애니메이션으로 열리는 모습](/images/posts/react/styled-components-modal_3.gif)
 
 닫기 버튼 혹은 백그라운드 클릭 시 닫히는 기능도 제대로 작동하는데요
 Fade out 애니메이션이 제대로 작동하지 않습니다.
 
-![](/images/posts/react/styled-components-modal_4.gif)
+![닫기 버튼 클릭 시 Fade out 애니메이션 없이 모달이 바로 사라지는 모습](/images/posts/react/styled-components-modal_4.gif)
 
 ### Fade out 애니메이션 오류 수정
 
@@ -246,7 +247,7 @@ setTimeout 함수를 이용해서 해당 시간 이후에 open state가 변경�
 
 한번 제대로 작동하는지 확인해볼까요?
 
-![](/images/posts/react/styled-components-modal_5.gif)
+![수정 후 모달이 Fade out 애니메이션과 함께 닫히는 모습](/images/posts/react/styled-components-modal_5.gif)
 
 이전과 다르게 Fade out 애니메이션도 제대로 작동하는 것을 확인할 수 있습니다.
 현재 코드에 작동에 문제는 없지만 한가지 문제가 있습니다.
