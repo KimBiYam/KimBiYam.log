@@ -7,6 +7,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { PAGE_TITLE_SUFFIX } from '@src/_app';
 import ogTagImage from '@src/shared/assets/images/og_tag_image.png';
 import { GOOGLE_ANALYTICS_TRACKING_ID } from '@src/shared/constants/foundation';
+import { FEED_ALTERNATE_TYPES } from '@src/shared/constants/metadata';
 import { DOMAIN_URL } from '@src/shared/constants/server';
 import { PROFILE } from '@src/shared/constants/profile';
 
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
   publisher: PROFILE.name,
   keywords: 'blog,블로그,kimbiyam,kimbiyam.log,hot9998',
   formatDetection: { telephone: false },
+  alternates: { types: FEED_ALTERNATE_TYPES },
   twitter: {
     card: 'summary_large_image',
     title: 'KimBiYam.log',
