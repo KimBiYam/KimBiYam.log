@@ -1,3 +1,5 @@
+import 'server-only';
+
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Fira_Code } from 'next/font/google';

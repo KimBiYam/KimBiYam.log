@@ -1,8 +1,5 @@
-import {
-  PostDateText,
-  MarkdownView,
-  PostShareButtons,
-} from '@src/features/post/ui';
+import MarkdownView from '@src/features/post/ui/MarkdownView';
+import { PostDateText, PostShareButtons } from '@src/features/post/ui';
 import type {
   PostDetail,
   PostImageSize,
