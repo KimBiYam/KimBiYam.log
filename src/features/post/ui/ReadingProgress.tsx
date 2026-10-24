@@ -2,56 +2,56 @@
 
 import { useEffect, useRef } from 'react';
 
-import { useMounted } from '@src/shared/hooks';
-
-const SCROLL_TIMELINE_SUPPORT_QUERY = 'animation-timeline: scroll()';
-
-// Fallback for browsers without CSS scroll-driven animations: one passive,
+// Tracks how far the reader is through the <article> (not the whole page, so
+// the footer/navigation below it don't stretch the bar). One passive,
 // rAF-throttled scroll listener that only writes a transform (no React state).
-const ScriptReadingProgress = () => {
+// A ResizeObserver keeps it accurate when images/code blocks change the height.
+const ReadingProgress = () => {
   const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const article = document.querySelector('article');
     let frameId = 0;
 
     const update = () => {
       frameId = 0;
-      const { scrollHeight, clientHeight } = document.documentElement;
-      const maxScroll = scrollHeight - clientHeight;
-      const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+      const bar = barRef.current;
+      if (!bar) return;
 
-      barRef.current?.style.setProperty(
+      let progress = 0;
+
+      if (article) {
+        const { top, height } = article.getBoundingClientRect();
+        const scrollable = height - window.innerHeight;
+        progress = scrollable > 0 ? -top / scrollable : top < 0 ? 1 : 0;
+      }
+
+      bar.style.setProperty(
         'transform',
         `scaleX(${Math.min(1, Math.max(0, progress))})`,
       );
     };
 
-    const handleScroll = () => {
+    const schedule = () => {
       if (!frameId) frameId = requestAnimationFrame(update);
     };
 
+    const resizeObserver = new ResizeObserver(schedule);
+    if (article) resizeObserver.observe(article);
+
     update();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+      resizeObserver.disconnect();
       if (frameId) cancelAnimationFrame(frameId);
     };
   }, []);
 
   return <div ref={barRef} aria-hidden="true" className="reading-progress" />;
-};
-
-const ReadingProgress = () => {
-  const mounted = useMounted();
-
-  if (mounted && !CSS.supports(SCROLL_TIMELINE_SUPPORT_QUERY)) {
-    return <ScriptReadingProgress />;
-  }
-
-  return <div aria-hidden="true" className="reading-progress" />;
 };
 
 export default ReadingProgress;
