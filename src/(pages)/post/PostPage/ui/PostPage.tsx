@@ -1,18 +1,18 @@
 import { hasPostHeadings } from '@src/features/post/lib/postHeadings';
-import MarkdownView from '@src/features/post/ui/MarkdownView';
-import MobileTableOfContents from '@src/features/post/ui/MobileTableOfContents';
-import ReadingProgress from '@src/features/post/ui/ReadingProgress';
-import TableOfContents from '@src/features/post/ui/TableOfContents';
-import {
-  PostDateText,
-  PostReadingTime,
-  PostShareButtons,
-} from '@src/features/post/ui';
 import type {
   PostDetail,
   PostImageSize,
   PostPreview,
 } from '@src/features/post/types';
+import {
+  MobileTableOfContents,
+  PostDateText,
+  PostReadingTime,
+  PostShareButtons,
+  ReadingProgress,
+  TableOfContents,
+} from '@src/features/post/ui';
+import MarkdownView from '@src/features/post/ui/MarkdownView';
 import { TagBadge } from '@src/features/tag';
 import { BackgroundGlow, ProfileCard } from '@src/shared';
 import { PostNavigation } from '@src/widgets/post';
