@@ -126,8 +126,7 @@ h3 {
   }
 }
 
-/* Reading progress bar: scaleX is driven by the root scroll timeline where
-   supported; otherwise ReadingProgress sets the transform from script. */
+/* Reading progress bar: ReadingProgress sets scaleX from script. */
 .reading-progress {
   position: fixed;
   top: 0;
@@ -143,19 +142,6 @@ h3 {
   );
   transform: scaleX(0);
   transform-origin: 0 50%;
-}
-
-@supports (animation-timeline: scroll()) {
-  .reading-progress {
-    animation: reading-progress linear both;
-    animation-timeline: scroll(root block);
-  }
-
-  @keyframes reading-progress {
-    to {
-      transform: scaleX(1);
-    }
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
