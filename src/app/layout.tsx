@@ -77,7 +77,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: PropsWithChildren<unknown>) {
   return (
     <html lang="ko" className={monoFont.variable} suppressHydrationWarning>
-      <body className="main-container main-font-color">
+      <body className="main-container text-foreground">
         <ClientRootLayout>{children}</ClientRootLayout>
         <Script src="/setViewportProperty.js" strategy="lazyOnload" />
         <Script src="/prettyConsole.js" strategy="lazyOnload" />

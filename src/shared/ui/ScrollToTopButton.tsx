@@ -32,7 +32,7 @@ const ScrollToTopButton = () => {
         aria-label="scroll-to-top-button"
         className="flex items-center justify-center w-10 h-10 transition-opacity duration-300 rounded-full primary-button drop-shadow-md justify-items-center hover:opacity-70"
       >
-        <div className="w-4 h-4 main-font-color">
+        <div className="w-4 h-4 text-foreground">
           <ArrowUpIcon />
         </div>
       </button>
