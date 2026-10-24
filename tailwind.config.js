@@ -24,7 +24,17 @@ module.exports = {
       center: true,
     },
     extend: {
-      screens: breakPoints,
+      // `sm-up` is a plain min-width screen: `sm` is a 480-767px range.
+      screens: { ...breakPoints, 'sm-up': '480px' },
+      maxWidth: {
+        page: '1040px',
+      },
+      borderRadius: {
+        panel: '18px',
+        card: '20px',
+        featured: '25px',
+        'featured-frame': '26px',
+      },
       colors: {
         background: 'rgb(var(--color-background) / <alpha-value>)',
         foreground: 'rgb(var(--color-foreground) / <alpha-value>)',

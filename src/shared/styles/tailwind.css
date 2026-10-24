@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  /* Shared card chrome. Radius overrides (rounded-card) come from utilities. */
+  .card-surface {
+    @apply border rounded-2xl border-line bg-glass;
+  }
+
+  .card-surface-hover {
+    @apply hover:border-accent-violet/40 hover:bg-accent-violet/5;
+  }
+}
+
 @layer utilities {
   .main-container {
     @apply duration-300 ease-out bg-background transition-backgroundColor;

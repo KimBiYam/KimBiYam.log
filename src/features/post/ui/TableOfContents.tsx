@@ -41,7 +41,7 @@ const TableOfContents = () => {
   return (
     <aside className="hidden xl:block">
       {isUpExtraLargeScreen && headings && headings.length > 0 && (
-        <div className="sticky flex flex-col gap-3.5 p-[22px] border top-24 rounded-[20px] border-line bg-glass max-h-[calc(100vh-8rem)] animate-fade-in">
+        <div className="sticky flex flex-col gap-3.5 p-[22px] top-24 rounded-card card-surface max-h-[calc(100vh-8rem)] animate-fade-in">
           <span className="font-mono text-xs tracking-[0.04em] text-muted">
             ON THIS PAGE
           </span>

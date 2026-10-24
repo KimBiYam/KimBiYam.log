@@ -13,11 +13,11 @@ const PostNavigation = ({ newerPost, olderPost }: PostNavigationProps) => {
   return (
     <nav
       aria-label="게시글 이동"
-      className="flex flex-col gap-4 mt-10 [@media(min-width:480px)]:flex-row"
+      className="flex flex-col gap-4 mt-10 sm-up:flex-row"
     >
       {olderPost && (
         <Link
-          className="group flex flex-col min-w-0 p-5 border rounded-2xl border-line bg-glass transition-colors duration-300 hover:border-accent-violet/40 hover:bg-accent-violet/5 focus-ring [@media(min-width:480px)]:w-1/2"
+          className="group flex flex-col min-w-0 p-5 card-surface card-surface-hover transition-colors duration-300 focus-ring sm-up:w-1/2"
           href={`/posts/${olderPost.id}`}
         >
           <span className="block font-mono text-xs text-muted">← 이전 글</span>
@@ -28,7 +28,7 @@ const PostNavigation = ({ newerPost, olderPost }: PostNavigationProps) => {
       )}
       {newerPost && (
         <Link
-          className="group flex flex-col min-w-0 p-5 border rounded-2xl border-line bg-glass transition-colors duration-300 hover:border-accent-violet/40 hover:bg-accent-violet/5 focus-ring [@media(min-width:480px)]:w-1/2 text-right [@media(min-width:480px)]:ml-auto"
+          className="group flex flex-col min-w-0 p-5 card-surface card-surface-hover transition-colors duration-300 focus-ring sm-up:w-1/2 text-right sm-up:ml-auto"
           href={`/posts/${newerPost.id}`}
         >
           <span className="block font-mono text-xs text-muted">다음 글 →</span>
