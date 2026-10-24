@@ -66,8 +66,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   font-family:
-    'Pretendard Variable',
-    Pretendard,
+    var(--font-sans),
     -apple-system,
     BlinkMacSystemFont,
     system-ui,

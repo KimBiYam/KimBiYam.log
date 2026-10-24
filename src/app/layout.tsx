@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react';
 import { JetBrains_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import Script from 'next/script';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/react';
@@ -18,11 +19,17 @@ import ClientRootLayout from '../_app/ui/ClientRootLayout';
 
 import type { Metadata, Viewport } from 'next';
 
-// next/font/local cannot assign unicode-range per file, so import the official
-// dynamic subset CSS to self-host only the glyph subsets each page needs.
-import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
 import '../shared/styles/global.css';
 import '../shared/styles/tailwind.css';
+
+// Single-file Pretendard subset (wght 400-800) built from the glyphs used in
+// contents/ and src/. Regenerate with `python3 scripts/pretendard-subset.py`.
+const sansFont = localFont({
+  src: '../shared/assets/fonts/PretendardVariable.subset.woff2',
+  weight: '400 800',
+  display: 'swap',
+  variable: '--font-sans',
+});
 
 const monoFont = JetBrains_Mono({
   subsets: ['latin'],
@@ -76,7 +83,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: PropsWithChildren<unknown>) {
   return (
-    <html lang="ko" className={monoFont.variable} suppressHydrationWarning>
+    <html
+      lang="ko"
+      className={`${sansFont.variable} ${monoFont.variable}`}
+      suppressHydrationWarning
+    >
       <body className="main-container main-font-color">
         <ClientRootLayout>{children}</ClientRootLayout>
         <Script src="/setViewportProperty.js" strategy="lazyOnload" />
