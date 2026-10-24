@@ -4,7 +4,6 @@ import { COLORS } from '@src/shared/constants/colors';
 
 import type { ThemeRegistrationRaw } from 'shiki';
 
-
 interface CodePalette {
   foreground: string;
   comment: string;
