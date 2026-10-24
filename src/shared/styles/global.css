@@ -1,7 +1,10 @@
 /*
  * Design tokens. Solid colors are stored as RGB channels so Tailwind opacity
  * modifiers work (e.g. bg-accent-violet/15); translucent tokens keep their alpha.
- * Keep THEME_COLOR in src/shared/constants/theme.ts in sync with --color-background.
+ * The solid colors are mirrored as hex in src/shared/constants/colors.ts (used
+ * by theme.ts, the OG image, global-error and the code theme): keep in sync.
+ * The --glow-* values are decorative one-offs (RGB channels also live in
+ * GLOW_CHANNELS) and --color-line has no solid counterpart, so they stay literal.
  */
 :root {
   --color-background: 247 247 251;
@@ -19,12 +22,12 @@
   --glow-pink: rgba(236, 72, 153, 0.06);
   --featured-border: linear-gradient(
     135deg,
-    rgba(109, 40, 217, 0.45),
-    rgba(15, 118, 110, 0.2) 45%,
+    rgb(var(--color-accent-violet) / 0.45),
+    rgb(var(--color-accent-cyan) / 0.2) 45%,
     rgba(17, 17, 40, 0.08)
   );
-  --featured-spotlight: rgba(109, 40, 217, 0.08);
-  --card-spotlight: rgba(109, 40, 217, 0.04);
+  --featured-spotlight: rgb(var(--color-accent-violet) / 0.08);
+  --card-spotlight: rgb(var(--color-accent-violet) / 0.04);
 
   /* Motion tokens. Keep in sync with src/shared/styles/motions.ts. */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -51,12 +54,12 @@
   --glow-pink: rgba(236, 72, 153, 0.14);
   --featured-border: linear-gradient(
     135deg,
-    rgba(167, 139, 250, 0.7),
-    rgba(94, 234, 212, 0.25) 45%,
+    rgb(var(--color-accent-violet) / 0.7),
+    rgb(var(--color-accent-cyan) / 0.25) 45%,
     rgba(255, 255, 255, 0.06)
   );
-  --featured-spotlight: rgba(167, 139, 250, 0.22);
-  --card-spotlight: rgba(167, 139, 250, 0.16);
+  --featured-spotlight: rgb(var(--color-accent-violet) / 0.22);
+  --card-spotlight: rgb(var(--color-accent-violet) / 0.16);
 
   color-scheme: dark;
 }

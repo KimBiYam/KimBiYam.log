@@ -1,3 +1,5 @@
+import { COLORS } from './colors';
+
 export enum Theme {
   dark = 'dark',
   light = 'light',
@@ -8,6 +10,6 @@ export const isTheme = (value: unknown): value is Theme =>
 
 // Mirrors --color-background in src/shared/styles/global.css.
 export const THEME_COLOR = {
-  light: '#f7f7fb',
-  dark: '#070711',
+  light: COLORS.light.background,
+  dark: COLORS.dark.background,
 } as const;
