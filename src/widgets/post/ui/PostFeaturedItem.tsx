@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import * as m from 'motion/react-m';
 
-import { PostDateText, PostReadingTime } from '@src/features/post/client';
+import { PostMeta } from '@src/features/post/client';
 import { PostPreview } from '@src/features/post/types';
-import { viewportOpacityMotion } from '@src/shared';
+import { FadeInOnView } from '@src/shared';
 
 interface PostFeaturedItemProps {
   postPreview: PostPreview;
@@ -32,30 +31,21 @@ const PostFeaturedItem = ({
           {content}
         </span>
       </div>
-      <span className="flex items-center gap-2 font-mono text-xs text-muted">
-        <PostDateText dateTime={date}>{date}</PostDateText>
-        <span aria-hidden="true">·</span>
-        <PostReadingTime minutes={readingTimeMinutes} />
+      <PostMeta date={date} readingTimeMinutes={readingTimeMinutes}>
         <span aria-hidden="true">→</span>
-      </span>
+      </PostMeta>
     </Link>
   );
 
-  const className = 'p-px mb-5 rounded-featured-frame featured-card-border';
-
-  // Plain <section> unless the item fades in: skips motion setup on first paint.
-  return fadeIn ? (
-    <m.section
+  return (
+    <FadeInOnView
+      as="section"
+      fadeIn={fadeIn}
       aria-label="추천 글"
-      className={className}
-      {...viewportOpacityMotion}
+      className="p-px mb-5 rounded-featured-frame featured-card-border"
     >
       {link}
-    </m.section>
-  ) : (
-    <section aria-label="추천 글" className={className}>
-      {link}
-    </section>
+    </FadeInOnView>
   );
 };
 

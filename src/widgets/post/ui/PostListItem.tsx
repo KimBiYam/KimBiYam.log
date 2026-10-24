@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import * as m from 'motion/react-m';
 
-import { PostDateText, PostReadingTime } from '@src/features/post/client';
+import { PostMeta } from '@src/features/post/client';
 import { PostPreview } from '@src/features/post/types';
-import { viewportOpacityMotion } from '@src/shared';
+import { FadeInOnView } from '@src/shared';
 
 interface PostListItemProps {
   postPreview: PostPreview;
@@ -22,21 +21,18 @@ const PostListItem = ({ postPreview, fadeIn = false }: PostListItemProps) => {
       <h2 className="text-[19px] font-bold leading-[1.45] tracking-[-0.02em] break-keep line-clamp-3">
         {title}
       </h2>
-      <span className="flex items-center gap-2 mt-auto">
-        <PostDateText dateTime={date}>{date}</PostDateText>
-        <span aria-hidden="true" className="font-mono text-xs text-muted">
-          ·
-        </span>
-        <PostReadingTime minutes={readingTimeMinutes} />
-      </span>
+      <PostMeta
+        date={date}
+        readingTimeMinutes={readingTimeMinutes}
+        className="mt-auto"
+      />
     </Link>
   );
 
-  // Plain <li> unless the item fades in: skips motion setup for initial cards.
-  return fadeIn ? (
-    <m.li {...viewportOpacityMotion}>{link}</m.li>
-  ) : (
-    <li>{link}</li>
+  return (
+    <FadeInOnView as="li" fadeIn={fadeIn}>
+      {link}
+    </FadeInOnView>
   );
 };
 

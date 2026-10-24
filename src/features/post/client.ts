@@ -4,3 +4,4 @@ export * from './constants';
 // Client-safe exports only; server code (lib, constants/directories, ui/MarkdownView) is not re-exported here.
 export { default as PostDateText } from './ui/PostDateText';
 export { default as PostReadingTime } from './ui/PostReadingTime';
+export { default as PostMeta } from './ui/PostMeta';
