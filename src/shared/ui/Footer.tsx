@@ -1,3 +1,4 @@
+import { FEED_PATH } from '@src/shared/constants/metadata';
 import { PROFILE } from '@src/shared/constants/profile';
 
 const footerLinkClassName =
@@ -14,7 +15,7 @@ const Footer = () => (
         <a href={PROFILE.social.github} className={footerLinkClassName}>
           GitHub
         </a>
-        <a href="/feed.xml" className={footerLinkClassName}>
+        <a href={FEED_PATH} className={footerLinkClassName}>
           RSS
         </a>
       </div>
