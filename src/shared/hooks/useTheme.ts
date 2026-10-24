@@ -2,11 +2,11 @@
 
 import { useTheme as useNextTheme } from 'next-themes';
 
-import { isTheme, Theme } from '../constants';
+import { isTheme, Theme } from '@src/shared/constants';
 import {
   runCircularTransition,
   TransitionOrigin,
-} from '../utils/themeTransition';
+} from '@src/shared/utils/themeTransition';
 
 const useTheme = () => {
   // resolvedTheme maps the "system" default to the actual light/dark value. It

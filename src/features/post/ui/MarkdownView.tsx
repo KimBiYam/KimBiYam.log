@@ -1,6 +1,6 @@
 import 'server-only';
 
-import React from 'react';
+import { ReactNode } from 'react';
 import { MarkdownAsync } from 'react-markdown';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
@@ -21,6 +21,27 @@ interface MarkdownViewProps {
   imageSizes?: Record<string, PostImageSize>;
 }
 
+interface HeadingComponentProps {
+  id?: string;
+  children?: ReactNode;
+}
+
+const createHeadingComponent = (
+  tag: (typeof POST_HEADING_TARGET_TAGS)[number],
+) => {
+  const HeadingComponent = ({ id, children }: HeadingComponentProps) => (
+    <MarkdownHeading id={id} tag={tag}>
+      {children}
+    </MarkdownHeading>
+  );
+
+  return HeadingComponent;
+};
+
+const HEADING_COMPONENTS = Object.fromEntries(
+  POST_HEADING_TARGET_TAGS.map((tag) => [tag, createHeadingComponent(tag)]),
+);
+
 const MarkdownView = ({ contentHtml, imageSizes }: MarkdownViewProps) => (
   <div className="w-full max-w-full prose" id={POST_CONTENT_ID}>
     <MarkdownAsync
@@ -39,16 +60,7 @@ const MarkdownView = ({ contentHtml, imageSizes }: MarkdownViewProps) => (
         rehypeStringify,
       ]}
       components={{
-        ...POST_HEADING_TARGET_TAGS.reduce<
-          Record<string, React.FC<{ id: string; children: React.ReactNode }>>
-        >((acc, tag) => {
-          acc[tag] = ({ id, children }) => (
-            <MarkdownHeading id={id} tag={tag}>
-              {children}
-            </MarkdownHeading>
-          );
-          return acc;
-        }, {}),
+        ...HEADING_COMPONENTS,
         figure: MarkdownCodeBlock,
         img: (props) => (
           <MarkdownImage

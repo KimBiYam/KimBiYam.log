@@ -11,7 +11,10 @@ interface HeadingScrollPosition {
 
 const THROTTLE_TIME_MS = 100;
 const CHECK_SCROLL_HEIGHT_INTERVAL_MS = 250;
-// Fixed header (~76px) + scroll-margin-top of the headings (6rem).
+// Active-heading threshold: the headings' scroll-margin-top (prose
+// scrollMarginTop: 6rem = 96px in tailwind.config.js, where scrollIntoView
+// parks them) plus slack. Keep it above that value, or a heading navigated to
+// would not count as active.
 const SCROLL_MARGIN_PX = 120;
 
 const getHeadingsScrollPosition = (targetElement: HTMLElement) => {

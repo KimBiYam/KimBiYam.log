@@ -6,19 +6,14 @@ import { ImageResponse } from 'next/og';
 import { POST_DIRECTORY } from '@src/features/post/constants/directories';
 import { getAllPostPaths, getPostDetail } from '@src/features/post/server';
 import type { PostPath } from '@src/features/post/types';
+import { COLORS, GLOW_CHANNELS } from '@src/shared/constants/colors';
 
 export const dynamicParams = false;
 
 export const generateStaticParams = async () => getAllPostPaths();
 
-// Colors mirror the dark tokens in src/shared/styles/global.css.
-const COLORS = {
-  background: '#070711',
-  foreground: '#f1f1f8',
-  muted: '#a5a6bc',
-  violet: '#a78bfa',
-  cyan: '#5eead4',
-};
+// The OG image always uses the dark tokens.
+const THEME = COLORS.dark;
 
 // The default OG font has no Hangul glyphs, so load Pretendard explicitly.
 const loadFont = (weight: 'Medium' | 'Bold') =>
@@ -44,12 +39,12 @@ export const GET = async (
     (
       <div
         style={{
-          background: COLORS.background,
+          background: THEME.background,
           backgroundImage: [
-            'radial-gradient(circle at 12% 0%, rgba(139, 92, 246, 0.45), rgba(7, 7, 17, 0) 55%)',
-            'radial-gradient(circle at 100% 100%, rgba(34, 211, 238, 0.28), rgba(7, 7, 17, 0) 50%)',
+            `radial-gradient(circle at 12% 0%, rgba(${GLOW_CHANNELS.violet}, 0.45), rgba(7, 7, 17, 0) 55%)`,
+            `radial-gradient(circle at 100% 100%, rgba(${GLOW_CHANNELS.cyan}, 0.28), rgba(7, 7, 17, 0) 50%)`,
           ].join(', '),
-          color: COLORS.foreground,
+          color: THEME.foreground,
           display: 'flex',
           flexDirection: 'column',
           fontFamily: 'Pretendard',
@@ -64,7 +59,7 @@ export const GET = async (
             alignSelf: 'flex-start',
             border: '1px solid rgba(255, 255, 255, 0.16)',
             borderRadius: 999,
-            color: COLORS.violet,
+            color: THEME.accentViolet,
             display: 'flex',
             fontSize: 28,
             fontWeight: 500,
@@ -97,7 +92,7 @@ export const GET = async (
           }}
         >
           <span>KimBiYam</span>
-          <span style={{ color: COLORS.cyan }}>.log</span>
+          <span style={{ color: THEME.accentCyan }}>.log</span>
         </div>
       </div>
     ),

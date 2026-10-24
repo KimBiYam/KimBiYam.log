@@ -1,16 +1,30 @@
 'use client';
 
 import { useEffect } from 'react';
-
 import * as Sentry from '@sentry/nextjs';
 
-// global-error replaces the root layout, so global.css and Tailwind are not
-// available here: styles are inline and mirror the dark tokens.
+import { COLORS } from '@src/shared/constants/colors';
+
+import type { CSSProperties } from 'react';
+
+interface GlobalErrorProps {
+  error: Error & { digest?: string };
+}
+
+// global-error replaces the root layout, so global.css, Tailwind and the theme
+// provider are not available here. Colors are CSS variables defined in an
+// inline <style> from the shared tokens: dark by default, light for users who
+// prefer it.
+const toVariables = (palette: (typeof COLORS)[keyof typeof COLORS]) =>
+  `--ge-bg:${palette.background};--ge-fg:${palette.foreground};--ge-muted:${palette.muted};--ge-accent:${palette.accentViolet};`;
+
+const THEME_CSS = `:root{${toVariables(COLORS.dark)}color-scheme:dark}@media (prefers-color-scheme:light){:root{${toVariables(COLORS.light)}color-scheme:light}}`;
+
 const styles = {
   body: {
     alignItems: 'center',
-    background: '#070711',
-    color: '#f1f1f8',
+    background: 'var(--ge-bg)',
+    color: 'var(--ge-fg)',
     display: 'flex',
     flexDirection: 'column',
     fontFamily:
@@ -23,7 +37,7 @@ const styles = {
     textAlign: 'center',
   },
   label: {
-    color: '#a5a6bc',
+    color: 'var(--ge-muted)',
     fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
     fontSize: 12,
     letterSpacing: '0.04em',
@@ -37,10 +51,10 @@ const styles = {
   },
   link: {
     alignItems: 'center',
-    background: 'rgba(167, 139, 250, 0.15)',
-    border: '1px solid rgba(167, 139, 250, 0.5)',
+    background: 'color-mix(in srgb, var(--ge-accent) 15%, transparent)',
+    border: '1px solid color-mix(in srgb, var(--ge-accent) 50%, transparent)',
     borderRadius: 12,
-    color: '#f1f1f8',
+    color: 'var(--ge-fg)',
     display: 'flex',
     fontSize: 14,
     fontWeight: 500,
@@ -48,23 +62,29 @@ const styles = {
     padding: '0 20px',
     textDecoration: 'none',
   },
-};
+} satisfies Record<string, CSSProperties>;
 
-export default function GlobalError({ error }) {
+const GlobalError = ({ error }: GlobalErrorProps) => {
   useEffect(() => {
     Sentry.captureException(error);
   }, [error]);
 
   return (
     <html lang="ko">
+      <head>
+        <style>{THEME_CSS}</style>
+      </head>
       <body style={styles.body}>
         <p style={styles.label}>ERROR</p>
         <p style={styles.message}>알 수 없는 오류가 발생하였습니다.</p>
         {/* A full page load: the app state is unusable after a global error. */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/" style={styles.link}>
           홈으로
         </a>
       </body>
     </html>
   );
-}
+};
+
+export default GlobalError;

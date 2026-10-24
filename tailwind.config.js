@@ -1,16 +1,25 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const typographyPlugin = require('@tailwindcss/typography');
-const colors = require('tailwindcss/colors');
+const tailwindColors = require('tailwindcss/colors');
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 const breakPoints = require('./src/shared/styles/breakPoints.json');
 
-delete colors.lightBlue;
-delete colors.warmGray;
-delete colors.trueGray;
-delete colors.coolGray;
-delete colors.blueGray;
+// Deprecated aliases are left out of the palette (copied, not deleted from the
+// shared module).
+const DEPRECATED_COLORS = [
+  'lightBlue',
+  'warmGray',
+  'trueGray',
+  'coolGray',
+  'blueGray',
+];
+const colors = Object.fromEntries(
+  Object.keys(tailwindColors)
+    .filter((name) => !DEPRECATED_COLORS.includes(name))
+    .map((name) => [name, tailwindColors[name]]),
+);
 
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
@@ -24,7 +33,17 @@ module.exports = {
       center: true,
     },
     extend: {
-      screens: breakPoints,
+      // `sm-up` is a plain min-width screen: `sm` is a 480-767px range.
+      screens: { ...breakPoints, 'sm-up': '480px' },
+      maxWidth: {
+        page: '1040px',
+      },
+      borderRadius: {
+        panel: '18px',
+        card: '20px',
+        featured: '25px',
+        'featured-frame': '26px',
+      },
       colors: {
         background: 'rgb(var(--color-background) / <alpha-value>)',
         foreground: 'rgb(var(--color-foreground) / <alpha-value>)',
@@ -52,15 +71,9 @@ module.exports = {
             opacity: 1,
           },
         },
-        'fade-out': {
-          '0%': {
-            opacity: 1,
-          },
-          '100%': {
-            opacity: 0,
-          },
-        },
       },
+      // `ease-out` and `duration-150/200/300` are intentionally overridden by
+      // the CSS variables in global.css so motion timing has one source.
       transitionTimingFunction: {
         out: 'var(--ease-out)',
       },
@@ -70,10 +83,10 @@ module.exports = {
         300: 'var(--duration-slow)',
       },
       transitionProperty: {
-        backgroundColor: 'background-color',
+        'background-color': 'background-color',
         color: 'color',
       },
-      typography: () => ({
+      typography: {
         DEFAULT: {
           css: {
             '--tw-prose-body': 'rgb(var(--color-prose-body))',
@@ -161,10 +174,9 @@ module.exports = {
             },
           },
         },
-      }),
+      },
       animation: {
         'fade-in': 'fade-in var(--duration-base) var(--ease-out)',
-        'fade-out': 'fade-out var(--duration-base) var(--ease-out)',
       },
     },
   },

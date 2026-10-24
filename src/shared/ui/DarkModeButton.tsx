@@ -6,10 +6,9 @@ import * as m from 'motion/react-m';
 import MoonIcon from '@src/shared/assets/svgs/moon.svg';
 import SunIcon from '@src/shared/assets/svgs/sun.svg';
 import useMounted from '@src/shared/hooks/useMounted';
-
-import { Theme } from '../constants';
-import useTheme from '../hooks/useTheme';
-import { DURATION, EASE_OUT } from '../styles/motions';
+import { Theme } from '@src/shared/constants';
+import useTheme from '@src/shared/hooks/useTheme';
+import { DURATION, EASE_OUT } from '@src/shared/styles/motions';
 
 const variants: Variants = {
   initial: {
