@@ -4,6 +4,7 @@ import { PostDetail } from '@src/features/post/client';
 
 import { getPostMetaDescription } from './postDescription';
 import { getMarkdownData } from './markdown';
+import { getReadingTimeMinutes } from './readingTime';
 
 export const getPostDetail = async (
   directory: string,
@@ -31,6 +32,7 @@ export const getPostDetail = async (
       tag,
       contentHtml,
       description,
+      readingTimeMinutes: getReadingTimeMinutes(content),
       ...rest,
     };
   } catch (e) {

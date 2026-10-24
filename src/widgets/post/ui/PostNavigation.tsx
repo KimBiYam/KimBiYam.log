@@ -13,26 +13,26 @@ const PostNavigation = ({ newerPost, olderPost }: PostNavigationProps) => {
   return (
     <nav
       aria-label="게시글 이동"
-      className="flex flex-col gap-6 pt-6 mt-10 border-t sm:flex-row"
+      className="flex flex-col gap-4 mt-10 [@media(min-width:480px)]:flex-row"
     >
       {olderPost && (
         <Link
-          className="min-w-0 group sm:w-1/2"
+          className="group flex flex-col min-w-0 p-5 border rounded-2xl border-line bg-glass transition-colors duration-300 hover:border-accent-violet/40 hover:bg-accent-violet/5 focus-ring [@media(min-width:480px)]:w-1/2"
           href={`/posts/${olderPost.id}`}
         >
-          <span className="block text-xs text-zinc-400">← 이전 글</span>
-          <span className="block mt-2 font-semibold line-clamp-2 group-hover:underline">
+          <span className="block font-mono text-xs text-muted">← 이전 글</span>
+          <span className="block mt-2 font-semibold break-keep line-clamp-2 group-hover:underline">
             {olderPost.title}
           </span>
         </Link>
       )}
       {newerPost && (
         <Link
-          className="min-w-0 text-right group sm:w-1/2 sm:ml-auto"
+          className="group flex flex-col min-w-0 p-5 border rounded-2xl border-line bg-glass transition-colors duration-300 hover:border-accent-violet/40 hover:bg-accent-violet/5 focus-ring [@media(min-width:480px)]:w-1/2 text-right [@media(min-width:480px)]:ml-auto"
           href={`/posts/${newerPost.id}`}
         >
-          <span className="block text-xs text-zinc-400">다음 글 →</span>
-          <span className="block mt-2 font-semibold line-clamp-2 group-hover:underline">
+          <span className="block font-mono text-xs text-muted">다음 글 →</span>
+          <span className="block mt-2 font-semibold break-keep line-clamp-2 group-hover:underline">
             {newerPost.title}
           </span>
         </Link>

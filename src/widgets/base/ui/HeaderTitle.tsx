@@ -4,17 +4,18 @@ import { useAtomValue } from 'jotai';
 import * as m from 'motion/react-m';
 
 import { headerTitleAtom } from '@src/features/post/client';
+import { DURATION, EASE_OUT } from '@src/shared';
 
 export default function HeaderTitle() {
   const { isShowTitle, title } = useAtomValue(headerTitleAtom);
 
   return (
-    <div className="flex-1 pl-4">
+    <div className="flex-1 min-w-0">
       {title && (
         <m.div
           initial="hidden"
           animate={isShowTitle ? 'show' : 'hidden'}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: DURATION.slow, ease: EASE_OUT }}
           variants={{
             show: {
               display: 'block',

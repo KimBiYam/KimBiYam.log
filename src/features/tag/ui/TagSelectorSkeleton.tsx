@@ -1,8 +1,8 @@
 export default function TagSelectorSkeleton() {
   return (
     <div className="animate-pulse">
-      <div className="flex pt-4 overflow-auto md:mx-0 scrollbar-hide main-container">
-        {Array.from({ length: 8 }).map((_, index) => (
+      <div className="flex gap-2 pt-2 pb-8 overflow-auto md:mx-0 scrollbar-hide">
+        {Array.from({ length: 5 }).map((_, index) => (
           <TagButtonSkeleton key={index} />
         ))}
       </div>
@@ -12,6 +12,6 @@ export default function TagSelectorSkeleton() {
 
 function TagButtonSkeleton() {
   return (
-    <div className="flex-1 mx-1 mb-2 rounded-xl bg-slate-300 dark:bg-neutral-500 h-7 sm:h-6" />
+    <div className="w-20 h-[33px] border rounded-full border-line bg-glass" />
   );
 }

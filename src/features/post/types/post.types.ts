@@ -4,6 +4,7 @@ export interface Post {
   updated?: string;
   title: string;
   tag: string;
+  readingTimeMinutes: number;
 }
 
 export interface PostDetail extends Post {

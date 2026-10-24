@@ -7,12 +7,21 @@ interface TagBadgeProps {
 
 const TagBadge = ({ href, tag }: TagBadgeProps) => {
   const content = (
-    <span className="text-xs primary-button font-semibold px-2.5 py-0.5 rounded">
-    {tag.toUpperCase()}
+    <span className="px-3 py-1.5 font-mono text-xs border rounded-full border-accent-cyan/35 bg-accent-cyan/[0.08] text-accent-cyan">
+      {tag}
     </span>
   );
 
-  return href ? <Link href={href}>{content}</Link> : content;
+  return href ? (
+    <Link
+      href={href}
+      className="self-start inline-flex items-center rounded-full min-h-11 -my-2.5 focus-ring"
+    >
+      {content}
+    </Link>
+  ) : (
+    content
+  );
 };
 
 export default TagBadge;

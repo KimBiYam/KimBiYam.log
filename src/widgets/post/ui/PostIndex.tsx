@@ -1,19 +1,18 @@
 'use client';
 
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSetAtom } from 'jotai';
 
 import { postListPageAtom } from '@src/features/post/client';
 import { PostPreview } from '@src/features/post/types';
 import { Tag, TagSelector } from '@src/features/tag';
-import { DragScrollContainer } from '@src/shared/ui';
+import { BackgroundGlow, DragScrollContainer } from '@src/shared/ui';
 
 import PostList from './PostList';
 
 interface PostIndexProps {
   postPreviews: PostPreview[];
-  profile: ReactNode;
   tags: string[];
 }
 
@@ -25,7 +24,7 @@ const getTagFromPathname = (pathname: string, tags: string[]) => {
   return tags.includes(tag) ? tag : Tag.all;
 };
 
-const PostIndex = ({ postPreviews, profile, tags }: PostIndexProps) => {
+const PostIndex = ({ postPreviews, tags }: PostIndexProps) => {
   const pathname = usePathname();
   const router = useRouter();
   const setPostPages = useSetAtom(postListPageAtom);
@@ -55,8 +54,8 @@ const PostIndex = ({ postPreviews, profile, tags }: PostIndexProps) => {
       : postPreviews.filter(({ tag }) => tag === selectedTag);
 
   return (
-    <div className="pb-12">
-      <div className="my-2">{profile}</div>
+    <div data-layout="wide" className="pb-20">
+      <BackgroundGlow />
       <DragScrollContainer>
         <TagSelector
           onTagSelect={handleTagSelect}

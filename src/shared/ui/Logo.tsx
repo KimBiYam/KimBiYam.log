@@ -1,11 +1,11 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
-import favicon from '@src/app/icon.png';
-
 const Logo = () => (
-  <Link href="/" passHref className="w-6 h-6">
-    <Image priority src={favicon} alt="logo" width={24} height={24} />
+  <Link
+    href="/"
+    className="shrink-0 text-[17px] font-extrabold tracking-[-0.02em] rounded-md focus-ring"
+  >
+    KimBiYam<span className="text-gradient-accent">.log</span>
   </Link>
 );
 

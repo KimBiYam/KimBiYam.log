@@ -1,126 +1,110 @@
-/**
- * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML
- * Based on https://github.com/chriskempson/tomorrow-theme
- * @author Rose Pritchard
+/*
+ * Code blocks rendered by rehype-pretty-code (Shiki). Token colors are CSS
+ * variables (--shiki-light / --shiki-dark) emitted per span at build time, so
+ * the theme switch needs no JS. Colors come from the design tokens in global.css.
  */
+:root {
+  --code-surface: rgba(17, 17, 40, 0.035);
+  --code-foreground: #2a2a40;
+  --code-line-number: #686b82;
+  --code-highlight: rgb(var(--color-accent-violet) / 0.09);
+}
 
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #ccc;
-  background: none;
-  font-family: var(--font-fira-code), "Consolas", "Monaco", "Andale Mono", "Ubuntu Mono",
-    monospace !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: auto;
-  font-weight: 500 !important;
-  font-size: 0.95em;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
+.dark {
+  --code-surface: rgba(255, 255, 255, 0.035);
+  --code-foreground: #d8d9e6;
+  --code-line-number: #8a8ca1;
+  --code-highlight: rgb(var(--color-accent-violet) / 0.14);
+}
+
+.prose figure[data-rehype-pretty-code-figure] {
+  margin: 1.75em 0;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
+  background: var(--code-surface);
+}
+
+[data-rehype-pretty-code-figure] [data-code-header] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 44px;
+  padding: 0 4px 0 16px;
+  border-bottom: 1px solid var(--color-line);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1;
+  color: rgb(var(--color-muted));
+}
+
+[data-rehype-pretty-code-figure] [data-code-title] {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.prose [data-rehype-pretty-code-figure] pre {
+  margin: 0;
+  padding: 16px 0;
+  overflow-x: auto;
+  border-radius: 0;
+  background: transparent;
+  color: var(--code-foreground);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.75;
   word-break: normal;
-  word-wrap: normal;
-  text-shadow: 0 0 0.2px;
-  line-height: 1.5;
-
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
+  tab-size: 2;
 }
 
-/* Code blocks */
-pre[class*="language-"] {
-  padding: 1em;
-  margin: 0.5em 0;
-  overflow: auto;
+.prose [data-rehype-pretty-code-figure] pre code {
+  display: grid;
+  min-width: max-content;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  white-space: pre;
+  word-break: normal;
+  counter-reset: line;
 }
 
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-  background: #2d2d2d;
+[data-rehype-pretty-code-figure] code span {
+  color: var(--shiki-light);
 }
 
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  padding: 0.1em;
-  border-radius: 0.3em;
-  white-space: normal;
+.dark [data-rehype-pretty-code-figure] code span {
+  color: var(--shiki-dark);
 }
 
-.token.comment,
-.token.block-comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: #999;
+[data-rehype-pretty-code-figure] [data-line] {
+  padding: 0 20px;
+  border-left: 2px solid transparent;
 }
 
-.token.punctuation {
-  color: #ccc;
+[data-rehype-pretty-code-figure] [data-highlighted-line] {
+  border-left-color: rgb(var(--color-accent-violet));
+  background: var(--code-highlight);
 }
 
-.token.tag,
-.token.attr-name,
-.token.namespace,
-.token.deleted {
-  color: #e2777a;
+[data-rehype-pretty-code-figure] [data-highlighted-chars] {
+  padding: 1px 3px;
+  border-radius: 4px;
+  background: rgb(var(--color-accent-violet) / 0.22);
 }
 
-.token.function-name {
-  color: #6196cc;
-}
-
-.token.boolean,
-.token.number,
-.token.function {
-  color: #f08d49;
-}
-
-.token.property,
-.token.class-name,
-.token.constant,
-.token.symbol {
-  color: #f8c555;
-}
-
-.token.selector,
-.token.important,
-.token.atrule,
-.token.keyword,
-.token.builtin {
-  color: #cc99cd;
-}
-
-.token.string,
-.token.char,
-.token.attr-value,
-.token.regex,
-.token.variable {
-  color: #7ec699;
-}
-
-.token.operator,
-.token.entity,
-.token.url {
-  color: #67cdcc;
-}
-
-.token.important,
-.token.bold {
-  font-weight: bold;
-}
-.token.italic {
-  font-style: italic;
-}
-
-.token.entity {
-  cursor: help;
-}
-
-.token.inserted {
-  color: green;
+[data-rehype-pretty-code-figure] code[data-line-numbers] [data-line]::before {
+  content: counter(line);
+  counter-increment: line;
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 1.25rem;
+  text-align: right;
+  color: var(--code-line-number);
 }

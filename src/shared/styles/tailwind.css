@@ -4,23 +4,102 @@
 
 @layer utilities {
   .main-container {
-    @apply duration-300 bg-white transition-backgroundColor dark:bg-neutral-900;
+    @apply duration-300 ease-out bg-background transition-backgroundColor;
   }
 
   .main-font-color {
-    @apply text-black dark:text-neutral-100;
+    @apply text-foreground;
   }
 
   .primary-text-hover {
-    @apply duration-300 transition-color hover:text-slate-300 dark:hover:text-neutral-500;
+    @apply duration-300 transition-color hover:text-muted;
   }
 
   .primary-button {
-    @apply bg-slate-200 main-font-color dark:bg-neutral-700;
+    @apply border bg-glass main-font-color border-line;
   }
 
   .primary-button-hover {
-    @apply duration-300 transition-backgroundColor [&:hover]:bg-slate-300 dark:[&:hover]:bg-neutral-500;
+    @apply duration-300 transition-backgroundColor [&:hover]:bg-accent-violet/15;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .glass-panel {
+    background-color: rgb(var(--color-surface) / 0.94);
+  }
+
+  @supports (
+    (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+  ) {
+    .glass-panel {
+      background-color: rgb(var(--color-surface) / var(--glass-alpha, 0.6));
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      backdrop-filter: blur(16px) saturate(140%);
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .glass-panel {
+      background-color: rgb(var(--color-surface));
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+
+  .text-gradient-accent {
+    background-image: linear-gradient(
+      90deg,
+      rgb(var(--color-accent-violet)),
+      rgb(var(--color-accent-cyan))
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .featured-card-border {
+    background-image: var(--featured-border);
+  }
+
+  .featured-card-surface {
+    background: radial-gradient(
+        560px circle at 18% 0%,
+        var(--featured-spotlight),
+        transparent 62%
+      ),
+      rgb(var(--color-surface));
+  }
+
+  /* Pointer-follow spotlight; --mx/--my are set by usePointerSpotlight. Fine
+     pointers only, so touch devices and reduced-motion users never see it. */
+  .pointer-spotlight {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .pointer-spotlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+      360px circle at var(--mx, 50%) var(--my, 50%),
+      var(--card-spotlight),
+      transparent 70%
+    );
+    transition: opacity var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .pointer-spotlight:hover::before {
+      opacity: 1;
+    }
   }
 
   .scrollbar-hide {
@@ -38,22 +117,14 @@
   }
 
   .scrollbar-thin::-webkit-scrollbar-track {
-    @apply bg-neutral-200 dark:bg-neutral-400;
+    @apply bg-line;
   }
 
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    @apply bg-neutral-400 dark:bg-neutral-600;
-  }
-
-  .text-shadow {
-    text-shadow: 2px 2px 8px rgba(128, 128, 128, 0.5);
-  }
-
-  .text-shadow-dark {
-    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.4);
+    @apply bg-muted;
   }
 
   .btn-hover {
-    @apply hover:bg-slate-300 dark:hover:bg-neutral-500;
+    @apply hover:bg-accent-violet/15;
   }
 }

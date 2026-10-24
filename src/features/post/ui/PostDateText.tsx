@@ -4,10 +4,7 @@ interface PostDateTextProps {
 }
 
 const PostDateText = ({ dateTime, children }: PostDateTextProps) => (
-  <time
-    dateTime={dateTime}
-    className="text-sm text-zinc-400 dark:text-zinc-500"
-  >
+  <time dateTime={dateTime} className="font-mono text-xs text-muted">
     {children}
   </time>
 );

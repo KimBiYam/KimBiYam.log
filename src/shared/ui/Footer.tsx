@@ -1,14 +1,24 @@
+import { PROFILE } from '@src/shared/constants/profile';
+
+const footerLinkClassName =
+  'rounded-sm transition-colors duration-300 hover:text-foreground focus-ring';
+
 const Footer = () => (
-  <footer className="flex justify-center pb-3 text-sm main-container">
-    <p>
-      <span>© 2021</span>
-      <a
-        href="https://github.com/KimBiYam"
-        className="ml-1 font-bold underline"
-      >
-        KimBiYam
-      </a>
-    </p>
+  <footer className="border-t border-line">
+    <div className="flex items-center justify-between max-w-[1040px] gap-4 px-6 py-7 mx-auto text-[13px] text-muted">
+      {/* The year is rendered at build time, so tolerate a client mismatch. */}
+      <p suppressHydrationWarning>
+        © 2021–{new Date().getFullYear()} KimBiYam
+      </p>
+      <div className="flex gap-5">
+        <a href={PROFILE.social.github} className={footerLinkClassName}>
+          GitHub
+        </a>
+        <a href="/feed.xml" className={footerLinkClassName}>
+          RSS
+        </a>
+      </div>
+    </div>
   </footer>
 );
 

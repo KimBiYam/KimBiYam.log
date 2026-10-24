@@ -7,5 +7,4 @@ My dev log!
 - Framer Motion
 - gray-matter
 - remark
-- utterances
 - jotai

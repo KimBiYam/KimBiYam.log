@@ -19,21 +19,21 @@ const TagSelector = forwardRef<HTMLDivElement, TagSelectorProps>(
     });
 
     return (
-      <div className="sticky z-40 top-14">
-        <div
-          className="flex pt-4 -mx-6 overflow-auto md:mx-0 scrollbar-hide main-container"
-          ref={ref}
-        >
-          {tags.map((tag) => (
-            <TagButton
-              key={tag}
-              tag={tag}
-              isSelected={tag === selectedTag}
-              onTagSelect={onTagSelect}
-              registerChildRef={registerChildRef}
-            />
-          ))}
-        </div>
+      <div
+        aria-label="태그 필터"
+        className="flex gap-2 px-6 pt-2 pb-8 -mx-6 overflow-auto md:mx-0 md:px-0 scrollbar-hide"
+        ref={ref}
+        role="group"
+      >
+        {tags.map((tag) => (
+          <TagButton
+            key={tag}
+            tag={tag}
+            isSelected={tag === selectedTag}
+            onTagSelect={onTagSelect}
+            registerChildRef={registerChildRef}
+          />
+        ))}
       </div>
     );
   },

@@ -9,6 +9,7 @@ import { POST_DIRECTORY } from '@src/features/post/constants/directories';
 import { PostPath, PostPreview } from '@src/features/post/types/post.types';
 
 import { getPostPreviewDescription } from './postDescription';
+import { getReadingTimeMinutes } from './readingTime';
 
 export const getAllPostPaths = async (): Promise<PostPath[]> => {
   const MARKDOWN_FILE_EXTENSION_REG_EXP = RegExp(/\.md$/);
@@ -88,6 +89,7 @@ const getPostPreview = async (fileName: string): Promise<PostPreview> => {
     updated,
     title,
     tag,
+    readingTimeMinutes: getReadingTimeMinutes(content),
     content: getPostPreviewDescription(content),
   };
 };
