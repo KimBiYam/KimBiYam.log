@@ -7,13 +7,14 @@ export const DURATION = {
   fast: 0.15,
   base: 0.2,
   slow: 0.3,
+  enter: 0.6,
 } as const;
 
 export const viewportOpacityMotion = {
-  initial: { opacity: 0 },
-  whileInView: { opacity: [0, 1] },
-  viewport: { once: true },
-  transition: { duration: DURATION.base, ease: EASE_OUT },
+  initial: { opacity: 0, y: 12 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.2 },
+  transition: { duration: DURATION.enter, ease: EASE_OUT },
 } satisfies MotionProps;
 
 export const hoverRotateMotion = {
