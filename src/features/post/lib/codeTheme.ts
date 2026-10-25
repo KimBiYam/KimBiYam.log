@@ -1,5 +1,7 @@
 import 'server-only';
 
+import { COLORS } from '@src/shared/constants/colors';
+
 import type { ThemeRegistrationRaw } from 'shiki';
 
 interface CodePalette {
@@ -122,11 +124,12 @@ const createTheme = (
   ],
 });
 
+// Shared colors come from the design tokens in @src/shared/constants/colors.
 // Colors are checked for >= 4.5:1 against the code block surface and the
 // highlighted-line background in each theme.
 export const CODE_THEMES = {
   light: createTheme('blog-light', 'light', {
-    foreground: '#2A2A40',
+    foreground: COLORS.light.proseBody,
     comment: '#5A5D76',
     keyword: '#5B21B6',
     func: '#0B6B63',
@@ -142,14 +145,14 @@ export const CODE_THEMES = {
   dark: createTheme('blog-dark', 'dark', {
     foreground: '#D8D9E6',
     comment: '#8B8DA3',
-    keyword: '#A78BFA',
-    func: '#5EEAD4',
+    keyword: COLORS.dark.accentViolet,
+    func: COLORS.dark.accentCyan,
     type: '#7DD3FC',
     string: '#FBBF77',
     constant: '#FDA4AF',
     property: '#93C5FD',
     parameter: '#FFC799',
-    punctuation: '#A5A6BC',
+    punctuation: COLORS.dark.muted,
     inserted: '#86EFAC',
     deleted: '#FCA5A5',
   }),

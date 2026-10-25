@@ -115,7 +115,7 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
 
 ### **Framer Motion (`motion/react`)**
 
-- **Import:** `import { m, LazyMotion, domAnimation } from 'motion/react';`
+- **Import:** `import { LazyMotion, domAnimation } from 'motion/react';`. Import `m` as `import * as m from 'motion/react-m';` — `import { m } from 'motion/react'` pulls in the full `motion` component and adds ~32 KB gzipped to the client bundle.
 - **Performance:** Always use `LazyMotion` with `domAnimation` to reduce bundle size.
 - **Global Provider:** Prefer a single global `LazyMotion` provider (in layout) over multiple nested providers.
 - **Pattern:**

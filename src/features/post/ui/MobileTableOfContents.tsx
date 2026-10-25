@@ -27,7 +27,7 @@ const MobileTableOfContents = () => {
     <details
       ref={detailsRef}
       onToggle={(event) => setIsOpen(event.currentTarget.open)}
-      className="mb-8 border rounded-2xl border-line bg-glass xl:hidden group"
+      className="mb-8 card-surface xl:hidden group"
     >
       <summary className="flex items-center justify-between px-5 font-mono text-xs cursor-pointer min-h-[52px] tracking-[0.04em] text-muted rounded-2xl focus-ring list-none [&::-webkit-details-marker]:hidden">
         ON THIS PAGE

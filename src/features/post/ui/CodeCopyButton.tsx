@@ -79,7 +79,6 @@ const CodeCopyButton = () => {
       <button
         ref={buttonRef}
         type="button"
-        aria-label="코드 복사"
         onClick={handleClick}
         className="flex items-center justify-center px-3 font-mono text-xs transition-colors duration-300 rounded-lg cursor-pointer min-h-11 min-w-11 text-muted hover:bg-accent-violet/15 hover:text-foreground focus-ring"
       >
