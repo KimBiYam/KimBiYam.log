@@ -54,7 +54,7 @@
     "@next/eslint-plugin-next": "16.4.1",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/typography": "^0.5.13",
-    "@types/node": "20.10.0",
+    "@types/node": "24.19.2",
     "@types/react": "19.2.6",
     "@types/react-dom": "19.2.3",
     "@types/react-responsive": "^8.0.8",
