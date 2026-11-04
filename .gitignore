@@ -47,3 +47,6 @@ public/robots.txt
 .vscode
 # Sentry Config File
 .env.sentry-build-plugin
+
+# visual compare output
+/.visual/
