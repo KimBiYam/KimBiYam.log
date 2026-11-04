@@ -32,6 +32,10 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    # 빌드 단계와 서버 모두에 적용되어 운영 Sentry/GA 로 데이터를 보내지 않는다.
+    env:
+      NEXT_PUBLIC_SENTRY_DISABLED: 'true'
+      NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID: ''
 
     steps:
       - uses: actions/checkout@v4

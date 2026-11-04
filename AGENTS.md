@@ -13,7 +13,7 @@ This document outlines the development standards and operational procedures for 
   - Note: This runs the Next.js production build and type checking.
   - Next.js 16 no longer runs linting during `next build`; run `pnpm lint` separately.
 - **Linting:** `pnpm lint`
-  - Runs ESLint on `src/` directory.
+  - Runs ESLint on `src/`, `e2e/`, `playwright.config.ts` and `vitest.config.mts`.
   - Fix all warnings before committing.
 - **Analyze Bundle:** `pnpm build:analyze`
 
@@ -31,6 +31,7 @@ This document outlines the development standards and operational procedures for 
   - Test imports must respect the ESLint layer boundaries (use `@src` absolute imports).
   - E2E runs against the real contents and discovers posts at runtime (e.g. via `sitemap.xml`). Never hardcode post titles, slugs, or tags.
   - E2E waits on conditions (hydration, assertions), never `waitForTimeout`.
+  - Automated runs must not report to production services. The Playwright `webServer` and the CI e2e job set `NEXT_PUBLIC_SENTRY_DISABLED=true` (read by the three Sentry `init` calls) and an empty `NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID`; `e2e/smoke.spec.ts` fails if the page sends Sentry requests. Keep these when changing the build or e2e setup.
 - **Before finishing:** run `pnpm lint` plus the relevant test commands (`pnpm test` for logic changes, `pnpm test:e2e` for UI/routing changes).
 - **CI:** `.github/workflows/test.yaml` runs `pnpm test:coverage` and `pnpm test:e2e` on pull requests to `main`.
 

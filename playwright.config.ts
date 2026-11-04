@@ -22,6 +22,11 @@ export default defineConfig({
     // CI 는 별도 단계에서 빌드한다.
     command: process.env.CI ? 'pnpm start' : 'pnpm build && pnpm start',
     stdout: 'pipe',
+    // 자동화 실행이 운영 Sentry/GA 로 데이터를 보내지 않도록 빌드와 서버 양쪽에 적용한다.
+    env: {
+      NEXT_PUBLIC_SENTRY_DISABLED: 'true',
+      NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID: '',
+    },
     url: BASE_URL,
     reuseExistingServer: !process.env.CI,
     timeout: 300_000,
