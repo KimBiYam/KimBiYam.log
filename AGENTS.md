@@ -13,7 +13,7 @@ This document outlines the development standards and operational procedures for 
   - Note: This runs the Next.js production build and type checking.
   - Next.js 16 no longer runs linting during `next build`; run `pnpm lint` separately.
 - **Linting:** `pnpm lint`
-  - Runs ESLint on `src/`, `e2e/`, `playwright.config.ts` and `vitest.config.mts`.
+  - Runs ESLint on `src/` and `e2e/`.
   - Fix all warnings before committing.
 - **Analyze Bundle:** `pnpm build:analyze`
 

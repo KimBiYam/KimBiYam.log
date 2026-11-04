@@ -16,7 +16,7 @@ export default defineConfig(
     ignores: ['.next/', 'node_modules/', '/build/'],
   },
   {
-    files: ['**/*.{ts,tsx,mts}'],
+    files: ['**/*.{ts,tsx}'],
     extends: [
       importPlugin.flatConfigs.recommended,
       importPlugin.flatConfigs.typescript,
