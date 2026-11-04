@@ -4,6 +4,7 @@ import { buildSummary } from './lib.ts';
 import {
   buildPublishPlan,
   extractImagePaths,
+  isNothingToPublish,
   parseGitHubRemote,
   rawUrl,
   renderMarkdown,
@@ -144,5 +145,27 @@ describe('rawUrl / rewriteImageLinks / buildPublishPlan', () => {
     });
     expect(plan.markdown).not.toMatch(/<img src="(before|after|diff)\//);
     expect(plan.markdown).toContain('raw.githubusercontent.com');
+  });
+});
+
+describe('isNothingToPublish', () => {
+  it('이미지를 참조하지 않는 마크다운은 퍼블리시할 것이 없다', () => {
+    expect(isNothingToPublish('# visual compare\n\nno diffs\n')).toBe(true);
+    expect(
+      isNothingToPublish('<img src="https://x/y.png"> `before/b.png`'),
+    ).toBe(true);
+  });
+
+  it('상대 이미지가 하나라도 있으면 퍼블리시 대상이다', () => {
+    expect(isNothingToPublish('<img src="diff/a.png" width="240">')).toBe(
+      false,
+    );
+  });
+
+  it('변화 없는 실행의 렌더 결과는 퍼블리시할 것이 없다', () => {
+    const md = renderMarkdown(
+      buildSummary(meta, [entry('/', 0)], [], tolerances),
+    );
+    expect(isNothingToPublish(md)).toBe(true);
   });
 });
