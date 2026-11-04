@@ -324,6 +324,27 @@ describe('judgeEntry', () => {
     ).toBe('CHANGED');
   });
 
+  it('CLS 증가가 허용치 이내면 기대한 라우트도 CHANGED', () => {
+    expect(
+      judgeEntry(
+        input({ diff: changedDiff, after: layout({ cls: 0.0005 }) }),
+        true,
+        tolerances,
+      ).status,
+    ).toBe('CHANGED');
+  });
+
+  it('기대하지 않은 라우트의 CLS 증가는 픽셀이 같아도 UNEXPECTED_CHANGE', () => {
+    const entry = judgeEntry(
+      input({ after: layout({ cls: 0.046664 }) }),
+      false,
+      tolerances,
+    );
+    expect(entry.status).toBe('UNEXPECTED_CHANGE');
+    expect(entry.clsDelta).toBe(0.046664);
+    expect(entry.reasons).toEqual(['CLS changed by 0.046664']);
+  });
+
   it('CLS 를 못 쟀으면 CLS 로 판정하지 않는다', () => {
     expect(
       judgeEntry(input({ after: layout({ cls: null }) }), false, tolerances)

@@ -41,6 +41,10 @@ const APP_ENV = {
 
 const READY_TIMEOUT_MS = 60_000;
 const SERVER_POLL_MS = 250;
+/** layout-shift 가 이 시간 동안 없으면 레이아웃이 안정된 것으로 본다. */
+const CLS_QUIET_MS = 1000;
+/** 끝없이 시프트하는 페이지에서도 대기가 끝나도록 하는 상한. */
+const CLS_SETTLE_MAX_MS = 8000;
 const THEME_STORAGE_KEY = 'theme';
 
 const log = (message: string) => console.error(`[visual] ${message}`);
@@ -136,7 +140,7 @@ const capture = async (
       ([key, value]) => {
         localStorage.setItem(key, value);
         // 레이아웃 시프트는 문서가 만들어지는 순간부터 모은다.
-        const shifts = { value: 0 };
+        const shifts = { value: 0, lastAt: performance.now() };
         Object.assign(window, { __visualCls: shifts });
         new PerformanceObserver((list) => {
           for (const entry of list.getEntries()) {
@@ -144,7 +148,10 @@ const capture = async (
               value: number;
               hadRecentInput: boolean;
             };
-            if (!shift.hadRecentInput) shifts.value += shift.value;
+            if (!shift.hadRecentInput) {
+              shifts.value += shift.value;
+              shifts.lastAt = performance.now();
+            }
           }
         }).observe({ type: 'layout-shift', buffered: true });
       },
@@ -182,6 +189,30 @@ const capture = async (
         requestAnimationFrame(() => requestAnimationFrame(resolve)),
       );
     });
+
+    // 하이드레이션 뒤에 늦게 일어나는 시프트까지 잡도록, 조용해질 때까지 조건으로 기다린다.
+    await page.evaluate(
+      ([quietMs, maxMs]) =>
+        new Promise<void>((resolve) => {
+          const shifts = (
+            window as unknown as { __visualCls: { lastAt: number } }
+          ).__visualCls;
+          const startedAt = performance.now();
+          const check = () => {
+            const now = performance.now();
+            if (
+              now - Math.max(shifts.lastAt, startedAt) >= quietMs ||
+              now - startedAt >= maxMs
+            ) {
+              resolve();
+            } else {
+              requestAnimationFrame(check);
+            }
+          };
+          check();
+        }),
+      [CLS_QUIET_MS, CLS_SETTLE_MAX_MS],
+    );
 
     const metrics = await page.evaluate(() => {
       const doc = document.documentElement;
