@@ -14,7 +14,7 @@
     "build": "next build --webpack",
     "build:analyze": "ANALYZE=true next build",
     "start": "next start",
-    "lint": "eslint src",
+    "lint": "eslint src e2e playwright.config.ts vitest.config.mts",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test"
