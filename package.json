@@ -14,7 +14,10 @@
     "build": "next build --webpack",
     "build:analyze": "ANALYZE=true next build",
     "start": "next start",
-    "lint": "eslint src"
+    "lint": "eslint src e2e",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@next/third-parties": "16.4.1",
@@ -52,6 +55,7 @@
     "@next/bundle-analyzer": "16.4.1",
     "@next/env": "16.4.1",
     "@next/eslint-plugin-next": "16.4.1",
+    "@playwright/test": "^1.64.1",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/typography": "^0.5.13",
     "@types/node": "24.19.2",
@@ -62,6 +66,7 @@
     "@types/smoothscroll-polyfill": "^0.3.4",
     "@typescript-eslint/eslint-plugin": "^8.46.0",
     "@typescript-eslint/parser": "^8.46.0",
+    "@vitest/coverage-v8": "^5.1.0",
     "autoprefixer": "^10.4.19",
     "babel-plugin-react-compiler": "1.0.0",
     "code-inspector-plugin": "^0.20.12",
@@ -80,7 +85,8 @@
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.3",
     "typescript": "5.7.2",
-    "typescript-eslint": "^8.46.0"
+    "typescript-eslint": "^8.46.0",
+    "vitest": "^5.1.0"
   },
   "packageManager": "pnpm@11.5.1"
 }

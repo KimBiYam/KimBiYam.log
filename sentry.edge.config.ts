@@ -8,6 +8,9 @@ import * as Sentry from '@sentry/nextjs';
 Sentry.init({
   dsn: 'https://51c548caea0de86c38768de5cd950a5e@o4507321481691136.ingest.us.sentry.io/4507321484115968',
 
+  // Automated runs (e2e/CI) set NEXT_PUBLIC_SENTRY_DISABLED=true so they do not report to production Sentry.
+  enabled: process.env.NEXT_PUBLIC_SENTRY_DISABLED !== 'true',
+
   // Adjust this value in production, or use tracesSampler for greater control
   tracesSampleRate: 1,
 
