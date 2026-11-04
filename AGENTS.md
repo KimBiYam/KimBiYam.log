@@ -19,9 +19,20 @@ This document outlines the development standards and operational procedures for 
 
 ### **Testing**
 
-- **Current Status:** No testing framework (Jest/Vitest) is currently configured or enforced.
-- **Policy:** Do not attempt to run tests unless you have explicitly set up a testing environment at the user's request.
-- **Recommendation:** If the user asks to add tests, propose **Vitest** for unit tests and **Playwright** for E2E, as they integrate best with this modern Next.js stack.
+- **Tools:** **Vitest** for unit tests (co-located with the code), **Playwright** for E2E (`e2e/`, desktop and mobile projects).
+- **Commands:**
+  - `pnpm test`: run unit tests.
+  - `pnpm test:coverage`: run unit tests with coverage thresholds.
+  - `pnpm test:e2e`: run E2E tests (builds and starts the app via the Playwright `webServer`).
+- **Policy:**
+  - Logic changes under `src/features/*/lib` and `src/shared/utils` need unit tests. New logic files ship with their tests.
+  - User-visible behavior changes (clicks, toggles, scrolling, links, redirects, metadata endpoints) need an E2E scenario.
+  - Keep the 80% coverage floor on the logic directories and do not lower the global floors; `pnpm test:coverage` must pass.
+  - Test imports must respect the ESLint layer boundaries (use `@src` absolute imports).
+  - E2E runs against the real contents and discovers posts at runtime (e.g. via `sitemap.xml`). Never hardcode post titles, slugs, or tags.
+  - E2E waits on conditions (hydration, assertions), never `waitForTimeout`.
+- **Before finishing:** run `pnpm lint` plus the relevant test commands (`pnpm test` for logic changes, `pnpm test:e2e` for UI/routing changes).
+- **CI:** `.github/workflows/test.yaml` runs `pnpm test:coverage` and `pnpm test:e2e` on pull requests to `main`.
 
 ## 2. Architecture & File Structure
 
@@ -145,7 +156,7 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
 - **Async Operations:**
   - Use `try/catch` in async functions (API calls, Server Actions).
   - handle errors gracefully in UI (Error Boundaries are configured in `src/app/error.tsx`).
-- **Linter:** Run `pnpm lint` before finishing any task to catch issues early.
+- **Linter:** Run `pnpm lint` before finishing any task to catch issues early, together with the relevant test commands (see Testing in Section 1).
 
 ## 8. Agent Operational Protocol
 
@@ -153,7 +164,8 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
 2.  **Read First**: Always read relevant files (`read`) before editing (`edit`).
 3.  **Verify**: Check `package.json` before importing new packages.
 4.  **Atomic Changes**: Focus on the requested task. Do not refactor unrelated code.
-5.  **Commit Message**: Use descriptive messages if asked to commit (e.g., `feat(post): add table of contents`).
+5.  **Verify Before Done**: Run `pnpm lint` and the relevant tests (`pnpm test`, `pnpm test:e2e`) before reporting a task complete.
+6.  **Commit Message**: Use descriptive messages if asked to commit (e.g., `feat(post): add table of contents`).
 
 ## 9. Git & PR Workflow
 
@@ -161,5 +173,6 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
 - Before committing, run:
   - `git diff --check`
   - `pnpm lint`
+  - the relevant test commands (`pnpm test`, `pnpm test:e2e`)
 - If branch creation fails with names like `docs/...` or `fix/...`, inspect existing refs and git state before assuming the branch name itself is invalid.
 - If `git push` or `gh pr create` fails because of GitHub/network resolution, report it as a remote/network failure after confirming the local commit and branch state.
