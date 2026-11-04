@@ -20,7 +20,9 @@
     "test:e2e": "playwright test",
     "perf": "node scripts/perf/cli.ts measure",
     "perf:check": "node scripts/perf/cli.ts check",
-    "perf:update": "node scripts/perf/cli.ts update"
+    "perf:update": "node scripts/perf/cli.ts update",
+    "visual:compare": "node scripts/visual/compare.ts",
+    "visual:publish": "node scripts/visual/publish.ts"
   },
   "dependencies": {
     "@next/third-parties": "16.4.1",
