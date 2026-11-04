@@ -277,3 +277,28 @@ test('이미지를 클릭하면 medium-zoom 으로 확대된다', async ({ page 
   await expect(image).not.toHaveClass(/medium-zoom-image--hidden/);
   await expect(page.locator('.medium-zoom-overlay')).toHaveCount(0);
 });
+
+test('글 하단 프로필 카드의 소셜 링크와 태그 배지 링크가 올바르다', async ({
+  page,
+}) => {
+  await openFirstPostFromList(page);
+
+  await expect(page.getByRole('link', { name: 'github-link' })).toHaveAttribute(
+    'href',
+    /^https:\/\/github\.com\/.+/,
+  );
+  await expect(
+    page.getByRole('link', { name: 'linkedIn-link' }),
+  ).toHaveAttribute('href', /^https:\/\/www\.linkedin\.com\/.+/);
+
+  const badge = page.locator('article header a[href^="/tags/"]');
+  const href = (await badge.getAttribute('href')) ?? '';
+  await badge.click();
+
+  await expect(page).toHaveURL(href);
+  const tagGroup = page.getByRole('group', { name: '태그 필터' });
+  await expect(tagGroup.locator('a[aria-current="page"]')).toHaveAttribute(
+    'href',
+    href,
+  );
+});

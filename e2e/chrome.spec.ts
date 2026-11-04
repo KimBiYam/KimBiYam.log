@@ -182,3 +182,36 @@ test('RSS 링크가 피드 경로를 가리킨다', async ({ page }) => {
   const href = (await rss.getAttribute('href')) ?? '';
   expect(href.endsWith(FEED_PATH)).toBe(true);
 });
+
+test('로고를 클릭하면 홈으로 이동한다', async ({ page }) => {
+  const tagPath = await getFirstTagPath(page);
+  await page.goto(tagPath);
+  await expect(page).toHaveURL(tagPath);
+
+  const logo = page.getByRole('banner').getByRole('link', {
+    name: /KimBiYam/,
+  });
+  await expect(logo).toHaveAttribute('href', '/');
+
+  await logo.click();
+
+  await expect(page).toHaveURL(/\/$/);
+  await expect(getTagButtons(page).first()).toHaveAttribute(
+    'aria-current',
+    'page',
+  );
+});
+
+test('푸터에 GitHub 와 RSS 링크가 있다', async ({ page }) => {
+  await page.goto('/');
+
+  const footer = page.getByRole('contentinfo');
+  await expect(footer.getByRole('link', { name: 'GitHub' })).toHaveAttribute(
+    'href',
+    /^https:\/\/github\.com\/.+/,
+  );
+  const rss = footer.getByRole('link', { name: 'RSS' });
+  expect(((await rss.getAttribute('href')) ?? '').endsWith(FEED_PATH)).toBe(
+    true,
+  );
+});
