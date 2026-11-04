@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-import { getTagButtons } from './support/posts';
+import { getPostUrls, getTagButtons } from './support/posts';
 
 const getLocation = (headers: Record<string, string>) =>
   new URL(headers['location'] ?? '', 'http://localhost');
@@ -92,5 +92,21 @@ test.describe('SEO 엔드포인트', () => {
     const response = await request.get('/sitemap.xml');
 
     expect(await response.text()).toMatch(/<loc>[^<]*\/posts\/[^<]+<\/loc>/);
+  });
+
+  test('글의 opengraph-image 는 비어 있지 않은 PNG 를 반환한다', async ({
+    request,
+  }) => {
+    const [postPath] = await getPostUrls(request);
+    expect(postPath).toBeTruthy();
+
+    const response = await request.get(`${postPath}/opengraph-image`);
+
+    expect(response.status()).toBe(200);
+    expect(response.headers()['content-type']).toMatch(/image\/png/);
+    const body = await response.body();
+    // PNG 시그니처: 0x89 'P' 'N' 'G'
+    expect([...body.subarray(0, 4)]).toEqual([0x89, 0x50, 0x4e, 0x47]);
+    expect(body.length).toBeGreaterThan(1000);
   });
 });
