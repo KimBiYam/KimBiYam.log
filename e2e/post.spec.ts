@@ -96,16 +96,38 @@ test('목차 항목을 클릭하면 해당 헤딩으로 이동한다', async ({ 
   const items = nav.getByRole('button');
   await expect(items.first()).toBeVisible();
 
+  const headings = page.locator(`${POST_CONTENT} :is(h2, h3, h4)`);
+  const isOutsideViewport = (locator: Locator) =>
+    locator.evaluate((element) => {
+      const { top, bottom } = element.getBoundingClientRect();
+      return bottom < 0 || top > window.innerHeight;
+    });
+
+  // 클릭 전에 뷰포트 밖에 있는 헤딩의 목차 항목을 고른다(없으면 실패).
   const count = await items.count();
-  const target = items.nth(count > 1 ? count - 1 : 0);
-  const title = ((await target.textContent()) ?? '').trim();
-  const heading = page
-    .locator(`${POST_CONTENT} :is(h2, h3, h4)`)
-    .filter({ hasText: title })
-    .first();
+  let target: Locator | null = null;
+  let heading: Locator | null = null;
+  for (let index = count - 1; index >= 0; index -= 1) {
+    const item = items.nth(index);
+    const title = ((await item.textContent()) ?? '').trim();
+    const candidate = headings.filter({ hasText: title }).first();
+    if (await isOutsideViewport(candidate)) {
+      target = item;
+      heading = candidate;
+      break;
+    }
+  }
+  if (!target || !heading) {
+    throw new Error('뷰포트 밖에 있는 헤딩의 목차 항목이 없음');
+  }
+
+  const scrollBefore = await page.evaluate(() => window.scrollY);
 
   await target.click();
 
+  await expect
+    .poll(() => page.evaluate(() => window.scrollY))
+    .not.toBe(scrollBefore);
   await expect(heading).toBeInViewport();
   if (isDesktop()) {
     await expect(target).toHaveAttribute('aria-current', 'location');
