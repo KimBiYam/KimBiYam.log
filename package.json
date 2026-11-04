@@ -14,10 +14,13 @@
     "build": "next build --webpack",
     "build:analyze": "ANALYZE=true next build",
     "start": "next start",
-    "lint": "eslint src e2e",
+    "lint": "eslint src e2e scripts",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "perf": "node scripts/perf/cli.ts measure",
+    "perf:check": "node scripts/perf/cli.ts check",
+    "perf:update": "node scripts/perf/cli.ts update"
   },
   "dependencies": {
     "@next/third-parties": "16.4.1",

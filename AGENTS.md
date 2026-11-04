@@ -149,6 +149,16 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
 - **Hooks:** Avoid routine `useMemo` / `useCallback` for render optimization. Use them only when referential stability is required by an external API, dependency array, or measurable performance issue. Rely on `reactCompiler: true` where applicable.
 - **Image Optimization:** Use `next/image` with `priority` for above-the-fold content.
 
+### **Performance loop**
+
+Gated metric: gzip First Load JS per route (`perf-baseline.json`, measured from the built HTML; routes come from `sitemap.xml`). Build time is printed for information only. CLS is not measured (browser-dependent, too noisy to gate).
+
+- `pnpm perf`: build (with Sentry/GA disabled, same as CI) and print metrics as JSON. Add `--reuse` to skip the build and read the existing `.next` (it must have been built with those same env vars).
+- `pnpm perf:check`: compare against `perf-baseline.json`; exits non-zero when a route grows beyond tolerance (1%, min 256 B) and prints a diff table.
+- `pnpm perf:update`: ratchet the baseline down (only improved values; refuses if anything regressed; `--force` needs human approval).
+
+Loop: run `pnpm perf` -> pick the biggest bottleneck -> make one small change (one PR per idea) -> re-measure with `pnpm perf:check` -> keep the change only if the gated metric improved, otherwise discard it -> run `pnpm perf:update` and commit the lowered baseline with the change. Never trade away features or e2e coverage for size. If an optimization alters user-visible behavior (UI, animation, fonts, content), ask the human before proceeding.
+
 ## 7. Error Handling & Linting
 
 - **Strict Mode:** TypeScript `strict: true` is enabled.

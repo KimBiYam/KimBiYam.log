@@ -14,10 +14,10 @@ export default defineConfig({
   },
   test: {
     environment: 'node',
-    include: ['src/**/*.test.ts'],
+    include: ['src/**/*.test.ts', 'scripts/**/*.test.ts'],
     coverage: {
       provider: 'v8',
-      include: ['src/**/*.{ts,tsx}'],
+      include: ['src/**/*.{ts,tsx}', 'scripts/perf/lib.ts'],
       exclude: ['**/*.d.ts', '**/index.ts', '**/*.test.ts', '**/types/**'],
       reporter: ['text', 'html', 'json-summary'],
       thresholds: {
@@ -40,6 +40,13 @@ export default defineConfig({
             functions: 80,
             branches: 80,
           },
+        // perf 하네스의 순수 로직. fs/빌드를 다루는 measure.ts, cli.ts 는 `pnpm perf:check` 가 검증한다.
+        'scripts/perf/lib.ts': {
+          lines: 80,
+          statements: 80,
+          functions: 80,
+          branches: 80,
+        },
       },
     },
   },
