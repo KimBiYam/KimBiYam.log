@@ -19,7 +19,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'pnpm build && pnpm start',
+    // CI 는 별도 단계에서 빌드한다.
+    command: process.env.CI ? 'pnpm start' : 'pnpm build && pnpm start',
+    stdout: 'pipe',
     url: BASE_URL,
     reuseExistingServer: !process.env.CI,
     timeout: 300_000,

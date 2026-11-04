@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
 
+import { waitForHydration } from './support/hydration';
 import { findPostWithFeature } from './support/posts';
+import { getProjectName } from './support/project';
 
 import type { Locator, Page } from '@playwright/test';
 
@@ -12,25 +14,7 @@ interface WindowWithOpenCalls extends Window {
   __openCalls: string[];
 }
 
-const isDesktop = () => test.info().project.name === 'desktop';
-
-/** React 가 요소에 props 를 붙일 때까지(하이드레이션 완료) 기다린다. */
-const waitForHydration = async (locator: Locator) => {
-  await locator.waitFor();
-  await locator.evaluate(
-    (element) =>
-      new Promise<void>((resolve) => {
-        const check = () => {
-          if (
-            Object.keys(element).some((key) => key.startsWith('__reactProps$'))
-          )
-            resolve();
-          else requestAnimationFrame(check);
-        };
-        check();
-      }),
-  );
-};
+const isDesktop = () => getProjectName() === 'desktop';
 
 /** 홈 목록의 첫 글을 클릭해 글 페이지로 이동하고 경로를 반환한다. */
 const openFirstPostFromList = async (page: Page): Promise<string> => {
@@ -52,6 +36,29 @@ const scrollPageTo = async (page: Page, ratio: number) => {
       (document.documentElement.scrollHeight - window.innerHeight) * r,
     );
   }, ratio);
+};
+
+/**
+ * 공유 URL 이 현재 글을 가리키는지 확인한다. 앱이 값을 인코딩하지 않으므로
+ * 파싱된 파라미터를 우선 보고, 실패하면 원문 문자열로 대체한다.
+ */
+const expectSharesPost = (
+  shareUrl: string,
+  param: string,
+  postPath: string,
+) => {
+  const decode = (value: string) => {
+    try {
+      return decodeURIComponent(value);
+    } catch {
+      return value;
+    }
+  };
+  const target = decode(postPath);
+  const fromParam = decode(new URL(shareUrl).searchParams.get(param) ?? '');
+  expect(fromParam.includes(target) ? fromParam : decode(shareUrl)).toContain(
+    target,
+  );
 };
 
 test('글 페이지에 제목, 본문, 메타, JSON-LD, canonical 이 있다', async ({
@@ -190,7 +197,7 @@ test('공유 버튼이 올바른 호스트로 window.open 을 호출한다', asy
       return null;
     };
   });
-  await openFirstPostFromList(page);
+  const postPath = await openFirstPostFromList(page);
 
   const buttons = page.getByRole('button', { name: '공유하기' });
   await expect(buttons).toHaveCount(2);
@@ -201,11 +208,15 @@ test('공유 버튼이 올바른 호스트로 window.open 을 호출한다', asy
 
   await buttons.nth(0).click();
   await expect.poll(async () => (await getCalls()).length).toBe(1);
-  expect(new URL((await getCalls())[0]).hostname).toBe('www.facebook.com');
+  const facebookUrl = (await getCalls())[0];
+  expect(new URL(facebookUrl).hostname).toBe('www.facebook.com');
+  expectSharesPost(facebookUrl, 'u', postPath);
 
   await buttons.nth(1).click();
   await expect.poll(async () => (await getCalls()).length).toBe(2);
-  expect(new URL((await getCalls())[1]).hostname).toBe('twitter.com');
+  const twitterUrl = (await getCalls())[1];
+  expect(new URL(twitterUrl).hostname).toBe('twitter.com');
+  expectSharesPost(twitterUrl, 'url', postPath);
 });
 
 test('스크롤하면 읽기 진행바와 맨 위로 버튼이 반응한다', async ({ page }) => {

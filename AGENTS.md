@@ -23,11 +23,11 @@ This document outlines the development standards and operational procedures for 
 - **Commands:**
   - `pnpm test`: run unit tests.
   - `pnpm test:coverage`: run unit tests with coverage thresholds.
-  - `pnpm test:e2e`: run E2E tests (builds and starts the app via the Playwright `webServer`).
+  - `pnpm test:e2e`: run E2E tests (builds and starts the app via the Playwright `webServer`). Stop any dev server on port 3000 first; locally the config reuses an existing server and would test the dev server.
 - **Policy:**
   - Logic changes under `src/features/*/lib` and `src/shared/utils` need unit tests. New logic files ship with their tests.
   - User-visible behavior changes (clicks, toggles, scrolling, links, redirects, metadata endpoints) need an E2E scenario.
-  - Keep the 80% coverage floor on the logic directories and do not lower the global floors; `pnpm test:coverage` must pass.
+  - The 80% coverage floor on the logic directories is never lowered. The global floors may be lowered in the same PR only when the drop comes solely from UI/app-layer files (`shared/ui`, `widgets`, `(pages)`, `app`, `_app`) that are guarded by e2e; note it in the PR description. `pnpm test:coverage` must pass.
   - Test imports must respect the ESLint layer boundaries (use `@src` absolute imports).
   - E2E runs against the real contents and discovers posts at runtime (e.g. via `sitemap.xml`). Never hardcode post titles, slugs, or tags.
   - E2E waits on conditions (hydration, assertions), never `waitForTimeout`.

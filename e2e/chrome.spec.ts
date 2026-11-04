@@ -1,40 +1,14 @@
 import { expect, test } from '@playwright/test';
 
+import { waitForHydration } from './support/hydration';
 import { getPostUrls, getTagButtons } from './support/posts';
+import { getProjectName } from './support/project';
 
 import type { Locator, Page } from '@playwright/test';
 
-const FEED_PATH = '/feed.xml';
+const FEED_HREF = /\/feed\.xml$/;
 const THEME_STORAGE_KEY = 'theme';
 const DARK_CLASS = /(^|\s)dark(\s|$)/;
-
-type ProjectName = 'desktop' | 'mobile';
-
-const getProjectName = (): ProjectName => {
-  const { name } = test.info().project;
-  if (name !== 'desktop' && name !== 'mobile') {
-    throw new Error(`알 수 없는 프로젝트: ${name}`);
-  }
-  return name;
-};
-
-/** React 가 요소에 props 를 붙일 때까지(하이드레이션 완료) 기다린다. */
-const waitForHydration = async (locator: Locator) => {
-  await locator.waitFor();
-  await locator.evaluate(
-    (element) =>
-      new Promise<void>((resolve) => {
-        const check = () => {
-          if (
-            Object.keys(element).some((key) => key.startsWith('__reactProps$'))
-          )
-            resolve();
-          else requestAnimationFrame(check);
-        };
-        check();
-      }),
-  );
-};
 
 const readStoredTheme = (page: Page) =>
   page.evaluate((key) => localStorage.getItem(key), THEME_STORAGE_KEY);
@@ -179,8 +153,7 @@ test('RSS 링크가 피드 경로를 가리킨다', async ({ page }) => {
   }
 
   await expect(rss).toBeVisible();
-  const href = (await rss.getAttribute('href')) ?? '';
-  expect(href.endsWith(FEED_PATH)).toBe(true);
+  await expect(rss).toHaveAttribute('href', FEED_HREF);
 });
 
 test('로고를 클릭하면 홈으로 이동한다', async ({ page }) => {
@@ -211,7 +184,5 @@ test('푸터에 GitHub 와 RSS 링크가 있다', async ({ page }) => {
     /^https:\/\/github\.com\/.+/,
   );
   const rss = footer.getByRole('link', { name: 'RSS' });
-  expect(((await rss.getAttribute('href')) ?? '').endsWith(FEED_PATH)).toBe(
-    true,
-  );
+  await expect(rss).toHaveAttribute('href', FEED_HREF);
 });

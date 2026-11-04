@@ -7,6 +7,7 @@ on:
 jobs:
   unit:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v4
@@ -30,6 +31,7 @@ jobs:
 
   e2e:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - uses: actions/checkout@v4
@@ -49,13 +51,14 @@ jobs:
           cache: 'pnpm'
 
       - run: pnpm install --no-frozen-lockfile
+      - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
 
-      # playwright.config.ts webServer runs `pnpm build && pnpm start`.
+      # In CI the playwright.config.ts webServer only runs `pnpm start`.
       - run: pnpm test:e2e
 
       - name: Upload Playwright report
-        if: failure()
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
