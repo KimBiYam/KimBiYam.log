@@ -278,6 +278,33 @@ test('이미지를 클릭하면 medium-zoom 으로 확대된다', async ({ page 
   await expect(page.locator('.medium-zoom-overlay')).toHaveCount(0);
 });
 
+test('제목이 화면 밖으로 스크롤되면 헤더에 글 제목이 나타난다', async ({
+  page,
+}) => {
+  await openFirstPostFromList(page);
+
+  const title = ((await page.locator('h1').textContent()) ?? '').trim();
+  expect(title.length).toBeGreaterThan(0);
+
+  const headerTitle = page
+    .getByRole('banner')
+    .getByText(title, { exact: true })
+    .locator('xpath=..');
+  await expect(headerTitle).toHaveCount(1);
+  // 사전 조건: 제목이 보이는 동안 헤더 제목은 숨겨져 있다.
+  await expect(headerTitle).toHaveCSS('opacity', '0');
+
+  await expect(async () => {
+    await scrollPageTo(page, 1);
+    await expect(headerTitle).toHaveCSS('opacity', '1', { timeout: 1000 });
+  }).toPass();
+
+  await expect(async () => {
+    await scrollPageTo(page, 0);
+    await expect(headerTitle).toHaveCSS('opacity', '0', { timeout: 1000 });
+  }).toPass();
+});
+
 test('글 하단 프로필 카드의 소셜 링크와 태그 배지 링크가 올바르다', async ({
   page,
 }) => {
