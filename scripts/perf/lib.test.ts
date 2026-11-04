@@ -1,0 +1,169 @@
+import { describe, expect, it } from 'vitest';
+
+import {
+  SCHEMA_VERSION,
+  compareMetrics,
+  extractScriptSrcs,
+  formatDiffTable,
+  getTolerance,
+  isPerfBaseline,
+  parseSitemapPaths,
+  ratchetBaseline,
+  routeToHtmlPath,
+} from './lib.ts';
+
+describe('parseSitemapPaths', () => {
+  it('pathname 만 뽑아 중복을 제거하고 정렬한다', () => {
+    const xml = `<urlset>
+<url><loc>https://example.com</loc></url>
+<url><loc>https://example.com/tags/b</loc></url>
+<url><loc> https://example.com/tags/a/ </loc></url>
+<url><loc>https://example.com/tags/b</loc></url>
+</urlset>`;
+
+    expect(parseSitemapPaths(xml)).toEqual(['/', '/tags/a', '/tags/b']);
+  });
+
+  it('loc 이 없으면 빈 배열이다', () => {
+    expect(parseSitemapPaths('<urlset/>')).toEqual([]);
+  });
+});
+
+describe('routeToHtmlPath', () => {
+  it('루트는 index.html 이다', () => {
+    expect(routeToHtmlPath('/')).toBe('index.html');
+  });
+
+  it('하위 경로는 .html 을 붙이고 디코딩한다', () => {
+    expect(routeToHtmlPath('/posts/a/b')).toBe('posts/a/b.html');
+    expect(routeToHtmlPath('/tags/%ED%83%9C%EA%B7%B8')).toBe('tags/태그.html');
+  });
+});
+
+describe('extractScriptSrcs', () => {
+  it('정적 청크 script 만 쿼리 제거·디코딩·중복 제거해 반환한다', () => {
+    const html = [
+      '<script src="/_next/static/chunks/b.js?dpl=1" async=""></script>',
+      '<script src="/_next/static/chunks/a.js" noModule=""></script>',
+      '<script src="/_next/static/chunks/b.js" async=""></script>',
+      '<script src="/_next/static/chunks/app/%5Bid%5D/page.js"></script>',
+      '<script src="https://cdn.example.com/x.js"></script>',
+      '<script>self.__next_f.push([1,"/_next/static/chunks/lazy.js"])</script>',
+    ].join('');
+
+    expect(extractScriptSrcs(html)).toEqual([
+      '/_next/static/chunks/a.js',
+      '/_next/static/chunks/app/[id]/page.js',
+      '/_next/static/chunks/b.js',
+    ]);
+  });
+});
+
+describe('getTolerance', () => {
+  it('작은 값은 최소 바이트, 큰 값은 비율을 쓴다', () => {
+    expect(getTolerance(1000)).toBe(256);
+    expect(getTolerance(100_000)).toBe(1000);
+  });
+});
+
+describe('compareMetrics', () => {
+  const baseline = { '/': 100_000, '/a': 100_000, '/b': 100_000, '/gone': 5 };
+
+  it('허용 오차 이내 증가·동일·감소는 통과하고 상태를 구분한다', () => {
+    const result = compareMetrics(baseline, {
+      '/': 100_000,
+      '/a': 100_900,
+      '/b': 90_000,
+      '/gone': 5,
+    });
+
+    expect(result.passed).toBe(true);
+    expect(result.rows.map((r) => [r.route, r.status, r.delta])).toEqual([
+      ['/', 'ok', 0],
+      ['/a', 'ok', 900],
+      ['/b', 'improved', -10_000],
+      ['/gone', 'ok', 0],
+    ]);
+  });
+
+  it('허용 오차를 넘어 증가하면 실패한다', () => {
+    const result = compareMetrics(baseline, { ...baseline, '/a': 101_001 });
+
+    expect(result.passed).toBe(false);
+    expect(result.rows.find((r) => r.route === '/a')?.status).toBe('regressed');
+  });
+
+  it('새 경로와 사라진 경로는 게이트하지 않는다', () => {
+    const result = compareMetrics({ '/old': 10 }, { '/new': 999_999 });
+
+    expect(result.passed).toBe(true);
+    expect(result.rows).toEqual([
+      {
+        route: '/new',
+        baseline: null,
+        current: 999_999,
+        delta: null,
+        status: 'new',
+      },
+      {
+        route: '/old',
+        baseline: 10,
+        current: null,
+        delta: null,
+        status: 'removed',
+      },
+    ]);
+  });
+});
+
+describe('ratchetBaseline', () => {
+  it('낮아진 값만 반영하고 악화는 기준을 유지한다', () => {
+    expect(
+      ratchetBaseline(
+        { '/a': 100, '/b': 100, '/gone': 1 },
+        { '/a': 80, '/b': 120, '/new': 50 },
+      ),
+    ).toEqual({ '/a': 80, '/b': 100, '/new': 50 });
+  });
+});
+
+describe('formatDiffTable', () => {
+  it('변화가 없으면 요약만 출력한다', () => {
+    const out = formatDiffTable(compareMetrics({ '/': 1 }, { '/': 1 }));
+
+    expect(out).toBe(
+      '1 routes: 0 regressed, 0 improved, 0 new, 0 removed, 1 unchanged',
+    );
+  });
+
+  it('변화가 있는 행을 표로 출력한다', () => {
+    const out = formatDiffTable(
+      compareMetrics({ '/a': 100_000 }, { '/a': 110_000, '/b': 5 }),
+    );
+
+    expect(out).toContain('route');
+    expect(out).toMatch(/\/a\s+100000\s+110000\s+\+10000\s+regressed/);
+    expect(out).toMatch(/\/b\s+-\s+5\s+-\s+new/);
+    expect(out).toContain('1 regressed');
+  });
+});
+
+describe('isPerfBaseline', () => {
+  it('올바른 모양만 통과시킨다', () => {
+    const valid = { schemaVersion: SCHEMA_VERSION };
+
+    expect(isPerfBaseline({ ...valid, firstLoadJsGzipBytes: { '/': 1 } })).toBe(
+      true,
+    );
+    expect(isPerfBaseline({ schemaVersion: 0, firstLoadJsGzipBytes: {} })).toBe(
+      false,
+    );
+    expect(
+      isPerfBaseline({ ...valid, firstLoadJsGzipBytes: { '/': 'x' } }),
+    ).toBe(false);
+    expect(isPerfBaseline({ ...valid, firstLoadJsGzipBytes: null })).toBe(
+      false,
+    );
+    expect(isPerfBaseline(null)).toBe(false);
+  });
+});

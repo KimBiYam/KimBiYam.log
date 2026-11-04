@@ -68,3 +68,32 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
+
+  perf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # 번들 크기는 Sentry/GA 설정에 따라 달라지므로 perf 스크립트도 같은 값으로 빌드한다.
+    env:
+      NEXT_PUBLIC_SENTRY_DISABLED: 'true'
+      NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID: ''
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Read .nvmrc
+        id: nvm
+        run: echo "node_version=$(cat .nvmrc)" >> "$GITHUB_OUTPUT"
+
+      - uses: pnpm/action-setup@v4
+
+      - name: Use Node.js ${{ steps.nvm.outputs.node_version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.nvm.outputs.node_version }}
+          cache: 'pnpm'
+
+      - run: pnpm install --no-frozen-lockfile
+      # 빌드 후 perf-baseline.json 과 비교한다. 허용 오차를 넘어 커지면 실패한다.
+      - run: pnpm perf:check
