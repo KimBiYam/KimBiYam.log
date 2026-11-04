@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-import { getTagButtons } from './support/posts';
+import { getPostUrls, getTagButtons } from './support/posts';
 
 import type { Page } from '@playwright/test';
 
@@ -72,4 +72,24 @@ test('태그를 선택하면 해당 태그 글만 보이고 전체로 돌아올 
   await expect(page).toHaveURL(/\/$/);
   await expect(allButton).toHaveAttribute('aria-current', 'page');
   await expect(tagButton).not.toHaveAttribute('aria-current', 'page');
+});
+
+test('목록 끝까지 스크롤하면 다음 글들이 추가로 로드된다', async ({
+  page,
+  request,
+}) => {
+  const totalPosts = (await getPostUrls(request)).length;
+
+  await page.goto('/');
+  const links = getPostLinks(page);
+  await expect(links.first()).toBeVisible();
+
+  const initialCount = await links.count();
+  // 사전 조건: 첫 페이지에 전체 글이 다 들어가지 않는다(콘텐츠가 충분해야 함).
+  expect(initialCount).toBeLessThan(totalPosts);
+
+  await expect(async () => {
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    expect(await links.count()).toBeGreaterThan(initialCount);
+  }).toPass();
 });
