@@ -94,7 +94,17 @@ export const checkBuildMarker = (
   return mismatches;
 };
 
-export type DiffStatus = 'ok' | 'improved' | 'regressed' | 'new' | 'removed';
+/**
+ * regressed: 허용 오차를 넘어 커짐 / improved: 허용 오차를 넘어 줄어듦(ratchet 대상) /
+ * within-tolerance: 변했지만 허용 오차 이내 / unchanged: 동일.
+ */
+export type DiffStatus =
+  | 'unchanged'
+  | 'within-tolerance'
+  | 'improved'
+  | 'regressed'
+  | 'new'
+  | 'removed';
 
 export interface DiffRow {
   route: string;
@@ -138,6 +148,13 @@ export const extractScriptSrcs = (html: string): string[] => {
 export const getTolerance = (baseline: number): number =>
   Math.max(Math.ceil(baseline * TOLERANCE_RATIO), TOLERANCE_MIN_BYTES);
 
+/** 허용 오차(`tolerance`) 경계: 정확히 오차만큼 변한 것은 아직 오차 이내다. */
+export const classifyDelta = (delta: number, tolerance: number): DiffStatus => {
+  if (delta > tolerance) return 'regressed';
+  if (delta < -tolerance) return 'improved';
+  return delta === 0 ? 'unchanged' : 'within-tolerance';
+};
+
 /**
  * 현재 지표를 기준값과 비교한다. 기준값보다 허용 오차 넘게 커진 경로가 있으면 실패한다.
  * 기준값에 없던 경로(new)와 사라진 경로(removed)는 게이트하지 않는다.
@@ -174,10 +191,13 @@ export const compareMetrics = (
     }
 
     const delta = cur - base;
-    const status: DiffStatus =
-      delta > getTolerance(base) ? 'regressed' : delta < 0 ? 'improved' : 'ok';
-
-    return { route, baseline: base, current: cur, delta, status };
+    return {
+      route,
+      baseline: base,
+      current: cur,
+      delta,
+      status: classifyDelta(delta, getTolerance(base)),
+    };
   });
 
   return { rows, passed: rows.every((row) => row.status !== 'regressed') };
@@ -208,7 +228,7 @@ const formatDelta = (delta: number | null): string =>
 
 /** 변화가 있는 행(+ 항상 요약)을 정렬된 텍스트 표로 만든다. */
 export const formatDiffTable = (result: CompareResult): string => {
-  const changed = result.rows.filter((row) => row.status !== 'ok');
+  const changed = result.rows.filter((row) => row.status !== 'unchanged');
   const header = ['route', 'baseline(B)', 'current(B)', 'delta(B)', 'status'];
   const body = changed.map((row) => [
     row.route,
@@ -227,9 +247,17 @@ export const formatDiffTable = (result: CompareResult): string => {
 
   const count = (status: DiffStatus) =>
     result.rows.filter((row) => row.status === status).length;
-  const summary = `${result.rows.length} routes: ${count('regressed')} regressed, ${count('improved')} improved, ${count('new')} new, ${count('removed')} removed, ${count('ok')} unchanged`;
+  const summary = `${result.rows.length} routes: ${count('regressed')} regressed, ${count('improved')} improved (beyond tolerance), ${count('within-tolerance')} within tolerance, ${count('new')} new, ${count('removed')} removed, ${count('unchanged')} unchanged`;
+  const hint =
+    count('improved') > 0
+      ? 'Improved beyond tolerance: keep the change and run `pnpm perf:update` to ratchet the baseline.'
+      : count('within-tolerance') > 0 && count('regressed') === 0
+        ? 'Changes are within tolerance (1% / min 256 B): not a measurable improvement, so there is nothing to ratchet.'
+        : null;
 
-  return changed.length === 0 ? summary : [...lines, '', summary].join('\n');
+  return changed.length === 0
+    ? summary
+    : [...lines, '', summary, ...(hint ? [hint] : [])].join('\n');
 };
 
 export const isPerfBaseline = (value: unknown): value is PerfBaseline => {
