@@ -21,6 +21,79 @@ export interface PerfMetrics extends PerfBaseline {
   };
 }
 
+/** `pnpm perf` 가 빌드 후 `.next/perf-build.json` 에 남기는 표식. `--reuse` 가 낯선 빌드를 읽지 않게 한다. */
+export interface BuildMarker {
+  schemaVersion: number;
+  sentryDisabled: string | null;
+  gaIdEmpty: boolean;
+  analyze: boolean;
+  headSha: string | null;
+}
+
+export const BUILD_MARKER_FILE = 'perf-build.json';
+
+/** 환경 변수와 git HEAD 에서 이 빌드가 가져야 할 표식을 만든다. */
+export const createBuildMarker = (
+  env: Record<string, string | undefined>,
+  headSha: string | null,
+): BuildMarker => ({
+  schemaVersion: SCHEMA_VERSION,
+  sentryDisabled: env.NEXT_PUBLIC_SENTRY_DISABLED ?? null,
+  gaIdEmpty: (env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID ?? '') === '',
+  analyze: Boolean(env.ANALYZE) && env.ANALYZE !== 'false',
+  headSha,
+});
+
+export const isBuildMarker = (value: unknown): value is BuildMarker => {
+  if (typeof value !== 'object' || value === null) return false;
+  const v = value as Record<string, unknown>;
+
+  return (
+    v.schemaVersion === SCHEMA_VERSION &&
+    (v.sentryDisabled === null || typeof v.sentryDisabled === 'string') &&
+    typeof v.gaIdEmpty === 'boolean' &&
+    typeof v.analyze === 'boolean' &&
+    (v.headSha === null || typeof v.headSha === 'string')
+  );
+};
+
+/**
+ * 기존 `.next` 를 재사용해도 되는지 검사한다. 표식이 없거나 기대값과 다르면
+ * 사람이 읽을 수 있는 사유 목록을 반환하고, 통과하면 빈 배열이다.
+ */
+export const checkBuildMarker = (
+  actual: unknown,
+  expected: BuildMarker,
+): string[] => {
+  if (actual === undefined || actual === null) {
+    return [
+      `${BUILD_MARKER_FILE} is missing (.next was not built by \`pnpm perf\`)`,
+    ];
+  }
+  if (!isBuildMarker(actual)) {
+    return [`${BUILD_MARKER_FILE} is malformed or from another schema version`];
+  }
+
+  const mismatches: string[] = [];
+  const compare = (name: string, got: unknown, want: unknown) => {
+    if (got !== want) {
+      mismatches.push(
+        `${name}: built with ${JSON.stringify(got)}, expected ${JSON.stringify(want)}`,
+      );
+    }
+  };
+  compare(
+    'NEXT_PUBLIC_SENTRY_DISABLED',
+    actual.sentryDisabled,
+    expected.sentryDisabled,
+  );
+  compare('GA tracking id empty', actual.gaIdEmpty, expected.gaIdEmpty);
+  compare('ANALYZE', actual.analyze, expected.analyze);
+  compare('git HEAD', actual.headSha, expected.headSha);
+
+  return mismatches;
+};
+
 export type DiffStatus = 'ok' | 'improved' | 'regressed' | 'new' | 'removed';
 
 export interface DiffRow {

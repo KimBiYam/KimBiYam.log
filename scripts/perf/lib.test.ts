@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  BUILD_MARKER_FILE,
   SCHEMA_VERSION,
+  checkBuildMarker,
+  createBuildMarker,
   compareMetrics,
   extractScriptSrcs,
   formatDiffTable,
@@ -165,5 +168,71 @@ describe('isPerfBaseline', () => {
       false,
     );
     expect(isPerfBaseline(null)).toBe(false);
+  });
+});
+
+describe('build marker', () => {
+  const perfEnv = {
+    NEXT_PUBLIC_SENTRY_DISABLED: 'true',
+    NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID: '',
+  };
+  const expected = createBuildMarker(perfEnv, 'abc123');
+
+  it('환경과 HEAD 에서 표식을 만든다', () => {
+    expect(expected).toEqual({
+      schemaVersion: SCHEMA_VERSION,
+      sentryDisabled: 'true',
+      gaIdEmpty: true,
+      analyze: false,
+      headSha: 'abc123',
+    });
+  });
+
+  it('ANALYZE 와 GA id 를 불리언으로 정규화한다', () => {
+    const marker = createBuildMarker(
+      { ANALYZE: 'true', NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID: 'G-1' },
+      null,
+    );
+    expect(marker).toMatchObject({
+      analyze: true,
+      gaIdEmpty: false,
+      sentryDisabled: null,
+      headSha: null,
+    });
+    expect(createBuildMarker({ ANALYZE: 'false' }, null).analyze).toBe(false);
+  });
+
+  it('같은 표식이면 통과한다', () => {
+    expect(checkBuildMarker({ ...expected }, expected)).toEqual([]);
+  });
+
+  it('표식이 없으면 거부한다', () => {
+    expect(checkBuildMarker(undefined, expected)[0]).toContain(
+      `${BUILD_MARKER_FILE} is missing`,
+    );
+  });
+
+  it('형식이 깨졌거나 스키마가 다르면 거부한다', () => {
+    expect(checkBuildMarker({ foo: 1 }, expected)[0]).toContain('malformed');
+    expect(
+      checkBuildMarker({ ...expected, schemaVersion: 999 }, expected),
+    ).toHaveLength(1);
+  });
+
+  it.each([
+    ['sentryDisabled', { sentryDisabled: null }, 'NEXT_PUBLIC_SENTRY_DISABLED'],
+    ['gaIdEmpty', { gaIdEmpty: false }, 'GA tracking id'],
+    ['analyze', { analyze: true }, 'ANALYZE'],
+    ['headSha', { headSha: 'other' }, 'git HEAD'],
+  ])('%s 가 다르면 해당 사유를 반환한다', (_, override, label) => {
+    const problems = checkBuildMarker({ ...expected, ...override }, expected);
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toContain(label);
+  });
+
+  it('여러 항목이 다르면 모두 보고한다', () => {
+    expect(
+      checkBuildMarker({ ...expected, analyze: true, headSha: 'x' }, expected),
+    ).toHaveLength(2);
   });
 });
