@@ -22,15 +22,14 @@ Sentry.init({
   // in development and sample at a lower rate in production
   replaysSessionSampleRate: 0.1,
 
-  // You can remove this option if you're not planning to use the Sentry Session Replay feature:
-  integrations: [
-    Sentry.replayIntegration({
-      // Additional Replay configuration goes in here, for example:
-      maskAllText: true,
-      blockAllMedia: true,
-    }),
-  ],
   enableLogs: true,
+});
+
+// Session Replay is the largest part of the SDK, so it is added from an async
+// chunk right after init instead of shipping in every route's First Load JS.
+// The sample rates above still apply once the integration is registered.
+import('@src/sentryReplay').then(({ createReplayIntegration }) => {
+  Sentry.addIntegration(createReplayIntegration());
 });
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
