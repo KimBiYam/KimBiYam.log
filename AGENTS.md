@@ -195,5 +195,11 @@ Numeric before/after check for UI changes (on demand; no CI gate, no checked-in 
 - Run `git fetch` first and pass `--base origin/main`: local `main` can be stale, which makes the base build differ from what the PR actually changes.
 - After a UI change, run it with `--expect-changed` listing only the routes you meant to change.
 - Any `UNEXPECTED_CHANGE` (or `REGRESSION`: new horizontal overflow or CLS increase on an expected route) exits 1: fix or revert. Do not widen `--expect-changed` just to pass.
-- Attach `comment.md` to the PR. `pnpm visual:publish [--dry-run]` pushes the referenced images to the `visual-artifacts` branch (never main or the PR branch) and writes `comment.published.md` with raw GitHub URLs. Only publish when the human asked for it.
+- Put the report in the PR **description**, never in a PR comment. Sequence:
+  1. `git fetch`
+  2. `pnpm visual:compare --base origin/main --expect-changed <routes>`
+  3. `pnpm visual:publish --pr-body <pr-number> --dry-run` (prints the body size and diff; changes nothing)
+  4. `pnpm visual:publish --pr-body <pr-number>` (only when the human asked for it)
+- `visual:publish` pushes the referenced images to the `visual-artifacts` branch (never main or the PR branch), writes `comment.published.md` with raw GitHub URLs, and with `--pr-body` rewrites only the block between `<!-- visual-compare:start -->` and `<!-- visual-compare:end -->` in the PR description via `gh pr edit --body-file`. The author's text outside the markers is preserved byte for byte; without markers the block is appended; re-running replaces the block. With 0 images nothing is pushed, but the table is still written. If the body would exceed GitHub's 65,536-character limit, screenshots are capped or dropped and the block says so; the author's text is never truncated.
+- Without `--pr-body`, `visual:publish` only writes `comment.published.md`. Do not post it as a PR comment.
 - Humans make the final call on user-visible tradeoffs.

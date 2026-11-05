@@ -20,7 +20,7 @@ export default defineConfig({
       include: [
         'src/**/*.{ts,tsx}',
         'scripts/perf/lib.ts',
-        'scripts/visual/{lib,markdown}.ts',
+        'scripts/visual/{lib,markdown,prBody}.ts',
       ],
       exclude: ['**/*.d.ts', '**/index.ts', '**/*.test.ts', '**/types/**'],
       reporter: ['text', 'html', 'json-summary'],
@@ -53,7 +53,7 @@ export default defineConfig({
         },
         // visual 하네스의 순수 로직(판정, diff, 마크다운). 브라우저/빌드/git 을 다루는
         // compare.ts, publish.ts 는 `pnpm visual:compare` 실행으로 검증한다.
-        'scripts/visual/{lib,markdown}.ts': {
+        'scripts/visual/{lib,markdown,prBody}.ts': {
           lines: 80,
           statements: 80,
           functions: 80,
