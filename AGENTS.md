@@ -162,7 +162,7 @@ Loop (max 3 attempts per run; one PR per idea):
 1. `pnpm perf` -> list the top 3 bottlenecks with an estimated gzip saving each, then pick one.
 2. Make one small change.
 3. `pnpm perf:check` -> keep the change only if it reports `improved` (beyond tolerance). `within-tolerance` is noise, not an improvement. Otherwise discard the change and retry with the next candidate. If 3 attempts reach nothing, ship nothing and report that honestly instead of shipping noise.
-4. `git fetch`, then `pnpm visual:compare --base origin/main` (Section 10). A pure bundle change must show zero diff. If the change intentionally alters what users see, list only those routes in `--expect-changed`. `UNEXPECTED_CHANGE` or `REGRESSION` means fix or revert.
+4. `pnpm visual:compare` (Section 10; it diffs against a freshly fetched `origin/main` by default). A pure bundle change must show zero diff. If the change intentionally alters what users see, list only those routes in `--expect-changed`. `UNEXPECTED_CHANGE` or `REGRESSION` means fix or revert.
 5. `pnpm perf:update`, and commit the lowered baseline with the change.
 6. Run `pnpm lint`, `pnpm test:coverage` and `pnpm test:e2e`.
 7. Push, open the PR, and publish the visual block into its description (Section 10).
@@ -214,18 +214,17 @@ Concurrent perf PRs: `perf-baseline.json` conflicts are expected when two perf P
 
 ## 10. Visual comparison
 
-Numeric before/after check for UI changes (on demand; no CI gate, no checked-in images). `pnpm visual:compare [--base main] [--routes /,/posts/x] [--expect-changed <routes>]` builds the base ref (temporary git worktree in the OS temp dir) and the current tree on the same machine, screenshots a route sample from `sitemap.xml` (desktop/mobile × light/dark), and reports diff pixel ratio, changed bounding box, scroll height/width delta, horizontal overflow, and CLS. Output goes to the gitignored `.visual/<timestamp>/` (`summary.json`, `comment.md`, `before/ after/ diff/`).
+Numeric before/after check for UI changes (on demand; no CI gate, no checked-in images). `pnpm visual:compare [--base <ref>] [--routes /,/posts/x] [--expect-changed <routes>]` builds the base ref (temporary git worktree in the OS temp dir) and the current tree on the same machine, screenshots a route sample from `sitemap.xml` (desktop/mobile × light/dark), and reports diff pixel ratio, changed bounding box, scroll height/width delta, horizontal overflow, and CLS. Output goes to the gitignored `.visual/<timestamp>/` (`summary.json`, `comment.md`, `before/ after/ diff/`).
 
-- Run `git fetch` first and pass `--base origin/main`: local `main` can be stale, which makes the base build differ from what the PR actually changes.
+- `--base` defaults to `origin/main`, and for a remote-tracking ref the script runs `git fetch` itself (it errors if the fetch fails or the ref does not resolve), so a stale local `main` cannot skew the base build. Pass `--base <ref>` (local branch, tag, sha) only to compare against something else.
 - After a UI change, run it with `--expect-changed` listing only the routes you meant to change.
-- Any `UNEXPECTED_CHANGE` (or `REGRESSION`: new horizontal overflow or CLS increase on an expected route) exits 1: fix or revert. Do not widen `--expect-changed` just to pass.
+- Any `UNEXPECTED_CHANGE` (or `REGRESSION`: new horizontal overflow or CLS increase on an expected route) exits 1: fix or revert. A route in `--expect-changed` that shows zero diff in every viewport/theme fails with `EXPECTED_CHANGE_MISSING` (exit 1): the intended change did not take effect, so fix the change; remove the route from the list only if it was listed by mistake. A listed route that changes in at least one viewport/theme counts as changed. Do not widen `--expect-changed` just to pass.
 - Put the report in the PR **description**, never in a PR comment. Whenever a PR contains a UI-affecting or perf change, the agent does this itself after the PR exists, without waiting for a human request. `--pr-body` needs the PR number, so the order is:
   1. Commit, push, `gh pr create`, then read the number (from the create output or `gh pr view --json number --jq .number`). If the PR is already open, skip to step 2.
-  2. `git fetch`
-  3. `pnpm visual:compare --base origin/main --expect-changed <routes>`
-  4. `pnpm visual:publish --pr-body <pr-number> --dry-run` (prints the body size and diff; changes nothing)
-  5. `pnpm visual:publish --pr-body <pr-number>`
-- After pushing further commits that change UI, re-run steps 2-5. The block is replaced idempotently.
+  2. `pnpm visual:compare --expect-changed <routes>`
+  3. `pnpm visual:publish --pr-body <pr-number> --dry-run` (prints the body size and diff; changes nothing)
+  4. `pnpm visual:publish --pr-body <pr-number>`
+- After pushing further commits that change UI, re-run steps 2-4. The block is replaced idempotently.
 - Prerequisites: `gh` authenticated and push access to `origin`. If a push or `gh` call is blocked or fails, report it as a remote/permission failure with the exact command instead of working around it.
 - `visual:publish` pushes the referenced images to the `visual-artifacts` branch (created automatically if missing; never main or the PR branch), writes `comment.published.md` with raw GitHub URLs, and with `--pr-body` rewrites only the block between `<!-- visual-compare:start -->` and `<!-- visual-compare:end -->` in the PR description via `gh pr edit --body-file`. The author's text outside the markers is preserved byte for byte; without markers the block is appended; re-running replaces the block. With 0 changed routes (0 images) the block contains only the table and nothing is pushed. If the body would exceed GitHub's 65,536-character limit, screenshots are capped or dropped and the block says so; the author's text is never truncated.
 - Without `--pr-body`, `visual:publish` only writes `comment.published.md`. Do not post it as a PR comment.
