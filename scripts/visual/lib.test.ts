@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  DEFAULT_BASE,
   buildSummary,
   diffImages,
   formatShaLabel,
@@ -11,6 +12,7 @@ import {
   parseCompareArgs,
   parseRouteList,
   parseSitemapPaths,
+  remoteOfRef,
   routeToSlug,
   sampleRoutes,
   screenshotName,
@@ -111,7 +113,7 @@ describe('parseRouteList', () => {
 describe('parseCompareArgs', () => {
   it('기본값', () => {
     expect(parseCompareArgs([])).toMatchObject({
-      base: 'main',
+      base: 'origin/main',
       routes: null,
       expectChanged: [],
     });
@@ -149,6 +151,33 @@ describe('parseCompareArgs', () => {
     expect(() => parseCompareArgs(['--tolerance', 'x'])).toThrow(
       'non-negative number',
     );
+  });
+});
+
+describe('DEFAULT_BASE / remoteOfRef', () => {
+  const remotes = ['origin', 'upstream'];
+
+  it('기본 base 는 origin/main 이고 명시한 --base 가 우선한다', () => {
+    expect(DEFAULT_BASE).toBe('origin/main');
+    expect(parseCompareArgs([]).base).toBe('origin/main');
+    expect(parseCompareArgs(['--base', 'main']).base).toBe('main');
+    expect(parseCompareArgs(['--base=v1.0.0']).base).toBe('v1.0.0');
+  });
+
+  it('원격 추적 ref 는 remote 이름을 돌려준다', () => {
+    expect(remoteOfRef('origin/main', remotes)).toBe('origin');
+    expect(remoteOfRef('upstream/feat/x', remotes)).toBe('upstream');
+    expect(remoteOfRef('refs/remotes/origin/main', remotes)).toBe('origin');
+  });
+
+  it('로컬 브랜치, 태그, sha, 모르는 remote 는 null 이다', () => {
+    expect(remoteOfRef('main', remotes)).toBeNull();
+    expect(remoteOfRef('feat/x', remotes)).toBeNull();
+    expect(remoteOfRef('v1.0.0', remotes)).toBeNull();
+    expect(remoteOfRef('ddaf74d', remotes)).toBeNull();
+    expect(remoteOfRef('fork/main', remotes)).toBeNull();
+    expect(remoteOfRef('origin/', remotes)).toBeNull();
+    expect(remoteOfRef('origin/main', [])).toBeNull();
   });
 });
 

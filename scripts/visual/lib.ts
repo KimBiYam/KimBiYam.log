@@ -7,6 +7,8 @@ export const DEFAULT_PIXEL_THRESHOLD = 1;
 /** CLS 증가 허용치. */
 export const DEFAULT_CLS_TOLERANCE = 0.001;
 export const DEFAULT_MAX_ROUTES = 5;
+/** 로컬 main 은 오래될 수 있어서, 기본 base 는 가져온 원격 main 이다. */
+export const DEFAULT_BASE = 'origin/main';
 
 export const VIEWPORTS = {
   desktop: { width: 1280, height: 800 },
@@ -139,6 +141,20 @@ export const sampleRoutes = (
   return [...new Set(picked)].slice(0, max);
 };
 
+/**
+ * base ref 가 원격 추적 ref(`origin/main`, `refs/remotes/origin/main`)이면 그 remote 이름을,
+ * 아니면 null 을 돌려준다. 로컬 브랜치, 태그, sha 는 fetch 대상이 아니다.
+ */
+export const remoteOfRef = (ref: string, remotes: string[]): string | null => {
+  const name = ref.startsWith('refs/remotes/')
+    ? ref.slice('refs/remotes/'.length)
+    : ref;
+  const slash = name.indexOf('/');
+  if (slash <= 0 || slash === name.length - 1) return null;
+  const remote = name.slice(0, slash);
+  return remotes.includes(remote) ? remote : null;
+};
+
 /** `--routes /a,/b` 같은 값을 정규화한다. 슬래시로 시작하지 않으면 붙인다. */
 export const parseRouteList = (value: string): string[] => [
   ...new Set(
@@ -171,7 +187,7 @@ const readNumber = (flag: string, value: string | undefined): number => {
 /** `pnpm visual:compare` 인자를 파싱한다. `--flag value` 와 `--flag=value` 모두 허용한다. */
 export const parseCompareArgs = (argv: string[]): CliOptions => {
   const options: CliOptions = {
-    base: 'main',
+    base: DEFAULT_BASE,
     routes: null,
     expectChanged: [],
     diffTolerance: DEFAULT_DIFF_TOLERANCE,

@@ -22,6 +22,7 @@ import {
   formatConsoleTable,
   parseCompareArgs,
   parseSitemapPaths,
+  remoteOfRef,
   sampleRoutes,
   screenshotName,
 } from './lib.ts';
@@ -52,6 +53,28 @@ const log = (message: string) => console.error(`[visual] ${message}`);
 
 const git = (args: string[], cwd = ROOT) =>
   execFileSync('git', args, { cwd, encoding: 'utf8' }).trim();
+
+/** base ref 를 sha 로 해석한다. 원격 추적 ref 면 먼저 그 remote 를 fetch 해 최신으로 맞춘다. */
+const resolveBase = (base: string): string => {
+  const remote = remoteOfRef(base, git(['remote']).split('\n'));
+  if (remote) {
+    log(`fetching ${remote} so ${base} is current`);
+    try {
+      git(['fetch', '--quiet', remote]);
+    } catch (error) {
+      throw new Error(
+        `could not fetch ${remote} to resolve --base ${base}: ${String(error)}`,
+      );
+    }
+  }
+  try {
+    return git(['rev-parse', '--verify', '--quiet', `${base}^{commit}`]);
+  } catch {
+    throw new Error(
+      `--base ${base} does not resolve to a commit. Pass a branch, tag, sha or remote ref (default: origin/main).`,
+    );
+  }
+};
 
 const freePort = (): Promise<number> =>
   new Promise((resolve, reject) => {
@@ -260,7 +283,7 @@ const timestamp = () => new Date().toISOString().replace(/[:.]/g, '-');
 
 const main = async (): Promise<number> => {
   const options = parseCompareArgs(process.argv.slice(2));
-  const baseSha = git(['rev-parse', options.base]);
+  const baseSha = resolveBase(options.base);
   const headSha = git(['rev-parse', 'HEAD']);
   const headDirty = git(['status', '--porcelain']) !== '';
 
