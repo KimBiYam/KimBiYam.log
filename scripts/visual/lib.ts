@@ -7,6 +7,8 @@ export const DEFAULT_PIXEL_THRESHOLD = 1;
 /** CLS 증가 허용치. */
 export const DEFAULT_CLS_TOLERANCE = 0.001;
 export const DEFAULT_MAX_ROUTES = 5;
+/** 로컬 main 은 오래될 수 있어서, 기본 base 는 가져온 원격 main 이다. */
+export const DEFAULT_BASE = 'origin/main';
 
 export const VIEWPORTS = {
   desktop: { width: 1280, height: 800 },
@@ -21,7 +23,8 @@ export type EntryStatus =
   | 'UNCHANGED'
   | 'CHANGED'
   | 'UNEXPECTED_CHANGE'
-  | 'REGRESSION';
+  | 'REGRESSION'
+  | 'EXPECTED_CHANGE_MISSING';
 
 /** 한 화면(라우트×뷰포트×테마)을 DOM 에서 잰 값. */
 export interface LayoutMetrics {
@@ -93,7 +96,7 @@ export interface Summary {
   passed: boolean;
   tolerances: Tolerances;
   expectChanged: string[];
-  /** 지정했지만 아무 변화도 관찰되지 않은 라우트. */
+  /** 지정했지만 모든 viewport/theme 에서 변화가 없던 라우트. 있으면 실패다(EXPECTED_CHANGE_MISSING). */
   expectedButUnchanged: string[];
   entries: Entry[];
 }
@@ -139,6 +142,20 @@ export const sampleRoutes = (
   return [...new Set(picked)].slice(0, max);
 };
 
+/**
+ * base ref 가 원격 추적 ref(`origin/main`, `refs/remotes/origin/main`)이면 그 remote 이름을,
+ * 아니면 null 을 돌려준다. 로컬 브랜치, 태그, sha 는 fetch 대상이 아니다.
+ */
+export const remoteOfRef = (ref: string, remotes: string[]): string | null => {
+  const name = ref.startsWith('refs/remotes/')
+    ? ref.slice('refs/remotes/'.length)
+    : ref;
+  const slash = name.indexOf('/');
+  if (slash <= 0 || slash === name.length - 1) return null;
+  const remote = name.slice(0, slash);
+  return remotes.includes(remote) ? remote : null;
+};
+
 /** `--routes /a,/b` 같은 값을 정규화한다. 슬래시로 시작하지 않으면 붙인다. */
 export const parseRouteList = (value: string): string[] => [
   ...new Set(
@@ -171,7 +188,7 @@ const readNumber = (flag: string, value: string | undefined): number => {
 /** `pnpm visual:compare` 인자를 파싱한다. `--flag value` 와 `--flag=value` 모두 허용한다. */
 export const parseCompareArgs = (argv: string[]): CliOptions => {
   const options: CliOptions = {
-    base: 'main',
+    base: DEFAULT_BASE,
     routes: null,
     expectChanged: [],
     diffTolerance: DEFAULT_DIFF_TOLERANCE,
@@ -388,7 +405,11 @@ export const judgeEntry = (
   return { ...input, heightDelta, widthDelta, clsDelta, status, reasons };
 };
 
-/** 전체 판정. UNEXPECTED_CHANGE 또는 REGRESSION 이 하나라도 있으면 실패다. */
+/**
+ * 전체 판정. UNEXPECTED_CHANGE, REGRESSION, EXPECTED_CHANGE_MISSING 이 하나라도 있으면 실패다.
+ * --expect-changed 라우트는 viewport/theme 중 하나라도 바뀌면 바뀐 것으로 본다. 전부 그대로여야만
+ * 의도한 변경이 적용되지 않은 것이므로 그 라우트의 항목을 EXPECTED_CHANGE_MISSING 으로 바꾼다.
+ */
 export const buildSummary = (
   meta: Pick<
     Summary,
@@ -398,13 +419,25 @@ export const buildSummary = (
   expectChanged: string[],
   tolerances: Tolerances,
 ): Summary => {
-  const entries = inputs.map((input) =>
+  const judged = inputs.map((input) =>
     judgeEntry(input, expectChanged.includes(input.route), tolerances),
   );
   const expectedButUnchanged = expectChanged.filter((route) => {
-    const own = entries.filter((e) => e.route === route);
+    const own = judged.filter((e) => e.route === route);
     return own.length > 0 && own.every((e) => e.status === 'UNCHANGED');
   });
+  const entries = judged.map(
+    (e): Entry =>
+      expectedButUnchanged.includes(e.route)
+        ? {
+            ...e,
+            status: 'EXPECTED_CHANGE_MISSING',
+            reasons: [
+              'expected a change but nothing differed in any viewport/theme',
+            ],
+          }
+        : e,
+  );
 
   return {
     schemaVersion: SCHEMA_VERSION,
@@ -426,6 +459,7 @@ export const sortEntries = (entries: Entry[]): Entry[] => {
   const rank: Record<EntryStatus, number> = {
     UNEXPECTED_CHANGE: 0,
     REGRESSION: 0,
+    EXPECTED_CHANGE_MISSING: 0,
     CHANGED: 1,
     UNCHANGED: 2,
   };
