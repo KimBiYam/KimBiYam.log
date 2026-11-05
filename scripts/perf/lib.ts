@@ -21,7 +21,90 @@ export interface PerfMetrics extends PerfBaseline {
   };
 }
 
-export type DiffStatus = 'ok' | 'improved' | 'regressed' | 'new' | 'removed';
+/** `pnpm perf` 가 빌드 후 `.next/perf-build.json` 에 남기는 표식. `--reuse` 가 낯선 빌드를 읽지 않게 한다. */
+export interface BuildMarker {
+  schemaVersion: number;
+  sentryDisabled: string | null;
+  gaIdEmpty: boolean;
+  analyze: boolean;
+  headSha: string | null;
+}
+
+export const BUILD_MARKER_FILE = 'perf-build.json';
+
+/** 환경 변수와 git HEAD 에서 이 빌드가 가져야 할 표식을 만든다. */
+export const createBuildMarker = (
+  env: Record<string, string | undefined>,
+  headSha: string | null,
+): BuildMarker => ({
+  schemaVersion: SCHEMA_VERSION,
+  sentryDisabled: env.NEXT_PUBLIC_SENTRY_DISABLED ?? null,
+  gaIdEmpty: (env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID ?? '') === '',
+  analyze: Boolean(env.ANALYZE) && env.ANALYZE !== 'false',
+  headSha,
+});
+
+export const isBuildMarker = (value: unknown): value is BuildMarker => {
+  if (typeof value !== 'object' || value === null) return false;
+  const v = value as Record<string, unknown>;
+
+  return (
+    v.schemaVersion === SCHEMA_VERSION &&
+    (v.sentryDisabled === null || typeof v.sentryDisabled === 'string') &&
+    typeof v.gaIdEmpty === 'boolean' &&
+    typeof v.analyze === 'boolean' &&
+    (v.headSha === null || typeof v.headSha === 'string')
+  );
+};
+
+/**
+ * 기존 `.next` 를 재사용해도 되는지 검사한다. 표식이 없거나 기대값과 다르면
+ * 사람이 읽을 수 있는 사유 목록을 반환하고, 통과하면 빈 배열이다.
+ */
+export const checkBuildMarker = (
+  actual: unknown,
+  expected: BuildMarker,
+): string[] => {
+  if (actual === undefined || actual === null) {
+    return [
+      `${BUILD_MARKER_FILE} is missing (.next was not built by \`pnpm perf\`)`,
+    ];
+  }
+  if (!isBuildMarker(actual)) {
+    return [`${BUILD_MARKER_FILE} is malformed or from another schema version`];
+  }
+
+  const mismatches: string[] = [];
+  const compare = (name: string, got: unknown, want: unknown) => {
+    if (got !== want) {
+      mismatches.push(
+        `${name}: built with ${JSON.stringify(got)}, expected ${JSON.stringify(want)}`,
+      );
+    }
+  };
+  compare(
+    'NEXT_PUBLIC_SENTRY_DISABLED',
+    actual.sentryDisabled,
+    expected.sentryDisabled,
+  );
+  compare('GA tracking id empty', actual.gaIdEmpty, expected.gaIdEmpty);
+  compare('ANALYZE', actual.analyze, expected.analyze);
+  compare('git HEAD', actual.headSha, expected.headSha);
+
+  return mismatches;
+};
+
+/**
+ * regressed: 허용 오차를 넘어 커짐 / improved: 허용 오차를 넘어 줄어듦(ratchet 대상) /
+ * within-tolerance: 변했지만 허용 오차 이내 / unchanged: 동일.
+ */
+export type DiffStatus =
+  | 'unchanged'
+  | 'within-tolerance'
+  | 'improved'
+  | 'regressed'
+  | 'new'
+  | 'removed';
 
 export interface DiffRow {
   route: string;
@@ -65,6 +148,13 @@ export const extractScriptSrcs = (html: string): string[] => {
 export const getTolerance = (baseline: number): number =>
   Math.max(Math.ceil(baseline * TOLERANCE_RATIO), TOLERANCE_MIN_BYTES);
 
+/** 허용 오차(`tolerance`) 경계: 정확히 오차만큼 변한 것은 아직 오차 이내다. */
+export const classifyDelta = (delta: number, tolerance: number): DiffStatus => {
+  if (delta > tolerance) return 'regressed';
+  if (delta < -tolerance) return 'improved';
+  return delta === 0 ? 'unchanged' : 'within-tolerance';
+};
+
 /**
  * 현재 지표를 기준값과 비교한다. 기준값보다 허용 오차 넘게 커진 경로가 있으면 실패한다.
  * 기준값에 없던 경로(new)와 사라진 경로(removed)는 게이트하지 않는다.
@@ -101,10 +191,13 @@ export const compareMetrics = (
     }
 
     const delta = cur - base;
-    const status: DiffStatus =
-      delta > getTolerance(base) ? 'regressed' : delta < 0 ? 'improved' : 'ok';
-
-    return { route, baseline: base, current: cur, delta, status };
+    return {
+      route,
+      baseline: base,
+      current: cur,
+      delta,
+      status: classifyDelta(delta, getTolerance(base)),
+    };
   });
 
   return { rows, passed: rows.every((row) => row.status !== 'regressed') };
@@ -135,7 +228,7 @@ const formatDelta = (delta: number | null): string =>
 
 /** 변화가 있는 행(+ 항상 요약)을 정렬된 텍스트 표로 만든다. */
 export const formatDiffTable = (result: CompareResult): string => {
-  const changed = result.rows.filter((row) => row.status !== 'ok');
+  const changed = result.rows.filter((row) => row.status !== 'unchanged');
   const header = ['route', 'baseline(B)', 'current(B)', 'delta(B)', 'status'];
   const body = changed.map((row) => [
     row.route,
@@ -154,9 +247,17 @@ export const formatDiffTable = (result: CompareResult): string => {
 
   const count = (status: DiffStatus) =>
     result.rows.filter((row) => row.status === status).length;
-  const summary = `${result.rows.length} routes: ${count('regressed')} regressed, ${count('improved')} improved, ${count('new')} new, ${count('removed')} removed, ${count('ok')} unchanged`;
+  const summary = `${result.rows.length} routes: ${count('regressed')} regressed, ${count('improved')} improved (beyond tolerance), ${count('within-tolerance')} within tolerance, ${count('new')} new, ${count('removed')} removed, ${count('unchanged')} unchanged`;
+  const hint =
+    count('improved') > 0
+      ? 'Improved beyond tolerance: keep the change and run `pnpm perf:update` to ratchet the baseline.'
+      : count('within-tolerance') > 0 && count('regressed') === 0
+        ? 'Changes are within tolerance (1% / min 256 B): not a measurable improvement, so there is nothing to ratchet.'
+        : null;
 
-  return changed.length === 0 ? summary : [...lines, '', summary].join('\n');
+  return changed.length === 0
+    ? summary
+    : [...lines, '', summary, ...(hint ? [hint] : [])].join('\n');
 };
 
 export const isPerfBaseline = (value: unknown): value is PerfBaseline => {

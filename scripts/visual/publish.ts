@@ -12,7 +12,11 @@ import {
 import os from 'node:os';
 import path from 'node:path';
 
-import { buildPublishPlan, parseGitHubRemote } from './markdown.ts';
+import {
+  buildPublishPlan,
+  isNothingToPublish,
+  parseGitHubRemote,
+} from './markdown.ts';
 
 import type { RepoRef } from './markdown.ts';
 
@@ -63,9 +67,26 @@ const main = () => {
   const runDir = path.resolve(positional[0] ?? latestRunDir());
   const runId = path.basename(runDir);
   const markdown = readFileSync(path.join(runDir, 'comment.md'), 'utf8');
+  const publishedPath = path.join(runDir, 'comment.published.md');
+
+  // 이미지가 없으면 git/원격을 건드리지 않고 마크다운을 그대로 내보낸다.
+  if (isNothingToPublish(markdown)) {
+    console.log(
+      `${dryRun ? '[dry-run] ' : ''}nothing to publish: comment.md references 0 images`,
+    );
+    if (dryRun) {
+      console.log(
+        `[dry-run] would write ${publishedPath} (unchanged markdown); no git commands were run and nothing was pushed`,
+      );
+      return;
+    }
+    writeFileSync(publishedPath, markdown);
+    console.log(`paste-ready markdown (unchanged): ${publishedPath}`);
+    return;
+  }
+
   const repo = resolveRepo();
   const plan = buildPublishPlan(markdown, repo, runId);
-  const publishedPath = path.join(runDir, 'comment.published.md');
 
   console.log(
     `${dryRun ? '[dry-run] would publish' : 'publishing'} ${plan.files.length} image(s) from ${runDir}`,
