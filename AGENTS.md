@@ -157,7 +157,31 @@ Gated metric: gzip First Load JS per route (`perf-baseline.json`, measured from 
 - `pnpm perf:check`: compare against `perf-baseline.json`; exits non-zero when a route grows beyond tolerance (1%, min 256 B) and prints a diff table.
 - `pnpm perf:update`: ratchet the baseline down (only lowered values; refuses if anything regressed; `--force` needs human approval).
 
-Loop: run `pnpm perf` -> pick the biggest bottleneck -> make one small change (one PR per idea) -> re-measure with `pnpm perf:check` -> keep the change only if the gated metric improved beyond tolerance (`improved`; `within-tolerance` is noise, not an improvement), otherwise discard it -> run `pnpm perf:update` and commit the lowered baseline with the change. Never trade away features or e2e coverage for size. If an optimization alters user-visible behavior (UI, animation, fonts, content), ask the human before proceeding.
+Loop (max 3 attempts per run; one PR per idea):
+
+1. `pnpm perf` -> list the top 3 bottlenecks with an estimated gzip saving each, then pick one.
+2. Make one small change.
+3. `pnpm perf:check` -> keep the change only if it reports `improved` (beyond tolerance). `within-tolerance` is noise, not an improvement. Otherwise discard the change and retry with the next candidate. If 3 attempts reach nothing, ship nothing and report that honestly instead of shipping noise.
+4. `git fetch`, then `pnpm visual:compare --base origin/main` (Section 10). A pure bundle change must show zero diff. If the change intentionally alters what users see, list only those routes in `--expect-changed`. `UNEXPECTED_CHANGE` or `REGRESSION` means fix or revert.
+5. `pnpm perf:update`, and commit the lowered baseline with the change.
+6. Run `pnpm lint`, `pnpm test:coverage` and `pnpm test:e2e`.
+7. Push, open the PR, and publish the visual block into its description (Section 10).
+
+Never trade away features or e2e coverage for size. If an optimization alters user-visible behavior (UI, animation, fonts, content), ask the human before proceeding.
+
+Branch: slash-separated type prefix (`perf/...`) and a slug naming the change that ships, not a discarded attempt. Rename before pushing if needed (`git branch -m`).
+
+PR description checklist:
+
+- [ ] Candidates considered (top 3, estimated gzip savings) and why this one was chosen
+- [ ] Before/after First Load JS per affected route (bytes and %)
+- [ ] Verification: `pnpm lint`, `pnpm test:coverage`, `pnpm test:e2e`, `pnpm perf:check` status (`improved`), `pnpm visual:compare` verdict
+- [ ] User-visible trade-offs a human must judge, called out explicitly (animation timing, lazy-load placeholders, replay/telemetry coverage, fonts, content)
+- [ ] Discarded attempts, if any
+
+The visual block is added by `pnpm visual:publish --pr-body` between the `<!-- visual-compare:start -->` / `<!-- visual-compare:end -->` markers. Leave the markers alone when writing the description.
+
+Concurrent perf PRs: `perf-baseline.json` conflicts are expected when two perf PRs are open. The one that merges second rebases onto `main`, re-runs `pnpm perf` and `pnpm perf:check`, then re-runs `pnpm perf:update` instead of hand-merging the JSON. Never use `--force` for this.
 
 ## 7. Error Handling & Linting
 
@@ -195,11 +219,14 @@ Numeric before/after check for UI changes (on demand; no CI gate, no checked-in 
 - Run `git fetch` first and pass `--base origin/main`: local `main` can be stale, which makes the base build differ from what the PR actually changes.
 - After a UI change, run it with `--expect-changed` listing only the routes you meant to change.
 - Any `UNEXPECTED_CHANGE` (or `REGRESSION`: new horizontal overflow or CLS increase on an expected route) exits 1: fix or revert. Do not widen `--expect-changed` just to pass.
-- Put the report in the PR **description**, never in a PR comment. Sequence:
-  1. `git fetch`
-  2. `pnpm visual:compare --base origin/main --expect-changed <routes>`
-  3. `pnpm visual:publish --pr-body <pr-number> --dry-run` (prints the body size and diff; changes nothing)
-  4. `pnpm visual:publish --pr-body <pr-number>` (only when the human asked for it)
-- `visual:publish` pushes the referenced images to the `visual-artifacts` branch (never main or the PR branch), writes `comment.published.md` with raw GitHub URLs, and with `--pr-body` rewrites only the block between `<!-- visual-compare:start -->` and `<!-- visual-compare:end -->` in the PR description via `gh pr edit --body-file`. The author's text outside the markers is preserved byte for byte; without markers the block is appended; re-running replaces the block. With 0 images nothing is pushed, but the table is still written. If the body would exceed GitHub's 65,536-character limit, screenshots are capped or dropped and the block says so; the author's text is never truncated.
+- Put the report in the PR **description**, never in a PR comment. Whenever a PR contains a UI-affecting or perf change, the agent does this itself after the PR exists, without waiting for a human request. `--pr-body` needs the PR number, so the order is:
+  1. Commit, push, `gh pr create`, then read the number (from the create output or `gh pr view --json number --jq .number`). If the PR is already open, skip to step 2.
+  2. `git fetch`
+  3. `pnpm visual:compare --base origin/main --expect-changed <routes>`
+  4. `pnpm visual:publish --pr-body <pr-number> --dry-run` (prints the body size and diff; changes nothing)
+  5. `pnpm visual:publish --pr-body <pr-number>`
+- After pushing further commits that change UI, re-run steps 2-5. The block is replaced idempotently.
+- Prerequisites: `gh` authenticated and push access to `origin`. If a push or `gh` call is blocked or fails, report it as a remote/permission failure with the exact command instead of working around it.
+- `visual:publish` pushes the referenced images to the `visual-artifacts` branch (created automatically if missing; never main or the PR branch), writes `comment.published.md` with raw GitHub URLs, and with `--pr-body` rewrites only the block between `<!-- visual-compare:start -->` and `<!-- visual-compare:end -->` in the PR description via `gh pr edit --body-file`. The author's text outside the markers is preserved byte for byte; without markers the block is appended; re-running replaces the block. With 0 changed routes (0 images) the block contains only the table and nothing is pushed. If the body would exceed GitHub's 65,536-character limit, screenshots are capped or dropped and the block says so; the author's text is never truncated.
 - Without `--pr-body`, `visual:publish` only writes `comment.published.md`. Do not post it as a PR comment.
 - Humans make the final call on user-visible tradeoffs.
