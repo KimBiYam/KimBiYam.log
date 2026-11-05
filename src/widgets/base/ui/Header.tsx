@@ -15,7 +15,10 @@ const Header = () => {
   return (
     <header className="fixed top-0 z-50 w-full px-4 pt-2 md:px-6 md:pt-4">
       <div className="relative max-w-page mx-auto">
-        <div className="flex items-center h-14 gap-3 pl-4 pr-1.5 border md:h-[60px] md:gap-6 md:pl-[22px] md:pr-2 rounded-panel border-line glass-panel">
+        <div
+          className="flex items-center h-14 gap-3 pl-4 pr-1.5 border md:h-[60px] md:gap-6 md:pl-[22px] md:pr-2 rounded-panel border-line glass-panel"
+          style={{ outline: '4px solid #ff0066' }}
+        >
           <Logo />
           <HeaderTitle />
           <nav
