@@ -136,6 +136,8 @@ const pushImages = (
       cpSync(path.join(runDir, file.source), target);
     }
     git(temp, ['add', '-A']);
+    // 같은 실행을 다시 올리면(예: --pr-body 재실행) 바뀐 파일이 없으니 커밋/푸시를 건너뛴다.
+    if (git(temp, ['status', '--porcelain']) === '') return;
     git(temp, [
       'commit',
       '-q',
