@@ -13,6 +13,7 @@ import path from 'node:path';
 import { chromium } from '@playwright/test';
 import sharp from 'sharp';
 
+import { keepNextEnvClean } from '../nextEnv.ts';
 import {
   THEMES,
   VIEWPORTS,
@@ -288,7 +289,7 @@ const main = async (): Promise<number> => {
     ];
     for (const side of sides) {
       log(`building ${side.name} (${side.dir})`);
-      run('pnpm', ['build'], side.dir);
+      keepNextEnvClean(side.dir, () => run('pnpm', ['build'], side.dir));
     }
 
     const ports = [await freePort(), await freePort()];
