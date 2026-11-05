@@ -192,6 +192,7 @@ Loop: run `pnpm perf` -> pick the biggest bottleneck -> make one small change (o
 
 Numeric before/after check for UI changes (on demand; no CI gate, no checked-in images). `pnpm visual:compare [--base main] [--routes /,/posts/x] [--expect-changed <routes>]` builds the base ref (temporary git worktree in the OS temp dir) and the current tree on the same machine, screenshots a route sample from `sitemap.xml` (desktop/mobile × light/dark), and reports diff pixel ratio, changed bounding box, scroll height/width delta, horizontal overflow, and CLS. Output goes to the gitignored `.visual/<timestamp>/` (`summary.json`, `comment.md`, `before/ after/ diff/`).
 
+- Run `git fetch` first and pass `--base origin/main`: local `main` can be stale, which makes the base build differ from what the PR actually changes.
 - After a UI change, run it with `--expect-changed` listing only the routes you meant to change.
 - Any `UNEXPECTED_CHANGE` (or `REGRESSION`: new horizontal overflow or CLS increase on an expected route) exits 1: fix or revert. Do not widen `--expect-changed` just to pass.
 - Attach `comment.md` to the PR. `pnpm visual:publish [--dry-run]` pushes the referenced images to the `visual-artifacts` branch (never main or the PR branch) and writes `comment.published.md` with raw GitHub URLs. Only publish when the human asked for it.
