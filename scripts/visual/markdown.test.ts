@@ -39,6 +39,7 @@ const meta = {
   base: 'main',
   baseSha: 'a'.repeat(40),
   headSha: 'b'.repeat(40),
+  headDirty: false,
   createdAt: 'now',
 };
 const tolerances = { diffRatio: 0.0001, cls: 0.001 };
@@ -90,6 +91,18 @@ describe('renderMarkdown', () => {
       buildSummary(meta, [entry('/', 0)], ['/'], tolerances),
     );
     expect(md).toContain('Expected to change but nothing differed');
+  });
+});
+
+describe('renderMarkdown labels', () => {
+  it.each([
+    [false, '(aaaaaaa) → current (bbbbbbb)'],
+    [true, '(aaaaaaa) → current (bbbbbbb+dirty)'],
+  ])('headDirty=%s 일 때 라벨을 표시한다', (headDirty, expected) => {
+    const md = renderMarkdown(
+      buildSummary({ ...meta, headDirty }, [entry('/', 0)], [], tolerances),
+    );
+    expect(md).toContain(expected);
   });
 });
 

@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import {
   buildSummary,
   diffImages,
+  formatShaLabel,
   formatBox,
   formatConsoleTable,
   judgeEntry,
@@ -353,11 +354,43 @@ describe('judgeEntry', () => {
   });
 });
 
+describe('formatShaLabel', () => {
+  it('깨끗한 트리는 짧은 sha 만, 변경이 있으면 +dirty 를 붙인다', () => {
+    const sha = '0123456789abcdef0123456789abcdef01234567';
+    expect(formatShaLabel(sha)).toBe('0123456');
+    expect(formatShaLabel(sha, false)).toBe('0123456');
+    expect(formatShaLabel(sha, true)).toBe('0123456+dirty');
+  });
+
+  it('buildSummary 가 base 와 현재 라벨을 따로 만든다', () => {
+    const base = {
+      base: 'main',
+      baseSha: 'a'.repeat(40),
+      headSha: 'b'.repeat(40),
+      createdAt: 'now',
+    };
+    const clean = buildSummary({ ...base, headDirty: false }, [], [], {
+      diffRatio: 0,
+      cls: 0,
+    });
+    const dirty = buildSummary({ ...base, headDirty: true }, [], [], {
+      diffRatio: 0,
+      cls: 0,
+    });
+    expect([clean.baseLabel, clean.headLabel]).toEqual(['aaaaaaa', 'bbbbbbb']);
+    expect([dirty.baseLabel, dirty.headLabel]).toEqual([
+      'aaaaaaa',
+      'bbbbbbb+dirty',
+    ]);
+  });
+});
+
 describe('buildSummary', () => {
   const meta = {
     base: 'main',
     baseSha: 'a'.repeat(40),
     headSha: 'b'.repeat(40),
+    headDirty: false,
     createdAt: 'now',
   };
 
@@ -402,7 +435,13 @@ describe('buildSummary', () => {
 describe('sortEntries / formatConsoleTable', () => {
   it('실패, 변경, 무변경 순으로 정렬하고 표를 만든다', () => {
     const summary = buildSummary(
-      { base: 'main', baseSha: 'a', headSha: 'b', createdAt: 'now' },
+      {
+        base: 'main',
+        baseSha: 'a',
+        headSha: 'b',
+        headDirty: false,
+        createdAt: 'now',
+      },
       [
         input({ route: '/c' }),
         input({ route: '/b', diff: changedDiff }),

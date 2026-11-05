@@ -262,6 +262,7 @@ const main = async (): Promise<number> => {
   const options = parseCompareArgs(process.argv.slice(2));
   const baseSha = git(['rev-parse', options.base]);
   const headSha = git(['rev-parse', 'HEAD']);
+  const headDirty = git(['status', '--porcelain']) !== '';
 
   const outDir = path.join(OUTPUT_ROOT, timestamp());
   for (const dir of ['before', 'after', 'diff']) {
@@ -358,6 +359,7 @@ const main = async (): Promise<number> => {
         base: options.base,
         baseSha,
         headSha,
+        headDirty,
         createdAt: new Date().toISOString(),
       },
       inputs,

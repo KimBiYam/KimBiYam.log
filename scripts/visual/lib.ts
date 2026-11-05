@@ -84,6 +84,11 @@ export interface Summary {
   base: string;
   baseSha: string;
   headSha: string;
+  /** 현재 작업 트리에 커밋되지 않은 변경이 있는지. */
+  headDirty: boolean;
+  /** 사람이 읽는 라벨: base 는 해석된 짧은 sha, 현재는 짧은 sha 와 (있다면) `+dirty`. */
+  baseLabel: string;
+  headLabel: string;
   createdAt: string;
   passed: boolean;
   tolerances: Tolerances;
@@ -92,6 +97,10 @@ export interface Summary {
   expectedButUnchanged: string[];
   entries: Entry[];
 }
+
+/** 짧은 sha 라벨. 커밋되지 않은 변경이 있으면 `+dirty` 를 붙인다. */
+export const formatShaLabel = (sha: string, dirty = false): string =>
+  `${sha.slice(0, 7)}${dirty ? '+dirty' : ''}`;
 
 /** sitemap.xml 에서 중복 없는 pathname 목록을 뽑는다. */
 export const parseSitemapPaths = (xml: string): string[] => {
@@ -381,7 +390,10 @@ export const judgeEntry = (
 
 /** 전체 판정. UNEXPECTED_CHANGE 또는 REGRESSION 이 하나라도 있으면 실패다. */
 export const buildSummary = (
-  meta: Pick<Summary, 'base' | 'baseSha' | 'headSha' | 'createdAt'>,
+  meta: Pick<
+    Summary,
+    'base' | 'baseSha' | 'headSha' | 'headDirty' | 'createdAt'
+  >,
   inputs: EntryInput[],
   expectChanged: string[],
   tolerances: Tolerances,
@@ -397,6 +409,8 @@ export const buildSummary = (
   return {
     schemaVersion: SCHEMA_VERSION,
     ...meta,
+    baseLabel: formatShaLabel(meta.baseSha),
+    headLabel: formatShaLabel(meta.headSha, meta.headDirty),
     passed: entries.every(
       (e) => e.status === 'UNCHANGED' || e.status === 'CHANGED',
     ),

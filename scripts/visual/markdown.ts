@@ -86,7 +86,7 @@ export const renderMarkdown = (summary: Summary): string => {
   const lines = [
     `## Visual comparison: ${summary.passed ? '✅ PASS' : '❌ FAIL'}`,
     '',
-    `\`${summary.base}\` (${summary.baseSha.slice(0, 7)}) → current (${summary.headSha.slice(0, 7)}) · same machine, ` +
+    `\`${summary.base}\` (${summary.baseLabel}) → current (${summary.headLabel}) · same machine, ` +
       `diff tolerance ${formatPercent(tolerances.diffRatio)}, CLS tolerance ${tolerances.cls}`,
     summary.expectChanged.length > 0
       ? `Expected to change: ${summary.expectChanged.map((r) => `\`${r}\``).join(', ')}`
