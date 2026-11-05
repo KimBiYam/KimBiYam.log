@@ -14,6 +14,7 @@ export const PUBLISH_BRANCH = 'visual-artifacts';
 const STATUS_ICON: Record<Entry['status'], string> = {
   UNEXPECTED_CHANGE: '❌',
   REGRESSION: '❌',
+  EXPECTED_CHANGE_MISSING: '❌',
   CHANGED: '🔶',
   UNCHANGED: '✅',
 };
@@ -114,7 +115,7 @@ export const renderMarkdown = (summary: Summary): string => {
 
   if (summary.expectedButUnchanged.length > 0) {
     lines.push(
-      `⚠️ Expected to change but nothing differed: ${summary.expectedButUnchanged.map((r) => `\`${r}\``).join(', ')}`,
+      `❌ EXPECTED_CHANGE_MISSING: expected to change but nothing differed: ${summary.expectedButUnchanged.map((r) => `\`${r}\``).join(', ')}`,
       '',
     );
   }

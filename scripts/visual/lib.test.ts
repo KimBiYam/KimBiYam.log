@@ -434,15 +434,132 @@ describe('buildSummary', () => {
     expect(failing.entries[0].status).toBe('UNEXPECTED_CHANGE');
   });
 
-  it('기대했지만 변화 없는 라우트를 알린다', () => {
-    const summary = buildSummary(
-      meta,
-      [input({ route: '/' })],
-      ['/', '/x'],
-      tolerances,
-    );
-    expect(summary.expectedButUnchanged).toEqual(['/']);
-    expect(summary.passed).toBe(true);
+  describe('--expect-changed 라우트', () => {
+    const entry = (
+      route: string,
+      viewport: 'desktop' | 'mobile',
+      changed: boolean,
+    ) => input({ route, viewport, ...(changed ? { diff: changedDiff } : {}) });
+
+    it('전부 그대로면 EXPECTED_CHANGE_MISSING 으로 실패한다', () => {
+      const summary = buildSummary(
+        meta,
+        [entry('/', 'desktop', false), entry('/', 'mobile', false)],
+        ['/'],
+        tolerances,
+      );
+      expect(summary.expectedButUnchanged).toEqual(['/']);
+      expect(summary.passed).toBe(false);
+      expect(summary.entries.map((e) => e.status)).toEqual([
+        'EXPECTED_CHANGE_MISSING',
+        'EXPECTED_CHANGE_MISSING',
+      ]);
+      expect(summary.entries[0].reasons[0]).toContain('expected a change');
+    });
+
+    it('일부 viewport/theme 만 바뀌어도 바뀐 것으로 본다', () => {
+      const summary = buildSummary(
+        meta,
+        [entry('/', 'desktop', true), entry('/', 'mobile', false)],
+        ['/'],
+        tolerances,
+      );
+      expect(summary.expectedButUnchanged).toEqual([]);
+      expect(summary.passed).toBe(true);
+      expect(summary.entries.map((e) => e.status)).toEqual([
+        'CHANGED',
+        'UNCHANGED',
+      ]);
+    });
+
+    it('전부 바뀌면 통과한다', () => {
+      const summary = buildSummary(
+        meta,
+        [entry('/', 'desktop', true), entry('/', 'mobile', true)],
+        ['/'],
+        tolerances,
+      );
+      expect(summary.expectedButUnchanged).toEqual([]);
+      expect(summary.passed).toBe(true);
+    });
+
+    it('레이아웃만 바뀌어도(diff 0) 바뀐 것으로 본다', () => {
+      const summary = buildSummary(
+        meta,
+        [input({ after: layout({ scrollHeight: 1100 }) })],
+        ['/'],
+        tolerances,
+      );
+      expect(summary.entries[0].status).toBe('CHANGED');
+      expect(summary.passed).toBe(true);
+    });
+
+    it('목록에 없는 라우트는 계속 그대로여야 한다', () => {
+      const summary = buildSummary(
+        meta,
+        [entry('/', 'desktop', true), entry('/x', 'desktop', true)],
+        ['/'],
+        tolerances,
+      );
+      expect(summary.passed).toBe(false);
+      expect(summary.entries.map((e) => e.status)).toEqual([
+        'CHANGED',
+        'UNEXPECTED_CHANGE',
+      ]);
+    });
+
+    it('캡처되지 않은 라우트는 표시하지 않는다', () => {
+      const summary = buildSummary(
+        meta,
+        [entry('/', 'desktop', true)],
+        ['/', '/missing'],
+        tolerances,
+      );
+      expect(summary.expectedButUnchanged).toEqual([]);
+      expect(summary.passed).toBe(true);
+    });
+
+    it('다른 상태와 섞여도 각자 판정한다', () => {
+      const summary = buildSummary(
+        meta,
+        [
+          entry('/same', 'desktop', false),
+          entry('/same', 'mobile', false),
+          entry('/partial', 'desktop', true),
+          entry('/partial', 'mobile', false),
+          input({
+            route: '/regress',
+            diff: changedDiff,
+            after: layout({ horizontalOverflow: true }),
+          }),
+          entry('/other', 'desktop', true),
+          entry('/stable', 'desktop', false),
+        ],
+        ['/same', '/partial', '/regress'],
+        tolerances,
+      );
+      expect(summary.expectedButUnchanged).toEqual(['/same']);
+      expect(summary.passed).toBe(false);
+      expect(summary.entries.map((e) => [e.route, e.status])).toEqual([
+        ['/same', 'EXPECTED_CHANGE_MISSING'],
+        ['/same', 'EXPECTED_CHANGE_MISSING'],
+        ['/partial', 'CHANGED'],
+        ['/partial', 'UNCHANGED'],
+        ['/regress', 'REGRESSION'],
+        ['/other', 'UNEXPECTED_CHANGE'],
+        ['/stable', 'UNCHANGED'],
+      ]);
+    });
+
+    it('missing 만으로도 다른 항목이 모두 정상이면 실패한다', () => {
+      const summary = buildSummary(
+        meta,
+        [entry('/same', 'desktop', false), entry('/stable', 'desktop', false)],
+        ['/same'],
+        tolerances,
+      );
+      expect(summary.passed).toBe(false);
+    });
   });
 
   it('REGRESSION 은 실패다', () => {
@@ -488,6 +605,26 @@ describe('sortEntries / formatConsoleTable', () => {
     expect(table.split('\n')[0]).toContain('status');
     expect(table).toContain('UNEXPECTED_CHANGE');
     expect(table).toContain('3×4@1,2');
+  });
+
+  it('EXPECTED_CHANGE_MISSING 은 맨 앞에 정렬된다', () => {
+    const summary = buildSummary(
+      {
+        base: 'main',
+        baseSha: 'a',
+        headSha: 'b',
+        headDirty: false,
+        createdAt: 'now',
+      },
+      [input({ route: '/b', diff: changedDiff }), input({ route: '/a' })],
+      ['/a', '/b'],
+      tolerances,
+    );
+    expect(sortEntries(summary.entries).map((e) => e.status)).toEqual([
+      'EXPECTED_CHANGE_MISSING',
+      'CHANGED',
+    ]);
+    expect(formatConsoleTable(summary)).toContain('EXPECTED_CHANGE_MISSING');
   });
 
   it('formatBox 는 상자가 없으면 -', () => {

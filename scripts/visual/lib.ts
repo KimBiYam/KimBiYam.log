@@ -23,7 +23,8 @@ export type EntryStatus =
   | 'UNCHANGED'
   | 'CHANGED'
   | 'UNEXPECTED_CHANGE'
-  | 'REGRESSION';
+  | 'REGRESSION'
+  | 'EXPECTED_CHANGE_MISSING';
 
 /** 한 화면(라우트×뷰포트×테마)을 DOM 에서 잰 값. */
 export interface LayoutMetrics {
@@ -95,7 +96,7 @@ export interface Summary {
   passed: boolean;
   tolerances: Tolerances;
   expectChanged: string[];
-  /** 지정했지만 아무 변화도 관찰되지 않은 라우트. */
+  /** 지정했지만 모든 viewport/theme 에서 변화가 없던 라우트. 있으면 실패다(EXPECTED_CHANGE_MISSING). */
   expectedButUnchanged: string[];
   entries: Entry[];
 }
@@ -404,7 +405,11 @@ export const judgeEntry = (
   return { ...input, heightDelta, widthDelta, clsDelta, status, reasons };
 };
 
-/** 전체 판정. UNEXPECTED_CHANGE 또는 REGRESSION 이 하나라도 있으면 실패다. */
+/**
+ * 전체 판정. UNEXPECTED_CHANGE, REGRESSION, EXPECTED_CHANGE_MISSING 이 하나라도 있으면 실패다.
+ * --expect-changed 라우트는 viewport/theme 중 하나라도 바뀌면 바뀐 것으로 본다. 전부 그대로여야만
+ * 의도한 변경이 적용되지 않은 것이므로 그 라우트의 항목을 EXPECTED_CHANGE_MISSING 으로 바꾼다.
+ */
 export const buildSummary = (
   meta: Pick<
     Summary,
@@ -414,13 +419,25 @@ export const buildSummary = (
   expectChanged: string[],
   tolerances: Tolerances,
 ): Summary => {
-  const entries = inputs.map((input) =>
+  const judged = inputs.map((input) =>
     judgeEntry(input, expectChanged.includes(input.route), tolerances),
   );
   const expectedButUnchanged = expectChanged.filter((route) => {
-    const own = entries.filter((e) => e.route === route);
+    const own = judged.filter((e) => e.route === route);
     return own.length > 0 && own.every((e) => e.status === 'UNCHANGED');
   });
+  const entries = judged.map(
+    (e): Entry =>
+      expectedButUnchanged.includes(e.route)
+        ? {
+            ...e,
+            status: 'EXPECTED_CHANGE_MISSING',
+            reasons: [
+              'expected a change but nothing differed in any viewport/theme',
+            ],
+          }
+        : e,
+  );
 
   return {
     schemaVersion: SCHEMA_VERSION,
@@ -442,6 +459,7 @@ export const sortEntries = (entries: Entry[]): Entry[] => {
   const rank: Record<EntryStatus, number> = {
     UNEXPECTED_CHANGE: 0,
     REGRESSION: 0,
+    EXPECTED_CHANGE_MISSING: 0,
     CHANGED: 1,
     UNCHANGED: 2,
   };

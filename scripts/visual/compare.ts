@@ -400,7 +400,7 @@ const main = async (): Promise<number> => {
     console.log(`\nverdict: ${summary.passed ? 'PASS' : 'FAIL'}`);
     if (summary.expectedButUnchanged.length > 0) {
       console.log(
-        `warning: expected to change but nothing differed: ${summary.expectedButUnchanged.join(', ')}`,
+        `EXPECTED_CHANGE_MISSING: expected to change but nothing differed: ${summary.expectedButUnchanged.join(', ')}`,
       );
     }
     console.log(`output: ${outDir}`);

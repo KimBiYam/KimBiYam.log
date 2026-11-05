@@ -87,11 +87,15 @@ describe('renderMarkdown', () => {
     expect(clean).not.toContain('### Screenshots');
   });
 
-  it('기대했지만 변화 없는 라우트를 경고한다', () => {
+  it('기대했지만 변화 없는 라우트는 FAIL 이고 표와 본문에 같은 상태가 나온다', () => {
     const md = renderMarkdown(
       buildSummary(meta, [entry('/', 0)], ['/'], tolerances),
     );
-    expect(md).toContain('Expected to change but nothing differed');
+    expect(md.startsWith('## Visual comparison: ❌ FAIL')).toBe(true);
+    expect(md).toContain('| ❌ EXPECTED_CHANGE_MISSING | `/` |');
+    expect(md).toContain(
+      '❌ EXPECTED_CHANGE_MISSING: expected to change but nothing differed: `/`',
+    );
   });
 });
 
