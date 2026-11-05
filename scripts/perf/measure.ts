@@ -3,6 +3,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { gzipSync } from 'node:zlib';
 
+import { keepNextEnvClean } from '../nextEnv.ts';
 import {
   BUILD_MARKER_FILE,
   SCHEMA_VERSION,
@@ -64,11 +65,13 @@ const assertReusable = () => {
 /** 빌드를 실행하고 걸린 시간(ms)을 반환한다. */
 const build = (): number => {
   const startedAt = Date.now();
-  const result = spawnSync('pnpm', ['build'], {
-    cwd: ROOT,
-    stdio: ['ignore', 2, 2],
-    env: { ...process.env, ...BUILD_ENV },
-  });
+  const result = keepNextEnvClean(ROOT, () =>
+    spawnSync('pnpm', ['build'], {
+      cwd: ROOT,
+      stdio: ['ignore', 2, 2],
+      env: { ...process.env, ...BUILD_ENV },
+    }),
+  );
 
   if (result.status !== 0) {
     throw new Error(`pnpm build failed (exit ${result.status})`);

@@ -13,6 +13,7 @@ import path from 'node:path';
 import { chromium } from '@playwright/test';
 import sharp from 'sharp';
 
+import { keepNextEnvClean } from '../nextEnv.ts';
 import {
   THEMES,
   VIEWPORTS,
@@ -261,6 +262,7 @@ const main = async (): Promise<number> => {
   const options = parseCompareArgs(process.argv.slice(2));
   const baseSha = git(['rev-parse', options.base]);
   const headSha = git(['rev-parse', 'HEAD']);
+  const headDirty = git(['status', '--porcelain']) !== '';
 
   const outDir = path.join(OUTPUT_ROOT, timestamp());
   for (const dir of ['before', 'after', 'diff']) {
@@ -288,7 +290,7 @@ const main = async (): Promise<number> => {
     ];
     for (const side of sides) {
       log(`building ${side.name} (${side.dir})`);
-      run('pnpm', ['build'], side.dir);
+      keepNextEnvClean(side.dir, () => run('pnpm', ['build'], side.dir));
     }
 
     const ports = [await freePort(), await freePort()];
@@ -357,6 +359,7 @@ const main = async (): Promise<number> => {
         base: options.base,
         baseSha,
         headSha,
+        headDirty,
         createdAt: new Date().toISOString(),
       },
       inputs,
