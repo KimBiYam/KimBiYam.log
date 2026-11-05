@@ -152,6 +152,10 @@ export const extractImagePaths = (markdown: string): string[] => [
   ),
 ];
 
+/** 올릴 이미지가 하나도 없으면(변화 없음) 퍼블리시할 것이 없다. */
+export const isNothingToPublish = (markdown: string): boolean =>
+  extractImagePaths(markdown).length === 0;
+
 export interface RepoRef {
   owner: string;
   repo: string;

@@ -1,7 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  BUILD_MARKER_FILE,
   SCHEMA_VERSION,
+  checkBuildMarker,
+  createBuildMarker,
+  classifyDelta,
   compareMetrics,
   extractScriptSrcs,
   formatDiffTable,
@@ -66,6 +70,20 @@ describe('getTolerance', () => {
   });
 });
 
+describe('classifyDelta', () => {
+  it.each([
+    [4, 'regressed'],
+    [3, 'within-tolerance'],
+    [1, 'within-tolerance'],
+    [0, 'unchanged'],
+    [-1, 'within-tolerance'],
+    [-3, 'within-tolerance'],
+    [-4, 'improved'],
+  ] as const)('tolerance 3: delta %i → %s', (delta, status) => {
+    expect(classifyDelta(delta, 3)).toBe(status);
+  });
+});
+
 describe('compareMetrics', () => {
   const baseline = { '/': 100_000, '/a': 100_000, '/b': 100_000, '/gone': 5 };
 
@@ -79,10 +97,10 @@ describe('compareMetrics', () => {
 
     expect(result.passed).toBe(true);
     expect(result.rows.map((r) => [r.route, r.status, r.delta])).toEqual([
-      ['/', 'ok', 0],
-      ['/a', 'ok', 900],
+      ['/', 'unchanged', 0],
+      ['/a', 'within-tolerance', 900],
       ['/b', 'improved', -10_000],
-      ['/gone', 'ok', 0],
+      ['/gone', 'unchanged', 0],
     ]);
   });
 
@@ -132,7 +150,7 @@ describe('formatDiffTable', () => {
     const out = formatDiffTable(compareMetrics({ '/': 1 }, { '/': 1 }));
 
     expect(out).toBe(
-      '1 routes: 0 regressed, 0 improved, 0 new, 0 removed, 1 unchanged',
+      '1 routes: 0 regressed, 0 improved (beyond tolerance), 0 within tolerance, 0 new, 0 removed, 1 unchanged',
     );
   });
 
@@ -145,6 +163,29 @@ describe('formatDiffTable', () => {
     expect(out).toMatch(/\/a\s+100000\s+110000\s+\+10000\s+regressed/);
     expect(out).toMatch(/\/b\s+-\s+5\s+-\s+new/);
     expect(out).toContain('1 regressed');
+    expect(out).not.toContain('perf:update');
+  });
+
+  it('오차 안의 감소는 within-tolerance 로 표시하고 ratchet 을 권하지 않는다', () => {
+    // 100_000 의 허용 오차는 1000B: -900B 는 개선으로 치지 않는다.
+    const out = formatDiffTable(
+      compareMetrics({ '/a': 100_000 }, { '/a': 99_100 }),
+    );
+
+    expect(out).toMatch(/\/a\s+100000\s+99100\s+-900\s+within-tolerance/);
+    expect(out).toContain('1 within tolerance');
+    expect(out).toContain('0 improved');
+    expect(out).not.toContain('perf:update');
+  });
+
+  it('오차를 넘는 감소만 improved 로 표시하고 perf:update 를 권한다', () => {
+    const out = formatDiffTable(
+      compareMetrics({ '/a': 100_000 }, { '/a': 98_999 }),
+    );
+
+    expect(out).toMatch(/\/a\s+100000\s+98999\s+-1001\s+improved/);
+    expect(out).toContain('1 improved (beyond tolerance)');
+    expect(out).toContain('pnpm perf:update');
   });
 });
 
@@ -165,5 +206,71 @@ describe('isPerfBaseline', () => {
       false,
     );
     expect(isPerfBaseline(null)).toBe(false);
+  });
+});
+
+describe('build marker', () => {
+  const perfEnv = {
+    NEXT_PUBLIC_SENTRY_DISABLED: 'true',
+    NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID: '',
+  };
+  const expected = createBuildMarker(perfEnv, 'abc123');
+
+  it('환경과 HEAD 에서 표식을 만든다', () => {
+    expect(expected).toEqual({
+      schemaVersion: SCHEMA_VERSION,
+      sentryDisabled: 'true',
+      gaIdEmpty: true,
+      analyze: false,
+      headSha: 'abc123',
+    });
+  });
+
+  it('ANALYZE 와 GA id 를 불리언으로 정규화한다', () => {
+    const marker = createBuildMarker(
+      { ANALYZE: 'true', NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID: 'G-1' },
+      null,
+    );
+    expect(marker).toMatchObject({
+      analyze: true,
+      gaIdEmpty: false,
+      sentryDisabled: null,
+      headSha: null,
+    });
+    expect(createBuildMarker({ ANALYZE: 'false' }, null).analyze).toBe(false);
+  });
+
+  it('같은 표식이면 통과한다', () => {
+    expect(checkBuildMarker({ ...expected }, expected)).toEqual([]);
+  });
+
+  it('표식이 없으면 거부한다', () => {
+    expect(checkBuildMarker(undefined, expected)[0]).toContain(
+      `${BUILD_MARKER_FILE} is missing`,
+    );
+  });
+
+  it('형식이 깨졌거나 스키마가 다르면 거부한다', () => {
+    expect(checkBuildMarker({ foo: 1 }, expected)[0]).toContain('malformed');
+    expect(
+      checkBuildMarker({ ...expected, schemaVersion: 999 }, expected),
+    ).toHaveLength(1);
+  });
+
+  it.each([
+    ['sentryDisabled', { sentryDisabled: null }, 'NEXT_PUBLIC_SENTRY_DISABLED'],
+    ['gaIdEmpty', { gaIdEmpty: false }, 'GA tracking id'],
+    ['analyze', { analyze: true }, 'ANALYZE'],
+    ['headSha', { headSha: 'other' }, 'git HEAD'],
+  ])('%s 가 다르면 해당 사유를 반환한다', (_, override, label) => {
+    const problems = checkBuildMarker({ ...expected, ...override }, expected);
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toContain(label);
+  });
+
+  it('여러 항목이 다르면 모두 보고한다', () => {
+    expect(
+      checkBuildMarker({ ...expected, analyze: true, headSha: 'x' }, expected),
+    ).toHaveLength(2);
   });
 });
