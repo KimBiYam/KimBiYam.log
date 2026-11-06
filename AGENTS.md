@@ -7,6 +7,7 @@ This document outlines the development standards and operational procedures for 
 ### **Commands**
 
 - **Package Manager:** `pnpm` (Core requirement. Version 11.5.1).
+- **Node:** use the version in `.nvmrc` (24.22.1). The `scripts/` TypeScript files run through Node's native type stripping, so `pnpm perf`, `pnpm perf:check` and `pnpm visual:*` fail with `ERR_UNKNOWN_FILE_EXTENSION` on older Node (e.g. 22.14).
 - **Install Dependencies:** `pnpm install`
 - **Development Server:** `pnpm dev`
 - **Production Build:** `pnpm build`
@@ -152,6 +153,8 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
 ### **Performance loop**
 
 Gated metric: gzip First Load JS per route (`perf-baseline.json`, measured from the built HTML; routes come from `sitemap.xml`). Build time is printed for information only. CLS is not measured (browser-dependent, too noisy to gate).
+
+Sentry in the client bundle: Session Replay is lazy-loaded (`src/sentryReplay.ts`) and tracing is excluded (`bundleSizeOptimizations.excludeTracing` in `next.config.js`, no `tracesSampleRate`). Do not re-add `tracesSampleRate`, `browserTracingIntegration` or other performance features without measuring: tracing was ~25 KB gzip of First Load JS on every route, and performance data comes from Vercel Speed Insights.
 
 - `pnpm perf`: build (with Sentry/GA disabled, same as CI) and print metrics as JSON. Add `--reuse` to skip the build and read the existing `.next` (it must have been built with those same env vars).
 - `pnpm perf:check`: compare against `perf-baseline.json`; exits non-zero when a route grows beyond tolerance (1%, min 256 B) and prints a diff table.
