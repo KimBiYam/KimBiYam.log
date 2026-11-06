@@ -10,8 +10,8 @@ Sentry.init({
   // Automated runs (e2e/CI) set NEXT_PUBLIC_SENTRY_DISABLED=true so they do not report to production Sentry.
   enabled: process.env.NEXT_PUBLIC_SENTRY_DISABLED !== 'true',
 
-  // Adjust this value in production, or use tracesSampler for greater control
-  tracesSampleRate: 1,
+  // Tracing is excluded from the bundle (bundleSizeOptimizations.excludeTracing
+  // in next.config.js), so no tracesSampleRate is set.
 
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
   debug: false,
