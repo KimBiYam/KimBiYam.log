@@ -3,7 +3,7 @@ type RenderSVGComponent = (
 ) => SVGComponent;
 
 declare module '*.svg' {
-  const RenderSVGComponent: RenderSVGComponent = () => SVGComponent;
+  const RenderSVGComponent: RenderSVGComponent;
 
   export default RenderSVGComponent;
 }

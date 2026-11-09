@@ -65,7 +65,7 @@ const useTableOfContents = (targetElement: HTMLElement | null) => {
     );
     const headings = getTableOfContentHeadings(headingElements);
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    // eslint-disable-next-line react-hooks-js/set-state-in-effect
     setHeadings(headings);
   }, [targetElement]);
 

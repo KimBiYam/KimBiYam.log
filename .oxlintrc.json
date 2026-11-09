@@ -1,0 +1,315 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "eslint",
+    "typescript",
+    "react",
+    "nextjs",
+    "import"
+  ],
+  "jsPlugins": [
+    "eslint-plugin-boundaries",
+    {
+      "name": "react-hooks-js",
+      "specifier": "eslint-plugin-react-hooks"
+    },
+    {
+      "name": "import-js",
+      "specifier": "eslint-plugin-import"
+    },
+    {
+      "name": "next-js",
+      "specifier": "@next/eslint-plugin-next"
+    }
+  ],
+  "categories": {
+    "correctness": "off"
+  },
+  "ignorePatterns": [
+    ".next/",
+    "node_modules/",
+    "build/"
+  ],
+  "settings": {
+    "boundaries/elements": [
+      {
+        "type": "app",
+        "pattern": "src/app",
+        "mode": "folder"
+      },
+      {
+        "type": "pages",
+        "pattern": "src/(pages)/*",
+        "mode": "folder"
+      },
+      {
+        "type": "app-init",
+        "pattern": "src/_app",
+        "mode": "folder"
+      },
+      {
+        "type": "widget",
+        "pattern": "src/widgets/*",
+        "mode": "folder",
+        "capture": [
+          "slice"
+        ]
+      },
+      {
+        "type": "feature",
+        "pattern": "src/features/*",
+        "mode": "folder",
+        "capture": [
+          "slice"
+        ]
+      },
+      {
+        "type": "shared",
+        "pattern": "src/shared",
+        "mode": "folder"
+      }
+    ],
+    "import/resolver": {
+      "typescript": true,
+      "node": true
+    }
+  },
+  "rules": {
+    "nextjs/google-font-display": "warn",
+    "nextjs/google-font-preconnect": "warn",
+    "nextjs/inline-script-id": "error",
+    "nextjs/next-script-for-ga": "warn",
+    "nextjs/no-assign-module-variable": "error",
+    "nextjs/no-async-client-component": "warn",
+    "nextjs/no-before-interactive-script-outside-document": "warn",
+    "nextjs/no-css-tags": "warn",
+    "nextjs/no-document-import-in-page": "error",
+    "nextjs/no-duplicate-head": "error",
+    "nextjs/no-head-element": "warn",
+    "nextjs/no-head-import-in-document": "error",
+    "nextjs/no-html-link-for-pages": "error",
+    "nextjs/no-img-element": "warn",
+    "next-js/no-location-assign-relative-destination": "warn",
+    "nextjs/no-page-custom-font": "warn",
+    "nextjs/no-script-component-in-head": "error",
+    "nextjs/no-styled-jsx-in-document": "warn",
+    "nextjs/no-sync-scripts": "error",
+    "nextjs/no-title-in-document-head": "warn",
+    "nextjs/no-typos": "warn",
+    "nextjs/no-unwanted-polyfillio": "warn",
+    "typescript/ban-ts-comment": "error",
+    "eslint/no-array-constructor": "error",
+    "typescript/no-duplicate-enum-values": "error",
+    "typescript/no-empty-object-type": "error",
+    "typescript/no-explicit-any": "error",
+    "typescript/no-extra-non-null-assertion": "error",
+    "typescript/no-misused-new": "error",
+    "typescript/no-namespace": "error",
+    "typescript/no-non-null-asserted-optional-chain": "error",
+    "typescript/no-require-imports": "error",
+    "typescript/no-this-alias": "error",
+    "typescript/no-unnecessary-type-constraint": "error",
+    "typescript/no-unsafe-declaration-merging": "error",
+    "typescript/no-unsafe-function-type": "error",
+    "eslint/no-unused-expressions": "error",
+    "eslint/no-unused-vars": "error",
+    "typescript/no-wrapper-object-types": "error",
+    "typescript/prefer-as-const": "error",
+    "typescript/prefer-namespace-keyword": "error",
+    "typescript/triple-slash-reference": "error",
+    "for-direction": "error",
+    "import/default": "error",
+    "import/export": "error",
+    "import/no-duplicates": "warn",
+    "import/no-named-as-default-member": "warn",
+    "import-js/no-unresolved": "error",
+    "no-async-promise-executor": "error",
+    "no-case-declarations": "error",
+    "no-compare-neg-zero": "error",
+    "no-cond-assign": "error",
+    "no-constant-binary-expression": "error",
+    "no-constant-condition": "error",
+    "no-control-regex": "error",
+    "no-debugger": "error",
+    "no-delete-var": "error",
+    "no-dupe-else-if": "error",
+    "no-duplicate-case": "error",
+    "no-empty": "error",
+    "no-empty-character-class": "error",
+    "no-empty-pattern": "error",
+    "no-empty-static-block": "error",
+    "no-ex-assign": "error",
+    "no-fallthrough": "error",
+    "no-global-assign": "error",
+    "no-invalid-regexp": "error",
+    "no-irregular-whitespace": "error",
+    "no-loss-of-precision": "error",
+    "no-misleading-character-class": "error",
+    "no-nonoctal-decimal-escape": "error",
+    "no-prototype-builtins": "error",
+    "no-regex-spaces": "error",
+    "no-self-assign": "error",
+    "no-shadow-restricted-names": "error",
+    "no-sparse-arrays": "error",
+    "no-unsafe-finally": "error",
+    "no-unsafe-optional-chaining": "error",
+    "no-unused-labels": "error",
+    "no-unused-private-class-members": "error",
+    "no-useless-backreference": "error",
+    "no-useless-catch": "error",
+    "no-useless-escape": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    "react-hooks-js/component-hook-factories": "error",
+    "react-hooks-js/config": "error",
+    "react-hooks-js/error-boundaries": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks-js/gating": "error",
+    "react-hooks-js/globals": "error",
+    "react-hooks-js/immutability": "error",
+    "react-hooks-js/incompatible-library": "warn",
+    "react-hooks-js/preserve-manual-memoization": "error",
+    "react-hooks-js/purity": "error",
+    "react-hooks-js/refs": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks-js/set-state-in-effect": "error",
+    "react-hooks-js/set-state-in-render": "error",
+    "react-hooks-js/static-components": "error",
+    "react-hooks-js/unsupported-syntax": "warn",
+    "react-hooks-js/use-memo": "error",
+    "require-yield": "error",
+    "use-isnan": "error",
+    "valid-typeof": "error",
+    "boundaries/dependencies": [
+      "error",
+      {
+        "default": "disallow",
+        "rules": [
+          {
+            "from": {
+              "type": "shared"
+            },
+            "dependency": {
+              "source": "@src/app/icon.png"
+            },
+            "allow": {
+              "to": {
+                "type": "app"
+              }
+            }
+          },
+          {
+            "from": {
+              "type": "app"
+            },
+            "allow": {
+              "to": {
+                "type": [
+                  "pages",
+                  "app-init",
+                  "feature",
+                  "shared"
+                ]
+              }
+            }
+          },
+          {
+            "from": {
+              "type": "pages"
+            },
+            "allow": {
+              "to": {
+                "type": [
+                  "widget",
+                  "feature",
+                  "shared"
+                ]
+              }
+            }
+          },
+          {
+            "from": {
+              "type": "app-init"
+            },
+            "allow": {
+              "to": {
+                "type": [
+                  "widget",
+                  "feature",
+                  "shared"
+                ]
+              }
+            }
+          },
+          {
+            "from": {
+              "type": "widget"
+            },
+            "allow": {
+              "to": {
+                "type": [
+                  "feature",
+                  "shared"
+                ]
+              }
+            }
+          },
+          {
+            "from": {
+              "type": "feature"
+            },
+            "allow": {
+              "to": {
+                "type": "shared"
+              }
+            }
+          },
+          {
+            "from": {
+              "type": "shared"
+            },
+            "allow": {
+              "to": {
+                "type": "shared"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "import-js/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          [
+            "parent",
+            "sibling",
+            "index"
+          ],
+          "type"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "@src/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@src/**/*.css",
+            "group": "index",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "builtin"
+        ],
+        "newlines-between": "always"
+      }
+    ]
+  }
+}
