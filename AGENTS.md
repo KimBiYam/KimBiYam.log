@@ -15,6 +15,8 @@ This document outlines the development standards and operational procedures for 
   - Next.js 16 no longer runs linting during `next build`; run `pnpm lint` separately.
 - **Linting:** `pnpm lint`
   - Runs ESLint on `src/` and `e2e/`.
+  - The project compiler is TypeScript 7 (native), which has no classic JS API. `.pnpmfile.cjs` gives `@typescript-eslint/*` and `ts-api-utils` their own TypeScript 6.0.x so ESLint keeps working; `tsc`, Next and vitest use 7. Drop the hook once typescript-eslint supports TS 7.
+  - `tsconfig.json` has no `baseUrl` (removed in TS 7); `paths` entries must start with `./`.
   - Fix all warnings before committing.
 - **Analyze Bundle:** `pnpm build:analyze`
 
