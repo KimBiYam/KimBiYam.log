@@ -31,7 +31,7 @@ const DragScrollContainer = ({ children }: DragScrollContainerProps) => {
     if (!ref.current) return;
 
     ref.current.removeEventListener('mousemove', handleMouseMove);
-    // eslint-disable-next-line react-hooks/immutability
+    // eslint-disable-next-line react-hooks-js/immutability
     ref.current.removeEventListener('mouseup', handleMouseUp);
 
     ref.current.style.removeProperty('user-select');

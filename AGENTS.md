@@ -14,7 +14,11 @@ This document outlines the development standards and operational procedures for 
   - Note: This runs the Next.js production build and type checking.
   - Next.js 16 no longer runs linting during `next build`; run `pnpm lint` separately.
 - **Linting:** `pnpm lint`
-  - Runs ESLint on `src/` and `e2e/`.
+  - Runs oxlint (`.oxlintrc.json`) on `src/`, `e2e/` and `scripts/`; `pnpm lint` fails on errors.
+  - The project compiler is TypeScript 7 (native). typescript-eslint does not support it, so linting is oxlint: native rules plus JS plugins (`eslint-plugin-boundaries`, `eslint-plugin-import` for `import/order`/`no-unresolved`, `eslint-plugin-react-hooks` compiler rules, aliased `react-hooks-js`). The `eslint` package stays installed only because those plugins import it; ESLint itself is not run.
+  - Disable comments for the compiler rules use the alias, e.g. `// eslint-disable-next-line react-hooks-js/refs`.
+  - Prettier is not enforced by lint (it never was); format with `prettier`.
+  - `tsconfig.json` has no `baseUrl` (removed in TS 7); `paths` entries must start with `./`.
   - Fix all warnings before committing.
 - **Analyze Bundle:** `pnpm build:analyze`
 
@@ -29,7 +33,7 @@ This document outlines the development standards and operational procedures for 
   - Logic changes under `src/features/*/lib` and `src/shared/utils` need unit tests. New logic files ship with their tests.
   - User-visible behavior changes (clicks, toggles, scrolling, links, redirects, metadata endpoints) need an E2E scenario.
   - The 80% coverage floor on the logic directories is never lowered. The global floors may be lowered in the same PR only when the drop comes solely from UI/app-layer files (`shared/ui`, `widgets`, `(pages)`, `app`, `_app`) that are guarded by e2e; note it in the PR description. `pnpm test:coverage` must pass.
-  - Test imports must respect the ESLint layer boundaries (use `@src` absolute imports).
+  - Test imports must respect the lint layer boundaries (use `@src` absolute imports).
   - E2E runs against the real contents and discovers posts at runtime (e.g. via `sitemap.xml`). Never hardcode post titles, slugs, or tags.
   - E2E waits on conditions (hydration, assertions), never `waitForTimeout`.
   - Automated runs must not report to production services. The Playwright `webServer` and the CI e2e job set `NEXT_PUBLIC_SENTRY_DISABLED=true` (read by the three Sentry `init` calls) and an empty `NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID`; `e2e/smoke.spec.ts` fails if the page sends Sentry requests. Keep these when changing the build or e2e setup.
@@ -98,7 +102,7 @@ This project follows a **Feature-Sliced Design (FSD)** inspired architecture, ad
 - **Types/Interfaces:** `PascalCase` (e.g., `interface PostDetail`).
 - **Props:** Explicitly typed with `interface`. Avoid `React.FC`.
 
-### **Import Order (Enforced by ESLint)**
+### **Import Order (Enforced by lint)**
 
 1.  **External Libraries:** React, Next.js, Jotai, Motion, etc.
 2.  **Internal Absolute Imports:** `@src/app`, `@src/(pages)`, `@src/widgets`, `@src/features`, `@src/shared`, `@src/_app`.

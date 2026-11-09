@@ -33,7 +33,7 @@ export default React.forwardRef(function MediumZoom<
     <>
       {React.cloneElement(children, {
         ...children.props,
-        // eslint-disable-next-line react-hooks/refs
+        // eslint-disable-next-line react-hooks-js/refs
         ref: mergeRefs(ref, imageRef),
       })}
     </>

@@ -20,10 +20,9 @@
     "jsx": "react-jsx",
     "incremental": true,
     "sourceMap": true,
-    "baseUrl": ".",
     "paths": {
       "@src/*": [
-        "src/*"
+        "./src/*"
       ]
     },
     "plugins": [
