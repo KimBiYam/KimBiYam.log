@@ -7,7 +7,7 @@ This document outlines the development standards and operational procedures for 
 ### **Commands**
 
 - **Package Manager:** `pnpm` (Core requirement. Version 11.5.1).
-- **Node:** use the version in `.nvmrc` (24.22.1). The `scripts/` TypeScript files run through Node's native type stripping, so `pnpm perf`, `pnpm perf:check` and `pnpm visual:*` fail with `ERR_UNKNOWN_FILE_EXTENSION` on older Node (e.g. 22.14).
+- **Node:** use the version in `.nvmrc` (26.13.1). The `scripts/` TypeScript files run through Node's native type stripping, so `pnpm perf`, `pnpm perf:check` and `pnpm visual:*` fail with `ERR_UNKNOWN_FILE_EXTENSION` on older Node (e.g. 22.14).
 - **Install Dependencies:** `pnpm install`
 - **Development Server:** `pnpm dev`
 - **Production Build:** `pnpm build`
